@@ -1,0 +1,12 @@
+{
+  "name": "lastmile-tum-backend",
+  "version": "0.0.1",
+  "description": "LastMile backend as a service",
+  "main": "server.js",
+  "author": "SEBA Master LastMile Team",
+  "license": "UNLICENSED",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tivoodoo/lastmile-tum.git"
+  }
