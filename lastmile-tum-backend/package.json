@@ -3,10 +3,20 @@
   "version": "0.0.1",
   "description": "LastMile backend as a service",
   "main": "server.js",
-  "author": "SEBA Master LastMile Team",
-  "license": "UNLICENSED",
-  "private": true,
+  "scripts": {
+    "test": "no test specified"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tivoodoo/lastmile-tum.git"
-  }
+    "url": "git+https://github.com/tivoodoo/lastmile-tum.git"
+  },
+  "author": "Tim Henkelmann, Tien Vu, Daniel Schlingmann",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/tivoodoo/lastmile-tum/issues"
+  },
+  "homepage": "https://github.com/tivoodoo/lastmile-tum#readme"
+},
+"scripts": {
+  "start": "node server.js"
+},

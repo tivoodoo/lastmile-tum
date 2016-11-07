@@ -1,0 +1,19 @@
+{
+  "name": "lastmile-tum-frontend",
+  "version": "0.0.1",
+  "description": "LastMile frontend",
+  "main": "index.js",
+  "scripts": {
+    "test": "no test specified"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tivoodoo/lastmile-tum.git"
+  },
+  "author": "Tim Henkelmann, Tien Vu, Daniel Schlingmann",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/tivoodoo/lastmile-tum/issues"
+  },
+  "homepage": "https://github.com/tivoodoo/lastmile-tum#readme"
+}
