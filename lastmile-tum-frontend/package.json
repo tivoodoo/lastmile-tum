@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/tivoodoo/lastmile-tum/issues"
   },
-  "homepage": "https://github.com/tivoodoo/lastmile-tum#readme"
+  "homepage": "https://github.com/tivoodoo/lastmile-tum#readme",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  }
 }
