@@ -33,6 +33,8 @@ db.once('open', function callback() {
 
 var express = require('express');
 var path = require('path');
+//Logger for request
+var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
@@ -52,6 +54,7 @@ var app = express();
  * App setup.
  */
 
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
@@ -67,7 +70,7 @@ var requestRoutes = require('./api/request/requestRoutes');
 
 // setting url path
 // app.use('/user', userRoutes(passport));
-app.use('/user', userRoutes);
+app.use('/user', userRoutes());
 
 /**
  * Error handlers.
