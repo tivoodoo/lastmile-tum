@@ -4,12 +4,21 @@
   "description": "LastMile backend as a service",
   "main": "server.js",
   "scripts": {
-    "test": "no test specified"
+    "test": "no test specified",
+    "prestart": "npm install",
+    "start": "node ./bin/start-server-backend"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tivoodoo/lastmile-tum.git"
   },
+  "keywords": [
+    "transport",
+    "delivery",
+    "package",
+    "car sharing",
+    "mitfahr"
+  ],
   "author": "Tim Henkelmann, Tien Vu, Daniel Schlingmann",
   "license": "UNLICENSED",
   "bugs": {
