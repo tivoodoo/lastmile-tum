@@ -15,7 +15,7 @@ function FloatType(digits) {
 
   util.inherits(Float, mongoose.SchemaTypes.Number);
 
-  Float.prototype.cast = function(value) {
+  Float.prototype.cast = function (value) {
     if (typeof value !== 'number') return new CastError('The value you passed should be number');
 
     return Number(value.toFixed(digits || 2));
@@ -24,7 +24,7 @@ function FloatType(digits) {
   return Float;
 }
 
-module.exports.loadType = function(mongoose, digits) {
+module.exports.loadType = function (mongoose, digits) {
   var floatType = new FloatType(digits);
 
   mongoose.SchemaTypes.Float = mongoose.Types.Float = floatType;

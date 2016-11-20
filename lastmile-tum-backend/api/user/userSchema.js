@@ -1,11 +1,11 @@
 /**
  * Created by DucTien on 08.11.2016.
- * BACKEND schema for user.
  */
 
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 
+// DB scheme for user
 var userSchema = mongoose.Schema({
   email: {
     type: String,

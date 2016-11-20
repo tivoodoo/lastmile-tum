@@ -1,11 +1,11 @@
 /**
  * Created by DucTien on 08.11.2016.
- * BACKEND schema for delivery request
  */
 
 var mongoose = require('mongoose');
 var Float = require('../../mongoose-float.js');
 
+// DB Schema for request
 var requestSchema = mongoose.Schema({
   weight: {
     type: Number,
