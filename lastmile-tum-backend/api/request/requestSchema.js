@@ -7,20 +7,9 @@ var Float = require('../../mongoose-float.js');
 
 // DB Schema for request
 var requestSchema = mongoose.Schema({
-  weight: {
-    type: Number,
-    required: true
-  },
-  width: {
-    type: Number,
-    required: true
-  },
-  height: {
-    type: Number,
-    required: true
-  },
-  depth: {
-    type: Number,
+  //enumerate S M L XL
+  size: {
+    type: String,
     required: true
   },
   pickUpLocation: {
