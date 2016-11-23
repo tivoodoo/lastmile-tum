@@ -1,0 +1,157 @@
+{
+	"id": "5f356c79-7fae-05e6-8199-acdbf6c9cea0",
+	"name": "LastMile",
+	"description": "Postman Collection for project LastMile",
+	"order": [],
+	"folders": [
+		{
+			"id": "6272599b-2f82-1421-ad27-ecb1de884656",
+			"name": "Authorization and Authentication",
+			"description": "",
+			"order": [
+				"1e36d57e-dfe9-255f-f0e5-1b37b952f507",
+				"94e60cc2-17ad-dc99-13c3-c4f785cfb574",
+				"0b970b2c-dc18-88ed-617b-7d8da85913d8"
+			],
+			"owner": 0,
+			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0"
+		}
+	],
+	"timestamp": 1479835808431,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "0b970b2c-dc18-88ed-617b-7d8da85913d8",
+			"headers": "Authorization: JWT {{token_login}}\n",
+			"url": "{{HOST}}/user/{{user_id}}",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0",
+			"data": null,
+			"dataMode": "params",
+			"name": "Get Specific User",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1479845372956,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "6272599b-2f82-1421-ad27-ecb1de884656"
+		},
+		{
+			"id": "1e36d57e-dfe9-255f-f0e5-1b37b952f507",
+			"headers": "",
+			"url": "{{HOST}}/user/signup",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "email",
+					"value": "{{EMAIL}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "{{PWD}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "sex",
+					"value": "true",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "firstName",
+					"value": "Tien D.",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "lastName",
+					"value": "Vu",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "street",
+					"value": "Völckerstr.",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "number",
+					"value": "32",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "zipCode",
+					"value": "80939",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "town",
+					"value": "München",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "birthday",
+					"value": "1990-12-22T23:00:00.000Z",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": "var token = JSON.parse(responseBody).token;\ntests[\"Contains token\"] = token;\n\npostman.setGlobalVariable(\"token_register\", token);\n\nvar decodedTokenData = JSON.parse(atob(token.split('.')[1]));\n\ntests[\"correct username encoded in token\"] = decodedTokenData.user.username == postman.getEnvironmentVariable(\"USERNAME\");\n\npostman.setGlobalVariable(\"user_id\", decodedTokenData.user._id);",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1479838493179,
+			"name": "User sign up",
+			"description": "Check whether the username is already used before sending request",
+			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0",
+			"responses": []
+		},
+		{
+			"id": "94e60cc2-17ad-dc99-13c3-c4f785cfb574",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"url": "{{HOST}}/user/login",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "email",
+					"value": "{{EMAIL}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "{{PWD}}",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1479839429802,
+			"name": "User log in",
+			"description": "",
+			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0",
+			"responses": []
+		}
+	]
+}
