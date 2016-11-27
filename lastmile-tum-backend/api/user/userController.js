@@ -31,13 +31,13 @@ module.exports.login = function (req, res) {
     }
 
     if (!user) {
-      res.status(status.UNAUTHORIZED).send('Invalid Credentials');
+      res.status(status.UNAUTHORIZED).send('There exists no user for the specified email address');
       return;
     }
 
     user.comparePassword(req.body.password, function (err, isMatch) {
       if (!isMatch || err) {
-        res.status(status.UNAUTHORIZED).send('Invalid Credentials');
+        res.status(status.UNAUTHORIZED).send('Invalid password');
       } else {
         res.status(status.OK).json({token: createToken(user)});
       }
