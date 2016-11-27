@@ -44,11 +44,11 @@ var app = express();
 /*
  * Passport
  */
-// var passport = require('passport');
-// var jwtConfig = require('./authorization/jwtConfig');
-//
-// app.use(passport.initialize());
-// jwtConfig(passport);
+ var passport = require('passport');
+ var jwtConfig = require('./api/authorization/jwtConfig');
+
+ app.use(passport.initialize());
+ jwtConfig(passport);
 
 /**
  * App setup.
@@ -68,9 +68,11 @@ app.use(cookieParser());
 var userRoutes = require('./api/user/userRoutes');
 var requestRoutes = require('./api/request/requestRoutes');
 
+
 // setting url path
 // app.use('/user', userRoutes(passport));
-app.use('/user', userRoutes());
+app.use('/user', userRoutes(passport));
+app.use('/request', requestRoutes(passport));
 
 /**
  * Error handlers.

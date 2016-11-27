@@ -8,7 +8,7 @@
 
 module.exports = userRoutes;
 
-function userRoutes() {
+function userRoutes(passport) {
 
   var userController = require('./userController');
   var router = require('express').Router();
@@ -31,19 +31,19 @@ function userRoutes() {
    * user_id is extracted from jwt token
    *
    * */
-  router.post('/unregister', userController.unregister);
+  router.post('/unregister',passport.authenticate('jwt', {session: false}), userController.unregister);
 
   /*
    * REST API for GET {ROOT}/user/get/{{user_id}}
    * user_id is extracted from jwt token so only logged in user can request their own personal data
    * */
-  router.get('/get/:user_id', userController.getUser);
+  router.get('/get/:user_id',passport.authenticate('jwt', {session: false}), userController.getUser);
 
   /*
    * REST API for put {ROOT}/user/put/{{user_id}}
    * user_id is extracted from jwt token so only logged in user can update their own personal data
    * */
-  router.put('/put/:user_id', userController.updateUser);
+  router.put('/put/:user_id',passport.authenticate('jwt', {session: false}), userController.updateUser);
 
   return router;
 
