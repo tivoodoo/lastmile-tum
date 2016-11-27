@@ -15,11 +15,10 @@ module.exports.postRequest = function (req, res) {
     console.log(request);
 
     //do not allow user to fake identity. The user who posted the request must be the same user that is logged in
-    /* currently not sure how to specify req.user in postman but it should work with the frontend
     if (!req.user.equals(request.user)) {
-     res.status(status.UNAUTHORIZED).send('Request user does not match the user that is logged in');
+     res.status(status.UNAUTHORIZED).send('user for the request does not match the user that is logged in');
      return;
-     }*/
+     }
 
     request.save(function (err, requ) {
         if (err) {
@@ -99,7 +98,7 @@ module.exports.deleteRequest = function (req, res) {
 
 
         //authorize request.user && req.user.equals(request.user)
-        if (true) {
+        if (request.user && req.user.equals(request.user)) {
             request.remove();
             res.status(status.OK).send('request successfully deleted');
         } else {
