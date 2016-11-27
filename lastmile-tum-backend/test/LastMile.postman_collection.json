@@ -1,157 +1,384 @@
 {
-	"id": "5f356c79-7fae-05e6-8199-acdbf6c9cea0",
-	"name": "LastMile",
-	"description": "Postman Collection for project LastMile",
-	"order": [],
-	"folders": [
+	"variables": [],
+	"info": {
+		"name": "LastMile",
+		"_postman_id": "c7455638-6584-484c-6d29-459e88dd52f0",
+		"description": "Postman Collection for project LastMile",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
 		{
-			"id": "6272599b-2f82-1421-ad27-ecb1de884656",
 			"name": "Authorization and Authentication",
 			"description": "",
-			"order": [
-				"1e36d57e-dfe9-255f-f0e5-1b37b952f507",
-				"94e60cc2-17ad-dc99-13c3-c4f785cfb574",
-				"0b970b2c-dc18-88ed-617b-7d8da85913d8"
-			],
-			"owner": 0,
-			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0"
-		}
-	],
-	"timestamp": 1479835808431,
-	"owner": 0,
-	"public": false,
-	"requests": [
-		{
-			"id": "0b970b2c-dc18-88ed-617b-7d8da85913d8",
-			"headers": "Authorization: JWT {{token_login}}\n",
-			"url": "{{HOST}}/user/{{user_id}}",
-			"pathVariables": {},
-			"preRequestScript": null,
-			"method": "GET",
-			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0",
-			"data": null,
-			"dataMode": "params",
-			"name": "Get Specific User",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1479845372956,
-			"version": 2,
-			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"folder": "6272599b-2f82-1421-ad27-ecb1de884656"
+			"item": [
+				{
+					"name": "User sign up",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var token = JSON.parse(responseBody).token;",
+									"tests[\"Contains token\"] = token;",
+									"",
+									"postman.setGlobalVariable(\"token_register\", token);",
+									"",
+									"var decodedTokenData = JSON.parse(atob(token.split('.')[1]));",
+									"",
+									"tests[\"correct username encoded in token\"] = decodedTokenData.user.username == postman.getEnvironmentVariable(\"USERNAME\");",
+									"",
+									"postman.setGlobalVariable(\"user_id\", decodedTokenData.user._id);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{HOST}}/user/signup",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "{{EMAIL}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "password",
+									"value": "{{PWD}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "sex",
+									"value": "true",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "firstName",
+									"value": "Tien D.",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "lastName",
+									"value": "Vu",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "street",
+									"value": "Völckerstr.",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "number",
+									"value": "32",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "zipCode",
+									"value": "80939",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "town",
+									"value": "München",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "birthday",
+									"value": "1990-12-22T23:00:00.000Z",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": "Check whether the username is already used before sending request"
+					},
+					"response": []
+				},
+				{
+					"name": "User log in",
+					"request": {
+						"url": "{{HOST}}/user/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "{{EMAIL}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "password",
+									"value": "{{PWD}}",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Specific User",
+					"request": {
+						"url": "{{HOST}}/user/{{user_id}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{token_login}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
 		},
 		{
-			"id": "1e36d57e-dfe9-255f-f0e5-1b37b952f507",
-			"headers": "",
-			"url": "{{HOST}}/user/signup",
-			"preRequestScript": null,
-			"pathVariables": {},
-			"method": "POST",
-			"data": [
-				{
-					"key": "email",
-					"value": "{{EMAIL}}",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "password",
-					"value": "{{PWD}}",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "sex",
-					"value": "true",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "firstName",
-					"value": "Tien D.",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "lastName",
-					"value": "Vu",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "street",
-					"value": "Völckerstr.",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "number",
-					"value": "32",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "zipCode",
-					"value": "80939",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "town",
-					"value": "München",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "birthday",
-					"value": "1990-12-22T23:00:00.000Z",
-					"type": "text",
-					"enabled": true
-				}
-			],
-			"dataMode": "urlencoded",
-			"tests": "var token = JSON.parse(responseBody).token;\ntests[\"Contains token\"] = token;\n\npostman.setGlobalVariable(\"token_register\", token);\n\nvar decodedTokenData = JSON.parse(atob(token.split('.')[1]));\n\ntests[\"correct username encoded in token\"] = decodedTokenData.user.username == postman.getEnvironmentVariable(\"USERNAME\");\n\npostman.setGlobalVariable(\"user_id\", decodedTokenData.user._id);",
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1479838493179,
-			"name": "User sign up",
-			"description": "Check whether the username is already used before sending request",
-			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0",
-			"responses": []
-		},
-		{
-			"id": "94e60cc2-17ad-dc99-13c3-c4f785cfb574",
-			"headers": "Content-Type: application/x-www-form-urlencoded\n",
-			"url": "{{HOST}}/user/login",
-			"preRequestScript": null,
-			"pathVariables": {},
-			"method": "POST",
-			"data": [
-				{
-					"key": "email",
-					"value": "{{EMAIL}}",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "password",
-					"value": "{{PWD}}",
-					"type": "text",
-					"enabled": true
-				}
-			],
-			"dataMode": "urlencoded",
-			"version": 2,
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1479839429802,
-			"name": "User log in",
+			"name": "requests",
 			"description": "",
-			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0",
-			"responses": []
+			"item": [
+				{
+					"name": "get all requests",
+					"request": {
+						"url": "{{HOST}}/request/get",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "edit request",
+					"request": {
+						"url": "{{HOST}}/request/put/583b214eaae43a20d4f2cd7d",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "JWT {{token_register}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "size",
+									"value": "L",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "pickUpLocation",
+									"value": "Muc",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "deliverToLocation",
+									"value": "Ber",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "pickUpTime",
+									"value": "2016-12-12T23:00:00.000Z",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "deliverTime",
+									"value": "2016-12-14T23:00:00.000Z",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "willingnessToPay",
+									"value": "50",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "user",
+									"value": "58358c9fc05c9412acfa9a61",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "name",
+									"value": "Football",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "description",
+									"value": "some new description",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "post requests",
+					"request": {
+						"url": "{{HOST}}/request/post",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "JWT {{token_register}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "size",
+									"value": "M",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "pickUpLocation",
+									"value": "Muc",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "deliverToLocation",
+									"value": "Ber",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "pickUpTime",
+									"value": "2016-12-12T23:00:00.000Z",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "deliverTime",
+									"value": "2016-12-14T23:00:00.000Z",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "willingnessToPay",
+									"value": "50",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "user",
+									"value": "58358c9fc05c9412acfa9a61",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "name",
+									"value": "Football",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "description",
+									"value": "blablaablabl",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "delete request",
+					"request": {
+						"url": "{{HOST}}/request/delete/583b1d9cc466e12b805745f3",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "JWT {{token_register}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get specific request",
+					"request": {
+						"url": "{{HOST}}/request/get/583b11b4e6e9491ef004c3c9",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
