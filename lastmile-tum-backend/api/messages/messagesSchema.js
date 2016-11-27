@@ -14,6 +14,14 @@ var messagesSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  request: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Request'
+  },
+  sender: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
 })
 
 var Message = mongoose.model('Message', messagesSchema);
