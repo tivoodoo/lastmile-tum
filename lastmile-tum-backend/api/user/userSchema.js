@@ -51,17 +51,9 @@ var userSchema = mongoose.Schema({
     type: String,
     required:false
   },
-  // Trunk details---------
-  trunkWidth:{
-    type: Number,
-    required: false
-  },
-  trunkHeight:{
-    type: Number,
-    required: false
-  },
-  trunkDepth:{
-    type: Number,
+  // available space details: S M L XL---------
+  availableSpace:{
+    type: String,
     required: false
   },
   // Picture - must start with "http://"
