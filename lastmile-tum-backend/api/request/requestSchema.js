@@ -3,10 +3,19 @@
  */
 
 var mongoose = require('mongoose');
-var Float = require('../../mongoose-float.js');
+// working with float currently results in CastError, will work with number until we find a solution for this problem
+// var Float = require('mongoose-float').loadType(mongoose);
 
 // DB Schema for request
 var requestSchema = mongoose.Schema({
+  name:{
+    type: String,
+    required:true
+  },
+  description:{
+    type:String,
+    required:false
+  },
   //enumerate S M L XL
   size: {
     type: String,
@@ -29,8 +38,17 @@ var requestSchema = mongoose.Schema({
     required: true
   },
   willingnessToPay: {
-    type: Float,
+    type: Number,
     required: true
+  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
+  supplier: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
   }
 });
 
