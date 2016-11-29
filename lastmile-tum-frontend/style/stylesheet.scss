@@ -1,0 +1,459 @@
+/* External SCSS resources */
+//@import './../bower_components/font-awesome/scss/font-awesome';
+/* End (External SCSS resources) */
+
+
+/* Fonts */
+//@import url(https://fonts.googleapis.com/css?family=Crafty+Girls);
+//@import url(https://fonts.googleapis.com/css?family=Muli);
+/* End Fonts */
+
+
+
+/*!
+ * -------------
+ * Custom styles
+ */
+$mainScreenImg: '../images/c.jpg';
+$mainScreenImgWidth: 5184; // without 'px'!
+$mainScreenImgHeight: 3456; // without 'px'!
+
+// In the following, please stay in line with bootstrap!
+$bodyBackground: #ecf5ea;
+$textColor: #333;
+$primaryColor: #6bbd3a;
+$screen-xs: 480px;
+$screen-sm: 768px;
+$screen-md: 992px;
+$screen-lg: 1200px;
+$button-hover-color: #f5f5f5;
+
+
+.full-screen-box {
+  margin:0;
+  padding:0;
+  @media (min-width: $screen-sm) {
+    min-height: 100vh;
+  };
+  @media (max-width: $screen-sm) {
+    min-height: 50vh;
+  };
+}
+
+.full-screen-box-bg {
+  background: url($mainScreenImg) no-repeat center center;
+  @media (min-aspect-ratio: $mainScreenImgWidth+'/'+$mainScreenImgHeight) {
+    background-size: 100vw auto;
+  }
+  @media (max-aspect-ratio: $mainScreenImgWidth+'/'+$mainScreenImgHeight) {
+    background-size: auto 100vh;
+  }
+}
+
+.header-box {
+  margin:0;
+  padding:0;
+  @media (min-width: $screen-sm) {
+    min-height: 35vh;
+  };
+  @media (max-width: $screen-sm) {
+    min-height: 50vh;
+  };
+}
+
+.header-box-bg {
+  background-repeat: no-repeat;
+  background-position: center center;
+  @media (min-aspect-ratio: $mainScreenImgWidth+'/'+$mainScreenImgHeight) {
+    background-size: 100vw auto;
+  }
+}
+
+.header-box-font {
+  color: white;
+  text-align: center;
+  padding-top: calc(50px + 7vh);
+  font-size: 7vh;
+  font-family: Muli;
+  text-shadow: 2px 2px 5px #333;
+}
+
+.bg1-font {
+  color: white;
+  text-align: center;
+  padding-top: 25vh;
+  font-size: 6.5vh;
+  font-family: Muli;
+  text-shadow: 2px 2px 5px #333;
+}
+
+.bg2 {
+  min-height: 100vh;
+  padding-bottom: 40px;
+  padding-top: 40px;
+}
+
+.bg2:nth-child(odd) {
+  background-color: rgba(0,0,0,0.1);
+}
+
+.obox {
+  width: 80%;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sbox {
+  text-align: center;
+  font-family: 'Crafty Girls', cursive;
+  font-size: 18pt;
+  line-height: 40px;
+  margin: 20px;
+}
+
+.sbox-info {
+  margin-top: 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+  text-align: center;
+  font-family: Muli;
+  font-size: 13pt;
+  line-height: 30px;
+}
+
+.container-fluid {
+  padding: 0;
+}
+.row {
+  margin: 0;
+}
+input, textarea, button, footer, .btn {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.navbar {
+  background: rgba(black, 0.5);
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.navbar input {
+  color: #333;
+  background: rgba(white, 0.9);
+}
+
+@media (max-width: $screen-sm) {
+  .navbar-collapse {
+    background: rgba(black, 0.5);
+  }
+}
+
+.main {
+  min-height: calc(100vh - 120px);
+}
+
+footer {
+  text-align: center;
+  background: #666;
+  color: #fff;
+  font-size: 10pt;
+  height: 120px;
+  padding-top: 20px;
+}
+
+.primary-transparent {
+  color: white;
+  font-size: 20pt;
+  background: rgba($primaryColor, .7);
+}
+.primary-transparent:hover {
+  color: white;
+  background: rgba($primaryColor, .85);
+}
+.default-transparent {
+  color: #444;
+  font-size: 20pt;
+  background: rgba(white, .7);
+}
+.default-transparent:hover {
+  color: #444;
+  font-size: 20pt;
+  background: rgba(white, .85);
+}
+
+label {
+  color: $textColor;
+}
+
+.registration-panel {
+  color: black;
+  border: none;
+  padding: 20px;
+  text-align: left;
+  background: rgba($bodyBackground, .7);
+  width: 600px;
+  margin: 0 auto 0 auto; //top right bottom left
+}
+
+.cwf-content {
+  padding: 30px;
+}
+
+.cwf-content-75 {
+  @media (min-width: $screen-lg) {
+    width: 75vw;
+    margin: 0 auto 0 auto;
+  }
+}
+
+.cwf-content-90 {
+  @media (min-width: $screen-lg) {
+    width: 90vw;
+    margin: 0 auto 0 auto;
+  }
+}
+
+.main-screen-icon {
+  border-radius: 100%;
+  padding: 20px;
+  background: rgba(white, .2);
+  width: 120px;
+  height: 120px;
+}
+.main-screen-icon:hover {
+  background: rgba(white, .35);
+}
+.main-screen-icon-text {
+  color: white;
+  text-shadow: 2px 2px 5px black;
+}
+.main-screen-icon-text:hover {
+  color: white;
+  text-shadow: 2px 2px 5px black;
+  text-decoration: none;
+}
+.main-screen-icon-text i {
+  margin-bottom: 15px;
+}
+
+.premium-icon {
+  color: forestgreen;
+}
+
+.event-image {
+  float: left;
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  margin: 15px 30px 30px 0;
+  text-align: center;
+  line-height: 100px;
+  vertical-align: middle;
+  background: #eee;
+  color: #333;
+}
+
+.event-list-image {
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0px;
+}
+
+.event-list-details {
+  padding-left: 15px;
+}
+
+.event-list-location {
+}
+
+.event-list-date{
+  text-align: right;
+}
+
+.profile-picture {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background: #b0ddb0;
+  line-height: 50px;
+  vertical-align: middle;
+  text-align: center;
+  color: darkgreen;
+  float: left;
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+
+.chatbox {
+  width: 100%;
+  height: 264px;
+  border: 1px solid lightgrey;
+  overflow: auto;
+}
+
+.event-box {
+  padding: 10px;
+}
+
+.event-box[ng-click]:hover, .event-box-entry[ng-click]:hover {
+  background: $button-hover-color;
+}
+
+.event-box-50 {
+  float: left;
+  width: 50px;
+}
+
+.event-box-50-r {
+  float: left;
+  width: calc(100% - 50px);
+}
+
+.event-box-140 {
+  float: left;
+  width: 140px;
+}
+
+.event-box-140-r {
+  float: left;
+  width: calc(100% - 140px);
+}
+
+.event-box-250m {
+  float: left;
+  min-width: 250px;
+  width: 40%;
+}
+
+.event-box-250m-r {
+  float: left;
+  max-width: calc(100% - 250px);
+  width: 60%;
+}
+
+.event-box-full {
+  width: 100%;
+}
+
+.event-box-entry:not(:last-child) {
+  border-bottom: 1px solid #eee;
+}
+
+.event-box-info-text {
+  color: grey;
+  font-size: 9pt;
+  white-space: nowrap;
+}
+
+.chat-headline {
+  height: 41px;
+  line-height: 41px;
+  margin-bottom: 2px;
+}
+
+.chat-input {
+  float: left;
+  margin-top: 5px;
+  margin-right: 5px;
+  width: calc(100% - 40px);
+  height: 35px;
+  line-height: 35px;
+}
+
+.chat-button {
+  float: left;
+  margin-top: 5px;
+  width: 35px;
+  height: 35px;
+}
+
+.event-tab {
+  height: 300px;
+  border-left: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+  overflow: auto;
+}
+
+.event-tab-noscroll {
+  min-height: 300px;
+  border-left: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+}
+
+[ng-click] {
+  cursor: pointer;
+}
+
+.event-page-list, .event-page-list li:first-child {
+  border-top: none;
+  margin: 0;
+}
+
+.event-page-list li {
+  border-radius: 0 !important;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.modal-size-40 {
+  @media (min-width: $screen-sm) {
+    width: 40%;
+  };
+  @media (max-width: $screen-sm) {
+    width: 100%;
+  };
+}
+
+.modal-size-55 {
+  @media (min-width: $screen-sm) {
+    width: 55%;
+  };
+  @media (max-width: $screen-sm) {
+    width: 100%;
+  };
+}
+
+.modal-size-70 {
+  @media (min-width: $screen-sm) {
+    width: 70%;
+  };
+  @media (max-width: $screen-sm) {
+    width: 100%;
+  };
+}
+
+.modal-courses-ingredient-list {
+  @media (min-width: $screen-lg) {
+    margin-top: 41px;
+  }
+;
+  height: 200px;
+  border: 1px solid lightgrey;
+  overflow: auto;
+}
+
+.boxgroesse {
+  font-size: 30pt;
+  color: black;
+}
+
+#box1 {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  position: absolute;
+  opacity: 0.5;
+  text-align: center;
+}
+
+.profilh3 {
+  font-family: 'Crafty Girls', cursive;
+  font-size: 20pt;
+  line-height: 40px;
+  margin-bottom: 10px;
+}

@@ -1,0 +1,24 @@
+{
+  "name": "lastmile-tum-frontend",
+  "description": "LastMile frontend",
+  "main": "",
+  "authors": [
+    "Tim Henkelmann",
+    "Tien Vu",
+    "Daniel Schlingmann"
+  ],
+  "license": "UNLICENSED",
+  "homepage": "https://github.com/tivoodoo/lastmile-tum",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "angular": "^1.5.9"
+  }
+}
