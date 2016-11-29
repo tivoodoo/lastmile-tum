@@ -27,7 +27,7 @@ var appDir = 'app';
 var staticContentsDir = 'docroot';
 
 // Directory for stylesheets (sass, less and css supported)
-var stylesDir = 'styles';
+var stylesDir = 'style';
 
 // only refers to script and HTML minimization; CSS is always minified.
 // use only for development!
@@ -154,6 +154,10 @@ gulp.task('watch', function() {
 
     // Watch any files in dist/, reload on change
     gulp.watch([appDir + '/**/*.*', staticContentsDir + '/**/*.*'], ['build', 'browser-sync-reload']).on('change', livereload.changed);
+});
+
+gulp.task('browser-sync-reload', ['build'], function() {
+    browserSync.reload();
 });
 
 // Build
