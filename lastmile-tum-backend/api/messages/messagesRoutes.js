@@ -5,9 +5,9 @@
 module.exports = messageRoutes;
 
 function messageRoutes() {
-    var messageController = require('./messageController')
+  var messageController = require('./messageController')
+
+  var router = require('express').Router();
     
-    var router =  require('express').Router();
-    
-    
+
 }

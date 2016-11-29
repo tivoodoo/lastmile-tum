@@ -6,6 +6,7 @@ var status = require('http-status');
 var User = require('./userSchema');
 var jwt = require('jwt-simple');
 var Config = require('../../config/config');
+var dummyPassword = 'defaultPasswordNothingHasChanged!md7nb1320';
 
 /*
  * REST API for POST {ROOT}/user/login
@@ -94,8 +95,20 @@ module.exports.unregister = function (req, res) {
  * user_id is extracted from jwt token so only logged in user can request their own personal data
  * */
 module.exports.getUser = function (req, res) {
-  res.status(status.OK).send('Login');
-  return;
+  User
+    .findById(req.params.user_id)
+    .exec(function (err, user) {
+      if (err) {
+        res.status(status.INTERNAL_SERVER_ERROR).send(err);
+        return;
+      }
+
+      //Hashed password shouldn't be sent to client (To avoid hacker who wants to collect hash table)
+      //TRICK: a dummy password value is used to check whether password has changed or not
+      //In backend, before updating, the "new" password will be compared with this dummy password value to check whether password has changed or not
+      user.password = dummyPassword;
+      res.json(user);
+    });
 };
 
 /*
@@ -103,8 +116,73 @@ module.exports.getUser = function (req, res) {
  * user_id is extracted from jwt token so only logged in user can update their own personal data
  * */
 module.exports.updateUser = function (req, res) {
-  res.status(status.OK).send('Login');
-  return;
+  //In getUser, hashed password shouldn't be sent to client (To avoid hacker who wants to collect hash table)
+  //TRICK: a dummy password value is used to check whether password has changed or not
+  //In backend, before updating, the "new" password will be compared with this dummy password value to check whether password has changed or not
+  if (req.body.password != dummyPassword) {
+    console.log("Password changed")
+    User.findById(req.params.user_id, function (err, user) {
+      if (err) {
+        console.log(err);
+        res.status(status.INTERNAL_SERVER_ERROR).send(err);
+        return;
+      }
+      user.password = req.body.password;
+      user.save(function (err) {
+        if (err) {
+          console.log(err);
+          res.status(status.INTERNAL_SERVER_ERROR).send(err);
+          return;
+        }
+      })
+    })
+  }
+  else{
+    console.log("Password not changed")
+  }
+
+  User.findByIdAndUpdate(
+    req.params.user_id,
+    {
+      //Purposely choose field from request because only some property from the request should be updated
+      $set: {
+        'firstName': req.body.firstName,
+        'lastName': req.body.lastName,
+        'sex': req.body.sex,
+        'email': req.body.email,
+        'birthday': req.body.birthday,
+        'street': req.body.street,
+        'number': req.body.number,
+        'zipCode': req.body.zipCode,
+        'town': req.body.town,
+        'telephone': req.body.telephone,
+/*        'trunkWidth': req.body.trunkWidth,
+        'trunkHeight': req.body.trunkHeight,
+        'trunkDepth': req.body.trunkDepth,*/
+        'picture': req.body.picture,
+      }
+    },
+    {
+      //Pass the new object to cb function
+      new: true,
+      //Run validations
+      runValidators: true
+    },
+    function (err, user) {
+      if (err) {
+        console.log(err);
+        res.status(status.INTERNAL_SERVER_ERROR).send(err);
+        return;
+      }
+
+      //In getUser, hashed password shouldn't be sent to client (To avoid hacker who wants to collect hash table)
+      //TRICK: a dummy password value is used to check whether password has changed or not
+      //In backend, before updating, the "new" password will be compared with this dummy password value to check whether password has changed or not
+      user.password = dummyPassword;
+
+      res.json(user);
+    }
+  );
 };
 
 
