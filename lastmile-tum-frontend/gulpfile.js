@@ -12,7 +12,8 @@ var gulp = require('gulp'),
     wiredep = require('wiredep'),
     plumber = require('gulp-plumber'),
     merge = require('merge2'),
-    inject = require('gulp-inject');
+    inject = require('gulp-inject'),
+    browserSync = require('browser-sync').create();;
 
 // Directory for deployment. Structure will be as follows:
 var buildDir = 'dist';
@@ -129,6 +130,16 @@ gulp.task('html', ['scripts', 'styles'], function() {
         .pipe(gulp.dest(buildDir));
 });
 
+gulp.task('browser-sync', ['build'], function() {
+    browserSync.init({
+        server: {baseDir: buildDir},
+        middleware: function(req, resp, next) {
+            resp.setHeader('Access-Control-Allow-Origin', '*');
+            next();
+        }
+    });
+});
+
 // Clean build directory
 gulp.task('clean', function() {
     return gulp.src(buildDir, {read: false})
@@ -150,4 +161,4 @@ gulp.task('build', ['scripts', 'styles', 'html']);
 
 
 // Default
-gulp.task('default', ['build', 'watch']);
+gulp.task('default', ['build', 'browser-sync', 'watch']);
