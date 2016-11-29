@@ -1,5 +1,19 @@
+# logs
 npm-debug.log
+.log
+
+# modules
 node_modules
+
+# webstorm files
 .idea/workspace.xml
-lastmile-tum-backend/config/config.js
 .idea/
+
+# bower components
+lastmile-tum-frontend/bower_components/
+
+# configs
+lastmile-tum-backend/config/config.js
+
+# dist
+lastmile-tum-frontend/dist/
