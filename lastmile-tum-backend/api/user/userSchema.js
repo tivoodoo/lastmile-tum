@@ -4,13 +4,16 @@
 
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
+// var uniqueValidator = require('../../lib/mongoose-unique-validator')
 
 // DB scheme for user
 var userSchema = mongoose.Schema({
+  // Email : must be unique (one email can be used for registration only one time)
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
+    dropDups: true
   },
   password: {
     type: String,
@@ -52,9 +55,17 @@ var userSchema = mongoose.Schema({
     type: String,
     required:false
   },
-  // available space details: S M L XL---------
-  availableSpace:{
-    type: String,
+  // Trunk details---------
+  trunkWidth:{
+    type: Number,
+    required: false
+  },
+  trunkHeight:{
+    type: Number,
+    required: false
+  },
+  trunkDepth:{
+    type: Number,
     required: false
   },
   // Picture - must start with "http://"
@@ -98,5 +109,6 @@ userSchema.methods.comparePassword = function (candidatePassword, callback) {
 
 //The name between quotation mark (User) plus s will be name of collection in database. ( 'User' -> users )
 var User = mongoose.model('User', userSchema);
+// User.plugin(uniqueValidator);
 
 module.exports = User;

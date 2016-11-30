@@ -8,13 +8,13 @@ var mongoose = require('mongoose');
 
 // DB Schema for request
 var requestSchema = mongoose.Schema({
-  name:{
+  name: {
     type: String,
-    required:true
+    required: true
   },
-  description:{
-    type:String,
-    required:false
+  description: {
+    type: String,
+    required: false
   },
   //enumerate S M L XL
   size: {
