@@ -8,69 +8,82 @@
         <!-- endinject -->
 
     </head>
-    <body>
-    <div class="full-screen-box full-screen-box-bg">
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">LastMile</a>
-                </div>
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <a class="nav navbar-nav navbar-left hBig">
-                        Browse requests
-                    </a>
-                    <ul class="nav navbar-nav navbar-right" ng-show="false">
-                        <li ng-repeat="route in mainRoutes" ng-class="{active: isCurrent(route)}">
-                            <a href="#{{route.originalPath}}">{{route.name}}</a>
-                        </li>
-                        <li class="dropdown" ng-repeat="(name, subroutes) in nestedRoutes">
-                            <a class="dropdown-toggle" data-toggle="dropdown" role="button">{{name}} <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li ng-repeat="route in subroutes" ng-class="{active: isCurrent(route)}">
-                                    <a href="#{{route.originalPath}}">{{route.name}}</a>
-                                </li>
-                                <li>
-                                    <a href="#/" ng-click="logout()">Logout</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <form name="logIn" class="navbar-form navbar-right" ng-hide="loggedIn" ng-submit="login()">
-                        <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                            <input type="email" class="form-control" ng-model="email" placeholder="Email address"
-                                   style="opacity:0.9" required/>
-                            <span class="glyphicon glyphicon-remove form-control-feedback"
-                                  aria-hidden="true"
-                                  ng-show=errorText></span>
-                        </div>
-                        <div class="form-group has-feedback">
-                            <div ng-class="{'has-error': errorText}" style="display: inline">
-                                <input type="password" class="form-control" ng-model="password" placeholder="Password"
-                                       style="opacity:0.9" required/>
-                                <span class="glyphicon glyphicon-remove form-control-feedback"
-                                      aria-hidden="true"
-                                      ng-show=errorText></span>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary" ng-disabled="logIn.$invalid" uib-popover="{{errorText}}"
-                                popover-placement="bottom"
-                                popover-trigger="click">Login
+    <body ng-controller="UserCtrl">
+        <div class="full-screen-box full-screen-box-bg">
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
                         </button>
-                    </form>
+                        <a class="nav navbar-nav navbar-brand" href="#/">LastMile</a>
+                        <a href="#/" class="nav navbar-nav navbar-brand">
+                            Browse requests
+                        </a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <button class="navbar-right btn btn-primary btn-right navbar-btn" ng-hide="loggedIn" data-toggle="modal" data-target="#showLogin">
+                            Login
+                        </button>
+                        <button class="navbar-right btn btn-primary navbar-btn" ng-hide="loggedIn" ng-click="registrationShown">
+                            Register
+                        </button>
+                        <ul class="nav navbar-nav navbar-right" ng-show="loggedIn">
+                            <li ng-repeat="route in mainRoutes" ng-class="{active: isCurrent(route)}">
+                                <a href="#{{route.originalPath}}">{{route.name}}</a>
+                            </li>
+                            <li class="dropdown" ng-repeat="(name, subroutes) in nestedRoutes">
+                                <a class="dropdown-toggle" data-toggle="dropdown" role="button">{{name}} <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li ng-repeat="route in subroutes" ng-class="{active: isCurrent(route)}">
+                                        <a href="#{{route.originalPath}}">{{route.name}}</a>
+                                    </li>
+                                    <li>
+                                        <a href="#/" ng-click="logout()">Logout</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+            </nav>
+            <div class="modal fade" id="showLogin" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Login</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form name="logIn" ng-submit="login()">
+                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                    <input type="email" class="form-control" ng-model="email" placeholder="Email address"
+                                           style="opacity:0.9" required/>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <div ng-class="{'has-error': errorText}" style="display: inline">
+                                        <input type="password" class="form-control" ng-model="password" placeholder="Password"
+                                               style="opacity:0.9" required/>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" ng-disabled="logIn.$invalid" uib-popover="{{errorText}}"
+                                    popover-placement="bottom" popover-trigger="click">Login
+                            </button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
             </div>
-        </nav>
+            <div class="container-fluid main" ng-view class="view">
 
-        <div class="container-fluid main" ng-view class="view">
-        </div>
-
+            </div>
         </div>
         <footer>
 

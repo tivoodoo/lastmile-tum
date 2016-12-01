@@ -130,6 +130,14 @@ gulp.task('html', ['scripts', 'styles'], function() {
         .pipe(gulp.dest(buildDir));
 });
 
+// Load all fonts from bower components
+gulp.task('bower-fonts', function() {
+    return gulp.src('bower_components/**/*.{otf,eot,ttf,woff,woff2,svg}')
+        .pipe(plumber())
+        .pipe(rename({dirname: ''}))
+        .pipe(gulp.dest(buildDir + '/fonts'));
+});
+
 gulp.task('browser-sync', ['build'], function() {
     browserSync.init({
         server: {baseDir: buildDir},
@@ -161,7 +169,7 @@ gulp.task('browser-sync-reload', ['build'], function() {
 });
 
 // Build
-gulp.task('build', ['scripts', 'styles', 'html']);
+gulp.task('build', ['bower-fonts','scripts', 'styles', 'html']);
 
 
 // Default

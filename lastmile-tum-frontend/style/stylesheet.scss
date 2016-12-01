@@ -1,11 +1,11 @@
 /* External SCSS resources */
-//@import './../bower_components/font-awesome/scss/font-awesome';
+@import './../bower_components/font-awesome/scss/font-awesome';
 /* End (External SCSS resources) */
 
 
 /* Fonts */
-//@import url(https://fonts.googleapis.com/css?family=Crafty+Girls);
-//@import url(https://fonts.googleapis.com/css?family=Muli);
+@import url(https://fonts.googleapis.com/css?family=Crafty+Girls);
+@import url(https://fonts.googleapis.com/css?family=Muli);
 /* End Fonts */
 
 
@@ -14,14 +14,14 @@
  * -------------
  * Custom styles
  */
-$mainScreenImg: '../images/a.jpg';
-$mainScreenImgWidth: 5184; // without 'px'!
-$mainScreenImgHeight: 3456; // without 'px'!
+$mainScreenImg: '../images/f.jpg';
+$mainScreenImgWidth: 4874; // without 'px'!
+$mainScreenImgHeight: 3046; // without 'px'!
 
 // In the following, please stay in line with bootstrap!
 $bodyBackground: #ecf5ea;
 $textColor: #333;
-$primaryColor: #6bbd3a;
+$primaryColor: #194582;
 $screen-xs: 480px;
 $screen-sm: 768px;
 $screen-md: 992px;
@@ -91,17 +91,52 @@ footer {
   height: 120px;
   padding-top: 20px;
 }
+.btn-right {
+  margin-right: 0px;
+  margin-left: 7.5px;
+}
+#introVideo{
+  width: calc(560px * 1.2);
+  height: calc(315px * 1.2);
+  position: relative;
+  left: calc(50% - (560px*1.2/2));
+  top: 200px;
+}
+.obox {
+  width: 80%;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-.hBig{
-  float: left;
-  padding: 14.5px 15px;
+.sbox {
+  text-align: center;
+  font-family: 'Crafty Girls', cursive;
+  font-size: 18pt;
+  line-height: 40px;
+  margin: 20px;
+}
+
+.sbox-info {
+  margin-top: 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+  text-align: center;
+  font-family: Muli;
+  font-size: 13pt;
+  line-height: 30px;
+}
+
+/*
+a{
+  font-family: Muli;
+  color: #fff;
   font-size: 19px;
   line-height: 21px;
   height: 50px;
-  cursor: pointer;
-  color: #ffffff !important;
+  padding: 14.5px 15px;
 }
-.hBig:hover{
+a:hover{
+  color: #e6e6e6;
   text-decoration: none;
-
-}
+} */
