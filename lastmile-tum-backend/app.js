@@ -19,8 +19,9 @@ mongoose.connect([Config.db.host, '/', Config.db.name].join(''), {
 // log db connection error and success
 var db = mongoose.connection;
 
-db.on('error', function callback() {
+db.on('error', function callback(error) {
   console.error('[BACKEND] Error connecting to database ' + Config.db.name);
+  console.error(error);
 });
 
 db.once('open', function callback() {
@@ -45,7 +46,7 @@ var app = express();
  * Passport
  */
  var passport = require('passport');
- var jwtConfig = require('./api/authorization/jwtConfig');
+ var jwtConfig = require('./authorization/jwtConfig');
 
  app.use(passport.initialize());
  jwtConfig(passport);
