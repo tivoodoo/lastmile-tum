@@ -3,6 +3,10 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/lastmile-tum-backend/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/lastmile-tum-frontend/bower_components" />
+      <excludeFolder url="file://$MODULE_DIR$/lastmile-tum-frontend/dist/js" />
+      <excludeFolder url="file://$MODULE_DIR$/lastmile-tum-frontend/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
     </content>
