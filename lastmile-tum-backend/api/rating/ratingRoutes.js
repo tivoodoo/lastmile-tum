@@ -4,9 +4,9 @@
 
 module.exports = ratingRoutes;
 
-function ratingRoutes() {
+function ratingRoutes(passport) {
 
-  var messageController = require('./ratingController')
+  var ratingController = require('./ratingController')
 
   var router = require('express').Router();
 
@@ -18,7 +18,7 @@ function ratingRoutes() {
   /*
    * First layer of authorization: Only logged in user can go through.
    * */
-  router.use(mw.unless({method: ['GET', 'OPTIONS']}));
+  router.use(auth.unless({method: ['GET', 'OPTIONS']}));
 
   /*
    * REST API for POST {ROOT}/rating/post
@@ -40,6 +40,14 @@ function ratingRoutes() {
   router.get('/request/:request_id', ratingController.getRatingFromRequest);
 
   /*
+   * REST API for GET {ROOT}/rating/user/{{request_id}}
+   * Return all rating from an user
+   *
+   * */
+  router.get('/user/:user_id', ratingController.getRatingFromUser);
+
+
+  /*
    * REST API for PUT {ROOT}/rating/{{request_id}}
    * */
   router.put('/:rating_id', ratingController.updateRating);
@@ -47,7 +55,8 @@ function ratingRoutes() {
   /*
    * REST API for DELETE {ROOT}/rating/{{rating_id}}
    * */
-  router.delete('/delete/:rating_id', requestController.deleteRating);
+  //Route deprecated because it's not necessary
+  // router.delete('/delete/:rating_id', requestController.deleteRating);
 
   return router;
 

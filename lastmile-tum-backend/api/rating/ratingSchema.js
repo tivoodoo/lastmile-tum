@@ -24,7 +24,7 @@ var ratingSchema = mongoose.Schema({
     required: true
   },
   request: {
-    type: mongoose.Schema.Types.ObjectID,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'Request'
   }
 })
