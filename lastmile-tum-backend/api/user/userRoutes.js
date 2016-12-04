@@ -45,6 +45,14 @@ function userRoutes(passport) {
    * */
   router.put('/put/:user_id', passport.authenticate('jwt', {session: false}), userController.updateUser);
 
+  /*
+   * REST API for GET {ROOT}/user/rating
+   * Return all rating of user
+   *
+   * */
+  //Is one API of Rating
+  // router.get('/rating', userController.getRating);
+
   return router;
 
 }

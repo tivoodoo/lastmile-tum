@@ -77,7 +77,11 @@ var userSchema = mongoose.Schema({
   birthday: {
     type: Date,
     required: true
-  }
+  },
+  ratings: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Rating'
+  }]
 });
 
 userSchema.pre('save', function (next) {
