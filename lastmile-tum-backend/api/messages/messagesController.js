@@ -12,6 +12,7 @@ var auth = require('../../authorization/auth');
  *
  * */
 module.exports.postMessage = function (req, res) {
+
   var userId = auth.getUserIdFromRequestToken(req);
 
   if (userId != req.body.sender) {
@@ -22,12 +23,15 @@ module.exports.postMessage = function (req, res) {
   var message = new Message(req.body);
 
   message.save(function (err) {
+
     if (err) {
       res.status(status.INTERNAL_SERVER_ERROR).send(err);
       return;
     }
+
     res.sendStatus(status.CREATED);
     return;
+
   });
 }
 
@@ -45,6 +49,7 @@ module.exports.getThreadsFromRequest = function (req, res) {
     .find({'request': req.params.request_id})
     .distinct('sender')
     .exec(function (err, lIDoS) {
+
       if (err) {
         res.status(status.INTERNAL_SERVER_ERROR).send(err);
         return;
@@ -59,6 +64,7 @@ module.exports.getThreadsFromRequest = function (req, res) {
       User
         .find({'_id': {$in: lIDoS}})
         .exec(function (error, user) {
+
           if (error) {
             res.status(status.INTERNAL_SERVER_ERROR).send(error);
             return;
@@ -66,6 +72,7 @@ module.exports.getThreadsFromRequest = function (req, res) {
 
           res.json(user);
           return;
+
         })
     })
 }
@@ -81,7 +88,28 @@ module.exports.getThreadsFromRequest = function (req, res) {
  *
  * */
 module.exports.getMessagesFromThread = function (req, res) {
+  var request_id = req.query.request_id;
+  var supplier_id = req.query.supplier_id;
+  var user_id = auth.getUserIdFromRequestToken(req);
 
+  Message
+    .find(
+      {
+        'request': request_id,
+        'sender': {$in: [supplier_id,user_id]}
+      }
+      , 'date message sender')
+    .exec(function (error, message) {
+
+      if (error) {
+        res.status(status.INTERNAL_SERVER_ERROR).send(error);
+        return;
+      }
+
+      res.json(message);
+      return;
+
+    })
 }
 /*
  * REST API for DELETE {ROOT}/message/thread/
