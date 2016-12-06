@@ -1,7 +1,79 @@
 <div ng-controller="RegistrationCtrl">
     <div class="full-screen-box full-screen-box-bg">
-        <iframe id="introVideo" src="https://www.youtube.com/embed/QKQ1i60eOsE" frameborder="0" allowfullscreen></iframe>
-        <!--
+        <!--<iframe id="introVideo" src="https://www.youtube.com/embed/QKQ1i60eOsE" frameborder="0" allowfullscreen></iframe>-->
+        <button class="btn btn-primary" style="margin-top:100px" ng-hide="loggedIn" data-toggle="modal" data-target="#showRegistration">
+            Register
+        </button>
+        <div class="modal fade" id="showRegistration" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                ng-click="clearInput()"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Registration</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form name="register" ng-submit="register()">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    First Name:
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                        <input type="text" class="form-control" ng-model="firstName" placeholder="First Name"
+                                               style="opacity:0.9" required/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    Last Name:
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                        <input type="text" class="form-control" ng-model="lastName" placeholder="Last Name"
+                                               style="opacity:0.9" required/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    Email address
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                        <input type="email" class="form-control" ng-model="eMail" placeholder="Email address"
+                                               style="opacity:0.9" required/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    Password
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="form-group has-feedback">
+                                        <div ng-class="{'has-error': errorText}" style="display: inline">
+                                            <input type="password" class="form-control" ng-model="password" placeholder="Password"
+                                                   style="opacity:0.9" required/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearInput()">Close</button>
+                        <button type="submit" class="btn btn-primary" ng-click="register()" class="close">
+                                <!--ng-disabled="logIn.$invalid" uib-popover="{{errorText}}"
+                                popover-placement="bottom" popover-trigger="click"
+                                -->Register
+                        </button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+
         <div class="obox">
             <div class="row">
                 <div class="col-sm-6">
@@ -13,12 +85,11 @@
                 <div class="col-sm-6">
                     <div class="sbox">
                         <p><i class="fa fa-LUPE fa-3x" aria-hidden="true"></i></p>
-                        New in Town?
+                        Browse requests
                     </div>
                 </div>
             </div>
-         -->
+
         </div>
-    </div>
     </div>
 </div>

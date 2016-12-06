@@ -29,9 +29,9 @@
                         <button class="navbar-right btn btn-primary btn-right navbar-btn" ng-hide="loggedIn" data-toggle="modal" data-target="#showLogin">
                             Login
                         </button>
-                        <button class="navbar-right btn btn-primary navbar-btn" ng-hide="loggedIn" ng-click="registrationShown">
+                        <!--<button class="navbar-right btn btn-primary navbar-btn" ng-hide="loggedIn" ng-click="registrationShown">
                             Register
-                        </button>
+                        </button> -->
                         <ul class="nav navbar-nav navbar-right" ng-show="loggedIn">
                             <li ng-repeat="route in mainRoutes" ng-class="{active: isCurrent(route)}">
                                 <a href="#{{route.originalPath}}">{{route.name}}</a>

@@ -4,7 +4,6 @@
 
 
 /* Fonts */
-@import url(https://fonts.googleapis.com/css?family=Crafty+Girls);
 @import url(https://fonts.googleapis.com/css?family=Muli);
 /* End Fonts */
 
@@ -110,21 +109,12 @@ footer {
 }
 
 .sbox {
+  color: white;
   text-align: center;
-  font-family: 'Crafty Girls', cursive;
+  font-family: 'Helvetica';
   font-size: 18pt;
   line-height: 40px;
   margin: 20px;
-}
-
-.sbox-info {
-  margin-top: 15px;
-  margin-left: 20px;
-  margin-right: 20px;
-  text-align: center;
-  font-family: Muli;
-  font-size: 13pt;
-  line-height: 30px;
 }
 
 /*
