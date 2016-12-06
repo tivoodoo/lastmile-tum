@@ -69,6 +69,7 @@ app.use(cookieParser());
 var userRoutes = require('./api/user/userRoutes');
 var requestRoutes = require('./api/request/requestRoutes');
 var ratingRoutes = require('./api/rating/ratingRoutes');
+var messageRoutes = require('./api/messages/messagesRoutes');
 
 
 // setting url path
@@ -76,6 +77,7 @@ var ratingRoutes = require('./api/rating/ratingRoutes');
 app.use('/user', userRoutes(passport));
 app.use('/request', requestRoutes(passport));
 app.use('/rating', ratingRoutes(passport));
+app.use('/message', messageRoutes(passport));
 
 /**
  * Error handlers.

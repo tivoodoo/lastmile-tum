@@ -3,7 +3,7 @@
  */
 
 var status = require('http-status');
-var Rating = require('./messagesSchema');
+var Message = require('./messagesSchema');
 var User = require('../user/userSchema');
 var auth = require('../../authorization/auth');
 
@@ -12,7 +12,23 @@ var auth = require('../../authorization/auth');
  *
  * */
 module.exports.postMessage = function (req, res) {
+  var userId = auth.getUserIdFromRequestToken(req);
 
+  if (userId != req.body.sender) {
+    res.sendStatus(status.UNAUTHORIZED);
+    return;
+  }
+
+  var message = new Message(req.body);
+
+  message.save(function (err) {
+    if (err) {
+      res.status(status.INTERNAL_SERVER_ERROR).send(err);
+      return;
+    }
+    res.sendStatus(status.CREATED);
+    return;
+  });
 }
 
 /*
@@ -25,7 +41,33 @@ module.exports.postMessage = function (req, res) {
  *
  * */
 module.exports.getThreadsFromRequest = function (req, res) {
+  Message
+    .find({'request': req.params.request_id})
+    .distinct('sender')
+    .exec(function (err, lIDoS) {
+      if (err) {
+        res.status(status.INTERNAL_SERVER_ERROR).send(err);
+        return;
+      }
 
+      //Exclude origin of the API request in the list
+      var userID = auth.getUserIdFromRequestToken(req);
+      var index = lIDoS.indexOf(userID);
+      lIDoS.splice(index);
+
+      //Populate user
+      User
+        .find({'_id': {$in: lIDoS}})
+        .exec(function (error, user) {
+          if (error) {
+            res.status(status.INTERNAL_SERVER_ERROR).send(error);
+            return;
+          }
+
+          res.json(user);
+          return;
+        })
+    })
 }
 
 /*
@@ -50,6 +92,6 @@ module.exports.getMessagesFromThread = function (req, res) {
  * @params supplier_id
  *
  * */
-module.exports.deleteRequest = function (req, res) {
+module.exports.deleteThread = function (req, res) {
 
 }

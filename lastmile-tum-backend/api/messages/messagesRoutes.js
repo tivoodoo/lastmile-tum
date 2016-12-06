@@ -5,7 +5,7 @@
 module.exports = messageRoutes;
 
 function messageRoutes(passport) {
-  var messageController = require('./messageController')
+  var messageController = require('./messagesController')
 
   var router = require('express').Router();
 
@@ -46,7 +46,7 @@ function messageRoutes(passport) {
    * @params supplier_id
    *
    * */
-  router.get('/thread/content/', requestController.getMessagesFromThread);
+  router.get('/thread/content/', messageController.getMessagesFromThread);
 
   /*
    * REST API for DELETE {ROOT}/message/thread/
@@ -57,7 +57,7 @@ function messageRoutes(passport) {
    * @params supplier_id
    *
    * */
-  router.delete('/delete/:request_id', requestController.deleteRequest);
+  router.delete('/delete/thread/', messageController.deleteThread);
 
   return router;
 
