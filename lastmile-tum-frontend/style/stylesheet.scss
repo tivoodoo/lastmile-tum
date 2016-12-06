@@ -13,9 +13,9 @@
  * -------------
  * Custom styles
  */
-$mainScreenImg: '../images/f.jpg';
-$mainScreenImgWidth: 4874; // without 'px'!
-$mainScreenImgHeight: 3046; // without 'px'!
+$mainScreenImg: '../images/d.jpg';
+$mainScreenImgWidth: 2560; // without 'px'!
+$mainScreenImgHeight: 1600; // without 'px'!
 
 // In the following, please stay in line with bootstrap!
 $bodyBackground: #ecf5ea;
@@ -99,24 +99,49 @@ footer {
   height: calc(315px * 1.2);
   position: relative;
   left: calc(50% - (560px*1.2/2));
-  top: 200px;
+  top: 130px;
 }
 .obox {
+  margin-top: 160px;
   width: 80%;
-  margin-top: 30px;
+  //margin-top: 30px;
   margin-left: auto;
   margin-right: auto;
+
 }
 
 .sbox {
+  padding-top: 10px;
   color: white;
   text-align: center;
   font-family: 'Helvetica';
   font-size: 18pt;
   line-height: 40px;
   margin: 20px;
+  background-color: rgba(17,46,87,0.85);
+  transition: .5s ease;
+  cursor: pointer;
 }
 
+
+// change hover style
+.sbox:hover {
+  background-color: rgb(17,46,87);
+  transition: .5s ease;
+}
+.btn {
+  border-radius: 0px;
+  transition: .5s ease;
+}
+.btn:hover {
+  transition: .5s ease;
+}
+.navbar-brand {
+  transition: .5s ease;
+}
+.navbar-brand:hover {
+  transition: .5s ease;
+}
 /*
 a{
   font-family: Muli;

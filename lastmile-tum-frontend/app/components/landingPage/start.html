@@ -1,9 +1,6 @@
 <div ng-controller="RegistrationCtrl">
     <div class="full-screen-box full-screen-box-bg">
-        <!--<iframe id="introVideo" src="https://www.youtube.com/embed/QKQ1i60eOsE" frameborder="0" allowfullscreen></iframe>-->
-        <button class="btn btn-primary" style="margin-top:100px" ng-hide="loggedIn" data-toggle="modal" data-target="#showRegistration">
-            Register
-        </button>
+
         <div class="modal fade" id="showRegistration" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -74,22 +71,39 @@
             </div><!-- /.modal-dialog -->
         </div>
 
-        <div class="obox">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="sbox">
-                        <p><i class="fa fa-CHECK fa-3x" aria-hidden="true"></i></p>
-                        Register
+        <div class="row">
+            <iframe id="introVideo" src="https://www.youtube.com/embed/QKQ1i60eOsE" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <!--
+        <div class="row">
+            <button class="btn btn-primary" style="margin-top:100px" ng-hide="loggedIn" data-toggle="modal" data-target="#showRegistration">
+                Register
+            </button>
+        </div>
+        -->
+        <div class="row">
+            <div class="obox">
+                <div class="row">
+                    <div class="col-lg-offset-3 col-lg-3" ng-hide="loggedIn">
+                        <div class="sbox" data-toggle="modal" data-target="#showRegistration">
+                            <p><i class="fa fa-user-circle fa-3x" aria-hidden="true"></i></p>
+                            Register
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="sbox">
-                        <p><i class="fa fa-LUPE fa-3x" aria-hidden="true"></i></p>
-                        Browse requests
+                    <div class="col-lg-3">
+                        <div class="sbox">
+                            <p><i class="fa fa-search fa-3x" aria-hidden="true"></i></p>
+                            Browse requests
+                        </div>
+                    </div>
+                    <div class="col-lg-offset-4 col-lg-4" ng-show="loggedIn">
+                        <div class="sbox">
+                            <p><i class="fa fa-search fa-3x" aria-hidden="true"></i></p>
+                            Browse requests
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
