@@ -41,7 +41,7 @@ var requestSchema = mongoose.Schema({
     type: Number,
     required: true
   },
-  user: {
+  requester: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
