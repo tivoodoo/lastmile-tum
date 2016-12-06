@@ -1,384 +1,752 @@
 {
-	"variables": [],
-	"info": {
-		"name": "LastMile",
-		"_postman_id": "c7455638-6584-484c-6d29-459e88dd52f0",
-		"description": "Postman Collection for project LastMile",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
-	},
-	"item": [
+	"id": "5f356c79-7fae-05e6-8199-acdbf6c9cea0",
+	"name": "LastMile",
+	"description": "Postman Collection for project LastMile",
+	"order": [],
+	"folders": [
 		{
+			"id": "6272599b-2f82-1421-ad27-ecb1de884656",
 			"name": "Authorization and Authentication",
 			"description": "",
-			"item": [
-				{
-					"name": "User sign up",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var token = JSON.parse(responseBody).token;",
-									"tests[\"Contains token\"] = token;",
-									"",
-									"postman.setGlobalVariable(\"token_register\", token);",
-									"",
-									"var decodedTokenData = JSON.parse(atob(token.split('.')[1]));",
-									"",
-									"tests[\"correct username encoded in token\"] = decodedTokenData.user.username == postman.getEnvironmentVariable(\"USERNAME\");",
-									"",
-									"postman.setGlobalVariable(\"user_id\", decodedTokenData.user._id);"
-								]
-							}
-						}
-					],
-					"request": {
-						"url": "{{HOST}}/user/signup",
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "email",
-									"value": "{{EMAIL}}",
-									"type": "text",
-									"enabled": true
-								},
-								{
-									"key": "password",
-									"value": "{{PWD}}",
-									"type": "text",
-									"enabled": true
-								},
-								{
-									"key": "sex",
-									"value": "true",
-									"type": "text",
-									"enabled": true
-								},
-								{
-									"key": "firstName",
-									"value": "Tien D.",
-									"type": "text",
-									"enabled": true
-								},
-								{
-									"key": "lastName",
-									"value": "Vu",
-									"type": "text",
-									"enabled": true
-								},
-								{
-									"key": "street",
-									"value": "Völckerstr.",
-									"type": "text",
-									"enabled": true
-								},
-								{
-									"key": "number",
-									"value": "32",
-									"type": "text",
-									"enabled": true
-								},
-								{
-									"key": "zipCode",
-									"value": "80939",
-									"type": "text",
-									"enabled": true
-								},
-								{
-									"key": "town",
-									"value": "München",
-									"type": "text",
-									"enabled": true
-								},
-								{
-									"key": "birthday",
-									"value": "1990-12-22T23:00:00.000Z",
-									"type": "text",
-									"enabled": true
-								}
-							]
-						},
-						"description": "Check whether the username is already used before sending request"
-					},
-					"response": []
-				},
-				{
-					"name": "User log in",
-					"request": {
-						"url": "{{HOST}}/user/login",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "email",
-									"value": "{{EMAIL}}",
-									"type": "text",
-									"enabled": true
-								},
-								{
-									"key": "password",
-									"value": "{{PWD}}",
-									"type": "text",
-									"enabled": true
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Get Specific User",
-					"request": {
-						"url": "{{HOST}}/user/{{user_id}}",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "JWT {{token_login}}",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": []
-						},
-						"description": ""
-					},
-					"response": []
-				}
-			]
+			"order": [
+				"1e36d57e-dfe9-255f-f0e5-1b37b952f507",
+				"94e60cc2-17ad-dc99-13c3-c4f785cfb574",
+				"0b970b2c-dc18-88ed-617b-7d8da85913d8",
+				"cf74d08b-2918-d7ba-9bb1-e378789efc7a"
+			],
+			"owner": 0,
+			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0"
 		},
 		{
-			"name": "requests",
+			"id": "f8463a92-544b-773d-40fd-55b3207c097a",
+			"name": "Message",
 			"description": "",
-			"item": [
+			"order": [
+				"96f4afd0-e6d1-0728-fb2b-6638b496a8d6",
+				"405a563f-32bb-dff5-afbf-3920b979d74b",
+				"1a571923-acff-22b1-edcb-789109455811",
+				"d57f1f50-8eb3-a816-a208-e3ed25bb22f7"
+			],
+			"owner": 0
+		},
+		{
+			"id": "09d1372b-65a0-e32e-bac9-f5e7e57e0098",
+			"name": "Rating",
+			"description": "",
+			"order": [
+				"e1d07fb6-6868-5a6d-d685-c5ffb91d2ab4",
+				"43a3d0ca-cf3a-1f13-ca9a-bbf977b8f14d",
+				"35a6561f-d01d-0c5c-6e14-f0a198479c8b",
+				"bc4c4318-9b62-0ede-d57a-3c8da343533f",
+				"9d772b85-a294-cda5-9607-e0a64c797668"
+			],
+			"owner": 0,
+			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0"
+		},
+		{
+			"id": "6cbd9020-b56f-9222-95bf-e4f0ec3f556a",
+			"name": "Requests",
+			"description": "",
+			"order": [
+				"c244b986-d6c1-6600-173d-fdab6e426485",
+				"cd351551-aecc-ceb3-8bef-9f3ffa650d84",
+				"72767d84-c0d3-b3d0-3e72-ff0e618ffe8a",
+				"154ed02d-96bf-c46f-301c-9bf1e966c5a0",
+				"3b7f4fa3-b50a-d2af-7be9-e9035d47a559"
+			],
+			"owner": 0,
+			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0"
+		}
+	],
+	"timestamp": 1479835808431,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "0b970b2c-dc18-88ed-617b-7d8da85913d8",
+			"headers": "Authorization: JWT {{token_login}}\n",
+			"url": "{{HOST}}/user/get/{{user_id}}",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1480435532178,
+			"name": "Get Specific User",
+			"description": "",
+			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0",
+			"responses": []
+		},
+		{
+			"id": "154ed02d-96bf-c46f-301c-9bf1e966c5a0",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: JWT {{token_login}}\n",
+			"url": "{{HOST}}/request/put/584638d4b2127b015081fac6",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "PUT",
+			"data": [
 				{
-					"name": "get all requests",
-					"request": {
-						"url": "{{HOST}}/request/get",
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": []
-						},
-						"description": ""
-					},
-					"response": []
+					"key": "size",
+					"value": "L",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
 				},
 				{
-					"name": "edit request",
-					"request": {
-						"url": "{{HOST}}/request/put/583b214eaae43a20d4f2cd7d",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "JWT {{token_register}}",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "size",
-									"value": "L",
-									"type": "text",
-									"enabled": true
-								},
-								{
-									"key": "pickUpLocation",
-									"value": "Muc",
-									"type": "text",
-									"enabled": true
-								},
-								{
-									"key": "deliverToLocation",
-									"value": "Ber",
-									"type": "text",
-									"enabled": true
-								},
-								{
-									"key": "pickUpTime",
-									"value": "2016-12-12T23:00:00.000Z",
-									"type": "text",
-									"enabled": true
-								},
-								{
-									"key": "deliverTime",
-									"value": "2016-12-14T23:00:00.000Z",
-									"type": "text",
-									"enabled": true
-								},
-								{
-									"key": "willingnessToPay",
-									"value": "50",
-									"type": "text",
-									"enabled": true
-								},
-								{
-									"key": "user",
-									"value": "58358c9fc05c9412acfa9a61",
-									"type": "text",
-									"enabled": true
-								},
-								{
-									"key": "name",
-									"value": "Football",
-									"type": "text",
-									"enabled": true
-								},
-								{
-									"key": "description",
-									"value": "some new description",
-									"type": "text",
-									"enabled": true
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
+					"key": "pickUpLocation",
+					"value": "Muc",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
 				},
 				{
-					"name": "post requests",
-					"request": {
-						"url": "{{HOST}}/request/post",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "JWT {{token_register}}",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "size",
-									"value": "M",
-									"type": "text",
-									"enabled": true
-								},
-								{
-									"key": "pickUpLocation",
-									"value": "Muc",
-									"type": "text",
-									"enabled": true
-								},
-								{
-									"key": "deliverToLocation",
-									"value": "Ber",
-									"type": "text",
-									"enabled": true
-								},
-								{
-									"key": "pickUpTime",
-									"value": "2016-12-12T23:00:00.000Z",
-									"type": "text",
-									"enabled": true
-								},
-								{
-									"key": "deliverTime",
-									"value": "2016-12-14T23:00:00.000Z",
-									"type": "text",
-									"enabled": true
-								},
-								{
-									"key": "willingnessToPay",
-									"value": "50",
-									"type": "text",
-									"enabled": true
-								},
-								{
-									"key": "user",
-									"value": "58358c9fc05c9412acfa9a61",
-									"type": "text",
-									"enabled": true
-								},
-								{
-									"key": "name",
-									"value": "Football",
-									"type": "text",
-									"enabled": true
-								},
-								{
-									"key": "description",
-									"value": "blablaablabl",
-									"type": "text",
-									"enabled": true
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
+					"key": "deliverToLocation",
+					"value": "Ber",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
 				},
 				{
-					"name": "delete request",
-					"request": {
-						"url": "{{HOST}}/request/delete/583b1d9cc466e12b805745f3",
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "JWT {{token_register}}",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": []
-						},
-						"description": ""
-					},
-					"response": []
+					"key": "pickUpTime",
+					"value": "2016-12-12T23:00:00.000Z",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
 				},
 				{
-					"name": "get specific request",
-					"request": {
-						"url": "{{HOST}}/request/get/583b11b4e6e9491ef004c3c9",
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": []
-						},
-						"description": ""
-					},
-					"response": []
+					"key": "deliverTime",
+					"value": "2016-12-14T23:00:00.000Z",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "willingnessToPay",
+					"value": "50",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "requester",
+					"value": "{{user_id}}",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "name",
+					"value": "Football",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "description",
+					"value": "some new description",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
 				}
-			]
+			],
+			"dataMode": "urlencoded",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1480997151301,
+			"name": "Edit request",
+			"description": "",
+			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0",
+			"responses": []
+		},
+		{
+			"id": "1a571923-acff-22b1-edcb-789109455811",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: JWT {{token_login}}\n",
+			"url": "{{HOST}}/message/thread/content/?request_id=584638ec87045420e440660c&supplier_id=58464c4783fcef305ce33472",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1481005820819,
+			"name": "Get all messages of a thread.",
+			"description": "",
+			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0",
+			"responses": []
+		},
+		{
+			"id": "1e36d57e-dfe9-255f-f0e5-1b37b952f507",
+			"headers": "",
+			"url": "{{HOST}}/user/signup",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "email",
+					"value": "{{EMAIL}}",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "password",
+					"value": "{{PWD}}",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "sex",
+					"value": "true",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "firstName",
+					"value": "Tien D.",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "lastName",
+					"value": "Vu",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "street",
+					"value": "Völckerstr.",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "number",
+					"value": "32",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "zipCode",
+					"value": "80939",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "town",
+					"value": "München",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "birthday",
+					"value": "1990-12-22T23:00:00.000Z",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": "var token = JSON.parse(responseBody).token;\ntests[\"Contains token\"] = token;\n\npostman.setGlobalVariable(\"token_register\", token);\n\nvar decodedTokenData = JSON.parse(atob(token.split('.')[1]));\n\ntests[\"correct username encoded in token\"] = decodedTokenData.user.username == postman.getEnvironmentVariable(\"USERNAME\");\n\npostman.setGlobalVariable(\"user_id\", decodedTokenData.user._id);",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1481002459413,
+			"name": "User sign up",
+			"description": "Check whether the username is already used before sending request",
+			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0",
+			"responses": []
+		},
+		{
+			"id": "35a6561f-d01d-0c5c-6e14-f0a198479c8b",
+			"headers": "",
+			"url": "{{HOST}}/rating/request/584638ec87045420e440660c",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1480998583088,
+			"name": "Get all rating from a request",
+			"description": "",
+			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0",
+			"responses": []
+		},
+		{
+			"id": "3b7f4fa3-b50a-d2af-7be9-e9035d47a559",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: JWT {{token_login}}\n",
+			"url": "{{HOST}}/request/delete/584638d4b2127b015081fac6",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "DELETE",
+			"data": [],
+			"dataMode": "urlencoded",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1480997322533,
+			"name": "Delete request",
+			"description": "",
+			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0",
+			"responses": []
+		},
+		{
+			"id": "405a563f-32bb-dff5-afbf-3920b979d74b",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: JWT {{token_login}}\n",
+			"url": "{{HOST}}/message/threads/request/584638ec87045420e440660c",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1481003595609,
+			"name": "Get all message threads from a request",
+			"description": "",
+			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0",
+			"responses": []
+		},
+		{
+			"id": "43a3d0ca-cf3a-1f13-ca9a-bbf977b8f14d",
+			"headers": "",
+			"url": "{{HOST}}/rating/58463ce561e2ce21e8ef44ea",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1480998366306,
+			"name": "Get specific rating",
+			"description": "",
+			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0",
+			"responses": []
+		},
+		{
+			"id": "72767d84-c0d3-b3d0-3e72-ff0e618ffe8a",
+			"name": "Get all requests",
+			"description": "",
+			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0",
+			"method": "GET",
+			"headers": "",
+			"dataMode": "params",
+			"data": [],
+			"rawModeData": "",
+			"url": "{{HOST}}/request/get",
+			"responses": [],
+			"folder": "6cbd9020-b56f-9222-95bf-e4f0ec3f556a"
+		},
+		{
+			"id": "94e60cc2-17ad-dc99-13c3-c4f785cfb574",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"url": "{{HOST}}/user/login",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "email",
+					"value": "{{EMAIL}}",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "password",
+					"value": "{{PWD}}",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": "var token = JSON.parse(responseBody).token;\n\npostman.setGlobalVariable(\"token_login\", token);\n\nvar decodedTokenData = JSON.parse(atob(token.split('.')[1]));\npostman.setGlobalVariable(\"user_id\", decodedTokenData.user._id);\n\ntests[\"Same userID\"] = postman.getGlobalVariable(\"user_id\") == \"5772854f132d7ad41fdef519\";\ntests[\"Contains token\"] = token;\ntests[\"Same token as register token\"] = token == postman.getGlobalVariable(\"token_register\");",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1481005167101,
+			"name": "User log in",
+			"description": "",
+			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0",
+			"responses": []
+		},
+		{
+			"id": "96f4afd0-e6d1-0728-fb2b-6638b496a8d6",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: JWT {{token_login}}\n",
+			"url": "{{HOST}}/message/post",
+			"preRequestScript": "postman.setEnvironmentVariable('timestampHeader',new Date());",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "date",
+					"value": "{{timestampHeader}}",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "message",
+					"value": "message 6",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "request",
+					"value": "584638ec87045420e440660c",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "sender",
+					"value": "{{user_id}}",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1481005164742,
+			"name": "Post message",
+			"description": "",
+			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0",
+			"responses": []
+		},
+		{
+			"id": "9d772b85-a294-cda5-9607-e0a64c797668",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: JWT {{token_login}}\n",
+			"url": "{{HOST}}/rating/put/58463ce561e2ce21e8ef44ea",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "PUT",
+			"data": [
+				{
+					"key": "type",
+					"value": "S",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "stars",
+					"value": "5",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "comment",
+					"value": "this is a comment",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "request",
+					"value": "584638ec87045420e440660c",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1480998765497,
+			"name": "Edit a rating",
+			"description": "",
+			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0",
+			"responses": []
+		},
+		{
+			"id": "bc4c4318-9b62-0ede-d57a-3c8da343533f",
+			"headers": "",
+			"url": "{{HOST}}/rating/user/{{user_id}}",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1480998649649,
+			"name": "Get all rating from an user",
+			"description": "",
+			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0",
+			"responses": []
+		},
+		{
+			"id": "c244b986-d6c1-6600-173d-fdab6e426485",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: JWT {{token_login}}\n",
+			"url": "{{HOST}}/request/post",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "size",
+					"value": "M",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "pickUpLocation",
+					"value": "Muc",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "deliverToLocation",
+					"value": "Ber",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "pickUpTime",
+					"value": "2016-12-12T23:00:00.000Z",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "deliverTime",
+					"value": "2016-12-14T23:00:00.000Z",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "willingnessToPay",
+					"value": "50",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "requester",
+					"value": "{{user_id}}",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "name",
+					"value": "Football",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "description",
+					"value": "blablaablabl",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1480756744136,
+			"name": "Post request",
+			"description": "",
+			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0",
+			"responses": []
+		},
+		{
+			"id": "cd351551-aecc-ceb3-8bef-9f3ffa650d84",
+			"headers": "",
+			"url": "{{HOST}}/request/get/584638d4b2127b015081fac6",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1480997234853,
+			"name": "Get specific request",
+			"description": "",
+			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0",
+			"responses": []
+		},
+		{
+			"id": "cf74d08b-2918-d7ba-9bb1-e378789efc7a",
+			"headers": "Authorization: JWT {{token_login}}\nContent-Type: application/x-www-form-urlencoded\n",
+			"url": "{{HOST}}/user/put/{{user_id}}",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "PUT",
+			"data": [
+				{
+					"key": "email",
+					"value": "{{EMAIL}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "{{PWD}}",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "sex",
+					"value": "true",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "firstName",
+					"value": "Tien D.",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "lastName",
+					"value": "Vu",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "street",
+					"value": "Völckerstr.",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "number",
+					"value": "32",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "zipCode",
+					"value": "80939",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "town",
+					"value": "München",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "birthday",
+					"value": "1990-12-22T23:00:00.000Z",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1480504876233,
+			"name": "Update User",
+			"description": "",
+			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0",
+			"responses": []
+		},
+		{
+			"id": "d57f1f50-8eb3-a816-a208-e3ed25bb22f7",
+			"headers": "",
+			"url": "{{HOST}}/message/thread/",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "DELETE",
+			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0",
+			"data": null,
+			"dataMode": "params",
+			"name": "Delete a thread",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1481002336503,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "f8463a92-544b-773d-40fd-55b3207c097a"
+		},
+		{
+			"id": "e1d07fb6-6868-5a6d-d685-c5ffb91d2ab4",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nAuthorization: JWT {{token_login}}\n",
+			"url": "{{HOST}}/rating/post",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "type",
+					"value": "R",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "stars",
+					"value": "5",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "comment",
+					"value": "this is a comment",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				},
+				{
+					"key": "request",
+					"value": "584638ec87045420e440660c",
+					"type": "text",
+					"enabled": true,
+					"warning": ""
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1480997717748,
+			"name": "Post rating",
+			"description": "",
+			"collectionId": "5f356c79-7fae-05e6-8199-acdbf6c9cea0",
+			"responses": []
 		}
 	]
 }
