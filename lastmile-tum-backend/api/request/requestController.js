@@ -4,6 +4,7 @@
 
 var status = require('http-status');
 var Request = require('./requestSchema');
+var auth = require('../../authorization/auth');
 
 /*
  * REST API for POST {ROOT}/request/post
@@ -11,11 +12,10 @@ var Request = require('./requestSchema');
  * */
 module.exports.postRequest = function (req, res) {
   var request = new Request(req.body);
-
-  console.log(request);
+  var userId = auth.getUserIdFromRequestToken(req);
 
   //do not allow user to fake identity. The user who posted the request must be the same user that is logged in
-  if (!req.user.equals(request.user)) {
+  if (!(userId==request.requester)) {
     res.status(status.UNAUTHORIZED).send('user for the request does not match the user that is logged in');
     return;
   }
@@ -36,7 +36,11 @@ module.exports.postRequest = function (req, res) {
  *
  * */
 module.exports.getRequests = function (req, res) {
-  Request.find(function (err, requests) {
+  Request
+    .find()
+    //TODO Populate without password
+    .populate('user')
+    .exec(function (err, requests) {
     if (err) {
       res.status(status.INTERNAL_SERVER_ERROR).send(err);
       return;
@@ -65,6 +69,7 @@ module.exports.getRequest = function (req, res) {
  * REST API for PUT {ROOT}/request/put/{{request_id}}
  * request_id is extracted from jwt token and checked if it matches the user request, so only the author of a request can update it
  * */
+//TODO: only owner of request can edit it
 module.exports.updateRequest = function (req, res) {
   Request.findByIdAndUpdate(
     req.params.request_id,
@@ -94,11 +99,10 @@ module.exports.deleteRequest = function (req, res) {
       res.status(status.INTERNAL_SERVER_ERROR).send(err);
       return;
     }
-    ;
 
-
+    var userId = auth.getUserIdFromRequestToken(req);
     //authorize request.user && req.user.equals(request.user)
-    if (request.user && req.user.equals(request.user)) {
+    if (userId==request.requester) {
       request.remove();
       res.status(status.OK).send('request successfully deleted');
     } else {
