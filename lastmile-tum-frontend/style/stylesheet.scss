@@ -114,10 +114,10 @@ footer {
   padding-top: 10px;
   color: white;
   text-align: center;
-  font-family: 'Helvetica';
-  font-size: 18pt;
+  font-family: 'Muli';
+  font-size: 15pt;
   line-height: 40px;
-  margin: 20px;
+  margin: 20px 0px 20px 0px;
   background-color: rgba(17,46,87,0.85);
   transition: .5s ease;
   cursor: pointer;
@@ -141,6 +141,28 @@ footer {
 }
 .navbar-brand:hover {
   transition: .5s ease;
+}
+.cwf-content {
+  padding: 0px 0px 0px 15px;
+  background-color: white;
+}
+.cwf-content-90 {
+  @media (min-width: $screen-lg) {
+    width: 90vw;
+    margin: 80px auto 0 auto;
+  }
+}
+.cwf-content-90 > .row {
+  margin: 0px;
+}
+.topline{
+  font-family: inherit;
+  font-size: 30px;
+  text-align: center;
+}
+#browsemap{
+  height: 600px;
+  width: 100%;
 }
 /*
 a{

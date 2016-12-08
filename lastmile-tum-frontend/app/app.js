@@ -9,7 +9,10 @@ app.constant("BASEURL", "http://localhost:3000");
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: 'components/landingPage/start.html'
+            templateUrl: './components/landingPage/start.html'
+        })
+        .when('/browse', {
+            templateUrl: './components/browseRequests/browse.html'
         })
         .otherwise({redirectTo: '/'});
 }]);
