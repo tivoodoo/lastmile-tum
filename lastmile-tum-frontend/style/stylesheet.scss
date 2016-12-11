@@ -164,6 +164,15 @@ footer {
   height: 600px;
   width: 100%;
 }
+.right {
+  float: right;
+}
+.right.filter {
+  margin-top: 10px;
+}
+.right.filter.leftone {
+  margin-right: 20px;
+}
 /*
 a{
   font-family: Muli;

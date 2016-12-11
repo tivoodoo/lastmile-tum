@@ -46,7 +46,12 @@ gulp.task('styles', function() {
     var cssStream = gulp.src(stylesDir + '/**/*.css')
         .pipe(plumber())
         .pipe(concat('css.css'));
-    return merge(lessStream, scssStream, cssStream)
+    //
+    //var css1Stream = gulp.src('bower_components/jquery-ui/themes/base' + '/**/*.css')
+    //    .pipe(plumber())
+    //    .pipe(concat('css.css'))
+
+    return merge(lessStream, scssStream, cssStream)//, css1Stream)
         .pipe(plumber())
         .pipe(autoprefixer())
         .pipe(concat('main.min.css'))
