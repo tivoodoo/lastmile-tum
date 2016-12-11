@@ -10,7 +10,6 @@ angular.module('lastMile')
             function register(){
                 console.log("test");
                 clearInput();
-
             };
 
             function clearInput(){
