@@ -5,8 +5,11 @@ var app = angular.module('lastMile', ['ngRoute', 'ui.bootstrap']);
 
 app.constant("BASEURL", "http://localhost:3000");
 
-
-app.config(['$routeProvider', function($routeProvider) {
+app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+    $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+    });
     $routeProvider
         .when('/', {
             templateUrl: './components/landingPage/start.html'
