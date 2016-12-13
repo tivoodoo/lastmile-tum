@@ -22,7 +22,7 @@ var userSchema = mongoose.Schema({
   sex: {
     //true:male, false:female
     type: Boolean,
-    required: true
+    required: false
   },
   // Name --------
   firstName: {
@@ -55,18 +55,9 @@ var userSchema = mongoose.Schema({
     type: String,
     required:false
   },
-  // Trunk details---------
-  trunkWidth:{
-    type: Number,
-    required: false
-  },
-  trunkHeight:{
-    type: Number,
-    required: false
-  },
-  trunkDepth:{
-    type: Number,
-    required: false
+  trunkSize:{
+    type:String,
+    required:false
   },
   // Picture - must start with "http://"
   picture: {
@@ -76,7 +67,7 @@ var userSchema = mongoose.Schema({
   },
   birthday: {
     type: Date,
-    required: true
+    required: false
   },
   ratings: [{
     type: mongoose.Schema.Types.ObjectId,
