@@ -17,6 +17,8 @@ $mainScreenImg: '../images/d.jpg';
 $mainScreenImgWidth: 2560; // without 'px'!
 $mainScreenImgHeight: 1600; // without 'px'!
 
+$jQueryPNG: '../images/jQueryUiImages/ui-icons_888888_256x240.png';
+
 // In the following, please stay in line with bootstrap!
 $bodyBackground: #ecf5ea;
 $textColor: #333;
@@ -172,6 +174,12 @@ footer {
 }
 .right.filter.leftone {
   margin-right: 20px;
+}
+.ui-icon {
+  background-image: url($jQueryPNG) !important;
+}
+.requin > .form-control{
+  margin-top:5px;
 }
 /*
 a{

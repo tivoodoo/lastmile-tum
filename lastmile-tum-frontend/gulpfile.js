@@ -43,15 +43,10 @@ gulp.task('styles', function() {
         .pipe(plumber())
         .pipe(sass())
         .pipe(concat('sass.css'));
-    var cssStream = gulp.src(stylesDir + '/**/*.css')
+    var cssStream = gulp.src('bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css')
         .pipe(plumber())
         .pipe(concat('css.css'));
-    //
-    //var css1Stream = gulp.src('bower_components/jquery-ui/themes/base' + '/**/*.css')
-    //    .pipe(plumber())
-    //    .pipe(concat('css.css'))
-
-    return merge(lessStream, scssStream, cssStream)//, css1Stream)
+    return merge(lessStream, scssStream, cssStream)
         .pipe(plumber())
         .pipe(autoprefixer())
         .pipe(concat('main.min.css'))
