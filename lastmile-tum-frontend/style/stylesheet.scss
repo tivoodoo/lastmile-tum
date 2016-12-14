@@ -144,23 +144,26 @@ footer {
 .navbar-brand:hover {
   transition: .5s ease;
 }
-.cwf-content {
+.lm-content {
   padding: 0px 0px 0px 15px;
   background-color: white;
+  height: 90vh;
 }
-.cwf-content-90 {
+.lm-content-90 {
   @media (min-width: $screen-lg) {
     width: 90vw;
-    margin: 80px auto 0 auto;
+    margin: 0px auto 0;
+    padding: 35px 0px 0px 25px;
   }
 }
-.cwf-content-90 > .row {
+.lm-content-90 > .row {
   margin: 0px;
 }
 .topline{
   font-family: inherit;
   font-size: 30px;
   text-align: center;
+  padding: 20px 0px 20px 0px;
 }
 #browsemap{
   height: 600px;
@@ -180,6 +183,31 @@ footer {
 }
 .requin > .form-control{
   margin-top:5px;
+}
+.header-box {
+  margin:0;
+  padding:0;
+  @media (min-width: $screen-sm) {
+    min-height: 35vh;
+  };
+  @media (max-width: $screen-sm) {
+    min-height: 50vh;
+  };
+}
+.header-box-bg {
+  background-repeat: no-repeat;
+  background-position: center center;
+  @media (min-aspect-ratio: $mainScreenImgWidth+'/'+$mainScreenImgHeight) {
+    background-size: 100vw auto;
+  }
+}
+.header-box-font {
+  color: white;
+  text-align: center;
+  padding-top: calc(50px + 7vh);
+  font-size: 7vh;
+  font-family: Muli;
+  text-shadow: 2px 2px 5px #333;
 }
 /*
 a{
