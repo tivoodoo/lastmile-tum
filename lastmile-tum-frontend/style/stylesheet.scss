@@ -41,6 +41,17 @@ $button-hover-color: #f5f5f5;
   };
 }
 
+.part-screen-box {
+  margin:0;
+  padding:0;
+  @media (min-width: $screen-sm) {
+    min-height: 35vh;
+  };
+  @media (max-width: $screen-sm) {
+    min-height: 50vh;
+  };
+}
+
 .full-screen-box-bg {
   background: url($mainScreenImg) no-repeat center center;
   @media (min-aspect-ratio: $mainScreenImgWidth+'/'+$mainScreenImgHeight) {
@@ -214,6 +225,18 @@ footer {
   font-family: Muli;
   text-shadow: 2px 2px 5px #333;
 }
+
+.requestContainer > table {
+  margin-top: 10px;
+}
+.requestContainer td {
+  padding-right: 30px;
+}
+.requestContainer > span {
+  font-weight: bold;
+  font-size: 20px;
+}
+
 /*
 a{
   font-family: Muli;

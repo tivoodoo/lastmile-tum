@@ -1,5 +1,5 @@
  <lm-header text="Browse requests" img="images/e.jpg"></lm-header>
-    <div class="full-screen-box">
+    <div class="part-screen-box">
         <div class="lm-content lm-content-90" ng-controller="BrowseCtrl">
             <!--
             <div class="row topline">
@@ -12,127 +12,183 @@
                     </div>
                 </div>
                 <div class="col-lg-5">
-                    <div class="col-lg-12">
-                        <div class="row requin">
-                            <p>From:</p>
-                            <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                <input type="text" class="form-control" ng-model="fromCity" placeholder="Insert start"
-                                       style="opacity:0.9" required/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="row requin">
-                            <p>To:</p>
-                            <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                <input type="text" class="form-control" ng-model="toCity" placeholder="Insert destination"
-                                       style="opacity:0.9" required/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="row requin">
-                            <p>Earliest pickup:</p>
-                            <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                <input type="text" class="form-control" ng-model="pickup" placeholder="Insert earliest pickup"
-                                       style="opacity:0.9" required datepicker/>
-                            </div>
-                            <!--
-                            <div class="input-group date">
-                                <input datepicker type="text" class="form-control" id="datePickup">
-                                <span class="input-group-addon">
-                                    <i class="glyphicon glyphicon-th" id="showPickup"></i>
-                                </span>
-                            </div>
-                            -->
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="row requin">
-                            <p>Latest dropoff:</p>
-                            <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                <input type="text" class="form-control" ng-model="dropoff" placeholder="Insert latest dropoff"
-                                       style="opacity:0.9" required datepicker/>
-                            </div>
-                            <!--
-                            <div class="input-group date">
-                                <input datepicker type="text" class="form-control" id="dateDropoff">
-                                <span class="input-group-addon">
-                                    <i class="glyphicon glyphicon-th" id="showDropoff"></i>
-                                </span>
-                            </div>
-                            -->
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="row requin radio">
-                            <div class="row">
-                                <div class="col-lg-3">
-                                    Size:
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="radio">
-                                        <label><input type="radio" name="sizeRadio"
-                                                      ng-model="size" ng-value="S">S</label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="radio">
-                                        <label><input type="radio" name="sizeRadio"
-                                                      ng-model="size" ng-value="M">M</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-offset-3 col-lg-3">
-                                    <div class="radio">
-                                        <label><input type="radio" name="sizeRadio"
-                                                      ng-model="size" ng-value="L">L</label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="radio">
-                                        <label><input type="radio" name="sizeRadio"
-                                                      ng-model="size" ng-value="XL">XL</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="row requin">
-                            <div class="row">
-                                <div class="col-lg-3">
-                                    Prize:
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                        <input type="text" class="form-control" ng-model="lowPrice" placeholder="0 €"
-                                               style="opacity:0.9"/>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <center>
-                                        -
-                                    </center>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                        <input type="text" class="form-control" ng-model="highPrice" placeholder="100 €"
-                                               style="opacity:0.9"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <button type="button" class="btn btn-default right filter" ng-click="applyFilter()">
-                                <!--ng-disabled="logIn.$invalid" uib-popover="{{errorText}}"
-                                popover-placement="bottom" popover-trigger="click"
-                                -->Apply filter
+                    <div class="col-lg-12" ng-hide="filterShowed">
+                        <div class="row">
+                            <button type="button" class="btn btn-default right" ng-click="filterShowed = true">
+                                Filter
                             </button>
-                            <button type="button" class="btn btn-danger right filter leftone" ng-click="clearInput()">Cancel</button>
+                        </div>
+                        <div class="requestContainer">
+                            <span class="requestHeader">
+                                Football
+                            </span>
+                            <table>
+                                <tr>
+                                    <td>
+                                        From:
+                                    </td>
+                                    <td>
+                                        Munich
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Earliest pickup:
+                                    </td>
+                                    <td>
+                                        16.12.2016
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Latest dropoff:
+                                    </td>
+                                    <td>
+                                        24.12.2016
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Size:
+                                    </td>
+                                    <td>
+                                        S
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Price:
+                                    </td>
+                                    <td>
+                                        10,00 €
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="filterDiv" ng-show="filterShowed">
+                        <div class="col-lg-12">
+                            <div class="row requin">
+                                <p>From:</p>
+                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                    <input type="text" class="form-control" ng-model="fromCity" placeholder="Insert start"
+                                           style="opacity:0.9" required/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row requin">
+                                <p>To:</p>
+                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                    <input type="text" class="form-control" ng-model="toCity" placeholder="Insert destination"
+                                           style="opacity:0.9" required/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row requin">
+                                <p>Earliest pickup:</p>
+                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                    <input type="text" class="form-control" ng-model="pickup" placeholder="Insert earliest pickup"
+                                           style="opacity:0.9" required datepicker/>
+                                </div>
+                                <!--
+                                <div class="input-group date">
+                                    <input datepicker type="text" class="form-control" id="datePickup">
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-th" id="showPickup"></i>
+                                    </span>
+                                </div>
+                                -->
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row requin">
+                                <p>Latest dropoff:</p>
+                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                    <input type="text" class="form-control" ng-model="dropoff" placeholder="Insert latest dropoff"
+                                           style="opacity:0.9" required datepicker/>
+                                </div>
+                                <!--
+                                <div class="input-group date">
+                                    <input datepicker type="text" class="form-control" id="dateDropoff">
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-th" id="showDropoff"></i>
+                                    </span>
+                                </div>
+                                -->
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row requin radio">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        Size:
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="radio">
+                                            <label><input type="radio" name="sizeRadio"
+                                                          ng-model="size" ng-value="S">S</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="radio">
+                                            <label><input type="radio" name="sizeRadio"
+                                                          ng-model="size" ng-value="M">M</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-offset-3 col-lg-3">
+                                        <div class="radio">
+                                            <label><input type="radio" name="sizeRadio"
+                                                          ng-model="size" ng-value="L">L</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="radio">
+                                            <label><input type="radio" name="sizeRadio"
+                                                          ng-model="size" ng-value="XL">XL</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="row requin">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        Prize:
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                            <input type="text" class="form-control" ng-model="lowPrice" placeholder="0 €"
+                                                   style="opacity:0.9"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <center>
+                                            -
+                                        </center>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                            <input type="text" class="form-control" ng-model="highPrice" placeholder="100 €"
+                                                   style="opacity:0.9"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <button type="button" class="btn btn-default right filter" ng-click="applyFilter()">
+                                    <!--ng-disabled="logIn.$invalid" uib-popover="{{errorText}}"
+                                    popover-placement="bottom" popover-trigger="click"
+                                    -->Apply filter
+                                </button>
+                                <button type="button" class="btn btn-danger right filter leftone" ng-click="clearInput()">Cancel</button>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,10 @@
 angular.module('lastMile')
     .controller('BrowseCtrl', ['$scope',
         function ($scope) {
+            $scope.filterShowed = false;
+
             $scope.initMap = initMap;
+            $scope.clearInput = clearInput;
 
             function initMap() {
                 var munich = {lat: 48.1548895, lng: 11.4717965};
@@ -15,6 +18,18 @@ angular.module('lastMile')
                     map: map
                 });
                  */
+            };
+
+            function clearInput(){
+                $scope.fromCity = '';
+                $scope.toCity = '';
+                $scope.pickup = '';
+                $scope.dropoff = '';
+                $scope.size = '';
+                $scope.lowPrice = '';
+                $scope.highPrice = 'XL';
+
+                $scope.filterShowed = false;
             };
 
             $scope.initMap();
