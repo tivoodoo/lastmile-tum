@@ -1,9 +1,10 @@
 angular.module('lastMile')
     .controller('UserCtrl', ['$scope',
         //'currUser', 'auth', function ($scope, currUser, auth) {
-    function($scope, $mdDialog) {
+    function($scope, $mdDialog, userService) {
         $scope.loggedIn = false;
         $scope.loginShown = false;
+        $scope.login = logIn;
 
         // clear login input fields
         $.clearInput = function () {
@@ -12,6 +13,10 @@ angular.module('lastMile')
         $('#showLogin').on('hidden.bs.modal', function () {
             $.clearInput();
         });
+
+        function logIn(){
+            alert("jo");
+        }
     }
 ]);
 

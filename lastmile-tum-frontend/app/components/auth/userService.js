@@ -21,7 +21,11 @@
   function userService(BACKEND_BASE_URL, $http, auth, User) {
 
     this.register = register;
-
+    this.login = login;
+    this.getUser = getUser;
+    this.getUserName = getUserName;
+    this.loggedIn = auth.isAuthed;
+    this.logout = auth.deleteToken;
 
     ////////////////
 
@@ -29,6 +33,23 @@
       return $http.post(BACKEND_BASE_URL + '/user/signup', user);
     }
 
+    function login(user, pass) {
+      return $http.post(BACKEND_BASE_URL + '/user/login', {
+        username: user,
+        password: pass
+      });
+    }
+
+    function getUserName() {
+      var token = auth.getToken();
+      return token ? auth.parseJwt(token).user : {};
+    }
+
+    function getUser() {
+      var token = auth.getToken();
+      var userID = auth.parseJwt(token).user._id;
+      return User.get({userID: userID});
+    }
   }
 
 })();

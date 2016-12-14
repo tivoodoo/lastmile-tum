@@ -15,6 +15,17 @@ OR Start NodeJS backend using Nodemon (Need to install nodemon first: npm instal
 
 `nodemon ./bin/start-server-backend `
 
+## Start web server
+
+Install dependencies:
+
+`npm install`
+`bower install`
+
+Start listening (A new web page will be automatically opened)
+
+`gulp`
+
 ## Directory Structure
 
 ```
