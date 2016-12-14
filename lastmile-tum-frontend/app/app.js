@@ -1,9 +1,18 @@
 /**
  * Created by DanielSchlingmann on 29.11.16.
  */
-var app = angular.module('lastMile', ['ngRoute', 'ui.bootstrap']);
 
-app.constant("BASEURL", "http://localhost:3000");
+//TODO: Truncate module app in smaller modules
+var app = angular.module('lastMile', [
+    'ngRoute',
+    'ui.bootstrap',
+    'ngMaterial',
+    'ui.router',
+    'ngResource'
+
+]);
+
+// app.constant("BASEURL", "http://localhost:3000");
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode({
