@@ -42,6 +42,12 @@ var bodyParser = require('body-parser');
 // create application
 var app = express();
 
+//CORS middleware to overcome the Cross-Origin Request Blocked issue
+//See http://stackoverflow.com/questions/5750696/how-to-get-a-cross-origin-resource-sharing-cors-post-request-working
+// and http://stackoverflow.com/questions/7067966/how-to-allow-cors
+var cors = require('cors');
+app.use(cors());
+
 /*
  * Passport
  */
