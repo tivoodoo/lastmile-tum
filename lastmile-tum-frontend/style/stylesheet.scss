@@ -145,15 +145,20 @@ footer {
   transition: .5s ease;
 }
 .lm-content {
+  @media (min-width: $screen-sm) {
+    min-height: 65vh;
+  };
+  @media (max-width: $screen-sm) {
+    min-height: 50vh;
+  };
   padding: 0px 0px 0px 15px;
   background-color: white;
-  height: 90vh;
 }
 .lm-content-90 {
   @media (min-width: $screen-lg) {
     width: 90vw;
     margin: 0px auto 0;
-    padding: 35px 0px 0px 25px;
+    padding: 35px 0px 35px 25px;
   }
 }
 .lm-content-90 > .row {
