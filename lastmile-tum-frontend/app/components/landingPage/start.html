@@ -1,8 +1,8 @@
-<div ng-controller="RegistrationCtrl">
+<div ng-controller="RegisterCtrl as user">
     <div class="full-screen-box full-screen-box-bg">
 
         <div class="modal fade" id="showRegistration" tabindex="-1" role="dialog">
-            <form name="step1" ng-submit="register()">
+            <form name="step1" ng-submit="user.register()">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -17,7 +17,8 @@
                                 </div>
                                 <div class="col-lg-9">
                                     <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                        <input type="text" class="form-control" ng-model="firstName" placeholder="First Name"
+                                        <input type="text" class="form-control" ng-model="user.firstName" placeholder="First Name"
+                                               name="firstName"
                                                style="opacity:0.9" required/>
                                     </div>
                                 </div>
@@ -28,7 +29,8 @@
                                 </div>
                                 <div class="col-lg-9">
                                     <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                        <input type="text" class="form-control" ng-model="lastName" placeholder="Last Name"
+                                        <input type="text" class="form-control" ng-model="user.lastName" placeholder="Last Name"
+                                               name="lastName"
                                                style="opacity:0.9" required/>
                                     </div>
                                 </div>
@@ -39,7 +41,8 @@
                                 </div>
                                 <div class="col-lg-9">
                                     <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                        <input type="email" class="form-control" ng-model="eMail" placeholder="Email address"
+                                        <input type="text" class="form-control" ng-model="user.email" placeholder="Email address"
+                                               name="email"
                                                style="opacity:0.9" required/>
                                     </div>
                                 </div>
@@ -51,7 +54,8 @@
                                 <div class="col-lg-9">
                                     <div class="form-group has-feedback">
                                         <div ng-class="{'has-error': errorText}" style="display: inline">
-                                            <input type="password" class="form-control" ng-model="password" placeholder="Password"
+                                            <input type="password" class="form-control" ng-model="user.password" placeholder="Password"
+                                                   name="pass"
                                                    style="opacity:0.9" required/>
                                         </div>
                                     </div>
@@ -59,7 +63,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearInput()">Close</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="user.clearInput()">Close</button>
                             <button type="submit" class="btn btn-primary" class="close">
                                     <!--ng-disabled="logIn.$invalid" uib-popover="{{errorText}}"
                                     popover-placement="bottom" popover-trigger="click"
@@ -72,8 +76,8 @@
         </div>
 
         <div class="row">
-            <iframe id="introVideo" src="https://www.youtube.com/embed/QKQ1i60eOsE" frameborder="0"
-                    allowfullscreen></iframe>
+            <!--<iframe id="introVideo" src="https://www.youtube.com/embed/QKQ1i60eOsE" frameborder="0"-->
+                    <!--allowfullscreen></iframe>-->
         </div>
 
         <!--
