@@ -186,7 +186,7 @@ footer {
   width: 100%;
 }
 #modalMap{
-  height: 300px;
+  height: 400px;
   width: 100%;
 }
 .right {
@@ -316,11 +316,15 @@ footer {
 button.btn.btn-primary.accept {
   width: 100%;
 }
-#showDetails .tableDiv {
+#showDetails #tableDiv {
   border: 1px solid #ccc;
   border-radius: 4px;
   margin-top: 15px;
   height: 300px;
+}
+
+.input-label {
+  padding-top: 6px;
 }
 /*
 a{
