@@ -1,38 +1,400 @@
- <lm-header text="Browse requests" img="images/e.jpg"></lm-header>
-    <div class="part-screen-box">
-        <div class="lm-content lm-content-90" ng-controller="BrowseCtrl">
-            <!--
-            <div class="row topline">
-                    Browse through requests
+<lm-header text="Browse requests" img="images/e.jpg"></lm-header>
+<div class="part-screen-box">
+    <div class="lm-content lm-content-90" ng-controller="BrowseCtrl">
+        <!--
+        <div class="row topline">
+                Browse through requests
+        </div>
+        -->
+        <div class="row">
+            <div class="col-lg-7">
+                <div id="browsemap">
+                </div>
             </div>
-            -->
-            <div class="row">
-                <div class="col-lg-7">
-                    <div id="browsemap">
+            <div class="col-lg-5" style="height: 60vh;">
+                <div ng-hide="filterShowed">
+                    <div id="requests">
+                        <div class="row requestContainer">
+                            <div class="row">
+                                <div class="col-lg-10">
+                                <span class="requestHeader">
+                                    Football
+                                </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    <table>
+                                        <tr>
+                                            <td class="tf">
+                                                From:
+                                            </td>
+                                            <td>
+                                                Munich, Arcisstraße 21
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tf">
+                                                To:
+                                            </td>
+                                            <td>
+                                                Dresden, Nürnberger Straße 10
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tf">
+                                                Earliest pickup:
+                                            </td>
+                                            <td>
+                                                16.12.2016
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tf">
+                                                Latest dropoff:
+                                            </td>
+                                            <td>
+                                                24.12.2016
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tf">
+                                                Size:
+                                            </td>
+                                            <td>
+                                                S
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tf">
+                                                Price:
+                                            </td>
+                                            <td>
+                                                10,00 €
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-lg-2">
+                                    <img src="./images/football.jpg">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <button type="button" class="btn btn-default right" data-toggle="modal" data-target="#showDetails">
+                                    View details
+                                </button>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row requestContainer">
+                            <div class="row">
+                                <div class="col-lg-10">
+                                <span class="requestHeader">
+                                    Chair
+                                </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    <table>
+                                        <tr>
+                                            <td class="tf">
+                                                From:
+                                            </td>
+                                            <td>
+                                                Stuttgart, Katharinenstraße 5
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tf">
+                                                To:
+                                            </td>
+                                            <td>
+                                                Munich, Georg-Muche-Straße 3
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tf">
+                                                Earliest pickup:
+                                            </td>
+                                            <td>
+                                                20.12.2016
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tf">
+                                                Latest dropoff:
+                                            </td>
+                                            <td>
+                                                28.12.2016
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tf">
+                                                Size:
+                                            </td>
+                                            <td>
+                                                L
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tf">
+                                                Price:
+                                            </td>
+                                            <td>
+                                                25,00 €
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-lg-2">
+                                    <img src="./images/chair.jpg">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <button type="button" class="btn btn-default right" ng-click="">
+                                    View details
+                                </button>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row requestContainer">
+                            <div class="row">
+                                <div class="col-lg-10">
+                                <span class="requestHeader">
+                                    Plant
+                                </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    <table>
+                                        <tr>
+                                            <td class="tf">
+                                                From:
+                                            </td>
+                                            <td>
+                                                Maisach, Hauptstraße 10
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tf">
+                                                To:
+                                            </td>
+                                            <td>
+                                                Garching-Hochbrück, Parkring 11
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tf">
+                                                Earliest pickup:
+                                            </td>
+                                            <td>
+                                                17.12.2016
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tf">
+                                                Latest dropoff:
+                                            </td>
+                                            <td>
+                                                19.12.2016
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tf">
+                                                Size:
+                                            </td>
+                                            <td>
+                                                XL
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tf">
+                                                Price:
+                                            </td>
+                                            <td>
+                                                30,00 €
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-lg-2">
+                                    <img src="./images/plant.jpg">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <button type="button" class="btn btn-default right" ng-click="">
+                                    View details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="button" class="btn btn-primary bottomR" ng-click="filterShowed = true"
+                                style="width:100px;">
+                            Filter
+                        </button>
                     </div>
                 </div>
-                <div class="col-lg-5">
-                    <div class="col-lg-12" ng-hide="filterShowed">
-                        <div class="row">
-                            <button type="button" class="btn btn-default right" ng-click="filterShowed = true">
-                                Filter
-                            </button>
+                <div id="filterDiv" ng-show="filterShowed">
+                    <div class="col-lg-12">
+                        <div class="row requin">
+                            <p>From:</p>
+                            <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                <input type="text" class="form-control" ng-model="fromCity" placeholder="Insert start"
+                                       style="opacity:0.9" required/>
+                            </div>
                         </div>
-                        <div class="requestContainer">
-                            <span class="requestHeader">
-                                Football
-                            </span>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="row requin">
+                            <p>To:</p>
+                            <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                <input type="text" class="form-control" ng-model="toCity" placeholder="Insert destination"
+                                       style="opacity:0.9" required/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="row requin">
+                            <p>Earliest pickup:</p>
+                            <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                <input type="text" class="form-control" ng-model="pickup" placeholder="Insert earliest pickup"
+                                       style="opacity:0.9" required datepicker/>
+                            </div>
+                            <!--
+                            <div class="input-group date">
+                                <input datepicker type="text" class="form-control" id="datePickup">
+                                <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-th" id="showPickup"></i>
+                                </span>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="row requin">
+                            <p>Latest dropoff:</p>
+                            <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                <input type="text" class="form-control" ng-model="dropoff" placeholder="Insert latest dropoff"
+                                       style="opacity:0.9" required datepicker/>
+                            </div>
+                            <!--
+                            <div class="input-group date">
+                                <input datepicker type="text" class="form-control" id="dateDropoff">
+                                <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-th" id="showDropoff"></i>
+                                </span>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="row requin radio">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    Size:
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="radio">
+                                        <label><input type="radio" name="sizeRadio"
+                                                      ng-model="size" ng-value="S">S</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="radio">
+                                        <label><input type="radio" name="sizeRadio"
+                                                      ng-model="size" ng-value="M">M</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-offset-3 col-lg-3">
+                                    <div class="radio">
+                                        <label><input type="radio" name="sizeRadio"
+                                                      ng-model="size" ng-value="L">L</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="radio">
+                                        <label><input type="radio" name="sizeRadio"
+                                                      ng-model="size" ng-value="XL">XL</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="row requin">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    Prize:
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                        <input type="text" class="form-control" ng-model="lowPrice" placeholder="0 €"
+                                               style="opacity:0.9"/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <center>
+                                        -
+                                    </center>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                        <input type="text" class="form-control" ng-model="highPrice" placeholder="100 €"
+                                               style="opacity:0.9"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <button type="button" class="btn btn-default right filter" ng-click="applyFilter()">
+                                <!--ng-disabled="logIn.$invalid" uib-popover="{{errorText}}"
+                                popover-placement="bottom" popover-trigger="click"
+                                -->Apply filter
+                            </button>
+                            <button type="button" class="btn btn-danger right filter leftone" ng-click="clearInput()">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="showDetails" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Football</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-10">
                             <table>
                                 <tr>
-                                    <td>
+                                    <td class="tf">
                                         From:
                                     </td>
                                     <td>
-                                        Munich
+                                        Munich, Arcisstraße 21
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td class="tf">
+                                        To:
+                                    </td>
                                     <td>
+                                        Dresden, Nürnberger Straße 10
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tf">
                                         Earliest pickup:
                                     </td>
                                     <td>
@@ -40,7 +402,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
+                                    <td class="tf">
                                         Latest dropoff:
                                     </td>
                                     <td>
@@ -48,7 +410,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
+                                    <td class="tf">
                                         Size:
                                     </td>
                                     <td>
@@ -56,7 +418,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
+                                    <td class="tf">
                                         Price:
                                     </td>
                                     <td>
@@ -65,134 +427,23 @@
                                 </tr>
                             </table>
                         </div>
+                        <div class="col-lg-2">
+                            <img src="./images/football.jpg">
+                        </div>
                     </div>
-                    <div id="filterDiv" ng-show="filterShowed">
-                        <div class="col-lg-12">
-                            <div class="row requin">
-                                <p>From:</p>
-                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                    <input type="text" class="form-control" ng-model="fromCity" placeholder="Insert start"
-                                           style="opacity:0.9" required/>
-                                </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div id="modalMap">
                             </div>
                         </div>
-                        <div class="col-lg-12">
-                            <div class="row requin">
-                                <p>To:</p>
-                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                    <input type="text" class="form-control" ng-model="toCity" placeholder="Insert destination"
-                                           style="opacity:0.9" required/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="row requin">
-                                <p>Earliest pickup:</p>
-                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                    <input type="text" class="form-control" ng-model="pickup" placeholder="Insert earliest pickup"
-                                           style="opacity:0.9" required datepicker/>
-                                </div>
-                                <!--
-                                <div class="input-group date">
-                                    <input datepicker type="text" class="form-control" id="datePickup">
-                                    <span class="input-group-addon">
-                                        <i class="glyphicon glyphicon-th" id="showPickup"></i>
-                                    </span>
-                                </div>
-                                -->
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="row requin">
-                                <p>Latest dropoff:</p>
-                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                    <input type="text" class="form-control" ng-model="dropoff" placeholder="Insert latest dropoff"
-                                           style="opacity:0.9" required datepicker/>
-                                </div>
-                                <!--
-                                <div class="input-group date">
-                                    <input datepicker type="text" class="form-control" id="dateDropoff">
-                                    <span class="input-group-addon">
-                                        <i class="glyphicon glyphicon-th" id="showDropoff"></i>
-                                    </span>
-                                </div>
-                                -->
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="row requin radio">
-                                <div class="row">
-                                    <div class="col-lg-3">
-                                        Size:
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <div class="radio">
-                                            <label><input type="radio" name="sizeRadio"
-                                                          ng-model="size" ng-value="S">S</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <div class="radio">
-                                            <label><input type="radio" name="sizeRadio"
-                                                          ng-model="size" ng-value="M">M</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-offset-3 col-lg-3">
-                                        <div class="radio">
-                                            <label><input type="radio" name="sizeRadio"
-                                                          ng-model="size" ng-value="L">L</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <div class="radio">
-                                            <label><input type="radio" name="sizeRadio"
-                                                          ng-model="size" ng-value="XL">XL</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="row requin">
-                                <div class="row">
-                                    <div class="col-lg-3">
-                                        Prize:
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                            <input type="text" class="form-control" ng-model="lowPrice" placeholder="0 €"
-                                                   style="opacity:0.9"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <center>
-                                            -
-                                        </center>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                            <input type="text" class="form-control" ng-model="highPrice" placeholder="100 €"
-                                                   style="opacity:0.9"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <button type="button" class="btn btn-default right filter" ng-click="applyFilter()">
-                                    <!--ng-disabled="logIn.$invalid" uib-popover="{{errorText}}"
-                                    popover-placement="bottom" popover-trigger="click"
-                                    -->Apply filter
-                                </button>
-                                <button type="button" class="btn btn-danger right filter leftone" ng-click="clearInput()">Cancel</button>
-                            </div>
+                        <div class="col-lg-5">
+>
+
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
     </div>
 </div>

@@ -169,7 +169,7 @@ footer {
   @media (min-width: $screen-lg) {
     width: 90vw;
     margin: 0px auto 0;
-    padding: 35px 0px 35px 25px;
+    padding: 35px 25px 35px 25px;
   }
 }
 .lm-content-90 > .row {
@@ -182,7 +182,11 @@ footer {
   padding: 20px 0px 20px 0px;
 }
 #browsemap{
-  height: 600px;
+  height: 60vh;
+  width: 100%;
+}
+#modalMap{
+  height: 300px;
   width: 100%;
 }
 .right {
@@ -226,17 +230,37 @@ footer {
   text-shadow: 2px 2px 5px #333;
 }
 
-.requestContainer > table {
+.requestContainer{
+  margin-right: 5px;
+}
+.requestContainer table {
   margin-top: 10px;
 }
-.requestContainer td {
+.requestContainer .tf {
   padding-right: 30px;
 }
-.requestContainer > span {
+.requestContainer span {
   font-weight: bold;
   font-size: 20px;
 }
+.requestContainer img {
+  width:100%;
+}
+.requestContainer .row {
+  margin: 0px;
+}
 
+.bottomR{
+  bottom: 0;
+  right: 0;
+  position: absolute;
+}
+
+#requests{
+  height: 55vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 /*
 a{
   font-family: Muli;

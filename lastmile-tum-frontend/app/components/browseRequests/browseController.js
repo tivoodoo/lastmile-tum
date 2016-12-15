@@ -25,9 +25,9 @@ angular.module('lastMile')
                 $scope.toCity = '';
                 $scope.pickup = '';
                 $scope.dropoff = '';
-                $scope.size = '';
+                $scope.size = 'XL';
                 $scope.lowPrice = '';
-                $scope.highPrice = 'XL';
+                $scope.highPrice = '';
 
                 $scope.filterShowed = false;
             };
