@@ -5,6 +5,7 @@ angular.module('lastMile')
 
             $scope.initMap = initMap;
             $scope.clearInput = clearInput;
+            $scope.showDetailsModal = showDetailsModal;
 
             function initMap() {
                 var munich = {lat: 48.1548895, lng: 11.4717965};
@@ -30,6 +31,24 @@ angular.module('lastMile')
                 $scope.highPrice = '';
 
                 $scope.filterShowed = false;
+            };
+
+            function showDetailsModal(){
+                var munich = {lat: 48.1548895, lng: 11.4717965};
+                var map = new google.maps.Map(document.getElementById('modalMap'), {
+                    zoom: 10,
+                    center: munich
+                });
+                setHeightModalMap();
+            };
+
+            var setHeightModalMap = function (){
+                var modalBodyHeight = $('#showDetails .modal-dialog .modal-body').height();
+                var firstRowHeight = 150;
+                var vrHeight = 43;
+                var mapHeight = modalBodyHeight - firstRowHeight - vrHeight;
+                console.log(mapHeight);
+                $('#modalMap').height(mapHeight + "px");
             };
 
             $scope.initMap();

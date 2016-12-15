@@ -275,6 +275,14 @@ footer {
   font-size: 25px;
   text-align: center;
 }
+#showDetails .modal-body {
+  @media (min-width: $screen-md) {
+    height:65vh;
+  };
+  @media (max-width: $screen-sm,) {
+    //height:70vh;
+  };
+}
 #showDetails table{
   margin-left: 15px;
 }
@@ -291,6 +299,28 @@ footer {
   margin-left: auto;
   margin-right: auto;
   display: block;
+}
+#showDetails .tabHead {
+  font-weight: bold;
+  font-size: 17px;
+}
+#showDetails .tabTable {
+  margin-left: 0;
+  width: 100%;
+  height: 100%;
+}
+#showDetails .tabTable td {
+  padding: 15px 0px 0px 15px;
+  vertical-align: top;
+}
+button.btn.btn-primary.accept {
+  width: 100%;
+}
+#showDetails .tableDiv {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 15px;
+  height: 300px;
 }
 /*
 a{
