@@ -12,10 +12,10 @@
                         </div>
                         <div class="modal-body">
                             <div class="row">
-                                <div class="col-lg-3 input-label">
+                                <div class="col-sm-3 input-label">
                                     First Name:
                                 </div>
-                                <div class="col-lg-9">
+                                <div class="col-sm-9">
                                     <div class="form-group">
                                         <input type="text" class="form-control" ng-model="user.firstName" placeholder="First Name"
                                                name="firstName" style="opacity:0.9" required/>
@@ -23,21 +23,21 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-3 input-label">
+                                <div class="col-sm-3 input-label">
                                     Last Name:
                                 </div>
-                                <div class="col-lg-9">
+                                <div class="col-sm-9">
                                     <div class="form-group">
                                         <input type="text" class="form-control" ng-model="user.lastName" placeholder="Last Name"
-                                               name="lastName" style="opacity:0.9" required/>
+                                               name="lastName" style="opacity:0.9" datepicker required/>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-3 input-label">
+                                <div class="col-sm-3 input-label">
                                     Email address:
                                 </div>
-                                <div class="col-lg-9">
+                                <div class="col-sm-9">
                                     <div class="form-group">
                                         <input type="text" class="form-control" ng-model="user.email" placeholder="Email address"
                                                name="email"
@@ -46,10 +46,10 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-3 input-label">
+                                <div class="col-sm-3 input-label">
                                     Password:
                                 </div>
-                                <div class="col-lg-9">
+                                <div class="col-sm-9">
                                     <div class="form-group">
                                         <input type="password" class="form-control" ng-model="user.password" placeholder="Password"
                                                name="pass"
@@ -86,14 +86,14 @@
         <div class="row">
             <div class="obox">
                 <div class="row">
-                    <div class="col-lg-offset-4 col-lg-2" ng-hide="loggedIn">
+                    <div class="col-sm-offset-4 col-sm-2" ng-hide="loggedIn">
                         <div class="sbox" data-toggle="modal" data-target="#showRegistration">
                             <p><i class="fa fa-user-circle fa-2x" aria-hidden="true"></i></p>
                             Create account
                         </div>
                     </div>
                     <a href="/browse">
-                        <div class="col-lg-2">
+                        <div class="col-sm-2">
                             <div class="sbox">
                                 <p><i class="fa fa-search fa-2x" aria-hidden="true"></i></p>
                                 Browse requests
@@ -101,7 +101,7 @@
                         </div>
                     </a>
                     </div>
-                    <div class="col-lg-offset-4 col-lg-4" ng-show="loggedIn">
+                    <div class="col-sm-offset-4 col-sm-4" ng-show="loggedIn">
                         <div class="sbox">
                             <p><i class="fa fa-search fa-3x" aria-hidden="true"></i></p>
                             Browse requests
