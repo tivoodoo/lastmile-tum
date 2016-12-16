@@ -1,7 +1,7 @@
 <div ng-controller="RegisterCtrl as user">
     <div class="full-screen-box full-screen-box-bg">
 
-        <div class="modal fade" id="showRegistration" tabindex="-1" role="dialog">
+        <div class="modal fade" id="showRegistration" role="dialog">
             <form name="step1" ng-submit="user.register()">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -16,10 +16,9 @@
                                     First Name:
                                 </div>
                                 <div class="col-lg-9">
-                                    <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                    <div class="form-group">
                                         <input type="text" class="form-control" ng-model="user.firstName" placeholder="First Name"
-                                               name="firstName"
-                                               style="opacity:0.9" required/>
+                                               name="firstName" style="opacity:0.9" required/>
                                     </div>
                                 </div>
                             </div>
@@ -28,10 +27,9 @@
                                     Last Name:
                                 </div>
                                 <div class="col-lg-9">
-                                    <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                    <div class="form-group">
                                         <input type="text" class="form-control" ng-model="user.lastName" placeholder="Last Name"
-                                               name="lastName"
-                                               style="opacity:0.9" required/>
+                                               name="lastName" style="opacity:0.9" required/>
                                     </div>
                                 </div>
                             </div>
@@ -40,7 +38,7 @@
                                     Email address:
                                 </div>
                                 <div class="col-lg-9">
-                                    <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                    <div class="form-group">
                                         <input type="text" class="form-control" ng-model="user.email" placeholder="Email address"
                                                name="email"
                                                style="opacity:0.9" required/>
@@ -52,12 +50,10 @@
                                     Password:
                                 </div>
                                 <div class="col-lg-9">
-                                    <div class="form-group has-feedback">
-                                        <div ng-class="{'has-error': errorText}" style="display: inline">
-                                            <input type="password" class="form-control" ng-model="user.password" placeholder="Password"
-                                                   name="pass"
-                                                   style="opacity:0.9" required/>
-                                        </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" ng-model="user.password" placeholder="Password"
+                                               name="pass"
+                                               style="opacity:0.9" required/>
                                     </div>
                                 </div>
                             </div>
