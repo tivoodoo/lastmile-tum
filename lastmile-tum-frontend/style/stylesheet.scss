@@ -189,6 +189,10 @@ footer {
   height: 400px;
   width: 100%;
 }
+#createMap{
+  height: 60vh;
+  width: 100%;
+}
 .right {
   float: right;
 }
@@ -256,10 +260,8 @@ footer {
   position: absolute;
 }
 
-#requests{
+#brRequests{
   height: 55vh;
-  overflow-y: auto;
-  overflow-x: hidden;
 }
 
 #showDetails .modal-dialog {
@@ -325,6 +327,15 @@ button.btn.btn-primary.accept {
 
 .input-label {
   padding-top: 6px;
+}
+
+#crRequest{
+  height: 60vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+#crRequest > .row{
+  margin-top: 5px;
 }
 /*
 a{

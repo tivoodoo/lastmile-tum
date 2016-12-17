@@ -1,0 +1,233 @@
+<lm-header text="Create request" img="images/d.jpg"></lm-header>
+<div class="part-screen-box">
+    <div class="lm-content lm-content-90" ng-controller="CreateCtrl">
+        <div class="row">
+            <div class="col-lg-6" style="height: 60vh; overflow-y: auto; overflow-x: hidden;">
+                <div id="crRequest">
+                    <div class="row requin">
+                        <div class="col-lg-3">
+                            Item:
+                        </div>
+                        <div class="col-lg-9" >
+                            <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                <input type="text" class="form-control" ng-model="item" placeholder="Insert item name"
+                                       style="opacity:0.9" required/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row requin" style="height: 50px;">
+                        <div class="col-lg-3">
+                            Required space:
+                        </div>
+                        <div class="col-lg-9">
+                            <!--<select class="form-control btn btn-primary dropdown-toggle" data-ng-options="o.id as o.name for o in sizes" ng-model="size"></select> -->
+
+                            <div class="btn-group" uib-dropdown is-open="status.isopen" style="width:100%">
+                                <button id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle
+                                        style="width:100%; color: #999;">
+                                    Choose size <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                    <li role="menuitem"><a href="#">S</a></li>
+                                    <li role="menuitem"><a href="#">M</a></li>
+                                    <li role="menuitem"><a href="#">L</a></li>
+                                    <li role="menuitem"><a href="#">XL</a></li>
+                                </ul>
+                            </div>
+                            <!--<form name="sizePicker">
+                                <select name="singleSelect" ng-model="size">
+                                    <option value="S" ng-selected="true">S</option>
+                                    <option value="M">M</option>
+                                    <option value="L">L</option>
+                                    <option value="XL">XL</option>1
+                                </select>
+                            </form>
+                            -->
+                        </div>
+                    </div>
+                    <div class="row requin">
+                        <div class="col-lg-3">
+                            From:
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                <input type="text" class="form-control" ng-model="fromCity" placeholder="Insert start"
+                                       style="opacity:0.9" required/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row requin">
+                        <div class="col-lg-3">
+                            To:
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                <input type="text" class="form-control" ng-model="toCity" placeholder="Insert destination"
+                                       style="opacity:0.9" required/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row requin">
+                        <div class="col-lg-3">
+                            Earliest pickup:
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="form-group">
+                                <input type="text" class="form-control" ng-model="pickup" placeholder="Insert earliest pickup"
+                                       style="opacity:0.9" required datepicker/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row requin">
+                        <div class="col-lg-3">
+                            Latest dropoff:
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="form-group">
+                                <input type="text" class="form-control" ng-model="dropoff" placeholder="Insert latest dropoff"
+                                       style="opacity:0.9" required datepicker/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row flex-items-lg-middle">
+                        <div class="col-lg-3">
+                            Price offer:
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                <input type="text" class="form-control" ng-model="price" placeholder="Insert price offer"
+                                       style="opacity:0.9" required/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row requin">
+                        <div class="col-lg-3" id=picButton" >
+                            <button type="button" class="btn btn-primary" ng-click="uploadImage()">Upload Image</button>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="col-lg-offset-4 col-lg-4 pic" style="border: 1px solid #999;">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div id="createMap">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="showDetails" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Football</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row detailsFirst">
+                        <div class="col-lg-9">
+                            <table>
+                                <tr>
+                                    <td class="tf">
+                                        From:
+                                    </td>
+                                    <td>
+                                        Munich, Arcisstraße 21
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tf">
+                                        To:
+                                    </td>
+                                    <td>
+                                        Dresden, Nürnberger Straße 10
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tf">
+                                        Earliest pickup:
+                                    </td>
+                                    <td>
+                                        16.12.2016
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tf">
+                                        Latest dropoff:
+                                    </td>
+                                    <td>
+                                        24.12.2016
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tf">
+                                        Size:
+                                    </td>
+                                    <td>
+                                        S
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tf">
+                                        Price:
+                                    </td>
+                                    <td>
+                                        10,00 €
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-lg-3">
+                            <img src="./images/football.jpg">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div id="modalMap">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <span class ="tabHead">
+                                Comments
+                            </span>
+                            <div id="tableDiv">
+                                <table class="tabTable">
+                                    <tbody>
+                                    <tr>
+                                        <td style="width: 65px; font-weight:bold;">
+                                            Daniel:
+                                        </td>
+                                        <td>
+                                            Lorem ipsum!
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="row" style="margin-top: 15px;">
+                                <div class="col-lg-3 input-label">
+                                    Comment:
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="form-group">
+                                        <input class="form-control" placeholder="Input" style="opacity:0.9">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <button type="button" class="btn btn-primary accept" ng-click="">Accept</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+</div>

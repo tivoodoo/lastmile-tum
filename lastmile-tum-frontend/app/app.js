@@ -26,6 +26,9 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
         .when('/browse', {
             templateUrl: './components/browseRequests/browse.html'
         })
+        .when('/create', {
+            templateUrl: './components/createRequest/create.html'
+        })
         .otherwise({redirectTo: '/'});
 }]);
 

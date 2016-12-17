@@ -219,23 +219,7 @@ angular.module('lastMile')
             setHeightModalMap();
             setHeightChatWindow();
         }
-    ])
-    .directive('datepicker', function () {
-        return {
-            require : 'ngModel',
-            link : function (scope, element, attrs, ngModelCtrl) {
-                $(function(){
-                    element.datepicker({
-                        dateFormat:'dd.mm.yy',
-                        onSelect:function (dateText, inst) {
-                            ngModelCtrl.$setViewValue(dateText);
-                            scope.$apply();
-                        }
-                    });
-                });
-            }
-        }
-    });
+    ]);
 
 //datepicker: https://www.grobmeier.de/angular-js-binding-to-jquery-ui-datepicker-example-07092012.html
 //datepicker: http://jsfiddle.net/xB6c2/121/
