@@ -7,23 +7,23 @@
         </div>
         -->
         <div class="row">
-            <div class="col-sm-7">
+            <div class="col-lg-7">
                 <div id="browsemap">
                 </div>
             </div>
-            <div class="col-sm-5" style="height: 60vh; overflow-y: auto;">
+            <div class="col-lg-5" style="height: 60vh; overflow-y: auto;">
                 <div ng-hide="filterShowed">
                     <div id="requests">
                         <div class="row requestContainer">
                             <div class="row">
-                                <div class="col-sm-10">
+                                <div class="col-lg-10">
                                 <span class="requestHeader">
                                     Football
                                 </span>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-10">
+                                <div class="col-lg-10">
                                     <table>
                                         <tr>
                                             <td class="tf">
@@ -75,7 +75,7 @@
                                         </tr>
                                     </table>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-lg-2">
                                     <img src="./images/football.jpg">
                                 </div>
                             </div>
@@ -88,14 +88,14 @@
                         <hr>
                         <div class="row requestContainer">
                             <div class="row">
-                                <div class="col-sm-10">
+                                <div class="col-lg-10">
                                 <span class="requestHeader">
                                     Chair
                                 </span>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-10">
+                                <div class="col-lg-10">
                                     <table>
                                         <tr>
                                             <td class="tf">
@@ -147,7 +147,7 @@
                                         </tr>
                                     </table>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-lg-2">
                                     <img src="./images/chair.jpg">
                                 </div>
                             </div>
@@ -160,14 +160,14 @@
                         <hr>
                         <div class="row requestContainer">
                             <div class="row">
-                                <div class="col-sm-10">
+                                <div class="col-lg-10">
                                 <span class="requestHeader">
                                     Plant
                                 </span>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-10">
+                                <div class="col-lg-10">
                                     <table>
                                         <tr>
                                             <td class="tf">
@@ -219,7 +219,7 @@
                                         </tr>
                                     </table>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-lg-2">
                                     <img src="./images/plant.jpg">
                                 </div>
                             </div>
@@ -238,7 +238,7 @@
                     </div>
                 </div>
                 <div id="filterDiv" ng-show="filterShowed">
-                    <div class="col-sm-12">
+                    <div class="col-lg-12">
                         <div class="row requin">
                             <p>From:</p>
                             <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
@@ -247,7 +247,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col-lg-12">
                         <div class="row requin">
                             <p>To:</p>
                             <div class="form-group">
@@ -256,7 +256,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col-lg-12">
                         <div class="row requin">
                             <p>Earliest pickup:</p>
                             <div class="form-group">
@@ -273,7 +273,7 @@
                             -->
                         </div>
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col-lg-12">
                         <div class="row requin">
                             <p>Latest dropoff:</p>
                             <div class="form-group">
@@ -290,19 +290,19 @@
                             -->
                         </div>
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col-lg-12">
                         <div class="row requin radio">
                             <div class="row">
-                                <div class="col-sm-3">
+                                <div class="col-lg-3">
                                     Size:
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-lg-3">
                                     <div class="radio">
                                         <label><input type="radio" name="sizeRadio"
                                                       ng-model="size" ng-value="S">S</label>
                                     </div>
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-lg-3">
                                     <div class="radio">
                                         <label><input type="radio" name="sizeRadio"
                                                       ng-model="size" ng-value="M">M</label>
@@ -310,13 +310,13 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-offset-3 col-sm-3">
+                                <div class="col-lg-offset-3 col-lg-3">
                                     <div class="radio">
                                         <label><input type="radio" name="sizeRadio"
                                                       ng-model="size" ng-value="L">L</label>
                                     </div>
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-lg-3">
                                     <div class="radio">
                                         <label><input type="radio" name="sizeRadio"
                                                       ng-model="size" ng-value="XL">XL</label>
@@ -325,24 +325,24 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col-lg-12">
                         <div class="row requin">
                             <div class="row">
-                                <div class="col-sm-3">
+                                <div class="col-lg-3">
                                     Prize:
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-lg-3">
                                     <div class="form-group">
                                         <input type="text" class="form-control" ng-model="lowPrice" placeholder="0 €"
                                                style="opacity:0.9"/>
                                     </div>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-lg-2">
                                     <center>
                                         -
                                     </center>
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-lg-3">
                                     <div class="form-group">
                                         <input type="text" class="form-control" ng-model="highPrice" placeholder="100 €"
                                                style="opacity:0.9"/>
@@ -352,7 +352,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-lg-12">
                             <button type="button" class="btn btn-default right filter" ng-click="applyFilter()">
                                 <!--ng-disabled="logIn.$invalid" uib-popover="{{errorText}}"
                                 popover-placement="bottom" popover-trigger="click"
@@ -375,7 +375,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row detailsFirst">
-                        <div class="col-sm-9">
+                        <div class="col-lg-9">
                             <table>
                                 <tr>
                                     <td class="tf">
@@ -427,17 +427,17 @@
                                 </tr>
                             </table>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-lg-3">
                             <img src="./images/football.jpg">
                         </div>
                     </div>
                     <hr>
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-lg-6">
                             <div id="modalMap">
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-lg-6">
                             <span class ="tabHead">
                                 Comments
                             </span>
@@ -457,17 +457,17 @@
                             </div>
 
                             <div class="row" style="margin-top: 15px;">
-                                <div class="col-sm-3 input-label">
+                                <div class="col-lg-3 input-label">
                                     Comment:
                                 </div>
-                                <div class="col-sm-9">
+                                <div class="col-lg-9">
                                     <div class="form-group">
                                         <input class="form-control" placeholder="Input" style="opacity:0.9">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-12">
+                                <div class="col-lg-12">
                                     <button type="button" class="btn btn-primary accept" ng-click="">Accept</button>
                                 </div>
                             </div>
