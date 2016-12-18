@@ -1,46 +1,55 @@
 /**
- * Created by TimHenkelmann on 11.12.16.
+ * Created by DucTien on 14.12.2016.
  */
-/*(function(){
 
-    angular.module('myApp')
-        .service('currUser', currUserService);
+(function () {
+    'use strict';
 
-    function currUserService(BASEURL, $http, auth, $state) {
+    angular.module('lastMile')
+        .service('userService', userService)
+        .factory('User', function ($resource, BACKEND_BASE_URL) {
+            //API von Angular : https://docs.angularjs.org/api/ngResource/service/$resource
+            return $resource(BACKEND_BASE_URL + '/user/put/:userID', {userID: '@_id'}, {
+                //Define new function update
+                update: {
+                    method: 'PUT'
+                }
+            });
+
+        });
+
+    function userService(BACKEND_BASE_URL, $http, auth, User) {
 
         this.register = register;
         this.login = login;
+        this.getUser = getUser;
+        this.getUserName = getUserName;
         this.loggedIn = auth.isAuthed;
         this.logout = auth.deleteToken;
-        this.getUser = getUser;
-
 
         ////////////////
 
-        function register(user, pass, first, last, em) {
-            return $http.post(BASEURL + '/signup', {
-                username: user,
-                password: pass,
-                firstName: first,
-                lastName: last,
-                email: em
+        function register(user) {
+            return $http.post(BACKEND_BASE_URL + '/user/signup', user);
+        }
+
+        function login(mail, pass) {
+            return $http.post(BACKEND_BASE_URL + '/user/login', {
+                email: mail,
+                password: pass
             });
         }
 
-        function login(user, pass) {
-            return $http.post(BASEURL + '/login', {
-                username: user,
-                password: pass
-            })
-                .success(function(response) {
-                    $state.go('buyingoffers.list');
-                });
+        function getUserName() {
+            var token = auth.getToken();
+            return token ? auth.parseJwt(token).user : {};
         }
 
         function getUser() {
             var token = auth.getToken();
-            return token? auth.parseJwt(token).user : {};
+            var userID = auth.parseJwt(token).user._id;
+            return User.get({userID: userID});
         }
     }
 
-})();*/
+})();
