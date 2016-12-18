@@ -2,10 +2,20 @@ angular.module('lastMile')
     .controller('UserCtrl',
         //'currUser', 'auth', function ($scope, currUser, auth) {
     function($scope, $mdDialog, userService) {
-        var user = this;
+        var user= this;
         $scope.loggedIn = false;
         $scope.loginShown = false;
         $scope.login = login;
+
+        //should keep the loggedIn variable updated (after registration) but doesn't work yet
+       $scope.$watch(function () {
+            return userService.loggedIn();
+        }, function (loggedIn) {
+           $scope.loggedIn = loggedIn;
+            if (loggedIn && !$scope.user) {
+                $scope.user = userService.getUser();
+            }
+        });
 
         // clear login input fields
         $.clearInput = function () {
