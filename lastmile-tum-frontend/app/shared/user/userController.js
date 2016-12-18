@@ -14,6 +14,9 @@ angular.module('lastMile')
         $('#showLogin').on('hidden.bs.modal', function () {
             $.clearInput();
         });
+        $('#showLogin').submit(function(e) {
+            $('#showLogin').modal('hide');
+        });
 
 
         function login() {

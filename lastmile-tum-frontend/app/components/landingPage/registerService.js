@@ -9,6 +9,9 @@
         .module('lastMile')
         .controller('RegisterCtrl', function ($rootScope, $scope, userService, $location, $mdToast) {
 
+            $('#showRegistration').submit(function(e) {
+                $('#showRegistration').modal('hide');
+            });
             //Forward directly to dashboard if the user is already logged in
             if ($rootScope.loggedIn) {
                 $mdToast.show(
