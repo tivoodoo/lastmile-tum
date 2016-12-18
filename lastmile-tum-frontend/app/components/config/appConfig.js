@@ -9,7 +9,7 @@
     .module('lastMile')
     .constant("BASEURL", "http://localhost:3000")
     .constant('BACKEND_BASE_URL', "http://localhost:4000")
-    .constant('APP_NAME', "Fit Food")
+    .constant('APP_NAME', "Last Mile")
 
   angular
     .module('lastMile')

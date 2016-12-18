@@ -1,10 +1,11 @@
 angular.module('lastMile')
-    .controller('UserCtrl', ['$scope',
+    .controller('UserCtrl',
         //'currUser', 'auth', function ($scope, currUser, auth) {
     function($scope, $mdDialog, userService) {
+        var user = this;
         $scope.loggedIn = false;
         $scope.loginShown = false;
-        $scope.login = logIn;
+        $scope.login = login;
 
         // clear login input fields
         $.clearInput = function () {
@@ -14,11 +15,23 @@ angular.module('lastMile')
             $.clearInput();
         });
 
-        function logIn(){
-            alert("jo");
+
+        function login() {
+            userService.login(user.email, user.password).then(function () {
+                alert("login successfull");
+                $scope.loggedIn = true;
+            }, function (response) {
+                alert(response.status);
+                if (response.status == "400" || response.status == "401") {
+                    $scope.errorText = "Wrong username or password.";
+                } else {
+                    $scope.errorText = "An unknown error occured. please try again later.";
+                }
+            })
         }
+
     }
-]);
+);
 
 
 /*
