@@ -1,8 +1,8 @@
-<div ng-controller="RegisterCtrl as user">
+<div ng-controller="RegisterCtrl as reg">
     <div class="full-screen-box full-screen-box-bg">
 
         <div class="modal fade" id="showRegistration" role="dialog">
-            <form name="step1" ng-submit="user.register()">
+            <form name="step1" ng-submit="reg.register()">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -17,7 +17,7 @@
                                 </div>
                                 <div class="col-lg-9">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" ng-model="user.firstName" placeholder="First Name"
+                                        <input type="text" class="form-control" ng-model="reg.firstName" placeholder="First Name"
                                                name="firstName" style="opacity:0.9" required/>
                                     </div>
                                 </div>
@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="col-lg-9">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" ng-model="user.lastName" placeholder="Last Name"
+                                        <input type="text" class="form-control" ng-model="reg.lastName" placeholder="Last Name"
                                                name="lastName" style="opacity:0.9" required/>
                                     </div>
                                 </div>
@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="col-lg-9">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" ng-model="user.email" placeholder="Email address"
+                                        <input type="text" class="form-control" ng-model="reg.email" placeholder="Email address"
                                                name="email"
                                                style="opacity:0.9" required/>
                                     </div>
@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="col-lg-9">
                                     <div class="form-group">
-                                        <input type="password" class="form-control" ng-model="user.password" placeholder="Password"
+                                        <input type="password" class="form-control" ng-model="reg.password" placeholder="Password"
                                                name="pass"
                                                style="opacity:0.9" required/>
                                     </div>
@@ -59,7 +59,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="user.clearInput()">Close</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="reg.clearInput()">Close</button>
                             <button type="submit" class="btn btn-primary" class="close">
                                     <!--ng-disabled="logIn.$invalid" uib-popover="{{errorText}}"
                                     popover-placement="bottom" popover-trigger="click"
@@ -72,8 +72,8 @@
         </div>
 
         <div class="row">
-            <!-- <iframe id="introVideo" src="https://www.youtube.com/embed/7YdYETF7nIk" frameborder="0"
-                    allowfullscreen></iframe> -->
+             <iframe id="introVideo" src="https://www.youtube.com/embed/7YdYETF7nIk" frameborder="0"
+                    allowfullscreen></iframe>
         </div>
 
         <!--
@@ -92,6 +92,14 @@
                             Create account
                         </div>
                     </div>
+                    <a href="/create" ng-show="loggedIn">
+                        <div class="col-lg-offset-4 col-lg-2">
+                            <div class="sbox">
+                                <p><i class="fa fa-search fa-2x" aria-hidden="true"></i></p>
+                                Create a request
+                            </div>
+                        </div>
+                    </a>
                     <a href="/browse">
                         <div class="col-lg-2">
                             <div class="sbox">
@@ -101,12 +109,7 @@
                         </div>
                     </a>
                     </div>
-                    <div class="col-lg-offset-4 col-lg-4" ng-show="loggedIn">
-                        <div class="sbox">
-                            <p><i class="fa fa-search fa-3x" aria-hidden="true"></i></p>
-                            Browse requests
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
