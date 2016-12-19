@@ -1,8 +1,8 @@
-<lm-header text="My requests" img="images/d.jpg"></lm-header>
+<lm-header text="My deliveries" img="images/d.jpg"></lm-header>
 <div class="part-screen-box">
-    <div class="lm-content lm-content-90" ng-controller="MyReqCtrl">
+    <div class="lm-content lm-content-90" ng-controller="MyDelCtrl">
         <div style="height: 60vh; overflow-y: auto; overflow-x: hidden; padding: 0px 20px 0px 20px;">
-            <div class="row reqSmall pos">
+            <div class="row reqSmall neutr">
                 <div class="col-lg-10">
                     <span class="requestHeader">
                         Football
@@ -65,18 +65,18 @@
                             Menu <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-                            <li role="menuitem"><a href="#">Confirm delivery</a></li>
+                            <li role="menuitem"><a href="#">Mark as delivered</a></li>
                             <li class="divider"></li>
                             <li role="menuitem"><a href="#">Write message</a></li>
-                            <li role="menuitem"><a href="#">Deliverer's profile</a></li>
-                            <li role="menuitem"><a href="#">Rate deliverer</a></li>
+                            <li role="menuitem"><a href="#">Requester's profile</a></li>
+                            <li role="menuitem"><a href="#">Rate requester</a></li>
                             <li class="divider"></li>
-                            <li role="menuitem"><a href="#">Cancel request</a></li>
+                            <li role="menuitem"><a href="#">Cancel delivery</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="row reqSmall neg notFirst">
+            <div class="row reqSmall neutr notFirst">
                 <div class="col-lg-10">
                     <span class="requestHeader">
                         Chair
@@ -139,13 +139,18 @@
                             Menu <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-                            <li role="menuitem"><a href="#">Edit request</a></li>
-                            <li role="menuitem"><a href="#">Cancel request</a></li>
+                            <li role="menuitem"><a href="#">Mark as delivered</a></li>
+                            <li class="divider"></li>
+                            <li role="menuitem"><a href="#">Write message</a></li>
+                            <li role="menuitem"><a href="#">Requester's profile</a></li>
+                            <li role="menuitem"><a href="#">Rate requester</a></li>
+                            <li class="divider"></li>
+                            <li role="menuitem"><a href="#">Cancel delivery</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="row reqSmall neutr notFirst">
+            <div class="row reqSmall pos notFirst">
                 <div class="col-lg-10">
                     <span class="requestHeader">
                         Plant

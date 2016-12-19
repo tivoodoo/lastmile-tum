@@ -29,8 +29,11 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
         .when('/create', {
             templateUrl: './components/createRequest/create.html'
         })
-        .when('/my', {
+        .when('/myReq', {
             templateUrl: './components/myRequests/myRequests.html'
+        })
+        .when('/myDel', {
+            templateUrl: './components/myDeliveries/myDeliveries.html'
         })
         .otherwise({redirectTo: '/'});
 }]);

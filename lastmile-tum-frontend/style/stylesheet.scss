@@ -337,41 +337,44 @@ button.btn.btn-primary.accept {
 #crRequest > .row{
   margin-top: 5px;
 }
-.myReq{
+.reqSmall{
   padding: 20px 10px 20px 10px;
 }
-.myReq.pos {
+.reqSmall.pos {
   border: 1px solid #6acf65;
   background: linear-gradient(to right,#fff,#6acf65);
 }
-.myReq.neg {
+.reqSmall.neg {
   border: 1px solid #ec372d;
   background: linear-gradient(to right,#fff,#ec372d);
 }
-.myReq.neutr {
+.reqSmall.neutr {
   border: 1px solid #b6b6b6;
   background: linear-gradient(to right,#fff,#b6b6b6);
 }
-.myReq span {
+.reqSmall span {
   font-weight: bold;
   font-size: 20px;
 }
-.myReq .tf {
+.reqSmall .tf {
   padding-right: 30px;
 }
-.myReq .btn-blanc {
+.reqSmall .btn-blanc {
   background-color: rgba(0,0,0,0);
   border-color: #fff;
   color: #fff;
 }
-.myReq .btn-blanc:hover {
+.reqSmall .btn-blanc:hover {
   background-color: rgba(0,0,0,0.1);
 }
-.myReq.notFirst {
+.reqSmall.notFirst {
   margin-top: 15px;
 }
-.myReq .dropdown-menu{
+.reqSmall .dropdown-menu{
   width: 100%;
+}
+.reqSmall .dropdown-toggle{
+  background-color: rgba(0,0,0,0.1);
 }
 /*
 a{
