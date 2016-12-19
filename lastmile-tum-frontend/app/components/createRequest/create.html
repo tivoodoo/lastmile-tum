@@ -1,8 +1,8 @@
 <lm-header text="Create request" img="images/d.jpg"></lm-header>
 <div class="part-screen-box">
     <div class="lm-content lm-content-90" ng-controller="CreateCtrl">
-        <div class="row">
-            <div class="col-lg-6" style="height: 60vh; overflow-y: auto; overflow-x: hidden;">
+        <div class="row" stale="height: 50vh">
+            <div class="col-lg-6" style="height: 100%; overflow-y: auto; overflow-x: hidden;">
                 <div id="crRequest">
                     <div class="row requin">
                         <div class="col-lg-3">
@@ -101,6 +101,17 @@
                         </div>
                     </div>
                     <div class="row requin">
+                        <div class="col-lg-3">
+                            Description:
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                <textarea class="form-control" rows="2" class="form-control" ng-model="description"
+                                       placeholder="You can enter a desxription" style="opacity:0.9" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row requin">
                         <div class="col-lg-3" id=picButton" >
                             <button type="button" class="btn btn-primary" ng-click="uploadImage()">Upload Image</button>
                         </div>
@@ -115,6 +126,14 @@
             <div class="col-lg-6">
                 <div id="createMap">
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-offset-10 col-lg-2" style="padding-left:0px; margin-top:15px;">
+                <a href="/">
+                    <button type="button" class="btn btn-danger" ng-click="" style="width:45%;">Cancel</button>
+                </a>
+                <button type="button" class="btn btn-primary right" style="width:45%;">Publish</button>
             </div>
         </div>
     </div>
