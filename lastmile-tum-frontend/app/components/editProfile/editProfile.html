@@ -1,0 +1,190 @@
+<script>
+    $( function() {
+        $( "#accordion" ).accordion({
+            collapsible: true,
+            icons: null,
+            heightStyle: "content"
+        });
+    } );
+</script>
+
+<lm-header text="Edit profile" img="images/d.jpg"></lm-header>
+<div class="part-screen-box">
+    <div class="lm-content lm-content-90" ng-controller="EditCtrl">
+        <div style="height: 60vh; overflow-y: auto; overflow-x: hidden; padding: 0px 20px 0px 20px;">
+            <div id="accordion">
+                <h3>Personal details</h3>
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                First Name:
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                    <input type="text" class="form-control" ng-model="firstName" placeholder="Insert first name"
+                                           style="opacity:0.9" required/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                Last Name:
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                    <input type="text" class="form-control" ng-model="lastName" placeholder="Insert last name"
+                                           style="opacity:0.9" required/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                Street/Nr:
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                    <input type="text" class="form-control" ng-model="lastName" placeholder="Insert street"
+                                           style="opacity:0.9" required/>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                    <input type="text" class="form-control" ng-model="lastName" placeholder="Nr."
+                                           style="opacity:0.9" required/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                Zip/Town:
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                    <input type="text" class="form-control" ng-model="lastName" placeholder="Insert town"
+                                           style="opacity:0.9" required/>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                    <input type="text" class="form-control" ng-model="lastName" placeholder="Zip"
+                                           style="opacity:0.9" required/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                Telephone:
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}"
+                                    style="margin-bottom: 0px;">
+                                    <input type="text" class="form-control" ng-model="lastName" placeholder="Insert telephone"
+                                           style="opacity:0.9" required/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="row" style="margin-top:20px;">
+                            <div class="col-lg-offset-4 col-lg-4 pic" style="border: 1px solid #999;">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-offset-4 col-lg-4">
+                                <button type="button" class="btn btn-primary" ng-click="uploadImage()"
+                                    style="display: block; margin: 15px auto 0px auto;">Upload Image</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h3>Car details</h3>
+                <div class="row">
+                    <div class="col-lg-2">
+                        Trunk size:
+                    </div>
+                    <div class="col-lg-10">
+                        <div class="btn-group" uib-dropdown is-open="status.isopen" style="width:100%">
+                            <button id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle
+                                    style="width:100%; color: #999;">
+                                Choose size <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                <li role="menuitem"><a href="#">S</a></li>
+                                <li role="menuitem"><a href="#">M</a></li>
+                                <li role="menuitem"><a href="#">L</a></li>
+                                <li role="menuitem"><a href="#">XL</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <h3>Periodic journeys</h3>
+                <div>
+                    <p>
+                        Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis.
+                        Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero
+                        ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis
+                        lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
+                    </p>
+                    <ul>
+                        <li>List item one</li>
+                        <li>List item two</li>
+                        <li>List item three</li>
+                    </ul>
+                </div>
+                <h3>Payment information</h3>
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                IBAN:
+                            </div>
+                            <div class="col-lg-10">
+                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                    <input type="text" class="form-control" ng-model="iban" placeholder="Insert IBAN"
+                                           style="opacity:0.9" required/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                BIC:
+                            </div>
+                            <div class="col-lg-10">
+                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}"
+                                     style="margin-bottom:0px;">
+                                    <input type="text" class="form-control" ng-model="bic" placeholder="Insert BIC"
+                                           style="opacity:0.9" required/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <h3>Change password</h3>
+                <div class="row">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            Password:
+                        </div>
+                        <div class="col-lg-10">
+                            <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                <input type="text" class="form-control" ng-model="pswd1" placeholder="Password"
+                                       style="opacity:0.9" required/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-2">
+                            Confirm password:
+                        </div>
+                        <div class="col-lg-10">
+                            <div class="form-group has-feedback" ng-class="{'has-error': errorText}"
+                                 style="margin-bottom:0px;">
+                                <input type="text" class="form-control" ng-model="pswd2" placeholder="Password"
+                                       style="opacity:0.9" required/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -376,6 +376,36 @@ button.btn.btn-primary.accept {
 .reqSmall .dropdown-toggle{
   background-color: rgba(0,0,0,0.1);
 }
+//accordion styling
+.form-control{
+  font-family: Muli !important;
+  font-size: inherit !important;
+}
+.ui-widget{
+  font-family: Muli !important;
+  font-size: 1em !important;
+}
+.ui-corner-top {
+  border-top-right-radius: 0px !important;
+  border-top-left-radius: 0px !important;
+}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-br, .ui-corner-right {
+  border-bottom-right-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}
+.ui-accordion-header {
+  font-size: 17px !important;
+}
+.ui-state-default {
+  transition: .5s ease;
+  background-color: #194582;
+  border-color: darken(#194582, 5%);
+}
+.ui-state-default:hover {
+  transition: .5s ease;
+  background-color: #112e57;
+  border-color: #0b1e39;
+}
 /*
 a{
   font-family: Muli;
