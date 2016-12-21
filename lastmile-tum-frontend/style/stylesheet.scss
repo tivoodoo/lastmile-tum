@@ -398,13 +398,17 @@ button.btn.btn-primary.accept {
 }
 .ui-state-default {
   transition: .5s ease;
-  background-color: #194582;
-  border-color: darken(#194582, 5%);
+  //background-color: #194582;
+  //border-color: darken(#194582, 5%);
 }
 .ui-state-default:hover {
   transition: .5s ease;
-  background-color: #112e57;
-  border-color: #0b1e39;
+  //background-color: #112e57;
+  //border-color: #0b1e39;
+}
+.ui-state-active {
+  background-color: #194582 !important;
+  color: #fff !important;
 }
 /*
 a{

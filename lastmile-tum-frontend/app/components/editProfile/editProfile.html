@@ -15,106 +15,124 @@
             <div id="accordion">
                 <h3>Personal details</h3>
                 <div class="row">
-                    <div class="col-lg-7">
-                        <div class="row">
-                            <div class="col-lg-3">
-                                First Name:
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    First Name:
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                        <input type="text" class="form-control" ng-model="firstName" placeholder="Insert first name"
+                                               style="opacity:0.9" required/>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-lg-9">
-                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                    <input type="text" class="form-control" ng-model="firstName" placeholder="Insert first name"
-                                           style="opacity:0.9" required/>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    Last Name:
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                        <input type="text" class="form-control" ng-model="lastName" placeholder="Insert last name"
+                                               style="opacity:0.9" required/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    Street/Nr:
+                                </div>
+                                <div class="col-lg-7">
+                                    <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                        <input type="text" class="form-control" ng-model="lastName" placeholder="Insert street"
+                                               style="opacity:0.9" required/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                        <input type="text" class="form-control" ng-model="lastName" placeholder="Nr."
+                                               style="opacity:0.9" required/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    Zip/Town:
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                        <input type="text" class="form-control" ng-model="lastName" placeholder="Insert town"
+                                               style="opacity:0.9" required/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                        <input type="text" class="form-control" ng-model="lastName" placeholder="Zip"
+                                               style="opacity:0.9" required/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    Telephone:
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="form-group has-feedback" ng-class="{'has-error': errorText}"
+                                         style="margin-bottom: 0px;">
+                                        <input type="text" class="form-control" ng-model="lastName" placeholder="Insert telephone"
+                                               style="opacity:0.9" required/>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-3">
-                                Last Name:
-                            </div>
-                            <div class="col-lg-9">
-                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                    <input type="text" class="form-control" ng-model="lastName" placeholder="Insert last name"
-                                           style="opacity:0.9" required/>
+                        <div class="col-lg-5">
+                            <div class="row" style="margin-top:20px;">
+                                <div class="col-lg-offset-4 col-lg-4 pic" style="border: 1px solid #999;">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-3">
-                                Street/Nr:
-                            </div>
-                            <div class="col-lg-7">
-                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                    <input type="text" class="form-control" ng-model="lastName" placeholder="Insert street"
-                                           style="opacity:0.9" required/>
+                            <div class="row">
+                                <div class="col-lg-offset-4 col-lg-4">
+                                    <button type="button" class="btn btn-primary" ng-click="uploadImage()"
+                                            style="display: block; margin: 15px auto 0px auto;">Upload Image</button>
                                 </div>
-                            </div>
-                            <div class="col-lg-2">
-                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                    <input type="text" class="form-control" ng-model="lastName" placeholder="Nr."
-                                           style="opacity:0.9" required/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-3">
-                                Zip/Town:
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                    <input type="text" class="form-control" ng-model="lastName" placeholder="Insert town"
-                                           style="opacity:0.9" required/>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                    <input type="text" class="form-control" ng-model="lastName" placeholder="Zip"
-                                           style="opacity:0.9" required/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-3">
-                                Telephone:
-                            </div>
-                            <div class="col-lg-9">
-                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}"
-                                    style="margin-bottom: 0px;">
-                                    <input type="text" class="form-control" ng-model="lastName" placeholder="Insert telephone"
-                                           style="opacity:0.9" required/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-5">
-                        <div class="row" style="margin-top:20px;">
-                            <div class="col-lg-offset-4 col-lg-4 pic" style="border: 1px solid #999;">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-offset-4 col-lg-4">
-                                <button type="button" class="btn btn-primary" ng-click="uploadImage()"
-                                    style="display: block; margin: 15px auto 0px auto;">Upload Image</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <h3>Car details</h3>
                 <div class="row">
-                    <div class="col-lg-2">
-                        Trunk size:
-                    </div>
-                    <div class="col-lg-10">
-                        <div class="btn-group" uib-dropdown is-open="status.isopen" style="width:100%">
-                            <button id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle
-                                    style="width:100%; color: #999;">
-                                Choose size <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-                                <li role="menuitem"><a href="#">S</a></li>
-                                <li role="menuitem"><a href="#">M</a></li>
-                                <li role="menuitem"><a href="#">L</a></li>
-                                <li role="menuitem"><a href="#">XL</a></li>
-                            </ul>
+                    <div class="row">
+                        <div class="col-lg-2">
+                            Trunk size:
+                        </div>
+                        <div class="col-lg-10">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="radio" style="margin: 0px;">
+                                        <label><input type="radio" name="sizeRadio"
+                                                      ng-model="size" ng-value="S">S</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="radio" style="margin: 0px;">
+                                        <label><input type="radio" name="sizeRadio"
+                                                      ng-model="size" ng-value="M">M</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="radio" style="margin: 0px;">
+                                        <label><input type="radio" name="sizeRadio"
+                                                      ng-model="size" ng-value="L">L</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="radio" style="margin: 0px;">
+                                        <label><input type="radio" name="sizeRadio"
+                                                      ng-model="size" ng-value="XL">XL</label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -183,6 +201,14 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-offset-10 col-lg-2" style="padding-left:0px; margin-top:15px;">
+                    <a href="/">
+                        <button type="button" class="btn btn-danger" ng-click="" style="width:45%;">Cancel</button>
+                    </a>
+                    <button type="button" class="btn btn-primary right" style="width:45%;">Save</button>
                 </div>
             </div>
         </div>
