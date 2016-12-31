@@ -24,16 +24,16 @@
                 <a href="/browse" class="nav navbar-nav navbar-brand">
                     Browse requests
                 </a>
-                <a href="/create" class="nav navbar-nav navbar-brand">
+                <a href="/create" class="nav navbar-nav navbar-brand" ng-show="loggedIn">
                     Create request
                 </a>
-                <a href="/myReq" class="nav navbar-nav navbar-brand">
+                <a href="/myReq" class="nav navbar-nav navbar-brand" ng-show="loggedIn">
                     My requests
                 </a>
-                <a href="/myDel" class="nav navbar-nav navbar-brand">
+                <a href="/myDel" class="nav navbar-nav navbar-brand" ng-show="loggedIn">
                     My deliveries
                 </a>
-                <a href="/edit" class="nav navbar-nav navbar-brand">
+                <a href="/edit" class="nav navbar-nav navbar-brand" ng-show="loggedIn">
                     Edit profile
                 </a>
             </div>
@@ -42,8 +42,8 @@
                         data-target="#showLogin">
                     Login
                 </button>
-                <button class="navbar-right btn btn-primary btn-right navbar-btn" ng-show="loggedIn" >
-                    Profile
+                <button class="navbar-right btn btn-primary btn-right navbar-btn" ng-show="loggedIn" ng-click="logout()">
+                    Logout
                 </button>
                 <!--<button class="navbar-right btn btn-primary navbar-btn" ng-hide="loggedIn" ng-click="registrationShown">
                     Register

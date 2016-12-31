@@ -32,25 +32,22 @@
 
             function register() {
                 userService.register(reg).then(function () {
-                    alert("Registration done");
                     userService.login(reg.email, reg.password).then(function () {
-                        alert("login successfull");
-                        $scope.loggedIn = true;
+                        showSimpleToast('Registration and login successful!');
+                        $rootScope.loggedIn = true;
                     }, function (response) {
-                        alert(response.status);
                         if (response.status == "400" || response.status == "401") {
-                            $scope.errorText = "Wrong username or password.";
+                            alert("Wrong username or password.");
                         } else {
-                            $scope.errorText = "An unknown error occured. please try again later.";
+                            alert("An unknown error occured. please try again later. Errorcode "+ response.status);
                         }
                     });
                     //TODO: Here rerouting instead of alert
                 }, function (response) {
-                    alert(response.status);
                     if (response.status == "400" || response.status == "401") {
-                        $scope.errorText = "Wrong username or password.";
+                       alert("The email is already taken. Please enter a different one.")
                     } else {
-                        $scope.errorText = "An unknown error occured. please try again later.";
+                        alert("An unknown error occured. Please try again later.")
                     }
                 });
             }
@@ -61,6 +58,19 @@
                 reg.email = '';
                 reg.password = '';
             };
+
+            //showSimpleToast function
+            function showSimpleToast(txt) {
+                $mdToast.show(
+                    $mdToast.simple()
+                        .textContent(txt)
+                        //.position("bottom right")
+                        .hideDelay(3000)
+
+                );
+            };
+
+
 
         });
 })();

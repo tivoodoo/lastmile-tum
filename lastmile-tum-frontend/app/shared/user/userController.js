@@ -1,21 +1,33 @@
 angular.module('lastMile')
     .controller('UserCtrl',
         //'currUser', 'auth', function ($scope, currUser, auth) {
-    function($scope, $mdDialog, userService) {
+    function($scope, $rootScope, $mdDialog, userService, $state, $mdToast) {
         var user= this;
-        $scope.loggedIn = false;
+        $rootScope.loggedIn = false;
         $scope.loginShown = false;
         $scope.login = login;
+        $scope.logout = logout;
+
 
         //should keep the loggedIn variable updated (after registration) but doesn't work yet
        $scope.$watch(function () {
             return userService.loggedIn();
         }, function (loggedIn) {
-           $scope.loggedIn = loggedIn;
+           $rootScope.loggedIn = loggedIn;
             if (loggedIn && !$scope.user) {
                 $scope.user = userService.getUser();
             }
         });
+       //showSimpleToast function
+        function showSimpleToast(txt) {
+            $mdToast.show(
+                $mdToast.simple()
+                    .textContent(txt)
+                    //.position("bottom right")
+                    .hideDelay(3000)
+
+            );
+        };
 
         // clear login input fields
         $.clearInput = function () {
@@ -31,17 +43,28 @@ angular.module('lastMile')
 
         function login() {
             userService.login(user.email, user.password).then(function () {
-                alert("login successfull");
-                $scope.loggedIn = true;
+                $rootScope.loggedIn = true;
+                showSimpleToast('You were logged in successful');
             }, function (response) {
-                alert(response.status);
                 if (response.status == "400" || response.status == "401") {
-                    $scope.errorText = "Wrong username or password.";
+                    alert("Wrong username or password.")
                 } else {
-                    $scope.errorText = "An unknown error occured. please try again later.";
+                    alert("An unknown error occured. please try again later. Errorcode "+ response.status)
                 }
             })
-        }
+        };
+
+        function logout() {
+            userService.logout();
+            $rootScope.loggedIn = false;
+            showSimpleToast('Logout successful');
+            $state.go("/");
+
+
+        };
+
+
+
 
     }
 );
