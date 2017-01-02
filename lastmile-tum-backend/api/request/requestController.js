@@ -22,6 +22,7 @@ module.exports.postRequest = function (req, res) {
 
   request.save(function (err, requ) {
     if (err) {
+      console.log(err);
       res.status(status.INTERNAL_SERVER_ERROR).send(err);
       return;
     }

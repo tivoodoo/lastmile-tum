@@ -1,7 +1,7 @@
 <lm-header text="Create request" img="images/d.jpg"></lm-header>
 <div class="part-screen-box">
     <div class="lm-content lm-content-90" ng-controller="CreateCtrl">
-        <div class="row">
+        <form class="row">
             <div class="col-lg-6" style="height: 100%; overflow-y: auto; overflow-x: hidden;">
                 <div id="crRequest">
                     <div class="row requin">
@@ -10,7 +10,7 @@
                         </div>
                         <div class="col-lg-9" >
                             <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                <input type="text" class="form-control" ng-model="item" placeholder="Insert item name"
+                                <input type="text" class="form-control" ng-model="request.name" placeholder="Insert item name"
                                        style="opacity:0.9" required/>
                             </div>
                         </div>
@@ -27,7 +27,7 @@
                                         style="width:100%; color: #999;">
                                     Choose size <span class="caret"></span>
                                 </button>
-                                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button" ng-model="request.size">
                                     <li role="menuitem"><a href="#">S</a></li>
                                     <li role="menuitem"><a href="#">M</a></li>
                                     <li role="menuitem"><a href="#">L</a></li>
@@ -51,7 +51,7 @@
                         </div>
                         <div class="col-lg-9">
                             <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                <input type="text" class="form-control" ng-model="fromCity" placeholder="Insert start"
+                                <input type="text" class="form-control" ng-model="request.pickUpLocation" placeholder="Insert start"
                                        style="opacity:0.9" required/>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                         </div>
                         <div class="col-lg-9">
                             <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                <input type="text" class="form-control" ng-model="toCity" placeholder="Insert destination"
+                                <input type="text" class="form-control" ng-model="request.deliverToLocation" placeholder="Insert destination"
                                        style="opacity:0.9" required/>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                         </div>
                         <div class="col-lg-9">
                             <div class="form-group">
-                                <input type="text" class="form-control" ng-model="pickup" placeholder="Insert earliest pickup"
+                                <input type="text" class="form-control" ng-model="request.pickUpTime" placeholder="Insert earliest pickup"
                                        style="opacity:0.9" required datepicker/>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
                         </div>
                         <div class="col-lg-9">
                             <div class="form-group">
-                                <input type="text" class="form-control" ng-model="dropoff" placeholder="Insert latest dropoff"
+                                <input type="text" class="form-control" ng-model="request.deliverTime" placeholder="Insert latest dropoff"
                                        style="opacity:0.9" required datepicker/>
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                         </div>
                         <div class="col-lg-9">
                             <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                <input type="text" class="form-control" ng-model="price" placeholder="Insert price offer"
+                                <input type="text" class="form-control" ng-model="request.price" placeholder="Insert price offer"
                                        style="opacity:0.9" required/>
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                         </div>
                         <div class="col-lg-9">
                             <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                <textarea class="form-control" rows="2" class="form-control" ng-model="description"
+                                <textarea class="form-control" rows="2" class="form-control" ng-model="request.description"
                                        placeholder="You can enter a desxription" style="opacity:0.9" />
                             </div>
                         </div>
@@ -127,13 +127,13 @@
                 <div id="createMap">
                 </div>
             </div>
-        </div>
+        </form>
         <div class="row">
             <div class="col-lg-offset-10 col-lg-2" style="padding-left:0px; margin-top:15px;">
                 <a href="/">
                     <button type="button" class="btn btn-danger" ng-click="" style="width:45%;">Cancel</button>
                 </a>
-                <button type="button" class="btn btn-primary right" style="width:45%;">Publish</button>
+                <button ng-click="postRequest()" class="btn btn-primary right" style="width:45%;">Publish</button>
             </div>
         </div>
     </div>
