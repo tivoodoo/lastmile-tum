@@ -1,7 +1,9 @@
 angular.module('lastMile')
-    .controller('BrowseCtrl', ['$scope',
-        function ($scope) {
+    .controller('BrowseCtrl', ['$scope','Requests',
+        function ($scope, Requests) {
+            $scope.requests = Requests.query();
             $scope.filterShowed = false;
+
 
             $scope.initMap = initMap;
             $scope.clearInput = clearInput;
