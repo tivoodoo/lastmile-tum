@@ -1,16 +1,14 @@
 angular.module('lastMile')
     .controller('CreateCtrl',
-        function ($scope, Request, userService) {
+        function ($scope, Request, userService, $location) {
             $scope.request = new Request();
-            //size is hardcoded until size selection in create.html is fixed
-            $scope.request.size = "XL";
-
 
             $scope.postRequest = function () {
                 $scope.request.requester = userService.getUserName()._id;
                 $scope.request.$save()
                     .then(function (res) {
                         alert("request posted successfully");
+                        $location.path("/myReq");
                     })
                     .catch(function (err) {
                         alert("An unexpected error occured");

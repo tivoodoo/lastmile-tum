@@ -1,7 +1,7 @@
 angular.module('lastMile')
     .controller('UserCtrl',
         //'currUser', 'auth', function ($scope, currUser, auth) {
-    function($scope, $rootScope, $mdDialog, userService, $mdToast) {
+    function($scope, $rootScope, $mdDialog, userService, $mdToast, $location) {
         var user= this;
         $rootScope.loggedIn = false;
         $scope.loginShown = false;
@@ -58,6 +58,7 @@ angular.module('lastMile')
             userService.logout();
             $rootScope.loggedIn = false;
             showSimpleToast('Logout successful');
+            $location.path("/");
 
         };
 
