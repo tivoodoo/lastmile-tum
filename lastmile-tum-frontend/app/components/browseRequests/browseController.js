@@ -1,7 +1,7 @@
 angular.module('lastMile')
-    .controller('BrowseCtrl', ['$scope','Requests',
-        function ($scope, Requests) {
-            $scope.requests = Requests.query();
+    .controller('BrowseCtrl',
+        function ($scope, Request) {
+            $scope.requests = Request.query();
             $scope.filterShowed = false;
 
 
@@ -221,7 +221,7 @@ angular.module('lastMile')
             setHeightModalMap();
             setHeightChatWindow();
         }
-    ]);
+    );
 
 //datepicker: https://www.grobmeier.de/angular-js-binding-to-jquery-ui-datepicker-example-07092012.html
 //datepicker: http://jsfiddle.net/xB6c2/121/
