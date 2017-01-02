@@ -8,48 +8,48 @@ var mongoose = require('mongoose');
 
 // DB Schema for request
 var requestSchema = mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  description: {
-    type: String,
-    required: false
-  },
-  //enumerate S M L XL
-  size: {
-    type: String,
-    required: true
-  },
-  pickUpLocation: {
-    type: String,
-    required: true
-  },
-  deliverToLocation: {
-    type: String,
-    required: true
-  },
-  pickUpTime: {
-    type: Date,
-    required: true
-  },
-  deliverTime: {
-    type: Date,
-    required: true
-  },
-  willingnessToPay: {
-    type: Number,
-    required: true
-  },
-  requester: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
-  },
-  supplier: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  }
+    name: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: false
+    },
+    //enumerate S M L XL
+    size: {
+        type: String,
+        required: true
+    },
+    pickUpLocation: {
+        type: String,
+        required: true
+    },
+    deliverToLocation: {
+        type: String,
+        required: true
+    },
+    pickUpTime: {
+        type: Date,
+        required: true
+    },
+    deliverTime: {
+        type: Date,
+        required: true
+    },
+    price: {
+        type: Number,
+        required: true
+    },
+    requester: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+    supplier: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }
 });
 
 var Request = mongoose.model('Request', requestSchema);
