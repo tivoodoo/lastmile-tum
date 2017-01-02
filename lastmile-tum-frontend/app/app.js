@@ -14,7 +14,7 @@ var app = angular.module('lastMile', [
 
 // app.constant("BASEURL", "http://localhost:3000");
 
-app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+app.config(function ($routeProvider, $locationProvider, $resourceProvider, $httpProvider) {
     $locationProvider.html5Mode({
         enabled: true,
         requireBase: false
@@ -39,5 +39,16 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
             templateUrl: './components/editProfile/editProfile.html'
         })
         .otherwise({redirectTo: '/'});
-}]);
+
+    //auth interceptor
+    $httpProvider.interceptors.push('authInterceptor');
+
+    angular.extend($resourceProvider.defaults.actions, {
+
+        update: {
+            method: "PUT"
+        }
+
+    });
+});
 

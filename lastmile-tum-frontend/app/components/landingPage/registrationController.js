@@ -8,9 +8,10 @@
     angular
         .module('lastMile')
         .controller('RegisterCtrl', function ($rootScope, $scope, userService, $location, $mdToast) {
+
             $scope.registrationShown = false;
             $scope.clearInput = clearInput;
-            $('#showRegistration').submit(function(e) {
+            $('#showRegistration').submit(function (e) {
                 $('#showRegistration').modal('hide');
             });
             //Forward directly to dashboard if the user is already logged in
@@ -39,13 +40,13 @@
                         if (response.status == "400" || response.status == "401") {
                             alert("Wrong username or password.");
                         } else {
-                            alert("An unknown error occured. please try again later. Errorcode "+ response.status);
+                            alert("An unknown error occured. please try again later. Errorcode " + response.status);
                         }
                     });
                     //TODO: Here rerouting instead of alert
                 }, function (response) {
                     if (response.status == "400" || response.status == "401") {
-                       alert("The email is already taken. Please enter a different one.")
+                        alert("The email is already taken. Please enter a different one.")
                     } else {
                         alert("An unknown error occured. Please try again later.")
                     }
@@ -66,30 +67,27 @@
                         .textContent(txt)
                         //.position("bottom right")
                         .hideDelay(3000)
-
                 );
             };
-
 
 
         });
 })();
 
 
-
 /*angular.module('lastMile')
-    .controller('RegistrationCtrl',['$scope','$http',
-        //'currUser', 'auth', function ($scope, currUser, auth) {
-        function ($scope, $http) {
-            $scope.registrationShown = false;
-            $scope.clearInput = clearInput;
+ .controller('RegistrationCtrl',['$scope','$http',
+ //'currUser', 'auth', function ($scope, currUser, auth) {
+ function ($scope, $http) {
+ $scope.registrationShown = false;
+ $scope.clearInput = clearInput;
 
 
-            function clearInput() {
-                $scope.firstName = '';
-                $scope.lastName = '';
-                $scope.eMail = '';
-                $scope.password = '';
-            };
-        }
-    ]);*/
+ function clearInput() {
+ $scope.firstName = '';
+ $scope.lastName = '';
+ $scope.eMail = '';
+ $scope.password = '';
+ };
+ }
+ ]);*/

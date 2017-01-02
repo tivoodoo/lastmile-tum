@@ -9,12 +9,7 @@
         .service('userService', userService)
         .factory('User', function ($resource, BACKEND_BASE_URL) {
             //API von Angular : https://docs.angularjs.org/api/ngResource/service/$resource
-            return $resource(BACKEND_BASE_URL + '/user/put/:userID', {userID: '@_id'}, {
-                //Define new function update
-                update: {
-                    method: 'PUT'
-                }
-            });
+            return $resource(BACKEND_BASE_URL + '/user/:userID', {userID: '@_id'});
 
         });
 
