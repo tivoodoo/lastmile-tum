@@ -34,16 +34,12 @@ function userRoutes(passport) {
   router.post('/unregister', passport.authenticate('jwt', {session: false}), userController.unregister);
 
   /*
-   * REST API for GET {ROOT}/user/get/{{user_id}}
+   * REST API for GET and PUT {ROOT}/user/{{user_id}}
    * user_id is extracted from jwt token so only logged in user can request their own personal data
    * */
-  router.get('/get/:user_id', passport.authenticate('jwt', {session: false}), userController.getUser);
-
-  /*
-   * REST API for put {ROOT}/user/put/{{user_id}}
-   * user_id is extracted from jwt token so only logged in user can update their own personal data
-   * */
-  router.put('/put/:user_id', passport.authenticate('jwt', {session: false}), userController.updateUser);
+  router.route('/:user_id')
+      .get(passport.authenticate('jwt', {session: false}), userController.getUser)
+      .put( passport.authenticate('jwt', {session: false}), userController.updateUser);
 
   /*
    * REST API for GET {ROOT}/user/rating

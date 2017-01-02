@@ -81,7 +81,7 @@ var messageRoutes = require('./api/messages/messagesRoutes');
 // setting url path
 // app.use('/user', userRoutes(passport));
 app.use('/user', userRoutes(passport));
-app.use('/request', requestRoutes(passport));
+app.use('/requests', requestRoutes(passport));
 app.use('/rating', ratingRoutes(passport));
 app.use('/message', messageRoutes(passport));
 
