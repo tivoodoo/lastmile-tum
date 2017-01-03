@@ -13,7 +13,7 @@
                                 </div>
                                 <div class="col-lg-9">
                                     <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                        <input type="text" class="form-control" ng-model="firstName" placeholder="Insert first name"
+                                        <input type="text" class="form-control" ng-model="user.firstName" placeholder="Insert first name"
                                                style="opacity:0.9" required/>
                                     </div>
                                 </div>
@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="col-lg-9">
                                     <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                        <input type="text" class="form-control" ng-model="lastName" placeholder="Insert last name"
+                                        <input type="text" class="form-control" ng-model="user.lastName" placeholder="Insert last name"
                                                style="opacity:0.9" required/>
                                     </div>
                                 </div>
@@ -35,13 +35,13 @@
                                 </div>
                                 <div class="col-lg-7">
                                     <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                        <input type="text" class="form-control" ng-model="lastName" placeholder="Insert street"
+                                        <input type="text" class="form-control" ng-model="user.street" placeholder="Insert street"
                                                style="opacity:0.9" required/>
                                     </div>
                                 </div>
                                 <div class="col-lg-2">
                                     <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                        <input type="text" class="form-control" ng-model="lastName" placeholder="Nr."
+                                        <input type="text" class="form-control" ng-model="user.number" placeholder="Nr."
                                                style="opacity:0.9" required/>
                                     </div>
                                 </div>
@@ -52,13 +52,13 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                        <input type="text" class="form-control" ng-model="lastName" placeholder="Insert town"
+                                        <input type="text" class="form-control" ng-model="user.zipCode" placeholder="Insert town"
                                                style="opacity:0.9" required/>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                        <input type="text" class="form-control" ng-model="lastName" placeholder="Zip"
+                                        <input type="text" class="form-control" ng-model="user.town" placeholder="Zip"
                                                style="opacity:0.9" required/>
                                     </div>
                                 </div>
@@ -70,7 +70,7 @@
                                 <div class="col-lg-9">
                                     <div class="form-group has-feedback" ng-class="{'has-error': errorText}"
                                          style="margin-bottom: 0px;">
-                                        <input type="text" class="form-control" ng-model="lastName" placeholder="Insert telephone"
+                                        <input type="text" class="form-control" ng-model="user.telephone" placeholder="Insert telephone"
                                                style="opacity:0.9" required/>
                                     </div>
                                 </div>
@@ -198,7 +198,7 @@
                     <a href="/">
                         <button type="button" class="btn btn-danger" ng-click="" style="width:45%;">Cancel</button>
                     </a>
-                    <button type="button" class="btn btn-primary right" style="width:45%;">Save</button>
+                    <button type="button" class="btn btn-primary right" style="width:45%;" ng-click="updateUser()">Save</button>
                 </div>
             </div>
             <div class="row">
@@ -214,20 +214,20 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Maxl Mustermann</h4>
+                        <h4 class="modal-title">{{user.firstName}} {{user.lastName}}</h4>
                     </div>
                     <div class="modal-body">
                         <div class="row" style="margin: 10px 0px 0px 0px;">
                             <div class="col-lg-9">
                                 <p>
-                                    Musterstraße 6 <br>
-                                    123456 Musterstadt
+                                    {{user.street}} {{user.number}} <br>
+                                    {{user.zipCode}} {{user.town}}
                                 </p>
                                 <p>
-                                    Telephone: 0123/45678901
+                                    Telephone: {{user.telephone}}
                                 </p>
                                 <p>
-                                    Trunk size: S
+                                    Trunk size: {{user.trunkSize}}
                                 </p>
                             </div>
                             <div class="col-lg-3">

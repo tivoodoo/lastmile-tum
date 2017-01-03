@@ -1,21 +1,35 @@
 angular.module('lastMile')
-    .controller('EditCtrl', ['$scope',
-        function($scope) {
-            var initPicSize = function(){
+    .controller('EditCtrl',
+        function ($scope, User, userService) {
+
+            $scope.user = User.get({userID: userService.getUserName()._id});
+
+            $scope.updateUser = function () {
+                alert("exec");
+                $scope.user.$update({userID: userService.getUserName()._id})
+                    .then(function (res) {
+                        alert("user successfully updated");
+                    }
+                        .catch(function (err) {
+                            alert("error while updating user");
+                        }));
+            }
+            var initPicSize = function () {
                 $('.pic').height($('.pic').width());
             };
 
-            var initPicSize2 = function(){
+            var initPicSize2 = function () {
                 $('.pic2').height($('.pic2').width());
             };
 
-            var initGraph = function(){
+            var initGraph = function () {
                 var dataset = {
                     name: 'Maxl',
-                    data: [3, 6, 1, 2, 6]};
+                    data: [3, 6, 1, 2, 6]
+                };
 
 
-                $( function() {
+                $(function () {
                     (Highcharts.chart({
                         chart: {
                             renderTo: '#starBarchart',
@@ -36,15 +50,15 @@ angular.module('lastMile')
                         },
                         xAxis: {
                             categories: ['5', '4', '3', '2', '1'],
-                                labels: {enabled:true}
+                            labels: {enabled: true}
                         },
                         yAxis: {
                             allowDecimals: false,
-                                title: {
-                                    enabled: false
+                            title: {
+                                enabled: false
                             },
                             min: 0,
-                                max: 10
+                            max: 10
                         },
                         legend: {
                             enabled: false
@@ -55,7 +69,7 @@ angular.module('lastMile')
 
             };
 
-            $('#showDetails').on('shown.bs.modal', function(){
+            $('#showDetails').on('shown.bs.modal', function () {
                 // init upper pic size
                 initPicSize2();
                 // init graph
@@ -63,18 +77,20 @@ angular.module('lastMile')
 
             });
 
-            var initAccordion = function (){
-                $( function() {
-                    $( "#accordion" ).accordion({
+            var initAccordion = function () {
+                $(function () {
+                    $("#accordion").accordion({
                         collapsible: true,
                         icons: null,
                         heightStyle: "content"
                     });
-                } );
+                });
             };
 
             initPicSize();
 
             initAccordion();
+
+
         }
-    ]);
+    );
