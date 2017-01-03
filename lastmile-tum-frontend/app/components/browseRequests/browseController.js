@@ -1,7 +1,12 @@
 angular.module('lastMile')
     .controller('BrowseCtrl',
-        function ($scope, Request) {
-            $scope.requests = Request.query();
+        function ($scope, Request, $filter) {
+            Request.query()
+                .$promise.then(function (data) {
+                var filteredRequests = $filter('filter')(data, {status: "Open"});
+                $scope.requests = filteredRequests;
+            });
+            
             $scope.filterShowed = false;
 
 
