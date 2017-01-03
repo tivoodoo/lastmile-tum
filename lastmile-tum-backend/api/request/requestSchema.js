@@ -41,6 +41,11 @@ var requestSchema = mongoose.Schema({
         type: Number,
         required: true
     },
+    //enumerate "Open", "Accepted", "Confirmed", "Expired"
+    status: {
+        type: String,
+        required: true
+    },
     requester: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',

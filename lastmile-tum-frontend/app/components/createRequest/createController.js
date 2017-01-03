@@ -5,6 +5,7 @@ angular.module('lastMile')
 
             $scope.postRequest = function () {
                 $scope.request.requester = userService.getUserName()._id;
+                $scope.request.status = "Open";
                 $scope.request.$save()
                     .then(function (res) {
                         alert("request posted successfully");

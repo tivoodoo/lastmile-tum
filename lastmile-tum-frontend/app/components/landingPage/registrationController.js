@@ -15,7 +15,7 @@
                 $('#showRegistration').modal('hide');
             });
             //Forward directly to dashboard if the user is already logged in
-            if ($rootScope.loggedIn) {
+            /*if ($rootScope.loggedIn) {
                 $mdToast.show(
                     $mdToast.simple()
                         .textContent('You are currently logged in')
@@ -23,7 +23,7 @@
                         .hideDelay(3000)
                 );
                 $location.path('/');
-            }
+            }*/
 
             // jshint validthis: true
             var reg = this;

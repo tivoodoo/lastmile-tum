@@ -23,15 +23,15 @@
                         <div class="col-lg-9">
                             <!--<select class="form-control btn btn-primary dropdown-toggle" data-ng-options="o.id as o.name for o in sizes" ng-model="size"></select> -->
 
-                            <div class="btn-group" uib-dropdown is-open="status.isopen" style="width:100%">
+                            <div class="btn-group" uib-dropdown style="width:100%">
                                 <button id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle
                                         style="width:100%; color: #999;"> Choose size: {{request.size}}
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-                                    <li role="menuitem"><a ng-click="request.size = 'S'">S</a></li>
-                                    <li role="menuitem"><a ng-click="request.size = 'M'">M</a></li>
-                                    <li role="menuitem"><a ng-click="request.size = 'L'">L</a></li>
+                                    <li role="menuitem"><a ng-click="request.size = 'S'">S (30cm x 30cm x 15cm)</a></li>
+                                    <li role="menuitem"><a ng-click="request.size = 'M'">M (60cm x 30cm x 15cm)</a></li>
+                                    <li role="menuitem"><a ng-click="request.size = 'L'">L (120cm x 60cm x 60cm)</a></li>
                                     <li role="menuitem"><a ng-click="request.size = 'XL'">XL</a></li>
                                 </ul>
                             </div>
