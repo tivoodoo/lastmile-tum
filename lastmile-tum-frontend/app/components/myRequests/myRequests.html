@@ -2,10 +2,11 @@
 <div class="part-screen-box">
     <div class="lm-content lm-content-90" ng-controller="MyReqCtrl">
         <div style="height: 60vh; overflow-y: auto; overflow-x: hidden; padding: 0px 20px 0px 20px;">
-            <div class="row reqSmall pos">
+            <h2 class="col-log-12" ng-hide="hasRequests">{{createReqText}}</h2>
+            <div class="row reqSmall {{request.status}}" ng-repeat="request in requests">
                 <div class="col-lg-10">
                     <span class="requestHeader">
-                        Football
+                        {{request.name}}
                     </span>
                     <table>
                         <tr>
@@ -13,7 +14,7 @@
                                 From:
                             </td>
                             <td>
-                                80333 Munich, Arcisstraße 21
+                                {{request.pickUpLocation}}
                             </td>
                         </tr>
                         <tr>
@@ -21,7 +22,7 @@
                                 To:
                             </td>
                             <td>
-                                01187 Dresden, Nürnberger Straße 10
+                                {{request.deliverToLocation}}
                             </td>
                         </tr>
                         <tr>
@@ -29,7 +30,7 @@
                                 Earliest pickup:
                             </td>
                             <td>
-                                16.12.2016
+                                {{request.pickUpTime | date : fullDate}}
                             </td>
                         </tr>
                         <tr>
@@ -37,7 +38,7 @@
                                 Latest dropoff:
                             </td>
                             <td>
-                                24.12.2016
+                                {{request.deliverTime | date : fullDate}}
                             </td>
                         </tr>
                         <tr>
@@ -45,7 +46,7 @@
                                 Size:
                             </td>
                             <td>
-                                S
+                                {{request.size}}
                             </td>
                         </tr>
                         <tr>
@@ -53,163 +54,37 @@
                                 Price:
                             </td>
                             <td>
-                                10,00 €
+                                {{request.price}}
                             </td>
                         </tr>
                     </table>
                 </div>
-                <div class="col-lg-2">
-                    <div class="btn-group" uib-dropdown is-open="status.isopen1" style="width:100%">
-                        <button id="single-button" type="button" class="btn btn-blanc" uib-dropdown-toggle
+                <div class="col-lg-2 reqStatusMenu">
+                     <span>
+                        {{request.status}}
+                    </span>
+                    <div class="btn-group" uib-dropdown dropdown-append-to-body style="width:100%">
+                        <button type="button" class="btn btn-blanc" uib-dropdown-toggle
                                 style="width:100%;">
                             Menu <span class="caret"></span>
                         </button>
-                        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-                            <li role="menuitem"><a href="#">Confirm delivery</a></li>
-                            <li class="divider"></li>
-                            <li role="menuitem"><a href="#">Write message</a></li>
-                            <li role="menuitem"><a href="#">Deliverer's profile</a></li>
-                            <li role="menuitem"><a href="#">Rate deliverer</a></li>
-                            <li class="divider"></li>
-                            <li role="menuitem"><a href="#">Cancel request</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="row reqSmall neg notFirst">
-                <div class="col-lg-10">
-                    <span class="requestHeader">
-                        Chair
-                    </span>
-                    <table>
-                        <tr>
-                            <td class="tf">
-                                From:
-                            </td>
-                            <td>
-                                70182 Stuttgart, Katharinenstraße 5
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tf">
-                                To:
-                            </td>
-                            <td>
-                                86153 Augsburg, Zobelstraße 24
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tf">
-                                Earliest pickup:
-                            </td>
-                            <td>
-                                20.12.2016
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tf">
-                                Latest dropoff:
-                            </td>
-                            <td>
-                                28.12.2016
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tf">
-                                Size:
-                            </td>
-                            <td>
-                                L
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tf">
-                                Price:
-                            </td>
-                            <td>
-                                25,00 €
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="col-lg-2">
-                    <div class="btn-group" uib-dropdown is-open="status.isopen2" style="width:100%">
-                        <button id="single-button" type="button" class="btn btn-blanc" uib-dropdown-toggle
-                                style="width:100%; ">
-                            Menu <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-                            <li role="menuitem"><a href="#">Edit request</a></li>
-                            <li role="menuitem"><a href="#">Cancel request</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="row reqSmall neutr notFirst">
-                <div class="col-lg-10">
-                    <span class="requestHeader">
-                        Plant
-                    </span>
-                    <table>
-                        <tr>
-                            <td class="tf">
-                                From:
-                            </td>
-                            <td>
-                                04105 Leipzig, Roscherstraße 14
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tf">
-                                To:
-                            </td>
-                            <td>
-                                34177 Kassel, Kölnische Straße 77
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tf">
-                                Earliest pickup:
-                            </td>
-                            <td>
-                                17.12.2016
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tf">
-                                Latest dropoff:
-                            </td>
-                            <td>
-                                19.12.2016
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tf">
-                                Size:
-                            </td>
-                            <td>
-                                XL
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tf">
-                                Price:
-                            </td>
-                            <td>
-                                30,00 €
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="col-lg-2">
-                    <div class="btn-group" uib-dropdown is-open="status.isopen3" style="width:100%">
-                        <button id="single-button" type="button" class="btn btn-blanc" uib-dropdown-toggle
-                                style="width:100%; ">
-                            Menu <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-                            <li role="menuitem"><a href="#">Write message</a></li>
-                            <li role="menuitem"><a href="#">Rate deliverer</a></li>
+                        <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                            <li role="menuitem"><a ng-show="request.status=='Accepted'">Confirm delivery</a></li>
+                            <!-- Accepted-->
+                            <li class="divider" ng-show="request.status=='Accepted'"></li>
+                            <li role="menuitem"><a
+                                    ng-show="request.status=='Accepted' || request.status=='Confirmed'">Write
+                                message</a></li><!-- Accepted Confirmed-->
+                            <li role="menuitem"><a
+                                    ng-show="request.status=='Accepted' || request.status=='Confirmed'">Deliverer's
+                                profile</a></li><!-- Accepted Confirmed-->
+                            <li role="menuitem"><a ng-show="request.status=='Confirmed'">Rate deliverer</a></li>
+                            <!-- Confirmed-->
+                            <li role="menuitem"><a ng-show="request.status=='Open' || request.status=='Expired'">Edit
+                                request</a></li><!-- Open Expired-->
+                            <li class="divider" ng-show="request.status=='Accepted' || request.status=='Open'"></li>
+                            <li role="menuitem"><a ng-show="request.status=='Accepted' || request.status=='Open'  || request.status=='Expired'">Cancel
+                                request</a></li><!-- Open Accepted-->
                         </ul>
                     </div>
                 </div>

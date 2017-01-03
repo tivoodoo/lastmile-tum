@@ -339,18 +339,23 @@ button.btn.btn-primary.accept {
 }
 .reqSmall{
   padding: 20px 10px 20px 10px;
+  margin-bottom: 15px;
 }
-.reqSmall.pos {
+.reqSmall.Accepted {
   border: 1px solid #6acf65;
   background: linear-gradient(to right,#fff,#6acf65);
 }
-.reqSmall.neg {
+.reqSmall.Expired {
   border: 1px solid #ec372d;
   background: linear-gradient(to right,#fff,#ec372d);
 }
-.reqSmall.neutr {
+.reqSmall.Confirmed {
   border: 1px solid #b6b6b6;
   background: linear-gradient(to right,#fff,#b6b6b6);
+}
+.reqSmall.Open {
+  border: 1px solid #ffff48;
+  background: linear-gradient(to right,#fff, #ffff48);
 }
 .reqSmall span {
   font-weight: bold;
@@ -367,14 +372,14 @@ button.btn.btn-primary.accept {
 .reqSmall .btn-blanc:hover {
   background-color: rgba(0,0,0,0.1);
 }
-.reqSmall.notFirst {
-  margin-top: 15px;
-}
 .reqSmall .dropdown-menu{
   width: 100%;
 }
 .reqSmall .dropdown-toggle{
   background-color: rgba(0,0,0,0.1);
+}
+.reqSmall .reqStatusMenu{
+  text-align: center;
 }
 //accordion styling
 .form-control{
