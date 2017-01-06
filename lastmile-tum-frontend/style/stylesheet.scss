@@ -264,14 +264,14 @@ footer {
   height: 55vh;
 }
 
-/*#showDetails .modal-dialog {
+#showDetails .modal-dialog {
   @media (min-width: $screen-md) {
     width: 45vw;
   };
   @media (max-width: $screen-sm,) {
     width: 60vw;
   };
-}*/
+}
 #showDetails .modal-title {
   font-weight: bold;
   font-size: 25px;
@@ -284,9 +284,7 @@ footer {
   /*@media (max-width: $screen-sm,) {
     //height:70vh;
   };*/
-  @media (max-width: $screen-sm,) {
-  width: 60vw;
-};
+
 }
 #showDetails table{
   margin-left: 15px;
