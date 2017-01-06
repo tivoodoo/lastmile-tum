@@ -4,15 +4,15 @@ angular.module('lastMile')
 
             $scope.user = User.get({userID: userService.getUserName()._id});
 
+
             $scope.updateUser = function () {
-                alert("exec");
                 $scope.user.$update({userID: userService.getUserName()._id})
                     .then(function (res) {
                         alert("user successfully updated");
-                    }
-                        .catch(function (err) {
-                            alert("error while updating user");
-                        }));
+                    })
+                    .catch(function (err) {
+                        alert("error while updating user");
+                    });
             }
             var initPicSize = function () {
                 $('.pic').height($('.pic').width());

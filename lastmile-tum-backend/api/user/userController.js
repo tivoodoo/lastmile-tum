@@ -163,9 +163,7 @@ module.exports.updateUser = function (req, res) {
                 'zipCode': req.body.zipCode,
                 'town': req.body.town,
                 'telephone': req.body.telephone,
-                /*        'trunkWidth': req.body.trunkWidth,
-                 'trunkHeight': req.body.trunkHeight,
-                 'trunkDepth': req.body.trunkDepth,*/
+                'trunkSize': req.body.trunkSize,
                 'picture': req.body.picture,
             }
         },
