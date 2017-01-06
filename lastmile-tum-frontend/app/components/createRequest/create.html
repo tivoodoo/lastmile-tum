@@ -52,7 +52,7 @@
                         </div>
                         <div class="col-lg-9">
                             <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                <input type="text" class="form-control" ng-model="request.pickUpLocation"
+                                <input id="pickupLocation" type="text" class="form-control" ng-model="request.pickUpLocation"
                                        placeholder="Insert start"
                                        style="opacity:0.9" required/>
                             </div>
@@ -64,7 +64,7 @@
                         </div>
                         <div class="col-lg-9">
                             <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                <input type="text" class="form-control" ng-model="request.deliverToLocation"
+                                <input id="deliverToLocation" type="text" class="form-control" ng-model="request.deliverToLocation"
                                        placeholder="Insert destination"
                                        style="opacity:0.9" required/>
                             </div>
