@@ -1,12 +1,38 @@
 angular.module('lastMile')
     .controller('BrowseCtrl',
-        function ($scope, Request, $filter) {
+        function ($scope, Request, $filter, $uibModal) {
             Request.query()
                 .$promise.then(function (data) {
                 var filteredRequests = $filter('filter')(data, {status: "Open"});
+                $scope.requestsBackup = filteredRequests;
                 $scope.requests = filteredRequests;
             });
-            
+
+/*            $scope.applyFilter = function () {
+                $scope.requests = $filter('filter')($scope.requests, {price:  });
+            }*/
+
+            $scope.showDetails = function (req) {
+
+                var modalInstance = $uibModal.open({
+                    templateUrl: 'showDetails.html',
+                    controller: 'browseDetailModalController',
+                    resolve: {
+                        selectedReq: function () {
+                            return req;
+                        }
+                    }
+                });
+
+                modalInstance.result.then(function (res) {
+                    alert("accept");
+                    //further processing success
+                }, function (err) {
+
+                    //further processing error
+                });
+            };
+
             $scope.filterShowed = false;
 
 
@@ -172,59 +198,14 @@ angular.module('lastMile')
                 $scope.filterShowed = false;
             };
 
-            $('#showDetails').on('shown.bs.modal', function(){
+            /*$('#showDetails').on('shown.bs.modal', function(){
                 showDetailsModal();
-            });
+            });*/
 
-            var showDetailsModal = function (){
-                var munich = {lat: 48.1493505, lng: 11.567825500000026};
-                var dresden = {lat: 51.03569479999999, lng: 13.718207099999972};
 
-                var map2 = new google.maps.Map(document.getElementById('modalMap'), {
-                });
-
-                var directionsDisplay = new google.maps.DirectionsRenderer({
-                    map: map2
-                });
-
-                // Set destination, origin and travel mode.
-                var request = {
-                    destination: dresden,
-                    origin: munich,
-                    travelMode: 'DRIVING'
-                };
-
-                // Pass the directions request to the directions service.
-                var directionsService = new google.maps.DirectionsService();
-                directionsService.route(request, function(response, status) {
-                    if (status == 'OK') {
-                        // Display the route on the map.
-                        directionsDisplay.setDirections(response);
-                    }
-                });
-            };
-
-            var setHeightModalMap = function (){
-                var modalBodyHeight = $('#showDetails .modal-dialog .modal-body').height();
-                var firstRowHeight = 150;
-                var vrHeight = 43;
-                var mapHeight = modalBodyHeight - firstRowHeight - vrHeight;
-                $('#modalMap').height(mapHeight + "px");
-
-            };
-
-            var setHeightChatWindow = function (){
-                var modalMapHeight = $('#modalMap').height();
-                var aboveTableHeight = 21 + 15 + 2;
-                var buttonHeight = 35;
-                var inputHeight = 50 + 15;
-                var chatHeight = modalMapHeight - aboveTableHeight - buttonHeight - inputHeight;
-                $('#tableDiv').height(chatHeight + "px");
-            };
 
             $scope.initMap();
-            setHeightModalMap();
-            setHeightChatWindow();
+
         }
     );
 
