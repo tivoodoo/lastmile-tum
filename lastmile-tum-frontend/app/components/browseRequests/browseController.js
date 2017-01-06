@@ -208,10 +208,12 @@ angular.module('lastMile')
             });
 
             var showDetailsModal = function () {
-                var munich = {lat: 48.1493505, lng: 11.567825500000026};
-                var dresden = {lat: 51.03569479999999, lng: 13.718207099999972};
+                var start = $scope.selectedRequest.pickUpLocation;
+                var goal = $scope.selectedRequest.deliverToLocation;
 
-                var map2 = new google.maps.Map(document.getElementById('modalMap'), {});
+                var map2 = new google.maps.Map(document.getElementById('modalMap'), {
+
+                });
 
                 var directionsDisplay = new google.maps.DirectionsRenderer({
                     map: map2
@@ -219,8 +221,8 @@ angular.module('lastMile')
 
                 // Set destination, origin and travel mode.
                 var request = {
-                    destination: dresden,
-                    origin: munich,
+                    origin: start,
+                    destination: goal,
                     travelMode: 'DRIVING'
                 };
 
