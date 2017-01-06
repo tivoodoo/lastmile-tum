@@ -25,7 +25,6 @@ angular.module('lastMile')
                 });
 
                 modalInstance.result.then(function (req) {
-                    alert(req.name + " successfully accepted")
                     $location.path("/myDel");
                     //further processing success
                 }, function (err) {

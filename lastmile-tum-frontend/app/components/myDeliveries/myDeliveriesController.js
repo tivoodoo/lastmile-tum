@@ -13,5 +13,31 @@ angular.module('lastMile')
                 $scope.requests = filteredDeliveries;
             });
 
+            $scope.cancelDelivery = function (req) {
+                req.supplier = null;
+                req.status = "Open";
+                req.$update({requestID: req._id})
+                    .then(function (res) {
+                        var index = $scope.requests.indexOf(req);
+                        $scope.requests.splice(index, 1);
+                        //alert("delivery canceled");
+                    })
+                    .catch(function (err) {
+                        alert("error while canceling delivery");
+                    });
+            };
+
+            $scope.markDelivered = function (req) {
+                req.status = "Confirmed";
+                req.$update({requestID: req._id})
+                    .then(function (res) {
+                        alert("delivery confirmed");
+                    })
+                    .catch(function (err) {
+                        alert("error while confirming delivery");
+                    });
+
+            }
+
         }
     );

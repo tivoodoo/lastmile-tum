@@ -69,7 +69,7 @@
                             Menu <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" uib-dropdown-menu role="menu">
-                            <li role="menuitem"><a ng-show="request.status=='Accepted'">Mark as delivered</a></li>
+                            <li role="menuitem"><a ng-show="request.status=='Accepted'" ng-click="markDelivered(request)">Mark as delivered</a></li>
                             <!-- Accepted-->
                             <li class="divider" ng-show="request.status=='Accepted'"></li>
                             <li role="menuitem"><a
@@ -82,7 +82,7 @@
                                 requester</a></li>
                             <!-- Confirmed-->
                             <li class="divider" ng-show="request.status=='Accepted'"></li>
-                            <li role="menuitem"><a ng-show="request.status=='Accepted'">Cancel
+                            <li role="menuitem"><a ng-show="request.status=='Accepted'" ng-click="cancelDelivery(request)">Cancel
                                 delivery</a></li><!-- Open Accepted-->
                         </ul>
                     </div>
