@@ -2,7 +2,7 @@
  * Created by TimH on 06-Jan-17.
  */
 angular.module('lastMile')
-    .controller('browseDetailModalController', function ($scope, $uibModalInstance, selectedReq) {
+    .controller('browseDetailModalController', function ($scope, $uibModalInstance, selectedReq, Request, userService) {
         $scope.selectedReq = selectedReq;
 
 
@@ -57,8 +57,22 @@ angular.module('lastMile')
 
 
         $scope.accept = function () {
-            //process accept
-            $uibModalInstance.close('accept');
+            $scope.selectedReq.supplier = userService.getUserName()._id
+            if($scope.selectedReq.supplier === $scope.selectedReq.requester ){
+                alert("You cannot accept your own requests");
+            }
+            else{
+                $scope.selectedReq.status = "Accepted";
+                $scope.selectedReq.$update({requestID: $scope.selectedReq._id})
+                    .then(function (res) {
+                        $uibModalInstance.close($scope.selectedReq);
+                    })
+                        .catch(function (err) {
+                            alert("error while accepting request");
+                            $uibModalInstance.dismiss('cancel');
+                        });
+
+            }
         };
 
         $scope.close = function () {

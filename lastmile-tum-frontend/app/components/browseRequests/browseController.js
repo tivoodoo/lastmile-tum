@@ -1,6 +1,6 @@
 angular.module('lastMile')
     .controller('BrowseCtrl',
-        function ($scope, Request, $filter, $uibModal) {
+        function ($scope, Request, $filter, $uibModal, $location) {
             Request.query()
                 .$promise.then(function (data) {
                 var filteredRequests = $filter('filter')(data, {status: "Open"});
@@ -24,8 +24,9 @@ angular.module('lastMile')
                     }
                 });
 
-                modalInstance.result.then(function (res) {
-                    alert("accept");
+                modalInstance.result.then(function (req) {
+                    alert(req.name + " successfully accepted")
+                    $location.path("/myDel");
                     //further processing success
                 }, function (err) {
 
