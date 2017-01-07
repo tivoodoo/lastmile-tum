@@ -1,5 +1,5 @@
 angular.module('lastMile')
-    .controller('EditCtrl',
+    .controller('EditProfileCtrl',
         function ($scope, User, userService) {
 
             $scope.user = User.get({userID: userService.getUserName()._id});

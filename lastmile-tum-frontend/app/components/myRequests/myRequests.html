@@ -80,7 +80,7 @@
                                 profile</a></li><!-- Accepted Confirmed-->
                             <li role="menuitem"><a ng-show="request.status=='Confirmed'">Rate deliverer</a></li>
                             <!-- Confirmed-->
-                            <li role="menuitem"><a ng-show="request.status=='Open' || request.status=='Expired'">Edit
+                            <li role="menuitem"><a ng-show="request.status=='Open' || request.status=='Expired'" ng-click="editRequest(request)">Edit
                                 request</a></li><!-- Open Expired-->
                             <li class="divider" ng-show="request.status=='Accepted' || request.status=='Open'"></li>
                             <li role="menuitem"><a ng-show="request.status=='Accepted' || request.status=='Open'  || request.status=='Expired'">Cancel

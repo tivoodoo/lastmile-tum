@@ -1,6 +1,6 @@
 angular.module('lastMile')
     .controller('MyReqCtrl',
-        function ($scope, Request, userService, $filter) {
+        function ($scope, Request, userService, $filter, $rootScope, $location) {
             Request.query()
                 .$promise.then(function (data) {
                 var filteredRequests = $filter('filter')(data, {requester: userService.getUserName()._id});
@@ -12,6 +12,11 @@ angular.module('lastMile')
                 }
                 $scope.requests = filteredRequests;
             });
+
+            $scope.editRequest = function (req) {
+                $rootScope.requestToEdit = req
+                $location.path("/editReq");
+            }
 
         }
     );

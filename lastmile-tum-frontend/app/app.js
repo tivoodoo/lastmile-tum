@@ -35,8 +35,11 @@ app.config(function ($routeProvider, $locationProvider, $resourceProvider, $http
         .when('/myDel', {
             templateUrl: './components/myDeliveries/myDeliveries.html'
         })
-        .when('/edit', {
+        .when('/editPro', {
             templateUrl: './components/editProfile/editProfile.html'
+        })
+        .when('/editReq', {
+            templateUrl: './components/editRequest/editRequest.html'
         })
         .otherwise({redirectTo: '/'});
 
