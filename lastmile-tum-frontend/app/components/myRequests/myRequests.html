@@ -13,31 +13,27 @@
                             <td class="tf">
                                 From:
                             </td>
-                            <td>
+                            <td class="tf">
                                 {{request.pickUpLocation}}
+                            </td>
+                            <td class="tf">
+                                Earliest pickup:
+                            </td>
+                            <td class="tf">
+                                {{request.pickUpTime | date : fullDate}}
                             </td>
                         </tr>
                         <tr>
                             <td class="tf">
                                 To:
                             </td>
-                            <td>
+                            <td class="tf">
                                 {{request.deliverToLocation}}
                             </td>
-                        </tr>
-                        <tr>
-                            <td class="tf">
-                                Earliest pickup:
-                            </td>
-                            <td>
-                                {{request.pickUpTime | date : fullDate}}
-                            </td>
-                        </tr>
-                        <tr>
                             <td class="tf">
                                 Latest dropoff:
                             </td>
-                            <td>
+                            <td class="tf">
                                 {{request.deliverTime | date : fullDate}}
                             </td>
                         </tr>
@@ -45,18 +41,25 @@
                             <td class="tf">
                                 Size:
                             </td>
-                            <td>
+                            <td class="tf">
                                 {{request.size}}
+                            </td>
+                            <td class="tf">
+                                Price:
+                            </td>
+                            <td class="tf">
+                                {{request.price}}
                             </td>
                         </tr>
                         <tr>
                             <td class="tf">
-                                Price:
+                                Description:
                             </td>
                             <td>
-                                {{request.price}}
+                               {{request.description}}
                             </td>
                         </tr>
+
                     </table>
                 </div>
                 <div class="col-lg-2 reqStatusMenu">
