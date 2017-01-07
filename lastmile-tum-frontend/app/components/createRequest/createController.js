@@ -4,6 +4,10 @@ angular.module('lastMile')
             $scope.request = new Request();
 
             $scope.postRequest = function () {
+                if($scope.request.pickUpTime > $scope.request.deliverTime){
+                alert("The latest dropoff time lies before the earliest pickup time!")
+                }
+                else{
                 $scope.request.requester = userService.getUserName()._id;
                 $scope.request.status = "Open";
                 $scope.request.$save()
@@ -14,6 +18,17 @@ angular.module('lastMile')
                     .catch(function (err) {
                         alert("An unexpected error occured");
                     })
+                }
+            };
+
+            $scope.openDatepickerFrom = function(){
+                $scope.isOpenFrom= true;
+            };
+            $scope.openDatepickerTo = function(){
+                $scope.isOpenTo = true;
+            };
+            $scope.dateOptions = {
+                minDate: new Date()
             };
 
 
