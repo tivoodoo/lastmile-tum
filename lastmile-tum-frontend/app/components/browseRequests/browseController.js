@@ -10,6 +10,9 @@ angular.module('lastMile')
                 $scope.requests = filteredRequests;
                 $scope.initMap();
 
+                setHeightModalMap();
+                setHeightChatWindow();
+
             })
                 .catch(function (err) {
                     console.log(err);
@@ -114,6 +117,7 @@ angular.module('lastMile')
 
             var setHeightModalMap = function () {
                 var modalBodyHeight = $('#showDetails .modal-dialog .modal-body').height();
+                //var firstRowHeight = $('#showDetails .modal-dialog .modal-body #detailsFirst').height();
                 var firstRowHeight = 150;
                 var vrHeight = 43;
                 var mapHeight = modalBodyHeight - firstRowHeight - vrHeight;
@@ -131,8 +135,6 @@ angular.module('lastMile')
             };
 
 
-            setHeightModalMap();
-            setHeightChatWindow();
 
 
         }

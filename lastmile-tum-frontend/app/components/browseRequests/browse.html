@@ -242,7 +242,7 @@
                     <h4 class="modal-title">{{selectedRequest.name}}</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="row detailsFirst">
+                    <div class="row detailsFirst" id="detailsFirst">
                         <div class="col-lg-9">
                             <table>
                                 <tr>
@@ -291,6 +291,14 @@
                                     </td>
                                     <td>
                                         {{selectedRequest.price}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tf">
+                                        Description:
+                                    </td>
+                                    <td>
+                                        {{selectedRequest.description}}
                                     </td>
                                 </tr>
                             </table>
@@ -351,115 +359,3 @@
     </div>
 
 </div>
-<!--<script type="text/ng-template" id="showDetails.html">
-    <div id="showDetails">
-        <div class="modal-header">
-            <button type="button" class="close" ng-click="close()" aria-label="Close"><span
-                    aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">{{selectedReq.name}}</h4>
-        </div>
-        <div class="modal-body">
-            <div class="row detailsFirst">
-                <div class="col-lg-9">
-                    <table>
-                        <tr>
-                            <td class="tf">
-                                From:
-                            </td>
-                            <td>
-                                {{selectedReq.pickUpLocation}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tf">
-                                To:
-                            </td>
-                            <td>
-                                {{selectedReq.deliverToLocation}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tf">
-                                Earliest pickup:
-                            </td>
-                            <td>
-                                {{selectedReq.pickUpTime | date : fullDate}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tf">
-                                Latest dropoff:
-                            </td>
-                            <td>
-                                {{selectedReq.deliverTime | date : fullDate}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tf">
-                                Size:
-                            </td>
-                            <td>
-                                {{selectedReq.size}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tf">
-                                Price:
-                            </td>
-                            <td>
-                                {{selectedReq.price}}
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="col-lg-3">
-                    <img src="./images/football.jpg">
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-lg-6" style="height: 100%">
-                    <div id="modalMap">
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                        <span class="tabHead">
-                            Comments
-                        </span>
-                    <div id="tableDiv">
-                        <table class="tabTable">
-                            <tbody>
-                            <tr>
-                                <td style="width: 65px; font-weight:bold;">
-                                    Daniel:
-                                </td>
-                                <td>
-                                    Lorem ipsum!
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="row" style="margin-top: 15px;">
-                        <div class="col-lg-3 input-label">
-                            Comment:
-                        </div>
-                        <div class="col-lg-9">
-                            <div class="form-group">
-                                <input class="form-control" placeholder="Input" style="opacity:0.9">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <button type="button" class="btn btn-primary accept" ng-click="accept()">Accept
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</script>-->
