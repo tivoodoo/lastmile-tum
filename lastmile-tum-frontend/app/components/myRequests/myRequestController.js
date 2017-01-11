@@ -16,6 +16,17 @@ angular.module('lastMile')
             $scope.editRequest = function (req) {
                 $rootScope.requestToEdit = req
                 $location.path("/editReq");
+            };
+
+            $scope.deleteRequest = function (req) {
+                req.$remove().then(function () {
+                    var index = $scope.requests.indexOf(req);
+                    $scope.requests.splice(index, 1);
+                })
+                    .catch(function (err) {
+                        alert("could not delete request");
+                    })
+
             }
 
         }
