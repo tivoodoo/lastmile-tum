@@ -23,6 +23,16 @@ angular.module('lastMile')
             };
 
 
+            $scope.openDatepickerFrom = function(){
+                $scope.isOpenFrom= true;
+            };
+            $scope.openDatepickerTo = function(){
+                $scope.isOpenTo = true;
+            };
+            $scope.dateOptions = {
+                minDate: new Date()
+            };
+
 
 
             var initPicSize = function () {
