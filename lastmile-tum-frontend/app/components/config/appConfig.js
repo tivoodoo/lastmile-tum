@@ -8,7 +8,7 @@
   angular
     .module('lastMile')
     .constant("BASEURL", "http://localhost:3000")
-    .constant('BACKEND_BASE_URL', "http://localhost:4000")
+    .constant('BACKEND_BASE_URL', "http://192.168.0.104:4000")
     .constant('APP_NAME', "Last Mile")
 
   angular

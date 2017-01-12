@@ -33,6 +33,7 @@ $button-hover-color: #f5f5f5;
 .full-screen-box {
   margin:0;
   padding:0;
+  background-color: black !important;
   @media (min-width: $screen-sm) {
     min-height: 100vh;
   };
@@ -44,10 +45,10 @@ $button-hover-color: #f5f5f5;
 .part-screen-box {
   margin:0;
   padding:0;
-  @media (min-width: $screen-xs) {
+  @media (min-width: $screen-sm) {
     min-height: 35vh;
   };
-  @media (max-width: $screen-xs) {
+  @media (max-width: $screen-sm) {
     min-height: 50vh;
   };
 }
