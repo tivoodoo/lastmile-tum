@@ -12,10 +12,10 @@
                         </div>
                         <div class="modal-body">
                             <div class="row">
-                                <div class="col-lg-3 input-label">
+                                <div class="col-sm-3 input-label">
                                     First Name:
                                 </div>
-                                <div class="col-lg-9">
+                                <div class="col-sm-9">
                                     <div class="form-group">
                                         <input type="text" class="form-control" ng-model="reg.firstName"
                                                placeholder="First Name"
@@ -24,10 +24,10 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-3 input-label">
+                                <div class="col-sm-3 input-label">
                                     Last Name:
                                 </div>
-                                <div class="col-lg-9">
+                                <div class="col-sm-9">
                                     <div class="form-group">
                                         <input type="text" class="form-control" ng-model="reg.lastName"
                                                placeholder="Last Name"
@@ -36,10 +36,10 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-3 input-label">
+                                <div class="col-sm-3 input-label">
                                     Email address:
                                 </div>
-                                <div class="col-lg-9">
+                                <div class="col-sm-9">
                                     <div class="form-group">
                                         <input type="text" class="form-control" ng-model="reg.email"
                                                placeholder="Email address"
@@ -49,10 +49,10 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-3 input-label">
+                                <div class="col-sm-3 input-label">
                                     Password:
                                 </div>
-                                <div class="col-lg-9">
+                                <div class="col-sm-9">
                                     <div class="form-group">
                                         <input type="password" class="form-control" ng-model="reg.password"
                                                placeholder="Password"
@@ -78,8 +78,10 @@
         </div>
 
         <div class="row" style="margin-left: 0px; margin-right: 0px;">
-            <iframe id="introVideo" src="https://www.youtube.com/embed/7YdYETF7nIk" frameborder="0"
-                    allowfullscreen></iframe>
+            <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 col-xs-offset-1 col-xs-10">
+                <iframe id="introVideo" src="https://www.youtube.com/embed/7YdYETF7nIk" frameborder="0"
+                        allowfullscreen></iframe>
+            </div>
         </div>
 
         <!--
@@ -92,14 +94,16 @@
         <div class="row" style="margin-left: 0px; margin-right: 0px;">
             <div class="obox">
                 <div class="row">
-                    <div class="col-lg-offset-4 col-lg-2" ng-hide="loggedIn">
+                    <div class="col-lg-offset-4 col-lg-2 col-md-offset-3 col-md-3 col-sm-offset-2 col-sm-4
+                         col-xs-offset-1 col-xs-5" ng-hide="loggedIn">
                         <div class="sbox" data-toggle="modal" data-target="#showRegistration">
                             <p><i class="fa fa-user-circle fa-2x" aria-hidden="true"></i></p>
                             Create account
                         </div>
                     </div>
                     <a href="/create" ng-show="loggedIn">
-                        <div class="col-lg-offset-4 col-lg-2">
+                        <div class="col-lg-offset-4 col-lg-2 col-md-offset-3 col-md-3 col-sm-offset-2 col-sm-4
+                         col-xs-offset-1 col-xs-5">
                             <div class="sbox">
                                 <p><i class="fa fa-search fa-2x" aria-hidden="true"></i></p>
                                 Create a request
@@ -107,7 +111,7 @@
                         </div>
                     </a>
                     <a href="/browse">
-                        <div class="col-lg-2">
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-5">
                             <div class="sbox">
                                 <p><i class="fa fa-search fa-2x" aria-hidden="true"></i></p>
                                 Browse requests
