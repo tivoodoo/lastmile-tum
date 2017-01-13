@@ -33,6 +33,7 @@ $button-hover-color: #f5f5f5;
 .full-screen-box {
   margin:0;
   padding:0;
+  background-color: black !important;
   @media (min-width: $screen-sm) {
     min-height: 100vh;
   };
@@ -108,14 +109,14 @@ footer {
   margin-left: 7.5px;
 }
 #introVideo{
-  width: calc(560px * 1.2);
+  width: 100%;
   height: calc(315px * 1.2);
   position: relative;
-  left: calc(50% - (560px*1.2/2));
-  top: 200px;
+  //left: calc(50% - (560px*1.2/2));
+  top: 150px;
 }
 .obox {
-  margin-top: 210px;
+  margin-top: 160px;
   width: 80%;
   //margin-top: 30px;
   margin-left: auto;
@@ -155,6 +156,10 @@ footer {
 .navbar-brand:hover {
   transition: .5s ease;
 }
+.navbar-header {
+  width: 100%;
+  margin-left: 5px;
+}
 .lm-content {
   @media (min-width: $screen-sm) {
     min-height: 65vh;
@@ -166,10 +171,17 @@ footer {
   background-color: white;
 }
 .lm-content-90 {
-  @media (min-width: $screen-lg) {
-    width: 90vw;
+  @media (min-width: $screen-xs) {
+    width: 100vw;
+    padding: 25px 25px 25px 25px;
+  };
+  @media (min-width: $screen-sm) {
+    width: 100vw;
     margin: 0px auto 0;
     padding: 35px 25px 35px 25px;
+  };
+  @media (min-width: $screen-md) {
+    width: 90vw;
   }
 }
 .lm-content-90 > .row {
@@ -211,12 +223,7 @@ footer {
 .header-box {
   margin:0;
   padding:0;
-  @media (min-width: $screen-sm) {
-    min-height: 35vh;
-  };
-  @media (max-width: $screen-sm) {
-    min-height: 50vh;
-  };
+  min-height: 35vh;
 }
 .header-box-bg {
   background-repeat: no-repeat;
@@ -327,13 +334,22 @@ button.btn.btn-primary.accept {
 }
 
 .input-label {
-  padding-top: 6px;
+  padding-top: 6.5px;
+  padding-bottom: 6.5px;
+}
+
+.req-input-label {
+  @media (max-width: $screen-sm) {
+    margin-bottom: 6.5px;
+  };
 }
 
 #crRequest{
-  height: 60vh;
-  overflow-y: auto;
-  overflow-x: hidden;
+  @media (min-width: $screen-sm) {
+    height: 60vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  };
 }
 #crRequest > .row{
   margin-top: 5px;
@@ -415,6 +431,17 @@ button.btn.btn-primary.accept {
 .ui-state-active {
   background-color: #194582 !important;
   color: #fff !important;
+}
+
+#createInput {
+  @media (max-width: $screen-sm) {
+    margin-bottom: 15px;
+  }
+  @media (min-width: $screen-sm) {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+  };
 }
 /*
 a{
