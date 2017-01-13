@@ -14,7 +14,7 @@
             <div class="col-lg-5" style="height: 60vh; overflow-y: auto;">
                 <div ng-hide="filterShowed">
                     <div id="brRequests">
-                        <div class="row requestContainer" ng-repeat="request in requests">
+                        <div class="row requestContainer" ng-repeat="request in requests | filter:{deliverToLocation:filterDeliverToLocation} | filter:{pickUpLocation:filterPickUpLocation} | filter:filterPrice()">
 
                             <div class="row">
                                 <div class="col-lg-10">
@@ -102,7 +102,7 @@
                         <div class="row requin">
                             <p>From:</p>
                             <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                <input type="text" class="form-control" ng-model="fromCity"
+                                <input type="text" class="form-control" ng-model="filterPickUpLocation"
                                        placeholder="Insert start"
                                        style="opacity:0.9" required/>
                             </div>
@@ -112,7 +112,7 @@
                         <div class="row requin">
                             <p>To:</p>
                             <div class="form-group">
-                                <input type="text" class="form-control" ng-model="toCity"
+                                <input type="text" class="form-control" ng-model="filterDeliverToLocation"
                                        placeholder="Insert destination"
                                        style="opacity:0.9" required/>
                             </div>
@@ -219,13 +219,13 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <button type="button" class="btn btn-default right filter" ng-click="applyFilter()">
+                            <button type="button" class="btn btn-default right filter" ng-click="filterShowed = false">
                                 <!--ng-disabled="logIn.$invalid" uib-popover="{{errorText}}"
                                 popover-placement="bottom" popover-trigger="click"
                                 -->Apply filter
                             </button>
                             <button type="button" class="btn btn-danger right filter leftone"
-                                    ng-click="clearInput()">Cancel
+                                    ng-click="clearInput()">Reset filter
                             </button>
                         </div>
                     </div>

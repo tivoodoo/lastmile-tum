@@ -2,6 +2,10 @@ angular.module('lastMile')
     .controller('BrowseCtrl',
         function ($scope, Request, $filter, $uibModal, $location, userService) {
             $scope.filterShowed = false;
+            $scope.lowPrice = 0;
+            $scope.highPrice = 1000;
+
+
 
             Request.query()
                 .$promise.then(function (data) {
@@ -46,7 +50,7 @@ angular.module('lastMile')
             };
 
 
-            $scope.clearInput = clearInput;
+
             //$scope.showDetailsModal = showDetailsModal;
 
             $scope.initMap = function() {
@@ -72,14 +76,20 @@ angular.module('lastMile')
                 });
             };
 
-            function clearInput() {
-                $scope.fromCity = '';
-                $scope.toCity = '';
-                $scope.pickup = '';
-                $scope.dropoff = '';
-                $scope.size = 'XL';
-                $scope.lowPrice = '';
-                $scope.highPrice = '';
+            $scope.filterPrice= function(){
+                return function(item){
+                    return (item.price >= $scope.lowPrice&& item.price <= $scope.highPrice);
+                }
+            };
+
+            $scope.clearInput = function(){
+                $scope.filterPickUpLocation = '';
+                $scope.filterDeliverToLocation= '';
+                /*$scope.browseFilter.pickUpTime= '';
+                $scope.browseFilter.deliverTime = '';
+                $scope.size = 'XL';*/
+                $scope.lowPrice = 0;
+                $scope.highPrice = 1000;
 
                 $scope.filterShowed = false;
             };
