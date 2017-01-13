@@ -171,10 +171,17 @@ footer {
   background-color: white;
 }
 .lm-content-90 {
-  @media (min-width: $screen-lg) {
-    width: 90vw;
+  @media (min-width: $screen-xs) {
+    width: 100vw;
+    padding: 25px 25px 25px 25px;
+  };
+  @media (min-width: $screen-sm) {
+    width: 100vw;
     margin: 0px auto 0;
     padding: 35px 25px 35px 25px;
+  };
+  @media (min-width: $screen-md) {
+    width: 90vw;
   }
 }
 .lm-content-90 > .row {
@@ -216,12 +223,7 @@ footer {
 .header-box {
   margin:0;
   padding:0;
-  @media (min-width: $screen-sm) {
-    min-height: 35vh;
-  };
-  @media (max-width: $screen-sm) {
-    min-height: 50vh;
-  };
+  min-height: 35vh;
 }
 .header-box-bg {
   background-repeat: no-repeat;
@@ -332,14 +334,22 @@ button.btn.btn-primary.accept {
 }
 
 .input-label {
-  padding-top: 6px;
-  padding-bottom: 6px;
+  padding-top: 6.5px;
+  padding-bottom: 6.5px;
+}
+
+.req-input-label {
+  @media (max-width: $screen-sm) {
+    margin-bottom: 6.5px;
+  };
 }
 
 #crRequest{
-  height: 60vh;
-  overflow-y: auto;
-  overflow-x: hidden;
+  @media (min-width: $screen-sm) {
+    height: 60vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  };
 }
 #crRequest > .row{
   margin-top: 5px;
@@ -421,6 +431,17 @@ button.btn.btn-primary.accept {
 .ui-state-active {
   background-color: #194582 !important;
   color: #fff !important;
+}
+
+#createInput {
+  @media (max-width: $screen-sm) {
+    margin-bottom: 15px;
+  }
+  @media (min-width: $screen-sm) {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+  };
 }
 /*
 a{
