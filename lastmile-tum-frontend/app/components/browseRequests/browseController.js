@@ -4,7 +4,8 @@ angular.module('lastMile')
             $scope.filterShowed = false;
             $scope.lowPrice = 0;
             $scope.highPrice = 1000;
-
+            //$scope.filterPickupTime = "";
+            //$scope.filterDeliverTime = "";
 
 
             Request.query()
@@ -50,10 +51,7 @@ angular.module('lastMile')
             };
 
 
-
-            //$scope.showDetailsModal = showDetailsModal;
-
-            $scope.initMap = function() {
+            $scope.initMap = function () {
                 var centerGer = {lat: 51.1657, lng: 10.4515};
                 var map1 = new google.maps.Map(document.getElementById('browsemap'), {
                     center: centerGer,
@@ -76,18 +74,39 @@ angular.module('lastMile')
                 });
             };
 
-            $scope.filterPrice= function(){
-                return function(item){
-                    return (item.price >= $scope.lowPrice&& item.price <= $scope.highPrice);
+            //-------------------FILTERING-----------------
+            $scope.applyFilter = function () {
+                if ($scope.filterDeliverTime && $scope.filterPickUpTime && moment($scope.filterDeliverTime )< moment($scope.filterPickUpTime )) {
+                    alert("The earliest pickup filter date needs to be sooner than the latest dropoff filter date");
+                }
+                else{
+                    $scope.filterShowed = false;
                 }
             };
 
-            $scope.clearInput = function(){
+
+            $scope.filterPrice = function () {
+                return function (item) {
+                    return (item.price >= $scope.lowPrice && item.price <= $scope.highPrice);
+                }
+            };
+
+            $scope.openDatepickerFrom = function () {
+                $scope.isOpenFrom = true;
+            };
+            $scope.openDatepickerTo = function () {
+                $scope.isOpenTo = true;
+            };
+            $scope.dateOptions = {
+                minDate: new Date()
+            };
+
+            $scope.clearInput = function () {
                 $scope.filterPickUpLocation = '';
-                $scope.filterDeliverToLocation= '';
-                /*$scope.browseFilter.pickUpTime= '';
-                $scope.browseFilter.deliverTime = '';
-                $scope.size = 'XL';*/
+                $scope.filterDeliverToLocation = '';
+                $scope.filterPickUpTime = null;
+                $scope.filterDeliverTime = null;
+                //$scope.size = 'XL';
                 $scope.lowPrice = 0;
                 $scope.highPrice = 1000;
 
@@ -145,10 +164,33 @@ angular.module('lastMile')
             };
 
 
-
-
         }
     );
 
+app.filter("myfilterTo", function ($filter) {
+    return function (items, to) {
+        return $filter('filter')(items, function (value, index, array) {
+            if ( to == null) {
+                return true;
+            }
+            else {
+                return moment(value.pickUpTime) <= moment(to);
+            }
+        });
+    };
+});
+
+app.filter("myfilterFrom", function ($filter) {
+    return function (items, from) {
+        return $filter('filter')(items, function (value, index, array) {
+            if ( from == null) {
+                return true;
+            }
+            else {
+                return moment(value.deliverTime) >= moment(from);
+            }
+        });
+    };
+});
 //datepicker: https://www.grobmeier.de/angular-js-binding-to-jquery-ui-datepicker-example-07092012.html
 //datepicker: http://jsfiddle.net/xB6c2/121/

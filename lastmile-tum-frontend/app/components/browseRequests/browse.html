@@ -14,7 +14,8 @@
             <div class="col-lg-5" style="height: 60vh; overflow-y: auto;">
                 <div ng-hide="filterShowed">
                     <div id="brRequests">
-                        <div class="row requestContainer" ng-repeat="request in requests | filter:{deliverToLocation:filterDeliverToLocation} | filter:{pickUpLocation:filterPickUpLocation} | filter:filterPrice()">
+                        <div class="row requestContainer" ng-repeat="request in requests | filter:{deliverToLocation:filterDeliverToLocation}
+                        | filter:{pickUpLocation:filterPickUpLocation} | filter:filterPrice()|myfilterTo: filterDeliverTime| myfilterFrom: filterPickUpTime "> <!--| filter:filterForPickupTime()-->
 
                             <div class="row">
                                 <div class="col-lg-10">
@@ -120,11 +121,13 @@
                     </div>
                     <div class="col-lg-12">
                         <div class="row requin">
-                            <p>Earliest pickup:</p>
+                            <p>Earliest pickup: </p>
                             <div class="form-group">
-                                <input type="text" class="form-control" ng-model="pickup"
+                                <input uib-datepicker-popup="dd.MM.yyyy" popup-placement="bottom" type="text" class="form-control" ng-model="filterPickUpTime"
                                        placeholder="Insert earliest pickup"
-                                       style="opacity:0.9" required datepicker/>
+                                       style="opacity:0.9" ng-click="openDatepickerFrom()"
+                                       is-open="isOpenFrom" show-button-bar="true"
+                                       datepicker-options="dateOptions"/>
                             </div>
                             <!--
                             <div class="input-group date">
@@ -138,11 +141,13 @@
                     </div>
                     <div class="col-lg-12">
                         <div class="row requin">
-                            <p>Latest dropoff:</p>
+                            <p>Latest dropoff: </p>
                             <div class="form-group">
-                                <input type="text" class="form-control" ng-model="dropoff"
+                                <input uib-datepicker-popup="dd.MM.yyyy" popup-placement="bottom" type="text" class="form-control" ng-model="filterDeliverTime"
                                        placeholder="Insert latest dropoff"
-                                       style="opacity:0.9" required datepicker/>
+                                       style="opacity:0.9" ng-click="openDatepickerTo()"
+                                       is-open="isOpenTo" show-button-bar="true"
+                                       datepicker-options="dateOptions"/>
                             </div>
                             <!--
                             <div class="input-group date">
@@ -219,7 +224,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <button type="button" class="btn btn-default right filter" ng-click="filterShowed = false">
+                            <button type="button" class="btn btn-default right filter" ng-click="applyFilter()">
                                 <!--ng-disabled="logIn.$invalid" uib-popover="{{errorText}}"
                                 popover-placement="bottom" popover-trigger="click"
                                 -->Apply filter
