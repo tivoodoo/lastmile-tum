@@ -25,22 +25,13 @@
                     <span class="icon-bar"></span>
                 </button> -->
                 <a class="nav navbar-brand" href="/">LastMile</a>
+                <a href="/browse" class="nav navbar-brand hidden-xs">
+                    Browse requests
+                </a>
                 <a href="/create" class="nav navbar-brand hidden-xs" ng-show="loggedIn">
                     Create request
                 </a>
-                <!--
-                <a href="/myReq" class="nav navbar-nav navbar-brand" ng-show="loggedIn">
-                    My requests
-                </a>
-                <a href="/myDel" class="nav navbar-nav navbar-brand" ng-show="loggedIn">
-                    My deliveries
-                </a>
-                <a href="/editPro" class="nav navbar-nav navbar-brand" ng-show="loggedIn">
-                    Edit profile
-                </a> -->
-                <a href="/browse" class="nav navbar-brand hidden-xs" ng-hide="loggedIn">
-                    Browse requests
-                </a>
+
 
                 <button class="navbar-right btn btn-primary btn-right navbar-btn" ng-hide="loggedIn" data-toggle="modal"
                         data-target="#showLogin" style="float: right;">
@@ -58,12 +49,17 @@
                         Menu <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu role="menu">
-                        <li role="menuitem">
-                            <a href="/browse">
+                        <li class="hidden-sm-up" role="menuitem">
+                            <a class="visible-xs-block" href="/create">
+                                Create request
+                            </a>
+                        </li>
+                        <li class="visible-xs-block" role="menuitem">
+                            <a class="hidden-sm-up" href="/browse">
                                 Browse requests
                             </a>
                         </li>
-                        <li class="divider"></li>
+                        <li class="visible-xs-block divider"></li>
                         <li role="menuitem">
                             <a href="/myReq">
                                 My requests
