@@ -1,7 +1,7 @@
 <lm-header text="Create request" img="images/d.jpg"></lm-header>
 <div class="part-screen-box">
     <div class="lm-content lm-content-90" ng-controller="CreateCtrl">
-        <form>
+        <form name="createForm" ng-submit="postRequest()">
             <div class="row">
                 <div class="col-sm-6" id="createInput">
                     <div id="crRequest">
@@ -159,7 +159,7 @@
                     <a href="/">
                         <button type="button" class="btn btn-danger" ng-click="" style="width:45%;">Cancel</button>
                     </a>
-                    <button type="submit" ng-click="postRequest()" class="btn btn-primary right" style="width:45%;">
+                    <button type="submit" class="btn btn-primary right" style="width:45%;">
                         Publish
                     </button>
                 </div>
