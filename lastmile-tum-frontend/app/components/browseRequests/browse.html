@@ -1,6 +1,6 @@
 <lm-header text="Browse requests" img="images/d.jpg"></lm-header>
 <div class="part-screen-box" ng-controller="BrowseCtrl">
-    <div class="lm-content lm-content-90" >
+    <div class="lm-content lm-content-90">
         <!--
         <div class="row topline">
                 Browse through requests
@@ -15,7 +15,8 @@
                 <div ng-hide="filterShowed">
                     <div id="brRequests">
                         <div class="row requestContainer" ng-repeat="request in requests | filter:{deliverToLocation:filterDeliverToLocation}
-                        | filter:{pickUpLocation:filterPickUpLocation} | filter:filterPrice()|myfilterTo: filterDeliverTime| myfilterFrom: filterPickUpTime "> <!--| filter:filterForPickupTime()-->
+                        | filter:{pickUpLocation:filterPickUpLocation} | filter:filterPrice()|myfilterTo: filterDeliverTime | myfilterFrom: filterPickUpTime |filter:{size: filtersizeS||filtersizeM||filtersizeL||filtersizeXL}">
+
 
                             <div class="row">
                                 <div class="col-lg-10">
@@ -82,7 +83,8 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <button type="button" class="btn btn-default right" data-toggle="modal" data-target="#showDetails" ng-click="selectRequest(request)">
+                                <button type="button" class="btn btn-default right" data-toggle="modal"
+                                        data-target="#showDetails" ng-click="selectRequest(request)">
                                     View details
                                 </button>
                             </div>
@@ -123,7 +125,8 @@
                         <div class="row requin">
                             <p>Earliest pickup: </p>
                             <div class="form-group">
-                                <input uib-datepicker-popup="dd.MM.yyyy" popup-placement="bottom" type="text" class="form-control" ng-model="filterPickUpTime"
+                                <input uib-datepicker-popup="dd.MM.yyyy" popup-placement="bottom" type="text"
+                                       class="form-control" ng-model="filterPickUpTime"
                                        placeholder="Insert earliest pickup"
                                        style="opacity:0.9" ng-click="openDatepickerFrom()"
                                        is-open="isOpenFrom" show-button-bar="true"
@@ -143,7 +146,8 @@
                         <div class="row requin">
                             <p>Latest dropoff: </p>
                             <div class="form-group">
-                                <input uib-datepicker-popup="dd.MM.yyyy" popup-placement="bottom" type="text" class="form-control" ng-model="filterDeliverTime"
+                                <input uib-datepicker-popup="dd.MM.yyyy" popup-placement="bottom" type="text"
+                                       class="form-control" ng-model="filterDeliverTime"
                                        placeholder="Insert latest dropoff"
                                        style="opacity:0.9" ng-click="openDatepickerTo()"
                                        is-open="isOpenTo" show-button-bar="true"
@@ -166,29 +170,29 @@
                                     Size:
                                 </div>
                                 <div class="col-lg-3">
-                                    <div class="radio">
-                                        <label><input type="radio" name="sizeRadio"
-                                                      ng-model="size" ng-value="S">S</label>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" ng-model="filtersizeS" ng-true-value="'S'"
+                                                      ng-false-value="''">S</label>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
-                                    <div class="radio">
-                                        <label><input type="radio" name="sizeRadio"
-                                                      ng-model="size" ng-value="M">M</label>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" ng-model="filtersizeM" ng-true-value="'M'"
+                                                      ng-false-value="''">M</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-offset-3 col-lg-3">
-                                    <div class="radio">
-                                        <label><input type="radio" name="sizeRadio"
-                                                      ng-model="size" ng-value="L">L</label>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" ng-model="filtersizeL" ng-true-value="'L'"
+                                                      ng-false-value="''">L</label>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
-                                    <div class="radio">
-                                        <label><input type="radio" name="sizeRadio"
-                                                      ng-model="size" ng-value="XL">XL</label>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" ng-model="filtersizeXL" ng-true-value="'XL'"
+                                                      ng-false-value="''">XL</label>
                                     </div>
                                 </div>
                             </div>
@@ -351,7 +355,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <button type="button" class="btn btn-primary accept" data-dismiss="modal" ng-click="accept()">Accept
+                                    <button type="button" class="btn btn-primary accept" data-dismiss="modal"
+                                            ng-click="accept()">Accept
                                     </button>
                                 </div>
                             </div>

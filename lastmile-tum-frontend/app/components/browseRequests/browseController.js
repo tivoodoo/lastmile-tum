@@ -4,6 +4,10 @@ angular.module('lastMile')
             $scope.filterShowed = false;
             $scope.lowPrice = 0;
             $scope.highPrice = 1000;
+            $scope.filtersizeS = 'S';
+            $scope.filtersizeM = 'M';
+            $scope.filtersizeL = 'L';
+            $scope.filtersizeXL = 'XL';
             //$scope.filterPickupTime = "";
             //$scope.filterDeliverTime = "";
 
@@ -106,7 +110,10 @@ angular.module('lastMile')
                 $scope.filterDeliverToLocation = '';
                 $scope.filterPickUpTime = null;
                 $scope.filterDeliverTime = null;
-                //$scope.size = 'XL';
+                $scope.filtersizeS = 'S';
+                $scope.filtersizeM = 'M';
+                $scope.filtersizeL = 'L';
+                $scope.filtersizeXL = 'XL';
                 $scope.lowPrice = 0;
                 $scope.highPrice = 1000;
 
