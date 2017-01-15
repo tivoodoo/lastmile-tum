@@ -443,6 +443,9 @@ button.btn.btn-primary.accept {
     overflow-x: hidden;
   };
 }
+#createInput .dragover {
+  border: 5px dashed blue;
+}
 /*
 a{
   font-family: Muli;

@@ -41,15 +41,6 @@
                                         <li role="menuitem"><a ng-click="request.size = 'XL'">XL</a></li>
                                     </ul>
                                 </div>
-                                <!--<form name="sizePicker">
-                                    <select name="singleSelect" ng-model="size">
-                                        <option value="S" ng-selected="true">S</option>
-                                        <option value="M">M</option>
-                                        <option value="L">L</option>
-                                        <option value="XL">XL</option>1
-                                    </select>
-                                </form>
-                                -->
                             </div>
                         </div>
                         <div class="row requin">
@@ -59,7 +50,6 @@
                             <div class="col-md-9 col-sm-8">
                                 <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
                                     <input id="pickupLocation" type="text" class="form-control"
-                                           ng-model="request.pickUpLocation"
                                            placeholder="Insert start"
                                            style="opacity:0.9" required/>
                                 </div>
@@ -72,7 +62,6 @@
                             <div class="col-md-9 col-sm-8">
                                 <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
                                     <input id="deliverToLocation" type="text" class="form-control"
-                                           ng-model="request.deliverToLocation"
                                            placeholder="Insert destination"
                                            style="opacity:0.9" required/>
                                 </div>
@@ -84,11 +73,6 @@
                             </div>
                             <div class="col-md-9 col-sm-8">
                                 <div class="form-group">
-                                    <!-- old datepicker
-                                    <input type="text" class="form-control" ng-model="request.pickUpTime"
-                                           placeholder="Insert earliest pickup"
-                                           style="opacity:0.9" required datepicker/>-->
-
                                     <input uib-datepicker-popup="dd.MM.yyyy" popup-placement="bottom" type="text"
                                            class="form-control" ng-model="request.pickUpTime"
                                            placeholder="Insert earliest pickup"
@@ -136,14 +120,24 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row requin">
+                        <div ngf-drop  class="row requin drop-box" ng-model="request.picture" ngf-drag-over-class="'dragover'" ngf-multiple="false">
                             <div class="col-md-3 col-xs-4 req-input-label" id=picButton">
-                                <button type="button" class="btn btn-primary" ng-click="uploadImage()">Upload Image
+                                <button type="button" class="btn btn-primary" ngf-select ng-model="request.picture"
+                                        ngf-multiple="false">Upload Image
                                 </button>
                             </div>
                             <div class="col-md-9 col-xs-8">
-                                <div class="col-md-offset-4 col-md-4 col-xs-offset-4 col-xs-4 pic" style="border: 1px solid #999;">
+                                <div ng-show="request.picture" ng-model="request.picture">
+                                    <div class="thumbnail" ng-show="request.picture">
+                                        <img ngf-thumbnail="request.picture">
+                                    </div>
 
+                                    <button ng-show="request.picture" ng-click="request.picture = null">
+                                        Remove
+                                    </button>
+                                </div>
+                                <div ng-hide="request.picture" class="col-md-offset-4 col-md-4 col-xs-offset-4 col-xs-4 pic"
+                                     style="border: 1px solid #999;">
                                 </div>
                             </div>
                         </div>
@@ -155,7 +149,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-offset-10 col-md-2 col-sm-offset-9 col-sm-3 col-xs-offset-7 col-xs-5" style="padding-left:0px; margin-top:15px;">
+                <div class="col-md-offset-10 col-md-2 col-sm-offset-9 col-sm-3 col-xs-offset-7 col-xs-5"
+                     style="padding-left:0px; margin-top:15px;">
                     <a href="/">
                         <button type="button" class="btn btn-danger" ng-click="" style="width:45%;">Cancel</button>
                     </a>

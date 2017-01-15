@@ -8,7 +8,8 @@ var app = angular.module('lastMile', [
     'ui.bootstrap',
     'ngMaterial',
     'ui.router',
-    'ngResource'
+    'ngResource',
+    'ngFileUpload'
 
 ]);
 

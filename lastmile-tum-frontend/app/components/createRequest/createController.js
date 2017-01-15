@@ -1,30 +1,35 @@
 angular.module('lastMile')
     .controller('CreateCtrl',
-        function ($scope, Request, userService, $location) {
+        function ($scope, Request, userService, $location, Upload, BACKEND_BASE_URL) {
             $scope.request = new Request();
 
             $scope.postRequest = function () {
-                if($scope.request.pickUpTime > $scope.request.deliverTime){
-                alert("The latest dropoff time lies before the earliest pickup time!")
+                if ($scope.request.pickUpTime > $scope.request.deliverTime) {
+                    alert("The latest dropoff time lies before the earliest pickup time!")
                 }
-                else{
-                $scope.request.requester = userService.getUserName()._id;
-                $scope.request.status = "Open";
-                $scope.request.$save()
-                    .then(function (res) {
-                        alert("request posted successfully");
+                else {
+                    $scope.request.requester = userService.getUserName()._id;
+                    $scope.request.status = "Open";
+
+                    Upload.upload({
+                        url: BACKEND_BASE_URL+'/requests',
+                        data: {
+                            file: $scope.request.picture,
+                            request: $scope.request
+                        }
+                    }).then(function (resp) {
                         $location.path("/myReq");
-                    })
-                    .catch(function (err) {
+                    }).catch(function (resp) {
                         alert("An unexpected error occured");
-                    })
+                    });
+
                 }
             };
 
-            $scope.openDatepickerFrom = function(){
-                $scope.isOpenFrom= true;
+            $scope.openDatepickerFrom = function () {
+                $scope.isOpenFrom = true;
             };
-            $scope.openDatepickerTo = function(){
+            $scope.openDatepickerTo = function () {
                 $scope.isOpenTo = true;
             };
             $scope.dateOptions = {
@@ -32,14 +37,12 @@ angular.module('lastMile')
             };
 
 
-
-
             var initPicSize = function () {
                 var h = $('.pic').height($('.pic').width());
                 $('#picButton').css("margin-top", (h / 2 - 35.42 / 2));
             };
 
-            $scope.initMap = function() {
+            $scope.initMap = function () {
                 var munich = {lat: 48.1548895, lng: 11.4717965};
                 var map = new google.maps.Map(document.getElementById('createMap'), {
                     zoom: 10,
@@ -78,8 +81,10 @@ angular.module('lastMile')
                         return;
                     }
                     if (mode === 'ORIG') {
+                        $scope.request.pickUpLocation = place.name;
                         me.originPlaceId = place.place_id;
                     } else {
+                        $scope.request.deliverToLocation = place.name;
                         me.destinationPlaceId = place.place_id;
                     }
                     me.route();
@@ -105,7 +110,6 @@ angular.module('lastMile')
                     }
                 });
             };
-
 
 
             /**
