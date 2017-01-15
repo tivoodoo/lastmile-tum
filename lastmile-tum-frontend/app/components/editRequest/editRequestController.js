@@ -3,32 +3,39 @@
  */
 angular.module('lastMile')
     .controller('EditRequestCtrl',
-        function ($scope, Request, userService, $location, $rootScope) {
+        function ($scope, Request, userService, $location, $rootScope, Upload, BACKEND_BASE_URL) {
+        $scope.pictureUpdated = false;
             $scope.request = $rootScope.requestToEdit;
             $scope.request.pickUpTime = new Date(moment($scope.request.pickUpTime));
-            $scope.request.deliverTime = new Date( moment($scope.request.deliverTime));
+            $scope.request.deliverTime = new Date(moment($scope.request.deliverTime));
 
-                $scope.updateRequest = function () {
+            $scope.updateRequest = function () {
                 $scope.request.requester = userService.getUserName()._id;
                 $scope.request.status = "Open";
-                $scope.request.$update()
-                    .then(function (res) {
-                        alert("request updated successfully");
-                        $location.path("/myReq");
-                    })
-                    .catch(function (err) {
-                        alert("An unexpected error occured");
-                    })
+
+                Upload.upload({
+                    url: BACKEND_BASE_URL + '/requests/'+$scope.request._id,
+                    data: {
+                        file: $scope.request.picture,
+                        request: $scope.request
+                    },
+                    method: 'PUT'
+                }).then(function (resp) {
+                    alert("request updated successfully");
+                    $location.path("/myReq");
+                }).catch(function (resp) {
+                    alert("An unexpected error occured");
+                });
             };
             $scope.cancelEdit = function () {
                 $location.path("/myReq");
             };
 
 
-            $scope.openDatepickerFrom = function(){
-                $scope.isOpenFrom= true;
+            $scope.openDatepickerFrom = function () {
+                $scope.isOpenFrom = true;
             };
-            $scope.openDatepickerTo = function(){
+            $scope.openDatepickerTo = function () {
                 $scope.isOpenTo = true;
             };
             $scope.dateOptions = {
@@ -36,13 +43,12 @@ angular.module('lastMile')
             };
 
 
-
             var initPicSize = function () {
                 var h = $('.pic').height($('.pic').width());
                 $('#picButton').css("margin-top", (h / 2 - 35.42 / 2));
             };
 
-            $scope.initMap = function() {
+            $scope.initMap = function () {
                 var munich = {lat: 48.1548895, lng: 11.4717965};
                 var map = new google.maps.Map(document.getElementById('createMap'), {
                     zoom: 10,
@@ -124,7 +130,6 @@ angular.module('lastMile')
                     }
                 });
             };
-
 
 
             /**
