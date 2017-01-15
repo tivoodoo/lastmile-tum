@@ -79,8 +79,10 @@ angular.module('lastMile')
                         return;
                     }
                     if (mode === 'ORIG') {
+                        $scope.request.pickUpLocation = place.name;
                         me.originPlaceId = place.place_id;
                     } else {
+                        $scope.request.deliverToLocation = place.name;
                         me.destinationPlaceId = place.place_id;
                     }
                     me.route();
