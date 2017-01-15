@@ -4,12 +4,11 @@ angular.module('lastMile')
             $scope.filterShowed = false;
             $scope.lowPrice = 0;
             $scope.highPrice = 1000;
-            $scope.filtersizeS = 'S';
-            $scope.filtersizeM = 'M';
-            $scope.filtersizeL = 'L';
-            $scope.filtersizeXL = 'XL';
-            //$scope.filterPickupTime = "";
-            //$scope.filterDeliverTime = "";
+            $scope.sizefilters = [];
+            $scope.sizefilters.S = true;
+            $scope.sizefilters.M = true;
+            $scope.sizefilters.L = true;
+            $scope.sizefilters.XL = true;
 
 
             Request.query()
@@ -173,6 +172,21 @@ angular.module('lastMile')
 
         }
     );
+
+app.filter('bysize', function () {
+    return function (requests, sizes) {
+        var items = {
+            sizes: sizes,
+            out: []
+        };
+        angular.forEach(requests, function (value, key) {
+            if (this.sizes[value.size] === true) {
+                this.out.push(value);
+            }
+        }, items);
+        return items.out;
+    };
+});
 
 app.filter("myfilterTo", function ($filter) {
     return function (items, to) {

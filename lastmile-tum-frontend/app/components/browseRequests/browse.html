@@ -15,7 +15,8 @@
                 <div ng-hide="filterShowed">
                     <div id="brRequests">
                         <div class="row requestContainer" ng-repeat="request in requests | filter:{deliverToLocation:filterDeliverToLocation}
-                        | filter:{pickUpLocation:filterPickUpLocation} | filter:filterPrice()|myfilterTo: filterDeliverTime | myfilterFrom: filterPickUpTime |filter:{size: filtersizeS||filtersizeM||filtersizeL||filtersizeXL}">
+                        | filter:{pickUpLocation:filterPickUpLocation} | filter:filterPrice()|myfilterTo: filterDeliverTime
+                        | myfilterFrom: filterPickUpTime |bysize:sizefilters">
 
 
                             <div class="row">
@@ -79,7 +80,8 @@
                                     </table>
                                 </div>
                                 <div class="col-lg-2">
-                                    <img src="./images/football.jpg">
+                                    <img ng-model="request.picture"
+                                         ng-src="data:{{request.picture.contentType}};base64,{{request.picture.data}}"/>
                                 </div>
                             </div>
                             <div class="row">
@@ -171,28 +173,24 @@
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="checkbox">
-                                        <label><input type="checkbox" ng-model="filtersizeS" ng-true-value="'S'"
-                                                      ng-false-value="''">S</label>
+                                        <label><input type="checkbox" ng-model="sizefilters.S" >S</label>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="checkbox">
-                                        <label><input type="checkbox" ng-model="filtersizeM" ng-true-value="'M'"
-                                                      ng-false-value="''">M</label>
+                                        <label><input type="checkbox" ng-model="sizefilters.M" >M</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-offset-3 col-lg-3">
                                     <div class="checkbox">
-                                        <label><input type="checkbox" ng-model="filtersizeL" ng-true-value="'L'"
-                                                      ng-false-value="''">L</label>
+                                        <label><input type="checkbox" ng-model="sizefilters.L">L</label>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="checkbox">
-                                        <label><input type="checkbox" ng-model="filtersizeXL" ng-true-value="'XL'"
-                                                      ng-false-value="''">XL</label>
+                                        <label><input type="checkbox" ng-model="sizefilters.XL" >XL</label>
                                     </div>
                                 </div>
                             </div>
@@ -313,7 +311,9 @@
                             </table>
                         </div>
                         <div class="col-lg-3">
-                            <img src="./images/football.jpg">
+                            <!--<img src="./images/football.jpg">-->
+                            <img ng-model="selectedRequest.picture"
+                                 ng-src="data:{{selectedRequest.picture.contentType}};base64,{{selectedRequest.picture.data}}"/>
                         </div>
                     </div>
                     <hr>
