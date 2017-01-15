@@ -10,6 +10,8 @@ function requestRoutes(passport) {
 
   var router = require('express').Router();
   var unless = require('express-unless');
+    var multiparty = require('connect-multiparty');
+    var multipartyMiddleware = multiparty();
 
   var mw = passport.authenticate('jwt', {session: false});
   mw.unless = unless;
@@ -22,7 +24,7 @@ function requestRoutes(passport) {
    *
    * */
     router.route('/')
-        .post(requestController.postRequest)
+        .post(multipartyMiddleware, requestController.postRequest)
         .get(requestController.getRequests);
 
     router.route('/:request_id')

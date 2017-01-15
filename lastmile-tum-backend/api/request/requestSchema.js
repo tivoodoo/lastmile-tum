@@ -54,6 +54,9 @@ var requestSchema = mongoose.Schema({
     supplier: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
+    },
+    picture: {
+        data: String, contentType: String, name: String
     }
 });
 
