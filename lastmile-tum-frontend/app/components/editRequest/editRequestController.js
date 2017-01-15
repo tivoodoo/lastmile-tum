@@ -5,8 +5,10 @@ angular.module('lastMile')
     .controller('EditRequestCtrl',
         function ($scope, Request, userService, $location, $rootScope) {
             $scope.request = $rootScope.requestToEdit;
+            $scope.request.pickUpTime = new Date(moment($scope.request.pickUpTime));
+            $scope.request.deliverTime = new Date( moment($scope.request.deliverTime));
 
-            $scope.updateRequest = function () {
+                $scope.updateRequest = function () {
                 $scope.request.requester = userService.getUserName()._id;
                 $scope.request.status = "Open";
                 $scope.request.$update()
@@ -46,6 +48,19 @@ angular.module('lastMile')
                     zoom: 10,
                     center: munich
                 });
+                new google.maps.DirectionsService().route({
+                    origin: $scope.request.pickUpLocation,
+                    destination: $scope.request.deliverToLocation,
+                    travelMode: 'DRIVING'
+                }, function (response, status) {
+                    if (status == 'OK') {
+                        // Display the route on the map.
+                        new google.maps.DirectionsRenderer({
+                            map: map,
+                            preserveViewport: false
+                        }).setDirections(response);
+                    }
+                });
                 new AutocompleteDirectionsHandler(map);
             };
             function AutocompleteDirectionsHandler(map) {
@@ -65,6 +80,7 @@ angular.module('lastMile')
                     originInput, {placeIdOnly: true});
                 var destinationAutocomplete = new google.maps.places.Autocomplete(
                     destinationInput, {placeIdOnly: true});
+
                 this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
                 this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
             };
