@@ -18,8 +18,7 @@ angular.module('lastMile')
                 $scope.requests = filteredRequests;
                 $scope.initMap();
 
-                setHeightModalMap();
-                setHeightChatWindow();
+
 
             })
                 .catch(function (err) {
@@ -121,6 +120,8 @@ angular.module('lastMile')
 
             $('#showDetails').on('shown.bs.modal', function () {
                 showDetailsModal();
+                setHeightModalMap();
+                setHeightChatWindow();
             });
 
             var showDetailsModal = function () {
@@ -152,12 +153,10 @@ angular.module('lastMile')
 
             var setHeightModalMap = function () {
                 var modalBodyHeight = $('#showDetails .modal-dialog .modal-body').height();
-                //var firstRowHeight = $('#showDetails .modal-dialog .modal-body #detailsFirst').height();
-                var firstRowHeight = 150;
+                var firstRowHeight = $('#detailsFirst').height();
                 var vrHeight = 43;
                 var mapHeight = modalBodyHeight - firstRowHeight - vrHeight;
                 $('#modalMap').height(mapHeight + "px");
-
             };
 
             var setHeightChatWindow = function () {
@@ -169,7 +168,13 @@ angular.module('lastMile')
                 $('#tableDiv').height(chatHeight + "px");
             };
 
-
+            // make modal.height responsive
+            $(window).resize(function() {
+                if ($('#showDetails').is(":visible")) {
+                    setHeightModalMap();
+                    setHeightChatWindow();
+                }
+            });
         }
     );
 

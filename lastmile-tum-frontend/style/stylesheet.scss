@@ -271,11 +271,18 @@ footer {
 }
 
 #showDetails .modal-dialog {
-  @media (min-width: $screen-md) {
-    width: 45vw;
+  @media (max-width: $screen-xs) {
+    width: 90vw;
   };
-  @media (max-width: $screen-sm,) {
-    width: 60vw;
+
+  @media (min-width: $screen-sm) {
+    width: 75vw;
+  };
+  @media (min-width: $screen-md) {
+    width: 55vw;
+  };
+  @media (min-width: $screen-lg) {
+    width: 45vw;
   };
 }
 #showDetails .modal-title {
@@ -284,13 +291,12 @@ footer {
   text-align: center;
 }
 #showDetails .modal-body {
-  @media (min-width: $screen-md) {
-    height:65vh;
+  @media (max-width: $screen-sm) {
+    height:85vh;
   };
-  /*@media (max-width: $screen-sm,) {
-    //height:70vh;
-  };*/
-
+  @media (min-width: $screen-sm) {
+    height:70vh;
+  };
 }
 #showDetails table{
   margin-left: 15px;
@@ -299,11 +305,9 @@ footer {
   padding: 0px 30px 4px 0px;
 }
 #showDetails img {
+  width: 100%;
   @media (min-width: $screen-md) {
     width: 75%;
-  };
-  @media (max-width: $screen-sm,) {
-    width: 100%;
   };
   margin-left: auto;
   margin-right: auto;
