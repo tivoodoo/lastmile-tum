@@ -172,18 +172,17 @@ footer {
 }
 .lm-content-90 {
   @media (min-width: $screen-xs) {
-    width: 100vw;
     padding: 25px 25px 25px 25px;
   };
   @media (min-width: $screen-sm) {
-    width: 100vw;
-    margin: 0px auto 0;
     padding: 35px 25px 35px 25px;
   };
   @media (min-width: $screen-md) {
+    margin: 0px auto 0;
     width: 90vw;
   }
 }
+
 .lm-content-90 > .row {
   margin: 0px;
 }
