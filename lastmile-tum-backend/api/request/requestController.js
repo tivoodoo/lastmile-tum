@@ -24,7 +24,7 @@ module.exports.postRequest = function (req, res) {
 
     //img
 
-    if (req.files) {
+    if (req.files.file) {
 
         function base64_encode(file) {
             // read binary data
