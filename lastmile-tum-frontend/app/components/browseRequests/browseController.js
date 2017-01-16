@@ -109,10 +109,10 @@ angular.module('lastMile')
                 $scope.filterDeliverToLocation = '';
                 $scope.filterPickUpTime = null;
                 $scope.filterDeliverTime = null;
-                $scope.filtersizeS = 'S';
-                $scope.filtersizeM = 'M';
-                $scope.filtersizeL = 'L';
-                $scope.filtersizeXL = 'XL';
+                $scope.sizefilters.S = true;
+                $scope.sizefilters.M = true;
+                $scope.sizefilters.L = true;
+                $scope.sizefilters.XL = true;
                 $scope.lowPrice = 0;
                 $scope.highPrice = 1000;
 
