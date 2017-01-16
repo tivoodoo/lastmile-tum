@@ -11,14 +11,12 @@
                 <div id="browsemap">
                 </div>
             </div>
-            <div class="col-lg-5" style="height: 60vh; overflow-y: auto;">
+            <div class="col-lg-5" style="height: 60vh;">
                 <div ng-hide="filterShowed">
-                    <div id="brRequests">
+                    <div  class="row" id="brRequests" style="height: 55vh; overflow-y: auto; margin-left: 0px; margin-right: 0px;">
                         <div class="row requestContainer" ng-repeat="request in requests | filter:{deliverToLocation:filterDeliverToLocation}
                         | filter:{pickUpLocation:filterPickUpLocation} | filter:filterPrice()|myfilterTo: filterDeliverTime
                         | myfilterFrom: filterPickUpTime |bysize:sizefilters">
-
-
                             <div class="row">
                                 <div class="col-lg-10">
                                 <span class="requestHeader">
@@ -90,14 +88,12 @@
                                     View details
                                 </button>
                             </div>
-
-
+                            <hr>
                         </div>
-                        <hr>
                     </div>
-                    <div class="row">
+                    <div class="row" style="margin-left: 0px; margin-right: 0px;">
                         <button type="button" class="btn btn-primary bottomR" ng-click="filterShowed = true"
-                                style="width:100px;">
+                                style="width:100px; right:15px;">
                             Filter
                         </button>
                     </div>
