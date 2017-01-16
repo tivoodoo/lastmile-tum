@@ -445,6 +445,12 @@ button.btn.btn-primary.accept {
 #createInput .dragover {
   border: 5px dashed blue;
 }
+
+#browseContent {
+  @media (max-width: $screen-sm) {
+    margin-top: 20px;
+  }
+}
 /*
 a{
   font-family: Muli;
