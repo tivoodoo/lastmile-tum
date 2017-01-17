@@ -161,13 +161,14 @@ footer {
   margin-left: 5px;
 }
 .lm-content {
+  padding: 0px 0px 0px 15px;
   @media (min-width: $screen-sm) {
     min-height: 65vh;
   };
   @media (max-width: $screen-sm) {
     min-height: 50vh;
+    padding: 10px 0px 10px 0px;
   };
-  padding: 0px 0px 0px 15px;
   background-color: white;
 }
 .lm-content-90 {
@@ -268,6 +269,11 @@ footer {
 
 #brRequests{
   height: 55vh;
+}
+
+.modal-dialog {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #showDetails .modal-dialog {
@@ -454,6 +460,25 @@ button.btn.btn-primary.accept {
   @media (max-width: $screen-sm) {
     margin-top: 20px;
   }
+}
+
+#accordionContainer {
+  height: 60vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  @media (max-width: $screen-sm) {
+    padding-top: 20px;
+  };
+  @media (min-width: $screen-xs) {
+    padding: 0px 20px 0px 20px;
+  };
+}
+
+.createRow {
+  @media (max-width: $screen-sm) {
+    margin-left: 0px;
+    margin-right: 0px;
+  };
 }
 /*
 a{
