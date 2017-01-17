@@ -2,55 +2,75 @@
 <div class="part-screen-box">
     <div class="lm-content lm-content-90" ng-controller="MyDelCtrl">
         <div style="height: 60vh; overflow-y: auto; overflow-x: hidden; padding: 0px 20px 0px 20px;">
-            <h2 class="col-log-12" ng-hide="hasRequests">{{createReqText}}</h2>
+            <h2 class="col-xs-12" ng-hide="hasRequests">{{createReqText}}</h2>
             <div class="row reqSmall {{request.status}}" ng-repeat="request in requests">
-                <div class="col-lg-10">
-                    <span class="requestHeader">
-                        {{request.name}}
-                    </span>
-                    <table>
-                        <tr>
-                            <td class="tf">
-                                From:
-                            </td>
-                            <td class="tf">
-                                {{request.pickUpLocation}}
-                            </td>
-                            <td class="tf">
-                                Earliest pickup:
-                            </td>
-                            <td class="tf">
-                                {{request.pickUpTime | date : fullDate}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tf">
-                                To:
-                            </td>
-                            <td class="tf">
-                                {{request.deliverToLocation}}
-                            </td>
-                            <td class="tf">
-                                Latest dropoff:
-                            </td>
-                            <td class="tf">
-                                {{request.deliverTime | date : fullDate}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tf">
-                                Size:
-                            </td>
-                            <td class="tf">
-                                {{request.size}}
-                            </td>
-                            <td class="tf">
-                                Price:
-                            </td>
-                            <td class="tf">
-                                {{request.price}}
-                            </td>
-                        </tr>
+                <div class="col-md-10 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-9">
+                            <span class="requestHeader ">
+                                {{request.name}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-7 col-xs-6">
+                            <table>
+                                <tr>
+                                    <td class="tf">
+                                        From:
+                                    </td>
+                                    <td class="tf">
+                                        {{request.pickUpLocation}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tf">
+                                        To:
+                                    </td>
+                                    <td class="tf">
+                                        {{request.deliverToLocation}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tf">
+                                        Size:
+                                    </td>
+                                    <td class="tf">
+                                        {{request.size}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-lg-5 col-xs-6">
+                            <table>
+                                <tr>
+                                    <td class="tf">
+                                        Earliest pickup:
+                                    </td>
+                                    <td class="tf">
+                                        {{request.pickUpTime | date : fullDate}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tf">
+                                        Latest dropoff:
+                                    </td>
+                                    <td class="tf">
+                                        {{request.deliverTime | date : fullDate}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tf">
+                                        Price:
+                                    </td>
+                                    <td class="tf">
+                                        {{request.price}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                        <!--
                         <tr>
                             <td class="tf">
                                 Description:
@@ -59,10 +79,35 @@
                                 {{request.description}}
                             </td>
                         </tr>
-
-                    </table>
+                        -->
+                    <div class="row hidden-md hidden-lg" style="margin-left: 0px; margin-right: 0px">
+                        <div class="btn-group" uib-dropdown dropdown-append-to-body style="width:100%; margin-top: 10px;">
+                            <button type="button" class="btn btn-blanc" uib-dropdown-toggle
+                                    style="width:100%;">
+                                Menu <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                                <li role="menuitem"><a ng-show="request.status=='Accepted'">Confirm delivery</a></li>
+                                <!-- Accepted-->
+                                <li class="divider" ng-show="request.status=='Accepted'"></li>
+                                <li role="menuitem"><a
+                                        ng-show="request.status=='Accepted' || request.status=='Confirmed'">Write
+                                    message</a></li><!-- Accepted Confirmed-->
+                                <li role="menuitem"><a
+                                        ng-show="request.status=='Accepted' || request.status=='Confirmed'">Deliverer's
+                                    profile</a></li><!-- Accepted Confirmed-->
+                                <li role="menuitem"><a ng-show="request.status=='Confirmed'">Rate deliverer</a></li>
+                                <!-- Confirmed-->
+                                <li role="menuitem"><a ng-show="request.status=='Open' || request.status=='Expired'" ng-click="editRequest(request)">Edit
+                                    request</a></li><!-- Open Expired-->
+                                <li class="divider" ng-show="request.status=='Accepted' || request.status=='Open'"></li>
+                                <li role="menuitem"><a ng-show="request.status=='Accepted' || request.status=='Open'  || request.status=='Expired'" ng-click="deleteRequest(request)">Delete
+                                    request</a></li><!-- Open Accepted-->
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-2 reqStatusMenu">
+                <div class="col-md-2 hidden-xs hidden-sm reqStatusMenu">
                      <span>
                         {{request.status}}
                     </span>
