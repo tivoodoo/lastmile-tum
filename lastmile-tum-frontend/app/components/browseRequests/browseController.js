@@ -14,12 +14,8 @@ angular.module('lastMile')
             Request.query()
                 .$promise.then(function (data) {
                 var filteredRequests = $filter('filter')(data, {status: "Open"});
-                $scope.requestsBackup = filteredRequests;
                 $scope.requests = filteredRequests;
-                $scope.initMap();
-
-
-
+                $scope.initMap($scope.requests);
             })
                 .catch(function (err) {
                     console.log(err);
@@ -53,13 +49,13 @@ angular.module('lastMile')
             };
 
 
-            $scope.initMap = function () {
+            $scope.initMap = function (reqarray) {
                 var centerGer = {lat: 51.1657, lng: 10.4515};
                 var map1 = new google.maps.Map(document.getElementById('browsemap'), {
                     center: centerGer,
                     zoom: 6
                 });
-                angular.forEach($scope.requests, function (request) {
+                angular.forEach(reqarray, function (request) {
                     new google.maps.DirectionsService().route({
                         origin: request.pickUpLocation,
                         destination: request.deliverToLocation,
@@ -78,10 +74,11 @@ angular.module('lastMile')
 
             //-------------------FILTERING-----------------
             $scope.applyFilter = function () {
-                if ($scope.filterDeliverTime && $scope.filterPickUpTime && moment($scope.filterDeliverTime )< moment($scope.filterPickUpTime )) {
+                if ($scope.filterDeliverTime && $scope.filterPickUpTime && moment($scope.filterDeliverTime) < moment($scope.filterPickUpTime)) {
                     alert("The earliest pickup filter date needs to be sooner than the latest dropoff filter date");
                 }
-                else{
+                else {
+                    $scope.initMap($scope.filteredRequests);
                     $scope.filterShowed = false;
                 }
             };
@@ -116,6 +113,7 @@ angular.module('lastMile')
                 $scope.highPrice = 1000;
 
                 $scope.filterShowed = false;
+                $scope.initMap($scope.requests);
             };
 
             $('#showDetails').on('shown.bs.modal', function () {
@@ -169,7 +167,7 @@ angular.module('lastMile')
             };
 
             // make modal.height responsive
-            $(window).resize(function() {
+            $(window).resize(function () {
                 if ($('#showDetails').is(":visible")) {
                     setHeightModalMap();
                     setHeightChatWindow();
@@ -196,7 +194,7 @@ app.filter('bysize', function () {
 app.filter("myfilterTo", function ($filter) {
     return function (items, to) {
         return $filter('filter')(items, function (value, index, array) {
-            if ( to == null) {
+            if (to == null) {
                 return true;
             }
             else {
@@ -209,7 +207,7 @@ app.filter("myfilterTo", function ($filter) {
 app.filter("myfilterFrom", function ($filter) {
     return function (items, from) {
         return $filter('filter')(items, function (value, index, array) {
-            if ( from == null) {
+            if (from == null) {
                 return true;
             }
             else {
