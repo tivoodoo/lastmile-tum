@@ -6,12 +6,12 @@
                 <h3>Personal details</h3>
                 <div class="row">
                     <div class="row">
-                        <div class="col-lg-7">
+                        <div class="col-lg-7 col-md-8 col-sm-9">
                             <div class="row">
-                                <div class="col-lg-3">
+                                <div class="col-sm-3 req-input-label">
                                     First Name:
                                 </div>
-                                <div class="col-lg-9">
+                                <div class="col-sm-9">
                                     <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
                                         <input type="text" class="form-control" ng-model="user.firstName" placeholder="Insert first name"
                                                style="opacity:0.9" required/>
@@ -19,10 +19,10 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-3">
+                                <div class="col-sm-3 req-input-label">
                                     Last Name:
                                 </div>
-                                <div class="col-lg-9">
+                                <div class="col-sm-9">
                                     <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
                                         <input type="text" class="form-control" ng-model="user.lastName" placeholder="Insert last name"
                                                style="opacity:0.9" required/>
@@ -30,16 +30,16 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-3">
+                                <div class="col-sm-3 col-xs-12 req-input-label">
                                     Street/Nr:
                                 </div>
-                                <div class="col-lg-7">
+                                <div class="col-md-7 col-sm-6 col-xs-9">
                                     <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
                                         <input type="text" class="form-control" ng-model="user.street" placeholder="Insert street"
                                                style="opacity:0.9" required/>
                                     </div>
                                 </div>
-                                <div class="col-lg-2">
+                                <div class="col-md-2 col-sm-3 col-xs-3">
                                     <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
                                         <input type="text" class="form-control" ng-model="user.number" placeholder="Nr."
                                                style="opacity:0.9" required/>
@@ -47,16 +47,16 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-3">
+                                <div class="col-sm-3 col-xs-12 req-input-label">
                                     Town/Zip:
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-md-6 col-sm-5 col-xs-8">
                                     <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
                                         <input type="text" class="form-control" ng-model="user.town" placeholder="Insert town"
                                                style="opacity:0.9" required/>
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-md-3 col-sm-4 col-xs-4">
                                     <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
                                         <input type="text" class="form-control" ng-model="user.zipCode" placeholder="Zip"
                                                style="opacity:0.9" required/>
@@ -64,10 +64,10 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-3">
+                                <div class="col-sm-3 req-input-label">
                                     Telephone:
                                 </div>
-                                <div class="col-lg-9">
+                                <div class="col-sm-9">
                                     <div class="form-group has-feedback" ng-class="{'has-error': errorText}"
                                          style="margin-bottom: 0px;">
                                         <input type="text" class="form-control" ng-model="user.telephone" placeholder="Insert telephone"
@@ -76,13 +76,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-5">
+                        <div class="col-lg-5 col-md-4 col-sm-3">
                             <div class="row" style="margin-top:20px;">
-                                <div class="col-lg-offset-4 col-lg-4 pic" style="border: 1px solid #999;">
+                                <div class="col-xs-offset-4 col-xs-4 pic" style="border: 1px solid #999;">
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-offset-4 col-lg-4">
+                                <div class="col-sm-12">
                                     <button type="button" class="btn btn-primary" ng-click="uploadImage()"
                                             style="display: block; margin: 15px auto 0px auto;">Upload Image</button>
                                 </div>
