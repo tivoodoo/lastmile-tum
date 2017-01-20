@@ -12,6 +12,8 @@ function userRoutes(passport) {
 
   var userController = require('./userController');
   var router = require('express').Router();
+    var multiparty = require('connect-multiparty');
+    var multipartyMiddleware = multiparty();
 
   /*
    * REST API for POST {ROOT}/user/login
@@ -39,7 +41,7 @@ function userRoutes(passport) {
    * */
   router.route('/:user_id')
       .get(passport.authenticate('jwt', {session: false}), userController.getUser)
-      .put( passport.authenticate('jwt', {session: false}), userController.updateUser);
+      .put(multipartyMiddleware, passport.authenticate('jwt', {session: false}), userController.updateUser);
 
   /*
    * REST API for GET {ROOT}/user/rating

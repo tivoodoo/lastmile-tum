@@ -14,7 +14,6 @@ var dummyPassword = 'defaultPasswordNothingHasChanged!md7nb1320';
  *
  * */
 module.exports.login = function (req, res) {
-    console.log(req.body.password);
     if (!req.body.email) {
         res.status(status.BAD_REQUEST).send('Email required');
         return;
@@ -24,7 +23,6 @@ module.exports.login = function (req, res) {
         res.status(status.BAD_REQUEST).send('Password required');
         return;
     }
-
     User.findOne({'email': req.body.email}, function (err, user) {
         if (err) {
             res.status(status.INTERNAL_SERVER_ERROR).send(err);
@@ -148,46 +146,101 @@ module.exports.updateUser = function (req, res) {
         console.log("Password not changed")
     }
 
-    User.findByIdAndUpdate(
-        req.params.user_id,
-        {
-            //Purposely choose field from request because only some property from the request should be updated
-            $set: {
-                'firstName': req.body.firstName,
-                'lastName': req.body.lastName,
-                'sex': req.body.sex,
-                'email': req.body.email,
-                'birthday': req.body.birthday,
-                'street': req.body.street,
-                'number': req.body.number,
-                'zipCode': req.body.zipCode,
-                'town': req.body.town,
-                'telephone': req.body.telephone,
-                'trunkSize': req.body.trunkSize,
-                'picture': req.body.picture,
-            }
-        },
-        {
-            //Pass the new object to cb function
-            new: true,
-            //Run validations
-            runValidators: true
-        },
-        function (err, user) {
-            if (err) {
-                console.log(err);
-                res.status(status.INTERNAL_SERVER_ERROR).send(err);
-                return;
-            }
+    var fs = require('fs');
+    function base64_encode(file) {
+        // read binary data
+        var bitmap = fs.readFileSync(file);
+        // convert binary data to base64 encoded string
+        return new Buffer(bitmap).toString('base64');
+    }
 
-            //In getUser, hashed password shouldn't be sent to client (To avoid hacker who wants to collect hash table)
-            //TRICK: a dummy password value is used to check whether password has changed or not
-            //In backend, before updating, the "new" password will be compared with this dummy password value to check whether password has changed or not
-            user.password = dummyPassword;
+    if (req.files.file) {
 
-            res.json(user);
-        }
-    );
+        User.findByIdAndUpdate(
+            req.params.user_id,
+            {
+                //Purposely choose field from request because only some property from the request should be updated
+                $set: {
+                    'firstName': req.body.firstName,
+                    'lastName': req.body.lastName,
+                    'sex': req.body.sex,
+                    'email': req.body.email,
+                    'birthday': req.body.birthday,
+                    'street': req.body.street,
+                    'number': req.body.number,
+                    'zipCode': req.body.zipCode,
+                    'town': req.body.town,
+                    'telephone': req.body.telephone,
+                    'trunkSize': req.body.trunkSize,
+                    'picture.data': base64_encode(req.files.file.path),
+                    'picture.contentType': req.files.file.type,
+                    'picture.name': req.files.file.name
+                }
+            },
+            {
+                //Pass the new object to cb function
+                new: true,
+                //Run validations
+                runValidators: true
+            },
+            function (err, user) {
+                if (err) {
+                    console.log(err);
+                    res.status(status.INTERNAL_SERVER_ERROR).send(err);
+                    return;
+                }
+
+                //In getUser, hashed password shouldn't be sent to client (To avoid hacker who wants to collect hash table)
+                //TRICK: a dummy password value is used to check whether password has changed or not
+                //In backend, before updating, the "new" password will be compared with this dummy password value to check whether password has changed or not
+                user.password = dummyPassword;
+
+                res.json(user);
+            }
+        );
+    }
+    else {
+
+        User.findByIdAndUpdate(
+            req.params.user_id,
+            {
+                //Purposely choose field from request because only some property from the request should be updated
+                $set: {
+                    'firstName': req.body.firstName,
+                    'lastName': req.body.lastName,
+                    'sex': req.body.sex,
+                    'email': req.body.email,
+                    'birthday': req.body.birthday,
+                    'street': req.body.street,
+                    'number': req.body.number,
+                    'zipCode': req.body.zipCode,
+                    'town': req.body.town,
+                    'telephone': req.body.telephone,
+                    'trunkSize': req.body.trunkSize
+                }
+            },
+            {
+                //Pass the new object to cb function
+                new: true,
+                //Run validations
+                runValidators: true
+            },
+            function (err, user) {
+                if (err) {
+                    console.log(err);
+                    res.status(status.INTERNAL_SERVER_ERROR).send(err);
+                    return;
+                }
+
+                //In getUser, hashed password shouldn't be sent to client (To avoid hacker who wants to collect hash table)
+                //TRICK: a dummy password value is used to check whether password has changed or not
+                //In backend, before updating, the "new" password will be compared with this dummy password value to check whether password has changed or not
+                user.password = dummyPassword;
+
+                res.json(user);
+            }
+        );
+    }
 };
 
 
