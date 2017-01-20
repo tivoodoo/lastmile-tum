@@ -16,10 +16,17 @@
                                     First Name:
                                 </div>
                                 <div class="col-sm-9">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" ng-model="reg.firstName"
-                                               placeholder="First Name"
-                                               name="firstName" style="opacity:0.9" required/>
+                                    <div class="form-group" ng-class="{'has-error': !step1.firstname.$valid && !step1.firstname.$pristine}">
+                                        <input type="text" class="form-control" name="firstname" id="firstname"
+                                               ng-model="reg.firstName"
+                                               uib-popover="{{(step1.firstname.$invalid && step1.firstname.$pristine) || (step1.firstname.$valid) ? '' : 'Please enter your first name.'}}"
+                                               popover-placement="top" popover-trigger="focus"
+                                               placeholder="First Name" required/>
+                                        <span class="glyphicon glyphicon-remove form-control-feedback"
+                                              ng-show="step1.firstname.$invalid && !step1.firstname.$pristine"></span>
+                                        <span class="glyphicon glyphicon-ok form-control-feedback"
+                                              style="color:green"
+                                              ng-show="step1.firstname.$valid"></span>
                                     </div>
                                 </div>
                             </div>
@@ -28,10 +35,16 @@
                                     Last Name:
                                 </div>
                                 <div class="col-sm-9">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" ng-model="reg.lastName"
-                                               placeholder="Last Name"
-                                               name="lastName" style="opacity:0.9" required/>
+                                    <div class="form-group" ng-class="{'has-error': !step1.lastname.$valid && !step1.lastname.$pristine}">
+                                        <input type="text" class="form-control" name="lastname" id="lastname"
+                                               uib-popover="{{(step1.lastname.$invalid && step1.lastname.$pristine) || (step1.lastname.$valid) ? '' : 'Please enter your last name.'}}"
+                                               popover-placement="top" popover-trigger="focus"
+                                               ng-model="reg.lastName" placeholder="First Name" required/>
+                                        <span class="glyphicon glyphicon-remove form-control-feedback"
+                                              ng-show="step1.lastname.$invalid && !step1.lastname.$pristine"></span>
+                                        <span class="glyphicon glyphicon-ok form-control-feedback"
+                                              style="color:green"
+                                              ng-show="step1.lastname.$valid"></span>
                                     </div>
                                 </div>
                             </div>
@@ -40,11 +53,16 @@
                                     Email address:
                                 </div>
                                 <div class="col-sm-9">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" ng-model="reg.email"
-                                               placeholder="Email address"
-                                               name="email"
-                                               style="opacity:0.9" required/>
+                                    <div class="form-group" ng-class="{'has-error': !step1.email.$valid && !step1.email.$pristine}">
+                                        <input type="email" class="form-control" ng-model="reg.email"
+                                               placeholder="Email address" name="email" id="email"
+                                               uib-popover="{{(step1.email.$invalid && step1.email.$pristine) || (step1.email.$valid) ? '' : 'Please enter your email address.'}}"
+                                               popover-placement="top" popover-trigger="focus" required/>
+                                        <span class="glyphicon glyphicon-remove form-control-feedback"
+                                              ng-show="step1.email.$invalid && !step1.email.$pristine"></span>
+                                        <span class="glyphicon glyphicon-ok form-control-feedback"
+                                              style="color:green"
+                                              ng-show="step1.email.$valid"></span>
                                     </div>
                                 </div>
                             </div>
@@ -53,11 +71,34 @@
                                     Password:
                                 </div>
                                 <div class="col-sm-9">
-                                    <div class="form-group">
-                                        <input type="password" class="form-control" ng-model="reg.password"
-                                               placeholder="Password"
-                                               name="pass"
-                                               style="opacity:0.9" required/>
+                                    <div class="form-group" ng-class="{'has-error': !step1.pwd.$valid && !step1.pwd.$pristine}" >
+                                        <input type="password" class="form-control" id="password" name="pwd" ng-model="reg.password"
+                                               uib-popover="{{(step1.pwd.$invalid && step1.pwd.$pristine) || (step1.pwd.$valid) ? '' : 'Please enter a password.'}}"
+                                               popover-placement="top"
+                                               popover-trigger="focus"
+                                               placeholder="Password" required/>
+                                        <span class="glyphicon glyphicon-remove form-control-feedback"
+                                              ng-show="step1.pwd.$invalid && !step1.pwd.$pristine"></span>
+                                        <span class="glyphicon glyphicon-ok form-control-feedback"
+                                              style="color:green" ng-show="step1.pwd.$valid"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-offset-3 col-sm-9">
+                                    <div class="form-group" ng-class="{'has-error': !step1.pwdConfirm.$valid && !step1.pwdConfirm.$pristine}">
+                                        <input type="password" class="form-control" name="pwdConfirm"
+                                               id="passwordConfirm" ng-model="password"
+                                               uib-popover="{{(step1.pwdConfirm.$invalid && step1.pwdConfirm.$pristine) || (step1.pwdConfirm.$valid) ? '' : 'Must match the previous entry.'}}"
+                                               popover-placement="top"
+                                               popover-trigger="focus" placeholder="Repeat password" required
+                                               compare-to="reg.password"/>
+                                        <span class="glyphicon glyphicon-remove form-control-feedback"
+                                              aria-hidden="true"
+                                              ng-show="step1.pwdConfirm.$invalid && !step1.pwdConfirm.$pristine"></span>
+                                        <span class="glyphicon glyphicon-ok form-control-feedback"
+                                              aria-hidden="true" style="color:green"
+                                              ng-show="step1.pwdConfirm.$valid"></span>
                                     </div>
                                 </div>
                             </div>
@@ -66,10 +107,10 @@
                             <button type="button" class="btn btn-default" data-dismiss="modal"
                                     ng-click="reg.clearInput()">Close
                             </button>
-                            <button type="submit" class="btn btn-primary" class="close">
-                                <!--ng-disabled="logIn.$invalid" uib-popover="{{errorText}}"
-                                popover-placement="bottom" popover-trigger="click"
-                                -->Create account
+                            <button type="submit" class="btn btn-primary" class="close"
+                                ng-disabled="step1.$invalid" uib-popover="{{errorText}}"
+                                popover-placement="bottom" popover-trigger="click">
+                                Create account
                             </button>
                         </div>
                     </div><!-- /.modal-content -->

@@ -33,6 +33,7 @@ angular.module('lastMile')
         $.clearInput = function () {
             $('form').find('input[type=text], input[type=password], input[type=number], input[type=email], textarea').val('');
         };
+
         $('#showLogin').on('hidden.bs.modal', function () {
             $.clearInput();
         });
