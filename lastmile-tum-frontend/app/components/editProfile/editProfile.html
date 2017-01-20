@@ -1,7 +1,7 @@
 <lm-header text="Edit profile" img="images/d.jpg"></lm-header>
 <div class="part-screen-box">
     <div class="lm-content lm-content-90" ng-controller="EditProfileCtrl">
-        <div style="height: 60vh; overflow-y: auto; overflow-x: hidden; padding: 0px 20px 0px 20px;">
+        <div id="accordionContainer">
             <div id="accordion">
                 <h3>Personal details</h3>
                 <div class="row">
@@ -13,8 +13,7 @@
                                 </div>
                                 <div class="col-sm-9">
                                     <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                        <input type="text" class="form-control" ng-model="user.firstName"
-                                               placeholder="Insert first name"
+                                        <input type="text" class="form-control" ng-model="user.firstName" placeholder="Insert first name"
                                                style="opacity:0.9" required/>
                                     </div>
                                 </div>
@@ -25,8 +24,7 @@
                                 </div>
                                 <div class="col-sm-9">
                                     <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                        <input type="text" class="form-control" ng-model="user.lastName"
-                                               placeholder="Insert last name"
+                                        <input type="text" class="form-control" ng-model="user.lastName" placeholder="Insert last name"
                                                style="opacity:0.9" required/>
                                     </div>
                                 </div>
@@ -37,8 +35,7 @@
                                 </div>
                                 <div class="col-md-7 col-sm-6 col-xs-9">
                                     <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                        <input type="text" class="form-control" ng-model="user.street"
-                                               placeholder="Insert street"
+                                        <input type="text" class="form-control" ng-model="user.street" placeholder="Insert street"
                                                style="opacity:0.9" required/>
                                     </div>
                                 </div>
@@ -55,15 +52,13 @@
                                 </div>
                                 <div class="col-md-6 col-sm-5 col-xs-8">
                                     <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                        <input type="text" class="form-control" ng-model="user.town"
-                                               placeholder="Insert town"
+                                        <input type="text" class="form-control" ng-model="user.town" placeholder="Insert town"
                                                style="opacity:0.9" required/>
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-sm-4 col-xs-4">
                                     <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                        <input type="text" class="form-control" ng-model="user.zipCode"
-                                               placeholder="Zip"
+                                        <input type="text" class="form-control" ng-model="user.zipCode" placeholder="Zip"
                                                style="opacity:0.9" required/>
                                     </div>
                                 </div>
@@ -75,34 +70,21 @@
                                 <div class="col-sm-9">
                                     <div class="form-group has-feedback" ng-class="{'has-error': errorText}"
                                          style="margin-bottom: 0px;">
-                                        <input type="text" class="form-control" ng-model="user.telephone"
-                                               placeholder="Insert telephone"
+                                        <input type="text" class="form-control" ng-model="user.telephone" placeholder="Insert telephone"
                                                style="opacity:0.9" required/>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                       <div ngf-drop class="col-lg-5 col-md-4 col-sm-3" ng-model="user.picture"
-                             ngf-drag-over-class="'imageDragover'" ngf-multiple="false">
+                        <div class="col-lg-5 col-md-4 col-sm-3">
                             <div class="row" style="margin-top:20px;">
-                                <div class="col-xs-offset-4 col-xs-4 pic" style="border: 1px solid #999;"
-                                     ng-hide="user.picture">
-                                </div>
-                                <div ng-show="user.picture">
-                                    <div class="thumbnail" ng-show="user.picture">
-                                        <img ngf-thumbnail="user.picture" id="userPicture">
-                                    </div>
-                                    <button ng-show="user.picture" ng-click="user.picture = null">
-                                        Remove
-                                    </button>
+                                <div class="col-xs-offset-4 col-xs-4 pic" style="border: 1px solid #999;">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <button type="button" class="btn btn-primary" ngf-select ng-model="user.picture"
-                                            ngf-multiple="false"
-                                            style="display: block; margin: 15px auto 0px auto;">Upload Image
-                                    </button>
+                                    <button type="button" class="btn btn-primary" ng-click="uploadImage()"
+                                            style="display: block; margin: 15px auto 0px auto;">Upload Image</button>
                                 </div>
                             </div>
                         </div>
@@ -111,30 +93,30 @@
                 <h3>Car details</h3>
                 <div class="row">
                     <div class="row">
-                        <div class="col-lg-2">
+                        <div class="col-xs-2">
                             Trunk size:
                         </div>
-                        <div class="col-lg-10">
+                        <div class="col-xs-10">
                             <div class="row">
-                                <div class="col-lg-3">
+                                <div class="col-xs-3">
                                     <div class="radio" style="margin: 0px;">
                                         <label><input type="radio" name="sizeRadio"
                                                       ng-model="user.trunkSize" value="S">S</label>
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-xs-3">
                                     <div class="radio" style="margin: 0px;">
                                         <label><input type="radio" name="sizeRadio"
                                                       ng-model="user.trunkSize" value="M">M</label>
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-xs-3">
                                     <div class="radio" style="margin: 0px;">
                                         <label><input type="radio" name="sizeRadio"
                                                       ng-model="user.trunkSize" value="L">L</label>
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-xs-3">
                                     <div class="radio" style="margin: 0px;">
                                         <label><input type="radio" name="sizeRadio"
                                                       ng-model="user.trunkSize" value="XL">XL</label>
@@ -144,6 +126,7 @@
                         </div>
                     </div>
                 </div>
+                <!--
                 <h3>Periodic journeys</h3>
                 <div>
                     <p>
@@ -158,39 +141,40 @@
                         <li>List item three</li>
                     </ul>
                 </div>
+                -->
                 <h3>Payment information</h3>
-                <div class="row">
                     <div class="row">
-                        <div class="col-lg-2">
-                            IBAN:
+                        <div class="row">
+                            <div class="col-sm-2 req-input-label">
+                                IBAN:
+                            </div>
+                            <div class="col-sm-10">
+                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                    <input type="text" class="form-control" ng-model="iban" placeholder="Insert IBAN"
+                                           style="opacity:0.9" required/>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-lg-10">
-                            <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                <input type="text" class="form-control" ng-model="iban" placeholder="Insert IBAN"
-                                       style="opacity:0.9" required/>
+                        <div class="row">
+                            <div class="col-sm-2 req-input-label">
+                                BIC:
+                            </div>
+                            <div class="col-sm-10">
+                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}"
+                                     style="margin-bottom:0px;">
+                                    <input type="text" class="form-control" ng-model="bic" placeholder="Insert BIC"
+                                           style="opacity:0.9" required/>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-2">
-                            BIC:
-                        </div>
-                        <div class="col-lg-10">
-                            <div class="form-group has-feedback" ng-class="{'has-error': errorText}"
-                                 style="margin-bottom:0px;">
-                                <input type="text" class="form-control" ng-model="bic" placeholder="Insert BIC"
-                                       style="opacity:0.9" required/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <h3>Change password</h3>
                 <div class="row">
                     <div class="row">
-                        <div class="col-lg-2">
+                        <div class="col-sm-2 req-input-label">
                             Password:
                         </div>
-                        <div class="col-lg-10">
+                        <div class="col-sm-10">
                             <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
                                 <input type="text" class="form-control" ng-model="pswd1" placeholder="Password"
                                        style="opacity:0.9" required/>
@@ -198,10 +182,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-2">
+                        <div class="col-sm-2 req-input-label">
                             Confirm password:
                         </div>
-                        <div class="col-lg-10">
+                        <div class="col-sm-10">
                             <div class="form-group has-feedback" ng-class="{'has-error': errorText}"
                                  style="margin-bottom:0px;">
                                 <input type="text" class="form-control" ng-model="pswd2" placeholder="Password"
@@ -212,20 +196,17 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-offset-10 col-lg-2" style="padding-left:0px; margin-top:15px;">
+                <div class="col-sm-offset-10 col-sm-2" style="padding-left:0px; margin-top:15px;">
                     <a href="/">
                         <button type="button" class="btn btn-danger" ng-click="" style="width:45%;">Cancel</button>
                     </a>
-                    <button type="button" class="btn btn-primary right" style="width:45%;" ng-click="updateUser()">
-                        Save
-                    </button>
+                    <button type="button" class="btn btn-primary right" style="width:45%;" ng-click="updateUser()">Save</button>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-offset-10 col-lg-2" style="padding-left:0px; margin-top:15px;">
+                <div class="col-sm-offset-10 col-sm-2" style="padding-left:0px; margin-top:15px;">
                     <button type="button" class="btn btn-primary right" style="width:100%;"
-                            data-toggle="modal" data-target="#showDetails">View profile
-                    </button>
+                            data-toggle="modal" data-target="#showDetails">View profile</button>
                 </div>
             </div>
         </div>
