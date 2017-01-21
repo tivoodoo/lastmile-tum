@@ -145,16 +145,17 @@ module.exports.updateUser = function (req, res) {
     else {
         console.log("Password not changed")
     }
-
-    var fs = require('fs');
-    function base64_encode(file) {
-        // read binary data
-        var bitmap = fs.readFileSync(file);
-        // convert binary data to base64 encoded string
-        return new Buffer(bitmap).toString('base64');
-    }
-
+    console.log(req.body);
     if (req.files.file) {
+
+        var fs = require('fs');
+
+        function base64_encode(file) {
+            // read binary data
+            var bitmap = fs.readFileSync(file);
+            // convert binary data to base64 encoded string
+            return new Buffer(bitmap).toString('base64');
+        }
 
         User.findByIdAndUpdate(
             req.params.user_id,
@@ -172,9 +173,11 @@ module.exports.updateUser = function (req, res) {
                     'town': req.body.town,
                     'telephone': req.body.telephone,
                     'trunkSize': req.body.trunkSize,
-                    'picture.data': base64_encode(req.files.file.path),
-                    'picture.contentType': req.files.file.type,
-                    'picture.name': req.files.file.name
+                    'picture': {
+                        'data': base64_encode(req.files.file.path),
+                        'contentType': req.files.file.type,
+                        'name': req.files.file.name
+                    }
                 }
             },
             {
@@ -216,7 +219,8 @@ module.exports.updateUser = function (req, res) {
                     'zipCode': req.body.zipCode,
                     'town': req.body.town,
                     'telephone': req.body.telephone,
-                    'trunkSize': req.body.trunkSize
+                    'trunkSize': req.body.trunkSize,
+                    'picture' : null
                 }
             },
             {

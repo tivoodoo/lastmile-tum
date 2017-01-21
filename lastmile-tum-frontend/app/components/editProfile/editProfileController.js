@@ -2,29 +2,37 @@ angular.module('lastMile')
     .controller('EditProfileCtrl',
         function ($scope, User, userService, Upload, BACKEND_BASE_URL) {
 
-
+            $scope.pictureUpdated = false;
             $scope.user = User.get({userID: userService.getUserName()._id});
 
 
             $scope.updateUser = function () {
-                console.log($scope.user);
                 var userID = userService.getUserName()._id;
                 Upload.upload({
                     url: BACKEND_BASE_URL + '/user/'+userID,
                     data: {
-                        //file: $scope.user.picture,
-                        //Daran scheitert's im Moment. Immer wenn ich $scope.user übergebe, erhalte ich die Fehlermeldung:
-                        // Possibly unhandled rejection: ngFileUpload: Circular reference in config.data. Make sure specified data for Upload.upload() has no circular reference: user[$promise][$state][value]
-                        // Also, dass sich irgendwas im $scope.user object immer wieder selbst aufruft aber ich versteh nicht was. Ich log das am Anfang der updateUser function auch raus und da ist mir nichts besonderes daran aufgefallen...
-                        user: $scope.user
+                        file: $scope.user.picture,
+                        _id: $scope.user._id,
+                        email: $scope.user.email,
+                        sex: $scope.user.sex,
+                        birthday: $scope.user.birthday,
+                        firstName: $scope.user.firstName,
+                        lastName: $scope.user.lastName,
+                        street: $scope.user.street,
+                        number: $scope.user.number,
+                        zipCode: $scope.user.zipCode,
+                        town: $scope.user.town,
+                        telephone: $scope.user.telephone,
+                        trunkSize: $scope.user.trunkSize,
+                        password: $scope.user.password
                     }
                     ,method: 'PUT'
-                });
-                /*.then(function (resp) {
+                })
+                .then(function (resp) {
                  alert("user successfully updated");
                  }).catch(function (resp) {
                  alert("error while updating user");
-                 });*/
+                 });
             };
             var initPicSize = function () {
                 $('.pic').height($('.pic').width());
