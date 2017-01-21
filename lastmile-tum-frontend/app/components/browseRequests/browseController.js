@@ -1,6 +1,6 @@
 angular.module('lastMile')
     .controller('BrowseCtrl',
-        function ($scope, Request, $filter, $uibModal, $location, userService) {
+        function ($scope, $rootScope, Request, $filter, $uibModal, $location, userService) {
             $scope.filterShowed = false;
             $scope.lowPrice = 0;
             $scope.highPrice = 1000;
@@ -25,7 +25,12 @@ angular.module('lastMile')
 
             $scope.selectRequest = function (req) {
                 $scope.selectedRequest = req;
+                $rootScope.selectedRequestId = req._id;
             };
+
+            $scope.goToRequestDetail = function (){
+              console.log("go to request derail");
+            }
 
             $scope.accept = function () {
                 $scope.selectedRequest.supplier = userService.getUserName()._id

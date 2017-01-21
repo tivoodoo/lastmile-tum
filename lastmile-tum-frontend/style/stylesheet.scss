@@ -486,6 +486,51 @@ button.btn.btn-primary.accept {
 .form-control-feedback {
   right: 17px !important;
 }
+
+.chatbox {
+  width: 100%;
+  height: 150px;
+  border: 1px solid lightgrey;
+  overflow: auto;
+  margin-top: 10px;
+}
+
+.event-box-140 {
+  float: left;
+  width: 140px;
+}
+
+.chat-headline {
+  height: 41px;
+  line-height: 41px;
+  margin-bottom: 2px;
+}
+
+.event-box-entry:not(:last-child) {
+  border-bottom: 1px solid #eee;
+}
+
+.event-box-info-text {
+  color: grey;
+  font-size: 9pt;
+  white-space: nowrap;
+}
+
+.chat-input {
+  float: left;
+  margin-top: 5px;
+  margin-right: 5px;
+  width: calc(100% - 40px);
+  height: 35px;
+  line-height: 35px;
+}
+
+.chat-button {
+  float: left;
+  margin-top: 5px;
+  width: 35px;
+  height: 35px;
+}
 /*
 a{
   font-family: Muli;

@@ -1,0 +1,24 @@
+<div ng-controller="CommentController">
+    <div class="tabHead">Comments</div>
+    <div class="chatbox">
+
+        <div ng-repeat="msg in chatMessages" class="event-box-entry">
+            <div class="event-box event-box-140">
+                <span style="font-weight:bold">{{msg.user.firstname}}</span>
+            </div>
+            <div class="event-box event-box-140-r">
+                {{msg.text}}
+                <span class="event-box-info-text">
+                    @ {{msg.date | date : 'MMM d, h:mm'}}
+                </span>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+
+    </div>
+    <form ng-submit="sendMessage()">
+        <input type="text" ng-model="form.chatMessage" class="form-control chat-input" placeholder="Message">
+        <button type="submit" ng-class="{disabled: form.chatMessage == ''}" class="btn btn-default chat-button"><i
+                class="fa fa-chevron-right" aria-hidden="true"></i></button>
+    </form>
+</div>

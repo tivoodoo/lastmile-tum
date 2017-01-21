@@ -26,6 +26,12 @@ Start listening (A new web page will be automatically opened)
 
 `gulp`
 
+#### Config connection to backend from frontend:
+
+In appConfig.js, change
+
+`.constant('BACKEND_BASE_URL', "http://localhost:4000")`
+
 ## Directory Structure
 
 ```
