@@ -22,13 +22,13 @@ angular.module('lastMile')
                     method: 'PUT'
                 }).then(function (resp) {
                     alert("request updated successfully");
-                    $location.path("/#!/myReq");
+                    $location.path("/myReq");
                 }).catch(function (resp) {
                     alert("An unexpected error occured");
                 });
             };
             $scope.cancelEdit = function () {
-                $location.path("/#!/myReq");
+                $location.path("/myReq");
             };
 
 

@@ -59,7 +59,7 @@ angular.module('lastMile')
             userService.logout();
             $rootScope.loggedIn = false;
             showSimpleToast('Logout successful');
-            $location.path("/#!/");
+            $location.path("/");
 
         };
 
