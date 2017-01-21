@@ -91,6 +91,20 @@ module.exports.getRequest = function (req, res) {
  * */
 //TODO: only owner of request can edit it
 module.exports.updateRequest = function (req, res) {
+    if (req.files.file) {
+        function base64_encode(file) {
+            // read binary data
+            var bitmap = fs.readFileSync(file);
+            // convert binary data to base64 encoded string
+            return new Buffer(bitmap).toString('base64');
+        }
+
+        var fs = require('fs');
+        req.body.picture = {};
+        req.body.picture.data = base64_encode(req.files.file.path);
+        req.body.picture.contentType = req.files.file.type;
+        req.body.picture.name = req.files.file.name;
+    }
     Request.findByIdAndUpdate(
         req.params.request_id,
         req.body,

@@ -29,7 +29,7 @@ function requestRoutes(passport) {
 
     router.route('/:request_id')
         .get(requestController.getRequest)
-        .put(requestController.updateRequest)
+        .put(multipartyMiddleware, requestController.updateRequest)
         .delete(requestController.deleteRequest);
 
 

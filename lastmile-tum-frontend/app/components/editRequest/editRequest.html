@@ -49,11 +49,10 @@
                     </div>
                     <div class="row requin">
                         <div class="col-lg-3">
-                            From:
                         </div>
                         <div class="col-lg-9">
                             <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                <input id="pickupLocation" type="text" class="form-control"
+                                <input id="pickupLocationEdit" type="text" class="form-control"
                                        ng-model="request.pickUpLocation"
                                        placeholder="Insert start"
                                        style="opacity:0.9" required/>
@@ -66,7 +65,7 @@
                         </div>
                         <div class="col-lg-9">
                             <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                <input id="deliverToLocation" type="text" class="form-control"
+                                <input id="deliverToLocationEdit" type="text" class="form-control"
                                        ng-model="request.deliverToLocation"
                                        placeholder="Insert destination"
                                        style="opacity:0.9" required/>
@@ -138,7 +137,7 @@
                                 <div class="thumbnail" ng-show="pictureUpdated && request.picture">
                                     <img ngf-thumbnail="request.picture">
                                 </div>
-                                <div class="thumbnail" ng-hide="pictureUpdated">
+                                <div class="thumbnail" ng-show="!pictureUpdated && request.picture">
                                     <img ng-model="request.picture"
                                          ng-src="data:{{request.picture.contentType}};base64,{{request.picture.data}}">
                                 </div>
