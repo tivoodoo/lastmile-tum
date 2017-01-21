@@ -15,7 +15,11 @@ var app = angular.module('lastMile', [
 
 // app.constant("BASEURL", "http://localhost:3000");
 
-app.config(function ($routeProvider, $locationProvider, $resourceProvider, $httpProvider) {
+app.config(function ($routeProvider, $locationProvider, $resourceProvider, $httpProvider, $provide) {
+    $provide.decorator('$sniffer', function($delegate) {
+        $delegate.history = false;
+        return $delegate;
+    });
     $locationProvider.html5Mode({
         enabled: true,
         requireBase: false
