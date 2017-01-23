@@ -25,7 +25,9 @@ angular.module('lastMile')
                             town: $scope.user.town,
                             telephone: $scope.user.telephone,
                             trunkSize: $scope.user.trunkSize,
-                            password: $scope.user.password
+                            password: $scope.user.password,
+                            iban: $scope.user.password,
+                            bic: $scope.user.bic
                         }
                         , method: 'PUT'
                     })
@@ -52,7 +54,9 @@ angular.module('lastMile')
                             town: $scope.user.town,
                             telephone: $scope.user.telephone,
                             trunkSize: $scope.user.trunkSize,
-                            password: $scope.user.password
+                            password: $scope.user.password,
+                            iban: $scope.user.password,
+                            bic: $scope.user.bic
                         }
                         , method: 'PUT'
                     })
