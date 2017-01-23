@@ -30,13 +30,12 @@ function requestRoutes(passport) {
 
   router.route('/:request_id')
     .get(requestController.getRequest)
-    .put(requestController.updateRequest)
+    .put(multipartyMiddleware, requestController.updateRequest)
     .delete(requestController.deleteRequest);
 
   router.route('/comment/:request_id')
     .get(commentController.getMessages)
     .post(commentController.putMessage);
-
 
   return router;
 

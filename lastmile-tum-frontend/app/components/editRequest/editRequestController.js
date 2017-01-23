@@ -10,14 +10,22 @@ angular.module('lastMile')
             $scope.request.deliverTime = new Date(moment($scope.request.deliverTime));
 
             $scope.updateRequest = function () {
-                $scope.request.requester = userService.getUserName()._id;
-                $scope.request.status = "Open";
-
+                console.log($scope.request);
                 Upload.upload({
                     url: BACKEND_BASE_URL + '/requests/'+$scope.request._id,
                     data: {
                         file: $scope.request.picture,
-                        request: $scope.request
+                        _id: $scope.request._id,
+                        name: $scope.request.name,
+                        description: $scope.request.description,
+                        size: $scope.request.size,
+                        pickUpLocation: $scope.request.pickUpLocation,
+                        deliverToLocation: $scope.request.deliverToLocation,
+                        pickUpTime: $scope.request.pickUpTime,
+                        deliverTime: $scope.request.deliverTime,
+                        price: $scope.request.price,
+                        status: $scope.request.status,
+                        requester: $scope.request.requester
                     },
                     method: 'PUT'
                 }).then(function (resp) {
@@ -72,8 +80,8 @@ angular.module('lastMile')
             function AutocompleteDirectionsHandler(map) {
                 this.map = map;
 
-                var originInput = document.getElementById('pickupLocation');
-                var destinationInput = document.getElementById('deliverToLocation');
+                var originInput = document.getElementById('pickupLocationEdit');
+                var destinationInput = document.getElementById('deliverToLocationEdit');
 
                 this.directionsService = new google.maps.DirectionsService;
                 this.directionsDisplay = new google.maps.DirectionsRenderer;
@@ -107,7 +115,8 @@ angular.module('lastMile')
                         $scope.request.deliverToLocation = place.name;
                         me.destinationPlaceId = place.place_id;
                     }
-                    me.route();
+                    $scope.initMap();
+                    //me.route();
                 });
 
             };
