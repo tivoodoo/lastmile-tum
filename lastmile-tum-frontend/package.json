@@ -16,7 +16,9 @@
     "url": "https://github.com/tivoodoo/lastmile-tum/issues"
   },
   "homepage": "https://github.com/tivoodoo/lastmile-tum#readme",
-  "dependencies": {},
+  "dependencies": {
+    "angular-ws": "^1.1.0"
+  },
   "devDependencies": {
     "bower": "^1.8.0",
     "browser-sync": "^2.18.2",
