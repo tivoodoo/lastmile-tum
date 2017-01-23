@@ -96,7 +96,7 @@
                                     <div class="thumbnail" ng-show="pictureUpdated && user.picture">
                                         <img ngf-thumbnail="user.picture" id="userPicture">
                                     </div>
-                                    <button ng-show="user.picture" ng-click="user.picture = null">
+                                    <button ng-show="user.picture" ng-click="pictureUpdated = true;user.picture = null;">
                                         Remove
                                     </button>
                                 </div>

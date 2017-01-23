@@ -8,31 +8,60 @@ angular.module('lastMile')
 
             $scope.updateUser = function () {
                 var userID = userService.getUserName()._id;
-                Upload.upload({
-                    url: BACKEND_BASE_URL + '/user/'+userID,
-                    data: {
-                        file: $scope.user.picture,
-                        _id: $scope.user._id,
-                        email: $scope.user.email,
-                        sex: $scope.user.sex,
-                        birthday: $scope.user.birthday,
-                        firstName: $scope.user.firstName,
-                        lastName: $scope.user.lastName,
-                        street: $scope.user.street,
-                        number: $scope.user.number,
-                        zipCode: $scope.user.zipCode,
-                        town: $scope.user.town,
-                        telephone: $scope.user.telephone,
-                        trunkSize: $scope.user.trunkSize,
-                        password: $scope.user.password
-                    }
-                    ,method: 'PUT'
-                })
-                .then(function (resp) {
-                 alert("user successfully updated");
-                 }).catch(function (resp) {
-                 alert("error while updating user");
-                 });
+                if ($scope.pictureUpdated) {
+                    Upload.upload({
+                        url: BACKEND_BASE_URL + '/user/' + userID,
+                        data: {
+                            file: $scope.user.picture,
+                            _id: $scope.user._id,
+                            email: $scope.user.email,
+                            //sex: $scope.user.sex,
+                            //birthday: $scope.user.birthday,
+                            firstName: $scope.user.firstName,
+                            lastName: $scope.user.lastName,
+                            street: $scope.user.street,
+                            number: $scope.user.number,
+                            zipCode: $scope.user.zipCode,
+                            town: $scope.user.town,
+                            telephone: $scope.user.telephone,
+                            trunkSize: $scope.user.trunkSize,
+                            password: $scope.user.password
+                        }
+                        , method: 'PUT'
+                    })
+                        .then(function (resp) {
+                            alert("user successfully updated");
+                        }).catch(function (resp) {
+                        alert("error while updating user");
+                    });
+                }
+                else {
+                    Upload.upload({
+                        url: BACKEND_BASE_URL + '/user/' + userID,
+                        data: {
+                            _id: $scope.user._id,
+                            email: $scope.user.email,
+                            pictureUpdated : $scope.pictureUpdated,
+                            //sex: $scope.user.sex,
+                            //birthday: $scope.user.birthday,
+                            firstName: $scope.user.firstName,
+                            lastName: $scope.user.lastName,
+                            street: $scope.user.street,
+                            number: $scope.user.number,
+                            zipCode: $scope.user.zipCode,
+                            town: $scope.user.town,
+                            telephone: $scope.user.telephone,
+                            trunkSize: $scope.user.trunkSize,
+                            password: $scope.user.password
+                        }
+                        , method: 'PUT'
+                    })
+                        .then(function (resp) {
+                            alert("user successfully updated");
+                        }).catch(function (resp) {
+                        alert("error while updating user");
+                    });
+                }
             };
             var initPicSize = function () {
                 $('.pic').height($('.pic').width());

@@ -145,9 +145,9 @@ module.exports.updateUser = function (req, res) {
     else {
         console.log("Password not changed")
     }
-    console.log(req.body);
-    if (req.files.file) {
 
+    //if there is new picture sent with the request, save it
+    if (req.files.file) {
         var fs = require('fs');
 
         function base64_encode(file) {
@@ -164,9 +164,9 @@ module.exports.updateUser = function (req, res) {
                 $set: {
                     'firstName': req.body.firstName,
                     'lastName': req.body.lastName,
-                    'sex': req.body.sex,
+                    //'sex': req.body.sex,
                     'email': req.body.email,
-                    'birthday': req.body.birthday,
+                    //'birthday': req.body.birthday,
                     'street': req.body.street,
                     'number': req.body.number,
                     'zipCode': req.body.zipCode,
@@ -204,46 +204,91 @@ module.exports.updateUser = function (req, res) {
     }
     else {
 
-        User.findByIdAndUpdate(
-            req.params.user_id,
-            {
-                //Purposely choose field from request because only some property from the request should be updated
-                $set: {
-                    'firstName': req.body.firstName,
-                    'lastName': req.body.lastName,
-                    'sex': req.body.sex,
-                    'email': req.body.email,
-                    'birthday': req.body.birthday,
-                    'street': req.body.street,
-                    'number': req.body.number,
-                    'zipCode': req.body.zipCode,
-                    'town': req.body.town,
-                    'telephone': req.body.telephone,
-                    'trunkSize': req.body.trunkSize,
-                    'picture' : null
-                }
-            },
-            {
-                //Pass the new object to cb function
-                new: true,
-                //Run validations
-                runValidators: true
-            },
-            function (err, user) {
-                if (err) {
-                    console.log(err);
-                    res.status(status.INTERNAL_SERVER_ERROR).send(err);
-                    return;
-                }
+        // user pic was not changed, therefore do not touch it
+        if (req.body.pictureUpdated === 'false') {
+            User.findByIdAndUpdate(
+                req.params.user_id,
+                {
+                    //Purposely choose field from request because only some property from the request should be updated
+                    $set: {
+                        'firstName': req.body.firstName,
+                        'lastName': req.body.lastName,
+                        //'sex': req.body.sex,
+                        'email': req.body.email,
+                        //'birthday': req.body.birthday,
+                        'street': req.body.street,
+                        'number': req.body.number,
+                        'zipCode': req.body.zipCode,
+                        'town': req.body.town,
+                        'telephone': req.body.telephone,
+                        'trunkSize': req.body.trunkSize
+                    }
+                },
+                {
+                    //Pass the new object to cb function
+                    new: true,
+                    //Run validations
+                    runValidators: true
+                },
+                function (err, user) {
+                    if (err) {
+                        console.log(err);
+                        res.status(status.INTERNAL_SERVER_ERROR).send(err);
+                        return;
+                    }
 
-                //In getUser, hashed password shouldn't be sent to client (To avoid hacker who wants to collect hash table)
-                //TRICK: a dummy password value is used to check whether password has changed or not
-                //In backend, before updating, the "new" password will be compared with this dummy password value to check whether password has changed or not
-                user.password = dummyPassword;
+                    //In getUser, hashed password shouldn't be sent to client (To avoid hacker who wants to collect hash table)
+                    //TRICK: a dummy password value is used to check whether password has changed or not
+                    //In backend, before updating, the "new" password will be compared with this dummy password value to check whether password has changed or not
+                    user.password = dummyPassword;
 
-                res.json(user);
-            }
-        );
+                    res.json(user);
+                }
+            );
+        }
+        //set user pic to null
+        else {
+            User.findByIdAndUpdate(
+                req.params.user_id,
+                {
+                    //Purposely choose field from request because only some property from the request should be updated
+                    $set: {
+                        'firstName': req.body.firstName,
+                        'lastName': req.body.lastName,
+                        //'sex': req.body.sex,
+                        'email': req.body.email,
+                        //'birthday': req.body.birthday,
+                        'street': req.body.street,
+                        'number': req.body.number,
+                        'zipCode': req.body.zipCode,
+                        'town': req.body.town,
+                        'telephone': req.body.telephone,
+                        'trunkSize': req.body.trunkSize,
+                        'picture': null
+                    }
+                },
+                {
+                    //Pass the new object to cb function
+                    new: true,
+                    //Run validations
+                    runValidators: true
+                },
+                function (err, user) {
+                    if (err) {
+                        console.log(err);
+                        res.status(status.INTERNAL_SERVER_ERROR).send(err);
+                        return;
+                    }
+
+                    //In getUser, hashed password shouldn't be sent to client (To avoid hacker who wants to collect hash table)
+                    //TRICK: a dummy password value is used to check whether password has changed or not
+                    //In backend, before updating, the "new" password will be compared with this dummy password value to check whether password has changed or not
+                    user.password = dummyPassword;
+
+                    res.json(user);
+                }
+            );
+        }
     }
 };
 

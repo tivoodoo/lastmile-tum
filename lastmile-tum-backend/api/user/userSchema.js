@@ -18,12 +18,12 @@ var userSchema = mongoose.Schema({
     password: {
         type: String,
         required: true
-    },
+    },/*
     sex: {
         //true:male, false:female
         type: Boolean,
         required: false
-    },
+    },*/
     // Name --------
     firstName: {
         type: String,
@@ -62,11 +62,11 @@ var userSchema = mongoose.Schema({
     // Picture - must start with "http://"
     picture: {
         data: String, contentType: String, name: String
-    },
+    },/*
     birthday: {
         type: Date,
         required: false
-    },
+    },*/
     ratings: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Rating'
