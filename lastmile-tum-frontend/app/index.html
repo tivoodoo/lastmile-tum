@@ -121,7 +121,7 @@
                                     <input type="email" class="form-control" ng-model="user.email"
                                            placeholder="Email address" name="email" id="email"
                                            uib-popover="{{(logIn.email.$invalid && logIn.email.$pristine) || (logIn.email.$valid) ? '' : 'Please enter your email address.'}}"
-                                           popover-placement="top" popover-trigger="focus" required autocomplete="off"/>
+                                           popover-placement="top" popover-trigger="focus" required/>
                                 </div>
                             </div>
                         </div>
@@ -131,7 +131,7 @@
                                     <input type="password" class="form-control" id="password" name="pwd" ng-model="user.password"
                                            uib-popover="{{(logIn.pwd.$invalid && logIn.pwd.$pristine) ? '' : 'Please enter your password.'}}"
                                            popover-placement="top"
-                                           popover-trigger="focus"
+                                           popover-trigger="focus" autocomplete="new-password"
                                            placeholder="Password" required/>
                                 </div>
                             </div>

@@ -191,7 +191,6 @@
                             </div>
                         </div>
                     </div>
-                    <!--
                     <h3>Change password</h3>
                     <div class="row">
                         <div class="row">
@@ -200,13 +199,16 @@
                             </div>
                             <div class="col-sm-10">
                                 <div class="form-group has-feedback" ng-class="{'has-error': !editForm.pwd.$valid && !editForm.pwd.$pristine}">
+                                    <input type="password" name="password_fake" id="password_fake" value="" style="display:none;" />
                                     <input type="password" class="form-control" name="pwd" ng-model="pswd1"
                                            uib-popover="{{(editForm.pwd.$invalid && editForm.pwd.$pristine) || (editForm.pwd.$valid) ? '' : 'Please enter a password.'}}"
                                            popover-placement="top" popover-trigger="focus" placeholder="Password"/>
+                                    <!--
                                     <span class="glyphicon glyphicon-remove form-control-feedback"
                                           ng-show="editForm.pwd.$invalid && !editForm.pwd.$pristine"></span>
                                     <span class="glyphicon glyphicon-ok form-control-feedback"
                                           style="color:green" ng-show="editForm.pwd.$valid"></span>
+                                          -->
                                 </div>
                             </div>
                         </div>
@@ -217,20 +219,22 @@
                             <div class="col-sm-10">
                                 <div class="form-group has-feedback" ng-class="{'has-error': !editForm.pwdConfirm.$valid && !editForm.pwdConfirm.$pristine}"
                                      style="margin-bottom:0px;">
+                                    <input type="password" name="passwordConfirm_fake" id="passwordConfirm_fake" value="" style="display:none;" />
                                     <input type="password" class="form-control" name="pwdConfirm" ng-model="pswd2"
                                            uib-popover="{{(editForm.pwdConfirm.$invalid && editForm.pwdConfirm.$pristine) || (editForm.pwdConfirm.$valid) ? '' : 'Must match the previous entry.'}}"
                                            popover-placement="top"
                                            popover-trigger="focus" placeholder="Repeat password"
                                            compare-to="pswd1"/>
+                                    <!--
                                     <span class="glyphicon glyphicon-remove form-control-feedback"
                                           ng-show="editForm.pwdConfirm.$invalid && !editForm.pwdConfirm.$pristine"></span>
                                     <span class="glyphicon glyphicon-ok form-control-feedback" style="color:green"
                                           ng-show="editForm.pwdConfirm.$valid"></span>
+                                          -->
                                 </div>
                             </div>
                         </div>
                     </div>
-                    -->
                 </div>
                 <div class="row">
                     <div class="col-sm-offset-10 col-sm-2" style="padding-left:0px; margin-top:15px;">
