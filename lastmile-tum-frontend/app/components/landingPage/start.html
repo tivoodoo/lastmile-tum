@@ -54,6 +54,7 @@
                                 </div>
                                 <div class="col-sm-9">
                                     <div class="form-group" ng-class="{'has-error': !step1.email.$valid && !step1.email.$pristine}">
+                                        <input type="email" name="email_fake" id="email_fake" value="" style="display:none;" />
                                         <input type="email" class="form-control" ng-model="reg.email"
                                                placeholder="Email address" name="email" id="email"
                                                uib-popover="{{(step1.email.$invalid && step1.email.$pristine) || (step1.email.$valid) ? '' : 'Please enter your email address.'}}"
@@ -72,6 +73,7 @@
                                 </div>
                                 <div class="col-sm-9">
                                     <div class="form-group" ng-class="{'has-error': !step1.pwd.$valid && !step1.pwd.$pristine}" >
+                                        <input type="password" name="password_fake" id="password_fake" value="" style="display:none;" />
                                         <input type="password" class="form-control" id="password" name="pwd" ng-model="reg.password"
                                                uib-popover="{{(step1.pwd.$invalid && step1.pwd.$pristine) || (step1.pwd.$valid) ? '' : 'Please enter a password.'}}"
                                                popover-placement="top"
@@ -87,6 +89,7 @@
                             <div class="row">
                                 <div class="col-sm-offset-3 col-sm-9">
                                     <div class="form-group" ng-class="{'has-error': !step1.pwdConfirm.$valid && !step1.pwdConfirm.$pristine}">
+                                        <input type="password" name="passwordConfirm_fake" id="passwordConfirm_fake" value="" style="display:none;" />
                                         <input type="password" class="form-control" name="pwdConfirm"
                                                id="passwordConfirm" ng-model="password"
                                                uib-popover="{{(step1.pwdConfirm.$invalid && step1.pwdConfirm.$pristine) || (step1.pwdConfirm.$valid) ? '' : 'Must match the previous entry.'}}"
