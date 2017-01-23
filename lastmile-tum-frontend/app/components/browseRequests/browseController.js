@@ -25,12 +25,18 @@ angular.module('lastMile')
 
             $scope.selectRequest = function (req) {
                 $scope.selectedRequest = req;
+                if($scope.selectedRequest.picture){
+                    $scope.showDetailPicture = true;
+                }
+                else{
+                    $scope.showDetailPicture = false;
+                }
                 $rootScope.selectedRequestId = req._id;
-              notificationService.notifyObservers('chatMessage');
+                notificationService.notifyObservers('chatMessage');
             };
 
-            $scope.goToRequestDetail = function (){
-              console.log("go to request derail");
+            $scope.goToRequestDetail = function () {
+                console.log("go to request derail");
             }
 
             $scope.accept = function () {
@@ -39,6 +45,9 @@ angular.module('lastMile')
                     alert("You cannot accept your own requests");
                 }
                 else {
+                    if ($scope.selectedRequest.picture) {
+                        delete $scope.selectedRequest.picture;
+                    }
 
                     $scope.selectedRequest.status = "Accepted";
                     $scope.selectedRequest.$update({requestID: $scope.selectedRequest._id})

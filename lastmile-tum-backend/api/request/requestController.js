@@ -91,7 +91,7 @@ module.exports.getRequest = function (req, res) {
  * */
 //TODO: only owner of request can edit it
 module.exports.updateRequest = function (req, res) {
-    if (req.files.file) {
+    if (req.files && req.files.file) {
         function base64_encode(file) {
             // read binary data
             var bitmap = fs.readFileSync(file);

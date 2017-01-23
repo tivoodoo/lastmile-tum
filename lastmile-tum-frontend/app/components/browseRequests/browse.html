@@ -308,7 +308,7 @@
                         </div>
                         <div class="col-xs-3">
                             <!--<img src="./images/football.jpg">-->
-                            <img ng-model="selectedRequest.picture"
+                            <img ng-model="selectedRequest.picture" ng-show="showDetailPicture === true"
                                  ng-src="data:{{selectedRequest.picture.contentType}};base64,{{selectedRequest.picture.data}}"/>
                         </div>
                     </div>

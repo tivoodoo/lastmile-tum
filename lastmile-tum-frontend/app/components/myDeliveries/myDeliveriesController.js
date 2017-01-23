@@ -16,6 +16,9 @@ angular.module('lastMile')
             $scope.cancelDelivery = function (req) {
                 req.supplier = null;
                 req.status = "Open";
+                if (req.picture) {
+                    delete req.picture;
+                }
                 req.$update({requestID: req._id})
                     .then(function (res) {
                         var index = $scope.requests.indexOf(req);
