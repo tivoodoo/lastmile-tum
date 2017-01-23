@@ -8,6 +8,7 @@ module.exports = requestRoutes;
 function requestRoutes(passport) {
   var requestController = require('./requestController');
   var commentController = require('./commentController');
+  var haggleController = require('./haggleController');
 
   var router = require('express').Router();
   var unless = require('express-unless');
@@ -36,6 +37,10 @@ function requestRoutes(passport) {
   router.route('/comment/:request_id')
     .get(commentController.getMessages)
     .post(commentController.putMessage);
+  
+  router.route('/haggle/:request_id')
+    .get(haggleController.getNewOffer)
+    .post(haggleController.postNewOffer);
 
   return router;
 
