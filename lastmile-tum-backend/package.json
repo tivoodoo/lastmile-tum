@@ -6,7 +6,7 @@
   "scripts": {
     "test": "no test specified",
     "prestart": "npm install",
-    "start": "node ./bin/start-server-backend"
+    "start": "nodemon ./bin/start-server-backend"
   },
   "repository": {
     "type": "git",
@@ -42,6 +42,7 @@
     "mongoose": "^4.6.6",
     "morgan": "~1.6.1",
     "passport": "^0.3.2",
-    "passport-jwt": "^2.0.0"
+    "passport-jwt": "^2.0.0",
+    "ws": "^1.1.1"
   }
 }

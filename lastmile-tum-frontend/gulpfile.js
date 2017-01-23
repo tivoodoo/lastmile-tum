@@ -141,6 +141,7 @@ gulp.task('bower-fonts', function() {
 gulp.task('browser-sync', ['build'], function() {
     browserSync.init({
         server: {baseDir: buildDir},
+        ui:false,
         middleware: function(req, resp, next) {
             resp.setHeader('Access-Control-Allow-Origin', '*');
             next();

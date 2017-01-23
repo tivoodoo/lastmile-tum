@@ -57,7 +57,15 @@ var requestSchema = mongoose.Schema({
     },
     picture: {
         data: String, contentType: String, name: String
-    }
+    },
+    comments: [{
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        },
+        text: String,
+        date: Date
+    }],
 });
 
 var Request = mongoose.model('Request', requestSchema);

@@ -1,6 +1,6 @@
 angular.module('lastMile')
     .controller('BrowseCtrl',
-        function ($scope, $rootScope, Request, $filter, $uibModal, $location, userService) {
+        function ($scope, $rootScope, Request, $filter, $uibModal, $location, userService, notificationService) {
             $scope.filterShowed = false;
             $scope.lowPrice = 0;
             $scope.highPrice = 1000;
@@ -26,6 +26,7 @@ angular.module('lastMile')
             $scope.selectRequest = function (req) {
                 $scope.selectedRequest = req;
                 $rootScope.selectedRequestId = req._id;
+              notificationService.notifyObservers('chatMessage');
             };
 
             $scope.goToRequestDetail = function (){

@@ -9,13 +9,14 @@ var app = angular.module('lastMile', [
     'ngMaterial',
     'ui.router',
     'ngResource',
-    'ngFileUpload'
+    'ngFileUpload',
+    'ws'
 
 ]);
 
 // app.constant("BASEURL", "http://localhost:3000");
 
-app.config(function ($routeProvider, $locationProvider, $resourceProvider, $httpProvider, $provide) {
+app.config(function ($routeProvider, $locationProvider, $resourceProvider, $httpProvider, $provide, wsProvider) {
     $provide.decorator('$sniffer', function($delegate) {
         $delegate.history = false;
         return $delegate;
@@ -58,5 +59,6 @@ app.config(function ($routeProvider, $locationProvider, $resourceProvider, $http
         }
 
     });
+    wsProvider.setUrl('ws://localhost:4000');
 });
 
