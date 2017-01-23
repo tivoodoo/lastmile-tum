@@ -3,8 +3,8 @@
     <div class="chatbox">
 
         <div ng-repeat="msg in chatMessages" class="event-box-entry">
-            <div class="event-box event-box-140">
-                <span style="font-weight:bold">{{msg.user.firstname}}</span>
+            <div class="event-box event-box-60">
+                <span style="font-weight:bold">{{msg.user.firstName}}</span>
             </div>
             <div class="event-box event-box-140-r">
                 {{msg.text}}
@@ -21,4 +21,7 @@
         <button type="submit" ng-class="{disabled: form.chatMessage == ''}" class="btn btn-default chat-button"><i
                 class="fa fa-chevron-right" aria-hidden="true"></i></button>
     </form>
+    <button type="button" class="btn btn-primary accept"
+            ng-click="loadMessages()">Load
+    </button>
 </div>

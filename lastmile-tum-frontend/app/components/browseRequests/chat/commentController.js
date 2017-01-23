@@ -4,8 +4,8 @@
 
 angular.module('lastMile')
   .controller('CommentController',
-    ['$scope', '$rootScope', '$http', '$routeParams', '$timeout',
-      function($scope, $rootScope, $http, $routeParams, $timeout){
+    ['$scope', '$rootScope', '$http', '$routeParams', '$timeout', 'BACKEND_BASE_URL',
+      function($scope, $rootScope, $http, $routeParams, $timeout, BACKEND_BASE_URL){
 
   // Attributes
   $scope.form = {
@@ -16,10 +16,7 @@ angular.module('lastMile')
 
   // Functions
   $scope.sendMessage = sendMessage;
-
-
-  // Init
-  loadMessages();
+        $scope.loadMessages = loadMessages;
 
   // Implementation
   function sendMessage() {
@@ -30,7 +27,7 @@ angular.module('lastMile')
     var msg = $scope.form.chatMessage;
     $scope.form.chatMessage = "";
 
-    $http.post('http://localhost:4000/request/comment/' + $rootScope.selectedRequestId, {
+    $http.post(BACKEND_BASE_URL +'/requests/comment/' + $rootScope.selectedRequestId, {
       text: msg
     })
       .then(function successCallback(response) {
@@ -40,11 +37,11 @@ angular.module('lastMile')
   }
 
   function loadMessages() {
-    // $http.get('http://localhost:4000/request/comment/' + $rootScope.selectedRequestId)
-    //   .then(function successCallback(response) {
-    //     $scope.chatMessages = response.data;
-    //     $timeout(scrollToLastMessage, 0);
-    //   });
+    $http.get(BACKEND_BASE_URL +'/requests/comment/' + $rootScope.selectedRequestId)
+      .then(function successCallback(response) {
+        $scope.chatMessages = response.data;
+        $timeout(scrollToLastMessage, 0);
+      });
   }
 
   function scrollToLastMessage() {
