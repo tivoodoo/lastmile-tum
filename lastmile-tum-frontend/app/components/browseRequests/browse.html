@@ -13,7 +13,8 @@
             </div>
             <div id="browseContent" class="col-lg-5 col-md-6 col-sm-7" style="height: 60vh;">
                 <div ng-hide="filterShowed">
-                    <div  class="row" id="brRequests" style="height: 55vh; overflow-y: auto; margin-left: 0px; margin-right: 0px;">
+                    <div class="row" id="brRequests"
+                         style="height: 55vh; overflow-y: auto; margin-left: 0px; margin-right: 0px;">
                         <div class="row requestContainer" ng-repeat="request in (filteredRequests = (requests | filter:{deliverToLocation:filterDeliverToLocation}
                         | filter:{pickUpLocation:filterPickUpLocation} | filter:filterPrice()|myfilterTo: filterDeliverTime
                         | myfilterFrom: filterPickUpTime |bysize:sizefilters))">
@@ -121,7 +122,7 @@
                             </div>
                         </div>
                         <div class="col-sm-12">
-                            <div class="row requin" ng-class="{'has-error': filterDeliverTime < filterPickUpTime}" >
+                            <div class="row requin" ng-class="{'has-error': filterDeliverTime < filterPickUpTime}">
                                 <p>Earliest pickup: </p>
                                 <div class="form-group">
                                     <input uib-datepicker-popup="dd.MM.yyyy" popup-placement="bottom" type="text"
@@ -149,7 +150,7 @@
                             </div>
                         </div>
                         <div class="col-sm-12">
-                            <div class="row requin" ng-class="{'has-error': filterDeliverTime < filterPickUpTime}" >
+                            <div class="row requin" ng-class="{'has-error': filterDeliverTime < filterPickUpTime}">
                                 <p>Latest dropoff: </p>
                                 <div class="form-group">
                                     <input uib-datepicker-popup="dd.MM.yyyy" popup-placement="bottom" type="text"
@@ -180,12 +181,12 @@
                                     </div>
                                     <div class="col-xs-3">
                                         <div class="checkbox">
-                                            <label><input type="checkbox" ng-model="sizefilters.S" >S</label>
+                                            <label><input type="checkbox" ng-model="sizefilters.S">S</label>
                                         </div>
                                     </div>
                                     <div class="col-xs-3">
                                         <div class="checkbox">
-                                            <label><input type="checkbox" ng-model="sizefilters.M" >M</label>
+                                            <label><input type="checkbox" ng-model="sizefilters.M">M</label>
                                         </div>
                                     </div>
                                 </div>
@@ -197,7 +198,7 @@
                                     </div>
                                     <div class="col-xs-3">
                                         <div class="checkbox">
-                                            <label><input type="checkbox" ng-model="sizefilters.XL" >XL</label>
+                                            <label><input type="checkbox" ng-model="sizefilters.XL">XL</label>
                                         </div>
                                     </div>
                                 </div>
@@ -216,7 +217,7 @@
                                             <input type="number" class="form-control" ng-model="lowPrice"
                                                    uib-popover="{{lowPrice > highPrice ? 'The right price has to be higher or equal than the left price.' : ''}}"
                                                    popover-placement="top" popover-trigger="focus"
-                                                   placeholder="10" name="lowPrice" />
+                                                   placeholder="10" name="lowPrice"/>
                                         </div>
                                     </div>
                                     <div class="col-sm-offset-0 col-sm-1 col-xs-offset-3 col-xs-9">
@@ -230,7 +231,7 @@
                                             <input type="number" class="form-control" ng-model="highPrice"
                                                    uib-popover="{{lowPrice > highPrice ? 'The right price has to be higher or equal than the left price.' : ''}}"
                                                    popover-placement="top" popover-trigger="focus"
-                                                   placeholder="10" name="highPrice" />
+                                                   placeholder="10" name="highPrice"/>
                                         </div>
                                     </div>
                                 </div>
@@ -305,14 +306,14 @@
                                         {{selectedRequest.size}}
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="tf">
-                                        Price:
-                                    </td>
-                                    <td>
-                                        {{selectedRequest.price}}
-                                    </td>
-                                </tr>
+                                <!--<tr>-->
+                                    <!--<td class="tf">-->
+                                        <!--Price:-->
+                                    <!--</td>-->
+                                    <!--<td>-->
+                                        <!--{{selectedRequest.price}}-->
+                                    <!--</td>-->
+                                <!--</tr>-->
                                 <tr>
                                     <td class="tf">
                                         Description:
@@ -336,47 +337,74 @@
                             </div>
                         </div>
                         <div class="col-xs-6">
-                              <!--<span class="tabHead">-->
-                                <!--Comments-->
+                            <!--<span class="tabHead">-->
+                            <!--Comments-->
                             <!--</span>-->
                             <!--<div id="tableDiv">-->
-                                <!--<table class="tabTable">-->
-                                    <!--<tbody>-->
+                            <!--<table class="tabTable">-->
+                            <!--<tbody>-->
 
-                                    <!--<tr>-->
-                                        <!--<td style="width: 65px; font-weight:bold;">-->
-                                            <!--Daniel:-->
-                                        <!--</td>-->
-                                        <!--<td>-->
-                                            <!--Lorem ipsum!-->
-                                        <!--</td>-->
-                                    <!--</tr>-->
+                            <!--<tr>-->
+                            <!--<td style="width: 65px; font-weight:bold;">-->
+                            <!--Daniel:-->
+                            <!--</td>-->
+                            <!--<td>-->
+                            <!--Lorem ipsum!-->
+                            <!--</td>-->
+                            <!--</tr>-->
 
-                                    <!--</tbody>-->
-                                <!--</table>-->
+                            <!--</tbody>-->
+                            <!--</table>-->
                             <!--</div>-->
 
                             <!--<div class="row" style="margin-top: 15px;">-->
-                                <!--<div class="col-xs-3 input-label">-->
-                                    <!--Comment:-->
-                                <!--</div>-->
-                                <!--<div class="col-xs-9">-->
-                                    <!--<div class="form-group">-->
-                                        <!--<input class="form-control" placeholder="Input" style="opacity:0.9">-->
-                                    <!--</div>-->
-                                <!--</div>-->
+                            <!--<div class="col-xs-3 input-label">-->
+                            <!--Comment:-->
+                            <!--</div>-->
+                            <!--<div class="col-xs-9">-->
+                            <!--<div class="form-group">-->
+                            <!--<input class="form-control" placeholder="Input" style="opacity:0.9">-->
+                            <!--</div>-->
+                            <!--</div>-->
                             <!--</div>-->
                             <div>
                                 <!-- Chatbox -->
                                 <div ng-include="'./components/browseRequests/chat/chatbox.html'"></div>
                             </div>
 
-                            <div class = "row">
+                            <form ng-submit="sendHaggle()">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <input type="text" ng-model="form.hagglePrice"
+                                               placeholder="Enter your wished price">
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <button type="submit" ng-class="{disabled: form.hagglePrice == ''}"
+                                                class="btn btn-default accept">
+                                            Offer!
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                            <!--<div class = "row">-->
+                            <!--<div class="col-xs-12">-->
+                            <!--<button type="button" class="btn btn-primary accept" data-dismiss="modal"-->
+                            <!--ng-click="goToRequestDetail()">-->
+                            <!--More details-->
+                            <!--</button>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                            <!---->
+
+                            <div class="row">
                                 <div class="col-xs-12">
-                                    <button type="button" class="btn btn-primary accept" data-dismiss="modal"
-                                            ng-click="goToRequestDetail()">
-                                        More details
-                                    </button>
+                                    Price:
+                                    {{selectedRequest.price}}
                                 </div>
                             </div>
                             <div class="row">
@@ -392,5 +420,8 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
-
 </div>
+
+
+
+
