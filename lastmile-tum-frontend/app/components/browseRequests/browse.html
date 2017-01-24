@@ -103,7 +103,7 @@
                         <div class="col-sm-12">
                             <div class="row requin">
                                 <p>From:</p>
-                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                <div class="form-group" ng-class="{'has-error': errorText}">
                                     <input type="text" class="form-control" ng-model="filterPickUpLocation"
                                            placeholder="Insert start"
                                            style="opacity:0.9"/>
@@ -210,7 +210,7 @@
                                         Price:
                                     </div>
                                     <div class="col-xs-3">
-                                        <div class="form-group has-feedback">
+                                        <div class="form-group">
                                             <input type="number" class="form-control" ng-model="lowPrice"
                                                    uib-popover="{{lowPrice > highPrice ? 'The right price has to be higher or equal than the left price.' : ''}}"
                                                    popover-placement="top" popover-trigger="focus"
@@ -223,7 +223,7 @@
                                         </center>
                                     </div>
                                     <div class="col-xs-3">
-                                        <div class="form-group has-feedback">
+                                        <div class="form-group">
                                             <input type="number" class="form-control" ng-model="highPrice"
                                                    uib-popover="{{lowPrice > highPrice ? 'The right price has to be higher or equal than the left price.' : ''}}"
                                                    popover-placement="top" popover-trigger="focus"
