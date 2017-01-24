@@ -50,7 +50,7 @@ var requestSchema = mongoose.Schema({
       }
     }
   ],
-  //enumerate "Open", "Accepted", "Confirmed", "Expired"
+  //enumerate "Open", "Accepted", "Delivered", "Expired"
   status: {
     type: String,
     required: true

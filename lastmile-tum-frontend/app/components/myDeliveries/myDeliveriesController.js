@@ -31,10 +31,13 @@ angular.module('lastMile')
             };
 
             $scope.markDelivered = function (req) {
-                req.status = "Confirmed";
+                req.status = "Delivered";
+                if (req.picture) {
+                    delete req.picture;
+                }
                 req.$update({requestID: req._id})
                     .then(function (res) {
-                        alert("delivery confirmed");
+                        alert("request delivered");
                     })
                     .catch(function (err) {
                         alert("error while confirming delivery");

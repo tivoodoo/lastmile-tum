@@ -22,7 +22,6 @@ angular.module('lastMile')
                     alert("something went wrong");
                 });
 
-
             $scope.selectRequest = function (req) {
                 $scope.selectedRequest = req;
                 if($scope.selectedRequest.picture){
@@ -37,7 +36,7 @@ angular.module('lastMile')
 
             $scope.goToRequestDetail = function () {
                 console.log("go to request derail");
-            }
+            };
 
             $scope.accept = function () {
                 $scope.selectedRequest.supplier = userService.getUserName()._id

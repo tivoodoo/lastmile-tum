@@ -91,13 +91,13 @@
                                 <!-- Accepted-->
                                 <li class="divider" ng-show="request.status=='Accepted'"></li>
                                 <li role="menuitem"><a
-                                        ng-show="request.status=='Accepted' || request.status=='Confirmed'">Write
-                                    message</a></li><!-- Accepted Confirmed-->
+                                        ng-show="request.status=='Accepted' || request.status=='Delivered'">Write
+                                    message</a></li><!-- Accepted Delivered-->
                                 <li role="menuitem"><a
-                                        ng-show="request.status=='Accepted' || request.status=='Confirmed'">Deliverer's
-                                    profile</a></li><!-- Accepted Confirmed-->
-                                <li role="menuitem"><a ng-show="request.status=='Confirmed'">Rate deliverer</a></li>
-                                <!-- Confirmed-->
+                                        ng-show="request.status=='Accepted' || request.status=='Delivered'">Deliverer's
+                                    profile</a></li><!-- Accepted Delivered-->
+                                <li role="menuitem"><a ng-show="request.status=='Delivered'">Rate deliverer</a></li>
+                                <!-- Delivered-->
                                 <li role="menuitem"><a ng-show="request.status=='Open' || request.status=='Expired'" ng-click="editRequest(request)">Edit
                                     request</a></li><!-- Open Expired-->
                                 <li class="divider" ng-show="request.status=='Accepted' || request.status=='Open'"></li>
@@ -121,14 +121,14 @@
                             <!-- Accepted-->
                             <li class="divider" ng-show="request.status=='Accepted'"></li>
                             <li role="menuitem"><a
-                                    ng-show="request.status=='Accepted' || request.status=='Confirmed' || request.status=='Expired'">Write
-                                message</a></li><!-- Accepted Confirmed-->
+                                    ng-show="request.status=='Accepted' || request.status=='Delivered' || request.status=='Expired'">Write
+                                message</a></li><!-- Accepted Delivered-->
                             <li role="menuitem"><a
-                                    ng-show="request.status=='Accepted' || request.status=='Confirmed' || request.status=='Expired'">Requester's
-                                profile</a></li><!-- Accepted Confirmed-->
-                            <li role="menuitem"><a ng-show="request.status=='Confirmed' || request.status=='Expired'">Rate
+                                    ng-show="request.status=='Accepted' || request.status=='Delivered' || request.status=='Expired'">Requester's
+                                profile</a></li><!-- Accepted Delivered-->
+                            <li role="menuitem"><a ng-show="request.status=='Delivered' || request.status=='Expired'">Rate
                                 requester</a></li>
-                            <!-- Confirmed-->
+                            <!-- Delivered-->
                             <li class="divider" ng-show="request.status=='Accepted'"></li>
                             <li role="menuitem"><a ng-show="request.status=='Accepted'" ng-click="cancelDelivery(request)">Cancel
                                 delivery</a></li><!-- Open Accepted-->
