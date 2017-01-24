@@ -542,6 +542,10 @@ button.btn.btn-primary.accept {
   overflow-x: hidden;
   height: 60vh;
 }
+
+li > a {
+  cursor: pointer;
+}
 /*
 a{
   font-family: Muli;
