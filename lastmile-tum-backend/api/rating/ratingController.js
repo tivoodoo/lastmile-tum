@@ -5,6 +5,7 @@
 var status = require('http-status');
 var Rating = require('./ratingSchema');
 var User = require('../user/userSchema');
+var Request = require('../request/requestSchema');
 var auth = require('../../authorization/auth');
 
 
@@ -14,31 +15,41 @@ var auth = require('../../authorization/auth');
  * */
 module.exports.postRating = function (req, res) {
   var userId = auth.getUserIdFromRequestToken(req);
-  var rating = new Rating(req.body);
-
-  rating.save(function (err) {
+  Request.findById(req.body.request, function (err, request) {
     if (err) {
-      res.status(status.INTERNAL_SERVER_ERROR).send(err);
-      return;
+      console.log(err);
+      res.status(401).send(err);
     }
-    User
-      .findByIdAndUpdate(
-        userId,
-        {$push: {'ratings': rating}},
-        {new: true},
-        function (err, user) {
-          if (err) {
-            console.log(err);
-            res.status(status.INTERNAL_SERVER_ERROR).send(err);
-            return;
+
+    var rating = new Rating(req.body);
+    var ratedUserID = request.requester;
+
+    rating.save(function (err) {
+      if (err) {
+        res.status(status.INTERNAL_SERVER_ERROR).send(err);
+        return;
+      }
+
+      User
+        .findByIdAndUpdate(
+          ratedUserID,
+          {$push: {'ratings': rating}},
+          {new: true},
+          function (err, user) {
+            if (err) {
+              console.log(err);
+              res.status(status.INTERNAL_SERVER_ERROR).send(err);
+              return;
+            }
+            user.populate('ratings', function () {
+              // populate user with ratings value and response
+              res.json(user);
+            });
           }
-          user.populate('ratings', function () {
-            // populate user with ratings value and response
-            res.json(user);
-          });
-        }
-      )
+        )
+    });
   });
+
 }
 
 /*
