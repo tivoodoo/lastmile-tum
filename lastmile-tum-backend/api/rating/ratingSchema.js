@@ -21,7 +21,7 @@ var ratingSchema = mongoose.Schema({
   },
   comment: {
     type: String,
-    required: true
+    required: false
   },
   request: {
     type: mongoose.Schema.Types.ObjectId,
