@@ -107,7 +107,7 @@
                                     <li role="menuitem"><a
                                             ng-show="request.status=='Accepted' || request.status=='Delivered'">Deliverer's
                                         profile</a></li><!-- Accepted Delivered-->
-                                    <li role="menuitem"><a ng-show="request.status=='Delivered'" disabled ng-click="setActReq(request)"
+                                    <li role="menuitem"><a ng-show="request.ratedByRequester === false && request.status=='Delivered' " ng-click="setActReq(request)"
                                                            data-toggle="modal" data-target="#showRating">Rate deliverer</a></li>
                                     <!-- Delivered-->
                                     <li role="menuitem"><a ng-show="request.status=='Open' || request.status=='Expired'" ng-click="editRequest(request)">Edit

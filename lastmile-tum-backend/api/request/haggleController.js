@@ -48,7 +48,7 @@ module.exports.postNewOffer = function (req, res) {
 
     //Request even cheaper price than given price of requester -> decline
     if (req.body.price < request.price) {
-      return res.status(406).send('Invalid offer');
+      return res.status(407).send('Invalid offer');
     }
 
     //Initiate array for first offer
@@ -58,6 +58,7 @@ module.exports.postNewOffer = function (req, res) {
 
     //In case of first offer or offer declined
     if (request.haggledPrices.length == 0) {
+      request.status = "Haggled";
       request.haggledPrices.push({
         user: req.user._id,
         price: req.body.price
