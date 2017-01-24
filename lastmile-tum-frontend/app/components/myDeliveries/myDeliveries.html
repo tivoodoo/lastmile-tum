@@ -87,17 +87,19 @@
                                 Menu <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" uib-dropdown-menu role="menu">
-                                <li role="menuitem"><a ng-show="request.status=='Accepted'">Confirm delivery</a></li>
+                                <li role="menuitem"><a ng-show="request.status=='Accepted'" ng-click="markDelivered(request)">Mark as delivered</a></li>
                                 <!-- Accepted-->
                                 <li class="divider" ng-show="request.status=='Accepted'"></li>
                                 <li role="menuitem"><a
-                                        ng-show="request.status=='Accepted' || request.status=='Confirmed'">Write
-                                    message</a></li><!-- Accepted Confirmed-->
+                                        ng-show="request.status=='Accepted' || request.status=='Delivered'">Write
+                                    message</a></li><!-- Accepted Delivered-->
                                 <li role="menuitem"><a
-                                        ng-show="request.status=='Accepted' || request.status=='Confirmed'">Deliverer's
-                                    profile</a></li><!-- Accepted Confirmed-->
-                                <li role="menuitem"><a ng-show="request.status=='Confirmed'">Rate deliverer</a></li>
-                                <!-- Confirmed-->
+                                        ng-show="request.status=='Accepted' || request.status=='Delivered'">Deliverer's
+                                    profile</a></li><!-- Accepted Delivered-->
+                                <li role="menuitem"><a ng-show="request.ratedBySupplier === false && request.status=='Delivered' " ng-click="setActReq(request)"
+                                                       data-toggle="modal" data-target="#showRating">Rate
+                                    requester</a></li>
+                                <!-- Delivered-->
                                 <li role="menuitem"><a ng-show="request.status=='Open' || request.status=='Expired'" ng-click="editRequest(request)">Edit
                                     request</a></li><!-- Open Expired-->
                                 <li class="divider" ng-show="request.status=='Accepted' || request.status=='Open'"></li>
@@ -121,20 +123,57 @@
                             <!-- Accepted-->
                             <li class="divider" ng-show="request.status=='Accepted'"></li>
                             <li role="menuitem"><a
-                                    ng-show="request.status=='Accepted' || request.status=='Confirmed' || request.status=='Expired'">Write
-                                message</a></li><!-- Accepted Confirmed-->
+                                    ng-show="request.status=='Accepted' || request.status=='Delivered' ">Write
+                                message</a></li><!-- Accepted Delivered-->
                             <li role="menuitem"><a
-                                    ng-show="request.status=='Accepted' || request.status=='Confirmed' || request.status=='Expired'">Requester's
-                                profile</a></li><!-- Accepted Confirmed-->
-                            <li role="menuitem"><a ng-show="request.status=='Confirmed' || request.status=='Expired'">Rate
+                                    ng-show="request.status=='Accepted' || request.status=='Delivered' ">Requester's
+                                profile</a></li><!-- Accepted Delivered-->
+                            <li role="menuitem"><a ng-show="request.ratedBySupplier === false && request.status=='Delivered' " ng-click="setActReq(request)"
+                                                   data-toggle="modal" data-target="#showRating">Rate
                                 requester</a></li>
-                            <!-- Confirmed-->
+                            <!-- Delivered-->
                             <li class="divider" ng-show="request.status=='Accepted'"></li>
                             <li role="menuitem"><a ng-show="request.status=='Accepted'" ng-click="cancelDelivery(request)">Cancel
                                 delivery</a></li><!-- Open Accepted-->
                         </ul>
                     </div>
+                    <span ng-show="request.ratedBySupplier">
+                        Already rated!
+                    </span>
                 </div>
+            </div>
+            <div class="modal fade" id="showRating" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <form name="ratingForm" ng-submit="rate()" autocomplete="off">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                >&times;</span></button>
+                                <h4 class="modal-title">Rate</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div id="rateYoDel" style="margin: 0 auto 15px auto;"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <textarea class="form-control" rows="3" class="form-control"
+                                                  ng-model="rating.comment"
+                                                  placeholder="Details (optional)" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal"
+                                        onclick="clearRating()">Close</button>
+                                <button type="submit" class="btn btn-primary">Rate
+                                </button>
+                            </div>
+                        </form>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
             </div>
         </div>
     </div>

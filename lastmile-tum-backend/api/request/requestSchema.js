@@ -50,7 +50,7 @@ var requestSchema = mongoose.Schema({
       }
     }
   ],
-  //enumerate "Open", "Accepted", "Confirmed", "Expired"
+  //enumerate "Open", "Accepted", "Delivered", "Expired", "Haggled"
   status: {
     type: String,
     required: true
@@ -75,6 +75,14 @@ var requestSchema = mongoose.Schema({
     text: String,
     date: Date
   }],
+    ratedByRequester:{
+    type: Boolean,
+        default: false
+    },
+    ratedBySupplier:{
+        type: Boolean,
+        default: false
+    },
 });
 
 var Request = mongoose.model('Request', requestSchema);
