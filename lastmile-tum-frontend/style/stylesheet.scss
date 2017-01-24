@@ -536,6 +536,12 @@ button.btn.btn-primary.accept {
   width: 35px;
   height: 35px;
 }
+
+#filterDiv {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 60vh;
+}
 /*
 a{
   font-family: Muli;
