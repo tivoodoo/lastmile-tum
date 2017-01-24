@@ -5,6 +5,11 @@
 
 var Request = require('./requestSchema');
 
+/**
+ * TODO
+ * @param req
+ * @param res
+ */
 module.exports.getMessages = function (req, res) {
   Request.findById(req.params.request_id)
     .populate('comments.user', 'firstName')
