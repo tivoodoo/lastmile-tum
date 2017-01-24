@@ -16,21 +16,21 @@ angular.module('lastMile')
             });
 
 
-            var actReq = new Request();
+            $scope.actReq = new Request();
             $scope.setActReq = function (req) {
-                actReq = req;
+                $scope.actReq = req;
             };
 
 
             $scope.rating = new Rating();
+            $scope.rating.comment = '';
             $scope.rate = function () {
                 $scope.rating.type = 'S';
-                $scope.rating.request = actReq._id;
+                $scope.rating.request = $scope.actReq._id;
 
-                console.log($scope.rating);
                 $scope.rating.$save()
                     .then(function(){
-                        actReq.ratedBySupplier = true;
+                        $scope.actReq.ratedBySupplier = true;
                         $('#showRating').modal('hide');
                     })
                     .catch(function(){
