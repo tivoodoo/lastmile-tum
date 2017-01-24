@@ -46,7 +46,10 @@ gulp.task('styles', function() {
     var cssStream = gulp.src('bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css')
         .pipe(plumber())
         .pipe(concat('css.css'));
-    return merge(lessStream, scssStream, cssStream)
+    var css2Stream = gulp.src('bower_components/rateYo/min/jquery.rateyo.min.css')
+        .pipe(plumber())
+        .pipe(concat('css.css'));
+    return merge(lessStream, scssStream, cssStream, css2Stream)
         .pipe(plumber())
         .pipe(autoprefixer())
         .pipe(concat('main.min.css'))

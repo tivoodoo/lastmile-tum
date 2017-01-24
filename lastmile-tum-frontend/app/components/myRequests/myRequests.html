@@ -1,6 +1,7 @@
 <lm-header text="My requests" img="images/d.jpg"></lm-header>
 <div class="part-screen-box">
     <div class="lm-content lm-content-90" ng-controller="MyReqCtrl">
+
         <div style="height: 60vh; overflow-y: auto; overflow-x: hidden; padding: 0px 20px 0px 20px;">
             <h2 class="col-xs-12" ng-hide="hasRequests">{{createReqText}}</h2>
             <div class="row reqSmall {{request.status}}" ng-repeat="request in requests">
@@ -102,12 +103,14 @@
                                     <li class="divider" ng-show="request.status=='Accepted'"></li>
                                     <li role="menuitem"><a
                                             ng-show="request.status=='Accepted' || request.status=='Delivered'">Write
-                                        message</a></li><!-- Accepted Confirmed-->
+                                        message</a></li><!-- Accepted Delivered-->
                                     <li role="menuitem"><a
-                                            ng-show="request.status=='Accepted' || request.status=='Confirmed'">Deliverer's
-                                        profile</a></li><!-- Accepted Confirmed-->
-                                    <li role="menuitem"><a ng-show="request.status=='Confirmed'">Rate deliverer</a></li>
-                                    <!-- Confirmed-->
+                                            ng-show="request.status=='Accepted' || request.status=='Delivered'">Deliverer's
+                                        profile</a></li><!-- Accepted Delivered-->
+                                    <li role="menuitem"><a ng-show="request.status=='Delivered'">Rate deliverer
+                                    <li role="menuitem"><a ng-show="request.status=='Delivered'" ng-click="setActReq(request)"
+                                                           data-toggle="modal" data-target="#showRating">Rate deliverer</a></li>
+                                    <!-- Delivered-->
                                     <li role="menuitem"><a ng-show="request.status=='Open' || request.status=='Expired'" ng-click="editRequest(request)">Edit
                                         request</a></li><!-- Open Expired-->
                                     <li class="divider" ng-show="request.status=='Accepted' || request.status=='Open'"></li>
@@ -132,13 +135,14 @@
                             <!-- Accepted-->
                             <li class="divider" ng-show="request.status=='Accepted'"></li>
                             <li role="menuitem"><a
-                                    ng-show="request.status=='Accepted' || request.status=='Confirmed'">Write
-                                message</a></li><!-- Accepted Confirmed-->
+                                    ng-show="request.status=='Accepted' || request.status=='Delivered'">Write
+                                message</a></li><!-- Accepted Delivered-->
                             <li role="menuitem"><a
-                                    ng-show="request.status=='Accepted' || request.status=='Confirmed'">Deliverer's
-                                profile</a></li><!-- Accepted Confirmed-->
-                            <li role="menuitem"><a ng-show="request.status=='Confirmed'">Rate deliverer</a></li>
-                            <!-- Confirmed-->
+                                    ng-show="request.status=='Accepted' || request.status=='Delivered'">Deliverer's
+                                profile</a></li><!-- Accepted Delivered-->
+                            <li role="menuitem"><a ng-show="request.status=='Delivered'" ng-click="setActReq(request)"
+                                                   data-toggle="modal" data-target="#showRating">Rate deliverer</a></li>
+                            <!-- Delivered-->
                             <li role="menuitem"><a ng-show="request.status=='Open' || request.status=='Expired'" ng-click="editRequest(request)">Edit
                                 request</a></li><!-- Open Expired-->
                             <li class="divider" ng-show="request.status=='Accepted' || request.status=='Open'"></li>
@@ -147,6 +151,39 @@
                         </ul>
                     </div>
                 </div>
+            </div>
+            <div class="modal fade" id="showRating" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <form name="ratingForm" ng-submit="rate(request)" autocomplete="off">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                >&times;</span></button>
+                                <h4 class="modal-title">Rate</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div id="rateYo" style="margin: 0 auto 15px auto;"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <textarea class="form-control" rows="3" class="form-control"
+                                                  ng-model="rating.comment"
+                                                  placeholder="Details (optional)" />
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                                        onclick="clearRating()">Close</button>
+                                    <button type="submit" class="btn btn-primary">Rate
+                                    </button>
+                                </div>
+                        </form>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
             </div>
         </div>
     </div>

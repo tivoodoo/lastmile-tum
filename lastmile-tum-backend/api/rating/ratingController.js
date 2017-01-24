@@ -15,6 +15,7 @@ var auth = require('../../authorization/auth');
  * */
 module.exports.postRating = function (req, res) {
   var userId = auth.getUserIdFromRequestToken(req);
+  console.log(req);
   Request.findById(req.body.request, function (err, request) {
     if (err) {
       console.log(err);
