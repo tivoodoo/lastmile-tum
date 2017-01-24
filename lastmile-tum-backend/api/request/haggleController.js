@@ -58,6 +58,7 @@ module.exports.postNewOffer = function (req, res) {
 
     //In case of first offer or offer declined
     if (request.haggledPrices.length == 0) {
+      request.status = "Haggled";
       request.haggledPrices.push({
         user: req.user._id,
         price: req.body.price
