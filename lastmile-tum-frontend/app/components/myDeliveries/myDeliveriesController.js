@@ -1,6 +1,43 @@
 angular.module('lastMile')
     .controller('MyDelCtrl',
-        function ($scope, Request, userService, $filter) {
+        function ($scope, Request,Rating, userService, $filter) {
+            //jquery for rating
+            $(function () {
+                $("#rateYoDel").rateYo({
+                    starWidth: "40px",
+                    rating: 3,
+                    fullStar: true
+                });
+
+                $("#rateYoDel").rateYo()
+                    .on("rateyo.set", function (e, data) {
+                        $scope.rating.stars = data.rating;
+                    });
+            });
+
+
+            var actReq = new Request();
+            $scope.setActReq = function (req) {
+                actReq = req;
+            };
+
+
+            $scope.rating = new Rating();
+            $scope.rate = function () {
+                $scope.rating.type = 'S';
+                $scope.rating.request = actReq._id;
+
+                console.log($scope.rating);
+                $scope.rating.$save()
+                    .then(function(){
+                        actReq.ratedBySupplier = true;
+                        $('#showRating').modal('hide');
+                    })
+                    .catch(function(){
+                        alert("An error occured while rating the requester");
+                    });
+            };
+
             Request.query()
                 .$promise.then(function (data) {
                 var filteredDeliveries = $filter('filter')(data, {supplier: userService.getUserName()._id});

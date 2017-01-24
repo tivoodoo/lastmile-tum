@@ -24,7 +24,7 @@ function ratingRoutes(passport) {
    * REST API for POST {ROOT}/rating/post
    *
    * */
-  router.post('/post', ratingController.postRating);
+  router.post('/', ratingController.postRating);
 
   /*
    * REST API for GET {ROOT}/rating/{{rating_id}}
