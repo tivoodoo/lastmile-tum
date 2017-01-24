@@ -16,7 +16,7 @@
                                     First Name:
                                 </div>
                                 <div class="col-sm-9">
-                                    <div class="form-group" ng-class="{'has-error': !step1.firstname.$valid && !step1.firstname.$pristine}">
+                                    <div class="form-group has-feedback" ng-class="{'has-error': !step1.firstname.$valid && !step1.firstname.$pristine}">
                                         <input type="text" class="form-control" name="firstname" id="firstname"
                                                ng-model="reg.firstName"
                                                uib-popover="{{(step1.firstname.$invalid && step1.firstname.$pristine) || (step1.firstname.$valid) ? '' : 'Please enter your first name.'}}"
@@ -35,7 +35,7 @@
                                     Last Name:
                                 </div>
                                 <div class="col-sm-9">
-                                    <div class="form-group" ng-class="{'has-error': !step1.lastname.$valid && !step1.lastname.$pristine}">
+                                    <div class="form-group has-feedback" ng-class="{'has-error': !step1.lastname.$valid && !step1.lastname.$pristine}">
                                         <input type="text" class="form-control" name="lastname" id="lastname"
                                                uib-popover="{{(step1.lastname.$invalid && step1.lastname.$pristine) || (step1.lastname.$valid) ? '' : 'Please enter your last name.'}}"
                                                popover-placement="top" popover-trigger="focus"
@@ -53,7 +53,7 @@
                                     Email address:
                                 </div>
                                 <div class="col-sm-9">
-                                    <div class="form-group" ng-class="{'has-error': !step1.email.$valid && !step1.email.$pristine}">
+                                    <div class="form-group has-feedback" ng-class="{'has-error': !step1.email.$valid && !step1.email.$pristine}">
                                         <input type="email" name="email_fake" id="email_fake" value="" style="display:none;" />
                                         <input type="email" class="form-control" ng-model="reg.email"
                                                placeholder="Email address" name="email" id="email"
@@ -72,7 +72,7 @@
                                     Password:
                                 </div>
                                 <div class="col-sm-9">
-                                    <div class="form-group" ng-class="{'has-error': !step1.pwd.$valid && !step1.pwd.$pristine}" >
+                                    <div class="form-group has-feedback" ng-class="{'has-error': !step1.pwd.$valid && !step1.pwd.$pristine}" >
                                         <input type="password" name="password_fake" id="password_fake" value="" style="display:none;" />
                                         <input type="password" class="form-control" id="password" name="pwd" ng-model="reg.password"
                                                uib-popover="{{(step1.pwd.$invalid && step1.pwd.$pristine) || (step1.pwd.$valid) ? '' : 'Please enter a password.'}}"
@@ -88,7 +88,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-offset-3 col-sm-9">
-                                    <div class="form-group" ng-class="{'has-error': !step1.pwdConfirm.$valid && !step1.pwdConfirm.$pristine}">
+                                    <div class="form-group has-feedback" ng-class="{'has-error': !step1.pwdConfirm.$valid && !step1.pwdConfirm.$pristine}">
                                         <input type="password" name="passwordConfirm_fake" id="passwordConfirm_fake" value="" style="display:none;" />
                                         <input type="password" class="form-control" name="pwdConfirm"
                                                id="passwordConfirm" ng-model="password"

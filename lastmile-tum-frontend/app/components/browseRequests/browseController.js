@@ -62,7 +62,6 @@ angular.module('lastMile')
                 }
             };
 
-
             $scope.initMap = function (reqarray) {
                 var centerGer = {lat: 51.1657, lng: 10.4515};
                 var map1 = new google.maps.Map(document.getElementById('browsemap'), {
@@ -90,6 +89,8 @@ angular.module('lastMile')
             $scope.applyFilter = function () {
                 if ($scope.filterDeliverTime && $scope.filterPickUpTime && moment($scope.filterDeliverTime) < moment($scope.filterPickUpTime)) {
                     alert("The earliest pickup filter date needs to be sooner than the latest dropoff filter date");
+                } if ($scope.lowPrice > $scope.highPrice){
+                    alert("The right price has to be higher or equal than the left price");
                 }
                 else {
                     $scope.initMap($scope.filteredRequests);

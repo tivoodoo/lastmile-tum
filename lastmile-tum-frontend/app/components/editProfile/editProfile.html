@@ -13,7 +13,7 @@
                                         First Name:
                                     </div>
                                     <div class="col-sm-9">
-                                        <div class="form-group has-feedback"
+                                        <div class="form-group"
                                              ng-class="{'has-error': !editForm.firstName.$valid && !editForm.firstName.$pristine}">
                                             <input type="text" class="form-control" ng-model="user.firstName" name="firstName"
                                                    placeholder="Insert first name" required/>
@@ -25,7 +25,7 @@
                                         Last Name:
                                     </div>
                                     <div class="col-sm-9">
-                                        <div class="form-group has-feedback"
+                                        <div class="form-group "
                                              ng-class="{'has-error': !editForm.lastName.$valid && !editForm.lastName.$pristine}">
                                             <input type="text" class="form-control" ng-model="user.lastName" name="lastName"
                                                    placeholder="Insert last name" required/>
@@ -37,13 +37,13 @@
                                         Street/Nr:
                                     </div>
                                     <div class="col-md-7 col-sm-6 col-xs-9">
-                                        <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                        <div class="form-group " ng-class="{'has-error': errorText}">
                                             <input type="text" class="form-control" ng-model="user.street"
                                                    placeholder="Insert street"/>
                                         </div>
                                     </div>
                                     <div class="col-md-2 col-sm-3 col-xs-3">
-                                        <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                        <div class="form-group " ng-class="{'has-error': errorText}">
                                             <input type="text" class="form-control" ng-model="user.number" placeholder="Nr."/>
                                         </div>
                                     </div>
@@ -53,13 +53,13 @@
                                         Town/Zip:
                                     </div>
                                     <div class="col-md-6 col-sm-5 col-xs-8">
-                                        <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                        <div class="form-group " ng-class="{'has-error': errorText}">
                                             <input type="text" class="form-control" ng-model="user.town"
                                                    placeholder="Insert town"/>
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-sm-4 col-xs-4">
-                                        <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                        <div class="form-group " ng-class="{'has-error': errorText}">
                                             <input type="text" class="form-control" ng-model="user.zipCode"
                                                    placeholder="Zip"/>
                                         </div>
@@ -70,7 +70,7 @@
                                         Telephone:
                                     </div>
                                     <div class="col-sm-9">
-                                        <div class="form-group has-feedback" ng-class="{'has-error': errorText}"
+                                        <div class="form-group " ng-class="{'has-error': errorText}"
                                              style="margin-bottom: 0px;">
                                             <input type="text" class="form-control" ng-model="user.telephone"
                                                    placeholder="Insert telephone"/>
@@ -167,7 +167,7 @@
                                 IBAN:
                             </div>
                             <div class="col-sm-10">
-                                <div class="form-group has-feedback" ng-class="{'has-error': !editForm.iban.$valid && !editForm.iban.$pristine}">
+                                <div class="form-group " ng-class="{'has-error': !editForm.iban.$valid && !editForm.iban.$pristine}">
                                     <input type="text" class="form-control" ng-model="iban" placeholder="Insert IBAN"
                                     name="iban" ng-minlength="22" ng-maxlength="22"
                                            ng-pattern="/^[A-Z][A-Z][0-9]+$/"
@@ -181,7 +181,7 @@
                                 BIC:
                             </div>
                             <div class="col-sm-10">
-                                <div class="form-group has-feedback" ng-class="{'has-error': !editForm.bic.$valid && !editForm.bic.$pristine}"
+                                <div class="form-group " ng-class="{'has-error': !editForm.bic.$valid && !editForm.bic.$pristine}"
                                      style="margin-bottom:0px;">
                                     <input type="text" class="form-control" ng-model="bic" placeholder="Insert BIC"
                                     name="bic" ng-minlength="8" ng-maxlength="11" ng-pattern="/^[a-zA-Z]{4}[a-zA-Z]{2}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})+$/"
@@ -198,7 +198,7 @@
                                 Password:
                             </div>
                             <div class="col-sm-10">
-                                <div class="form-group has-feedback" ng-class="{'has-error': !editForm.pwd.$valid && !editForm.pwd.$pristine}">
+                                <div class="form-group " ng-class="{'has-error': !editForm.pwd.$valid && !editForm.pwd.$pristine}">
                                     <input type="password" name="password_fake" id="password_fake" value="" style="display:none;" />
                                     <input type="password" class="form-control" name="pwd" ng-model="pswd1"
                                            uib-popover="{{(editForm.pwd.$invalid && editForm.pwd.$pristine) || (editForm.pwd.$valid) ? '' : 'Please enter a password.'}}"
@@ -217,7 +217,7 @@
                                 Confirm password:
                             </div>
                             <div class="col-sm-10">
-                                <div class="form-group has-feedback" ng-class="{'has-error': !editForm.pwdConfirm.$valid && !editForm.pwdConfirm.$pristine}"
+                                <div class="form-group " ng-class="{'has-error': !editForm.pwdConfirm.$valid && !editForm.pwdConfirm.$pristine}"
                                      style="margin-bottom:0px;">
                                     <input type="password" name="passwordConfirm_fake" id="passwordConfirm_fake" value="" style="display:none;" />
                                     <input type="password" class="form-control" name="pwdConfirm" ng-model="pswd2"
