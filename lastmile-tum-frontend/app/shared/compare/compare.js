@@ -6,6 +6,7 @@ angular.module('lastMile')
                 otherModelValue: "=compareTo"
             },
             link: function (scope, element, attributes, ngModel) {
+                console.log("lala");
 
                 ngModel.$validators.compareTo = function (modelValue) {
                     return modelValue == scope.otherModelValue;

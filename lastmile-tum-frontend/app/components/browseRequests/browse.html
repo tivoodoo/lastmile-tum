@@ -99,139 +99,153 @@
                     </div>
                 </div>
                 <div id="filterDiv" ng-show="filterShowed">
-                    <div class="col-sm-12">
-                        <div class="row requin">
-                            <p>From:</p>
-                            <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
-                                <input type="text" class="form-control" ng-model="filterPickUpLocation"
-                                       placeholder="Insert start"
-                                       style="opacity:0.9" required/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12">
-                        <div class="row requin">
-                            <p>To:</p>
-                            <div class="form-group">
-                                <input type="text" class="form-control" ng-model="filterDeliverToLocation"
-                                       placeholder="Insert destination"
-                                       style="opacity:0.9" required/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12">
-                        <div class="row requin">
-                            <p>Earliest pickup: </p>
-                            <div class="form-group">
-                                <input uib-datepicker-popup="dd.MM.yyyy" popup-placement="bottom" type="text"
-                                       class="form-control" ng-model="filterPickUpTime"
-                                       placeholder="Insert earliest pickup"
-                                       style="opacity:0.9" ng-click="openDatepickerFrom()"
-                                       is-open="isOpenFrom" show-button-bar="true"
-                                       datepicker-options="dateOptions"/>
-                            </div>
-                            <!--
-                            <div class="input-group date">
-                                <input datepicker type="text" class="form-control" id="datePickup">
-                                <span class="input-group-addon">
-                                    <i class="glyphicon glyphicon-th" id="showPickup"></i>
-                                </span>
-                            </div>
-                            -->
-                        </div>
-                    </div>
-                    <div class="col-sm-12">
-                        <div class="row requin">
-                            <p>Latest dropoff: </p>
-                            <div class="form-group">
-                                <input uib-datepicker-popup="dd.MM.yyyy" popup-placement="bottom" type="text"
-                                       class="form-control" ng-model="filterDeliverTime"
-                                       placeholder="Insert latest dropoff"
-                                       style="opacity:0.9" ng-click="openDatepickerTo()"
-                                       is-open="isOpenTo" show-button-bar="true"
-                                       datepicker-options="dateOptions"/>
-                            </div>
-                            <!--
-                            <div class="input-group date">
-                                <input datepicker type="text" class="form-control" id="dateDropoff">
-                                <span class="input-group-addon">
-                                    <i class="glyphicon glyphicon-th" id="showDropoff"></i>
-                                </span>
-                            </div>
-                            -->
-                        </div>
-                    </div>
-                    <div class="col-sm-12">
-                        <div class="row requin radio">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    Size:
-                                </div>
-                                <div class="col-xs-3">
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" ng-model="sizefilters.S" >S</label>
-                                    </div>
-                                </div>
-                                <div class="col-xs-3">
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" ng-model="sizefilters.M" >M</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-offset-3 col-xs-3">
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" ng-model="sizefilters.L">L</label>
-                                    </div>
-                                </div>
-                                <div class="col-xs-3">
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" ng-model="sizefilters.XL" >XL</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12">
-                        <div class="row requin">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    Price:
-                                </div>
-                                <div class="col-xs-3">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" ng-model="lowPrice"
-                                               placeholder="0 €"
-                                               style="opacity:0.9"/>
-                                    </div>
-                                </div>
-                                <div class="col-xs-2">
-                                    <center>
-                                        -
-                                    </center>
-                                </div>
-                                <div class="col-xs-3">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" ng-model="highPrice"
-                                               placeholder="100 €"
-                                               style="opacity:0.9"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
+                    <form name="filterForm" ng-submit="applyFilter()">
                         <div class="col-sm-12">
-                            <button type="button" class="btn btn-default right filter" ng-click="applyFilter()">
-                                <!--ng-disabled="logIn.$invalid" uib-popover="{{errorText}}"
-                                popover-placement="bottom" popover-trigger="click"
-                                -->Apply filter
-                            </button>
-                            <button type="button" class="btn btn-danger right filter leftone"
-                                    ng-click="clearInput()">Reset filter
-                            </button>
+                            <div class="row requin">
+                                <p>From:</p>
+                                <div class="form-group has-feedback" ng-class="{'has-error': errorText}">
+                                    <input type="text" class="form-control" ng-model="filterPickUpLocation"
+                                           placeholder="Insert start"
+                                           style="opacity:0.9"/>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                        <div class="col-sm-12">
+                            <div class="row requin">
+                                <p>To:</p>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" ng-model="filterDeliverToLocation"
+                                           placeholder="Insert destination"
+                                           style="opacity:0.9"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="row requin" ng-class="{'has-error': filterDeliverTime < filterPickUpTime}" >
+                                <p>Earliest pickup: </p>
+                                <div class="form-group">
+                                    <input uib-datepicker-popup="dd.MM.yyyy" popup-placement="bottom" type="text"
+                                           class="form-control" ng-model="filterPickUpTime"
+                                           placeholder="Insert earliest pickup"
+                                           style="opacity:0.9" ng-click="openDatepickerFrom()"
+                                           is-open="isOpenFrom" show-button-bar="true"
+                                           datepicker-options="dateOptions"
+                                           uib-popover="{{filterDeliverTime < filterPickUpTime ?
+                                           'The earliest pickup filter date needs to be sooner than the latest dropoff filter date.' : ''}}"
+                                           popover-placement="top" popover-trigger="focus"/>
+                                </div>
+                                <!--
+
+                                $scope.filterDeliverTime && $scope.filterPickUpTime && moment($scope.filterDeliverTime) < moment($scope.filterPickUpTime)) {
+                    alert("The earliest pickup filter date needs to be sooner than the latest dropoff filter date");
+
+                                <div class="input-group date">
+                                    <input datepicker type="text" class="form-control" id="datePickup">
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-th" id="showPickup"></i>
+                                    </span>
+                                </div>
+                                -->
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="row requin" ng-class="{'has-error': filterDeliverTime < filterPickUpTime}" >
+                                <p>Latest dropoff: </p>
+                                <div class="form-group">
+                                    <input uib-datepicker-popup="dd.MM.yyyy" popup-placement="bottom" type="text"
+                                           class="form-control" ng-model="filterDeliverTime"
+                                           placeholder="Insert latest dropoff"
+                                           style="opacity:0.9" ng-click="openDatepickerTo()"
+                                           is-open="isOpenTo" show-button-bar="true"
+                                           datepicker-options="dateOptions"
+                                           uib-popover="{{filterDeliverTime < filterPickUpTime ?
+                                           'The earliest pickup filter date needs to be sooner than the latest dropoff filter date.' : ''}}"
+                                           popover-placement="top" popover-trigger="focus"/>
+                                </div>
+                                <!--
+                                <div class="input-group date">
+                                    <input datepicker type="text" class="form-control" id="dateDropoff">
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-th" id="showDropoff"></i>
+                                    </span>
+                                </div>
+                                -->
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="row requin radio">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        Size:
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="checkbox">
+                                            <label><input type="checkbox" ng-model="sizefilters.S" >S</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="checkbox">
+                                            <label><input type="checkbox" ng-model="sizefilters.M" >M</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-offset-3 col-xs-3">
+                                        <div class="checkbox">
+                                            <label><input type="checkbox" ng-model="sizefilters.L">L</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="checkbox">
+                                            <label><input type="checkbox" ng-model="sizefilters.XL" >XL</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="row requin" ng-class="{'has-error': lowPrice > highPrice}">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        Price:
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="form-group has-feedback">
+                                            <input type="number" class="form-control" ng-model="lowPrice"
+                                                   uib-popover="{{lowPrice > highPrice ? 'The right price has to be higher or equal than the left price.' : ''}}"
+                                                   popover-placement="top" popover-trigger="focus"
+                                                   placeholder="10" name="lowPrice" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <center>
+                                            -
+                                        </center>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <div class="form-group has-feedback">
+                                            <input type="number" class="form-control" ng-model="highPrice"
+                                                   uib-popover="{{lowPrice > highPrice ? 'The right price has to be higher or equal than the left price.' : ''}}"
+                                                   popover-placement="top" popover-trigger="focus"
+                                                   placeholder="100" name="highPrice" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-default right filter"
+                                        ng-disabled="(filterDeliverTime < filterPickUpTime) || (lowPrice > highPrice)"
+                                        uib-popover="{{errorText}}">
+                                    Apply filter
+                                </button>
+                                <button type="button" class="btn btn-danger right filter leftone"
+                                        ng-click="clearInput()">Reset filter
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -362,7 +376,6 @@
                                     </button>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-xs-12">
                                     <button type="button" class="btn btn-primary accept" data-dismiss="modal"
@@ -371,7 +384,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div><!-- /.modal-content -->
