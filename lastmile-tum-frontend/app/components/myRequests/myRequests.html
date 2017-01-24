@@ -107,8 +107,7 @@
                                     <li role="menuitem"><a
                                             ng-show="request.status=='Accepted' || request.status=='Delivered'">Deliverer's
                                         profile</a></li><!-- Accepted Delivered-->
-                                    <li role="menuitem"><a ng-show="request.status=='Delivered'">Rate deliverer
-                                    <li role="menuitem"><a ng-show="request.status=='Delivered'" ng-click="setActReq(request)"
+                                    <li role="menuitem"><a ng-show="request.status=='Delivered'" disabled ng-click="setActReq(request)"
                                                            data-toggle="modal" data-target="#showRating">Rate deliverer</a></li>
                                     <!-- Delivered-->
                                     <li role="menuitem"><a ng-show="request.status=='Open' || request.status=='Expired'" ng-click="editRequest(request)">Edit
@@ -140,7 +139,7 @@
                             <li role="menuitem"><a
                                     ng-show="request.status=='Accepted' || request.status=='Delivered'">Deliverer's
                                 profile</a></li><!-- Accepted Delivered-->
-                            <li role="menuitem"><a ng-show="request.status=='Delivered'" ng-click="setActReq(request)"
+                            <li role="menuitem"><a ng-show="request.ratedByRequester === false && request.status=='Delivered' " ng-click="setActReq(request)"
                                                    data-toggle="modal" data-target="#showRating">Rate deliverer</a></li>
                             <!-- Delivered-->
                             <li role="menuitem"><a ng-show="request.status=='Open' || request.status=='Expired'" ng-click="editRequest(request)">Edit
@@ -150,12 +149,15 @@
                                 request</a></li><!-- Open Accepted-->
                         </ul>
                     </div>
+                    <span ng-show="request.ratedByRequester">
+                        Already rated!
+                    </span>
                 </div>
             </div>
             <div class="modal fade" id="showRating" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <form name="ratingForm" ng-submit="rate(request)" autocomplete="off">
+                        <form name="ratingForm" ng-submit="rate()" autocomplete="off">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 >&times;</span></button>
@@ -164,7 +166,7 @@
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-xs-12">
-                                        <div id="rateYo" style="margin: 0 auto 15px auto;"></div>
+                                        <div id="rateYoReq" style="margin: 0 auto 15px auto;"></div>
                                     </div>
                                 </div>
                                 <div class="row">

@@ -1,47 +1,40 @@
 angular.module('lastMile')
     .controller('MyReqCtrl',
         function ($scope, Request, userService, Rating, Upload, $filter, $rootScope, $location, BACKEND_BASE_URL) {
-            var initStars = function() {
-                $('#showRating').on('shown.bs.modal', function () {
-                    $(function () {
-                        $("#rateYo").rateYo({
-                            starWidth: "40px",
-                            rating: 3,
-                            fullStar: true
-                        });
+            //jquery for rating
+            $(function () {
+                $("#rateYoReq").rateYo({
+                    starWidth: "40px",
+                    rating: 3,
+                    fullStar: true
+                });
+
+                $("#rateYoReq").rateYo()
+                    .on("rateyo.set", function (e, data) {
+                        $scope.rating.stars = data.rating;
                     });
-                });
+            });
 
-                $('#showRating').submit(function (e) {
-                    $('#showRating').modal('hide');
-                });
-            };
-
-            initStars();
 
             var actReq = new Request();
             $scope.setActReq = function (req) {
                 actReq = req;
             };
 
+
             $scope.rating = new Rating();
             $scope.rate = function () {
-                //$scope.rating.stars = $("#rateYo").rateYo("rating");
                 $scope.rating.type = 'R';
-                $scope.rating.stars = 4;
-                $scope.rating.comment = "1234";
-                $scope.rating.request = actReq;
+                $scope.rating.request = actReq._id;
 
-                console.log(actReq);
-                Upload.upload({
-                    url: BACKEND_BASE_URL+'/rating/post',
-                    data: $scope.rating
-                })
+                console.log($scope.rating);
+                $scope.rating.$save()
                     .then(function(){
-                        console.log("success")
+                        actReq.ratedByRequester = true;
+                        $('#showRating').modal('hide');
                     })
                     .catch(function(){
-                        console.log($scope.rating);
+                        alert("An error occured while rating the deliverer");
                     });
             };
 

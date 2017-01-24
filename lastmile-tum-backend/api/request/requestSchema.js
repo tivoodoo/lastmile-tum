@@ -75,6 +75,14 @@ var requestSchema = mongoose.Schema({
     text: String,
     date: Date
   }],
+    ratedByRequester:{
+    type: Boolean,
+        default: false
+    },
+    ratedBySupplier:{
+        type: Boolean,
+        default: false
+    },
 });
 
 var Request = mongoose.model('Request', requestSchema);
