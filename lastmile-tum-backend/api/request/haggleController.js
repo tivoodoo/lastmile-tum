@@ -48,7 +48,7 @@ module.exports.postNewOffer = function (req, res) {
 
     //Request even cheaper price than given price of requester -> decline
     if (req.body.price < request.price) {
-      return res.status(406).send('Invalid offer');
+      return res.status(407).send('Invalid offer');
     }
 
     //Initiate array for first offer

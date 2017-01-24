@@ -198,7 +198,7 @@ angular.module('lastMile')
       };
 
       $scope.sendHaggle = function () {
-        alert($scope.form.hagglePrice);
+        // alert($scope.form.hagglePrice);
         if ($scope.form.hagglePrice == "")
           return;
 
@@ -208,9 +208,21 @@ angular.module('lastMile')
         $http.post(BACKEND_BASE_URL + '/requests/haggle/' + $rootScope.selectedRequestId, {
           price: price
         })
+          //All response status with code 200-299 is considered as success status
           .then(function successCallback(response) {
             $scope.form.hagglePrice = "";
-            // notificationService.notifyObservers('chatMessage');
+          },
+          //All other status is considered as error status
+          //http://stackoverflow.com/questions/27507678/in-angular-http-service-how-can-i-catch-the-status-of-error
+          //https://docs.angularjs.org/api/ng/service/$http   Section: General usage
+          function errorCallback(response){
+            if(response.status==407){
+              alert("The offered price should be more than origin price");
+            }
+            else if(response.status==406){
+              alert("Somebody already offered lower price than you");
+            }
+            else alert("Error in the backend");
           });
       }
     }
