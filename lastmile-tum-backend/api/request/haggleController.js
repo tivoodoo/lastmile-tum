@@ -25,7 +25,74 @@ module.exports.getNewOffer = function (req, res) {
 };
 
 module.exports.declineOffer = function (req, res) {
-  console.log("Test");
+  if (!req.user) {
+    console.log("no user object");
+    return res.status(500).send();
+  }
+
+  Request.findById(req.params.request_id, function (err, request){
+    if(err){
+      res.status(400).send('Request not found');
+      return;
+    }
+
+    if(!request.haggledPrices || request.haggledPrices.length==0){
+      res.status(400).send('No haggled price yet');
+    }
+
+    // if(req.user._id != request.requester){
+    //   console.log(req.user._id);
+    //   console.log(request.requester);
+    //   res.status(401).send('Unauthorized');
+    //   return;
+    // }
+
+    request.haggledPrices = undefined;
+    request.status = 'Open';
+
+    return request.save(function (err) {
+      if (err) {
+        return res.status(500).send(err);
+      }
+      return res.json({success: true});
+    });
+  })
+}
+
+module.exports.acceptOffer = function (req, res){
+  if (!req.user) {
+    console.log("no user object");
+    return res.status(500).send();
+  }
+
+  Request.findById(req.params.request_id, function (err, request){
+    if(err){
+      res.status(400).send('Request not found');
+      return;
+    }
+
+    if(!request.haggledPrices || request.haggledPrices.length==0){
+      res.status(400).send('No haggled price yet');
+    }
+
+    // if(req.user._id != request.requester){
+    //   console.log(req.user._id);
+    //   console.log(request.requester);
+    //   res.status(401).send('Unauthorized');
+    //   return;
+    // }
+
+    request.supplier = request.haggledPrices[0].user;
+    request.price = request.haggledPrices[0].price;
+    request.status = 'Accepted';
+
+    return request.save(function (err) {
+      if (err) {
+        return res.status(500).send(err);
+      }
+      return res.json({success: true});
+    });
+  })
 }
 /**
  *

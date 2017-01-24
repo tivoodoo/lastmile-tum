@@ -92,13 +92,15 @@
                         </div>
                         -->
                         <div class="row hidden-md hidden-lg" style="margin-left: 0px; margin-right: 0px">
-                            <div class="btn-group" uib-dropdown dropdown-append-to-body style="width:100%; margin-top: 10px;">
+                            <div class="btn-group" uib-dropdown dropdown-append-to-body
+                                 style="width:100%; margin-top: 10px;">
                                 <button type="button" class="btn btn-blanc" uib-dropdown-toggle
                                         style="width:100%;">
                                     Menu <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" uib-dropdown-menu role="menu">
-                                    <li role="menuitem"><a ng-show="request.status=='Accepted'">Confirm delivery</a></li>
+                                    <li role="menuitem"><a ng-show="request.status=='Accepted'">Confirm delivery</a>
+                                    </li>
                                     <!-- Accepted-->
                                     <li class="divider" ng-show="request.status=='Accepted'"></li>
                                     <li role="menuitem"><a
@@ -107,13 +109,36 @@
                                     <li role="menuitem"><a
                                             ng-show="request.status=='Accepted' || request.status=='Delivered'">Deliverer's
                                         profile</a></li><!-- Accepted Delivered-->
-                                    <li role="menuitem"><a ng-show="request.status=='Delivered'" disabled ng-click="setActReq(request)"
-                                                           data-toggle="modal" data-target="#showRating">Rate deliverer</a></li>
+                                    <li role="menuitem"><a ng-show="request.status=='Delivered'" disabled
+                                                           ng-click="setActReq(request)"
+                                                           data-toggle="modal" data-target="#showRating">Rate
+                                        deliverer</a></li>
                                     <!-- Delivered-->
-                                    <li role="menuitem"><a ng-show="request.status=='Open' || request.status=='Expired'" ng-click="editRequest(request)">Edit
-                                        request</a></li><!-- Open Expired-->
-                                    <li class="divider" ng-show="request.status=='Accepted' || request.status=='Open'"></li>
-                                    <li role="menuitem"><a ng-show="request.status=='Accepted' || request.status=='Open'  || request.status=='Expired'" ng-click="deleteRequest(request)">Delete
+
+                                    <li role="menuitem">
+                                        <a ng-show="request.status=='Haggled'" ng-click="acceptHaggle(request)">
+                                            Accept offer
+                                        </a>
+                                    </li>
+                                    <li role="menuitem">
+                                        <a ng-show="request.status=='Haggled'" ng-click="declineHaggle(request)">
+                                            Decline offer
+                                        </a>
+                                    </li>
+
+                                    <li class="divider"
+                                        ng-show="request.status=='Haggled'"></li>
+
+                                    <li role="menuitem"><a
+                                            ng-show="request.status=='Open' || request.status=='Expired' || request.status=='Haggled'"
+                                            ng-click="editRequest(request)">Edit
+                                        request</a></li><!-- Open Expired Haggled-->
+
+                                    <li class="divider"
+                                        ng-show="request.status=='Accepted' || request.status=='Open' || request.status=='Haggled'"></li>
+                                    <li role="menuitem"><a
+                                            ng-show="request.status=='Accepted' || request.status=='Open'  || request.status=='Expired'"
+                                            ng-click="deleteRequest(request)">Delete
                                         request</a></li><!-- Open Accepted-->
                                 </ul>
                             </div>
@@ -139,14 +164,37 @@
                             <li role="menuitem"><a
                                     ng-show="request.status=='Accepted' || request.status=='Delivered'">Deliverer's
                                 profile</a></li><!-- Accepted Delivered-->
-                            <li role="menuitem"><a ng-show="request.ratedByRequester === false && request.status=='Delivered' " ng-click="setActReq(request)"
-                                                   data-toggle="modal" data-target="#showRating">Rate deliverer</a></li>
+                            <li role="menuitem"><a
+                                    ng-show="request.ratedByRequester === false && request.status=='Delivered' "
+                                    ng-click="setActReq(request)"
+                                    data-toggle="modal" data-target="#showRating">Rate deliverer</a></li>
                             <!-- Delivered-->
-                            <li role="menuitem"><a ng-show="request.status=='Open' || request.status=='Expired'" ng-click="editRequest(request)">Edit
-                                request</a></li><!-- Open Expired-->
-                            <li class="divider" ng-show="request.status=='Accepted' || request.status=='Open'"></li>
-                            <li role="menuitem"><a ng-show="request.status=='Accepted' || request.status=='Open'  || request.status=='Expired'" ng-click="deleteRequest(request)">Delete
-                                request</a></li><!-- Open Accepted-->
+
+                            <li role="menuitem">
+                                <a ng-show="request.status=='Haggled'" ng-click="acceptHaggle(request)">
+                                    Accept offer
+                                </a>
+                            </li>
+                            <li role="menuitem">
+                                <a ng-show="request.status=='Haggled'" ng-click="declineHaggle(request)">
+                                    Decline offer
+                                </a>
+                            </li>
+
+                            <li class="divider"
+                                ng-show="request.status=='Haggled'"></li>
+
+                            <li role="menuitem"><a
+                                    ng-show="request.status=='Open' || request.status=='Expired' || request.status=='Haggled'"
+                                    ng-click="editRequest(request)">Edit
+                                request</a></li><!-- Open Expired Haggled-->
+
+                            <li class="divider"
+                                ng-show="request.status=='Accepted' || request.status=='Open' || request.status=='Haggled'"></li>
+                            <li role="menuitem">
+                                <a ng-show="request.status=='Accepted' || request.status=='Open'  || request.status=='Expired' || request.status=='Haggled'"
+                                   ng-click="deleteRequest(request)">Delete
+                                    request</a></li><!-- Open Accepted-->
                         </ul>
                     </div>
                     <span ng-show="request.ratedByRequester">
@@ -173,16 +221,17 @@
                                     <div class="col-xs-12">
                                         <textarea class="form-control" rows="3" class="form-control"
                                                   ng-model="rating.comment"
-                                                  placeholder="Details (optional)" />
-                                    </div>
+                                                  placeholder="Details (optional)"/>
                                     </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal"
-                                        onclick="clearRating()">Close</button>
-                                    <button type="submit" class="btn btn-primary">Rate
-                                    </button>
-                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal"
+                                        onclick="clearRating()">Close
+                                </button>
+                                <button type="submit" class="btn btn-primary">Rate
+                                </button>
+                            </div>
                         </form>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->

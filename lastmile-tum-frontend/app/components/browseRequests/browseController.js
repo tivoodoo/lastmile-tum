@@ -211,6 +211,7 @@ angular.module('lastMile')
           //All response status with code 200-299 is considered as success status
           .then(function successCallback(response) {
             $scope.form.hagglePrice = "";
+            alert("Offer sent!");
           },
           //All other status is considered as error status
           //http://stackoverflow.com/questions/27507678/in-angular-http-service-how-can-i-catch-the-status-of-error

@@ -42,6 +42,12 @@ function requestRoutes(passport) {
     .get(haggleController.getNewOffer)
     .post(haggleController.postNewOffer);
 
+  router.route('/haggle/accept/:request_id')
+    .post(haggleController.acceptOffer);
+
+  router.route('/haggle/decline/:request_id')
+    .post(haggleController.declineOffer);
+  
   return router;
 
 

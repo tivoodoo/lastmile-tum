@@ -36,6 +36,7 @@
     "rateYo": "rateyo#^2.2.0"
   },
   "resolutions": {
-    "angular": "^1.5.9"
+    "angular": "^1.5.9",
+    "jquery": ">=1.6"
   }
 }
