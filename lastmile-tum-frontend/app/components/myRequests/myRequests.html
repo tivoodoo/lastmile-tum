@@ -130,7 +130,7 @@
                             Menu <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" uib-dropdown-menu role="menu">
-                            <li role="menuitem"><a ng-show="request.status=='Accepted'">Confirm delivery</a></li>
+                            <li role="menuitem"><a ng-show="request.status=='Accepted'" ng-click="confirmDelivery(request)">Confirm delivery</a></li>
                             <!-- Accepted-->
                             <li class="divider" ng-show="request.status=='Accepted'"></li>
                             <li role="menuitem"><a

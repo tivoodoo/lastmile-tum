@@ -56,6 +56,20 @@ angular.module('lastMile')
                 $location.path("/editReq");
             };
 
+            $scope.confirmDelivery = function (req) {
+                req.status = "Delivered";
+                if (req.picture) {
+                    delete req.picture;
+                }
+                req.$update({requestID: req._id})
+                    .then(function (res) {
+                        //
+                    })
+                    .catch(function (err) {
+                        alert("error while confirming delivery");
+                    });
+            };
+
             $scope.deleteRequest = function (req) {
                 req.$remove().then(function () {
                     alert("request successfully deleted");
