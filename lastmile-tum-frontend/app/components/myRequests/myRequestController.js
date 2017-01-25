@@ -86,7 +86,8 @@ angular.module('lastMile')
       $scope.acceptHaggle = function (req) {
         $http.post(BACKEND_BASE_URL + '/requests/haggle/accept/' + req._id)
           .then(function successCallBack(response) {
-              alert("Accepted");
+              req.status = "Accepted";
+              // alert("Accepted");
             },
             function errorCallBack(response) {
               alert("Error at backend");
@@ -96,7 +97,8 @@ angular.module('lastMile')
       $scope.declineHaggle = function (req) {
         $http.post(BACKEND_BASE_URL + '/requests/haggle/decline/' + req._id)
           .then(function successCallBack(response) {
-              alert("Declined");
+              req.status = "Open";
+              // alert("Declined");
             },
             function errorCallBack(response) {
               alert("Error at backend");
