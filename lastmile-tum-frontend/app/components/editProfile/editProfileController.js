@@ -53,6 +53,13 @@ angular.module('lastMile')
                                     break;
                             };
                            $scope.averageRating = Math.round(($scope.ratingCounter / $scope.totalRating) * 100) / 100 ;
+                            $(function () {
+
+                                $("#rateYoProfile").rateYo({
+                                    rating: $scope.averageRating ,
+                                    readOnly: true
+                                });
+                            });
                         });
                     });
                 })
