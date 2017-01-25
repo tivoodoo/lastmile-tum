@@ -19,10 +19,11 @@ angular.module('lastMile')
                         $scope.ratingArray =[];
                         Rating.get({ratingID: rating}).$promise.then(function (rat) {
                             if(rat.type === "R"){
-                                rat.userType = "requester";
+                                //rating was given by a requester, therefore the user is the deliverer
+                                rat.userType = "deliverer";
                             }
                             else{
-                                rat.userType = "deliverer";
+                                rat.userType = "requester";
                             }
 
                             $scope.ratingArray.push(rat);
