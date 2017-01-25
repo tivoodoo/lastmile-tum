@@ -294,11 +294,11 @@
                                 <div class="pic2 userdetailpic" style="border: 1px solid #999;" ng-hide="user.picture">
                                 </div>
                                 <div class="pic2" ng-show="!pictureUpdated && user.picture">
-                                    <img ng-model="user.picture"
+                                    <img ng-model="user.picture" class="userdetailpic"
                                          ng-src="data:{{user.picture.contentType}};base64,{{user.picture.data}}">
                                 </div>
-                                <div class="pic2" ng-show="pictureUpdated && user.picture">
-                                    <img ngf-thumbnail="user.picture" id="userPicturePreview">
+                                <div class="pic2 " ng-show="pictureUpdated && user.picture">
+                                    <img class="userdetailpic" ngf-thumbnail="user.picture" id="userPicturePreview">
                                 </div>
                             </div>
                         </div>

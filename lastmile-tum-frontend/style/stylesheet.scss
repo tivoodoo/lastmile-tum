@@ -560,6 +560,10 @@ li > a {
   width: calc(100% - 80px);
   margin-top: 5px;
 }
+.userdetailpic {
+  max-width: 120px;
+  max-height: 120px;
+}
 /*
 a{
   font-family: Muli;
