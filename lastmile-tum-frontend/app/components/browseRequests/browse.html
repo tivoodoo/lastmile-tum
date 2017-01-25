@@ -306,14 +306,14 @@
                                         {{selectedRequest.size}}
                                     </td>
                                 </tr>
-                                <!--<tr>-->
-                                    <!--<td class="tf">-->
-                                        <!--Price:-->
-                                    <!--</td>-->
-                                    <!--<td>-->
-                                        <!--{{selectedRequest.price}}-->
-                                    <!--</td>-->
-                                <!--</tr>-->
+                                <tr>
+                                    <td class="tf">
+                                        Price:
+                                    </td>
+                                    <td>
+                                        {{selectedRequest.price}}
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td class="tf">
                                         Description:
@@ -372,25 +372,26 @@
                                 <div ng-include="'./components/browseRequests/chat/chatbox.html'"></div>
                             </div>
 
-                            <form ng-submit="sendHaggle()">
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <input type="text" ng-model="form.hagglePrice"
-                                               placeholder="Enter your wished price">
-
+                            <div id="haggleDiv" ng-show="showHaggle">
+                                <form ng-submit="sendHaggle()">
+                                    <div class="row">
+                                         <div class="col-xs-12">
+                                            <input class="form-control" type="text" ng-model="form.hagglePrice" style="display:inline-block;"
+                                                   placeholder="Enter your wished price" id="hagglePriceInput">
+                                            <button type="submit" ng-class="{disabled: form.hagglePrice == ''}"
+                                                    class="btn btn-default chat-button" ng-click="showHaggle = false"
+                                                    style="margin-top:-4px; padding-left: 10px;">
+                                                        <i class="glyphicon glyphicon-ok"></i>
+                                            </button>
+                                            <button type="dismiss" class="btn btn-default chat-button"
+                                                    ng-click="showHaggle = false"
+                                                    style="margin-top:-4px; margin-left: 2px; padding-left: 10px;">
+                                                    <i class="glyphicon glyphicon-remove"></i>
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <button type="submit" ng-class="{disabled: form.hagglePrice == ''}"
-                                                class="btn btn-default accept">
-                                            Offer!
-                                        </button>
-                                    </div>
-                                </div>
-
-                            </form>
-
+                                </form>
+                            </div>
                             <!--<div class = "row">-->
                             <!--<div class="col-xs-12">-->
                             <!--<button type="button" class="btn btn-primary accept" data-dismiss="modal"-->
@@ -400,17 +401,15 @@
                             <!--</div>-->
                             <!--</div>-->
                             <!---->
-
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    Price:
-                                    {{selectedRequest.price}}
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-12">
+                            <div class="row" ng-hide="showHaggle" style="margin-top: 10px;">
+                                <div class="col-xs-6">
                                     <button type="button" class="btn btn-primary accept" data-dismiss="modal"
                                             ng-click="accept()">Accept
+                                    </button>
+                                </div>
+                                <div class="col-xs-6">
+                                    <button type="button" class="btn btn-primary accept"
+                                            ng-click="showHaggle = true;">Haggle
                                     </button>
                                 </div>
                             </div>

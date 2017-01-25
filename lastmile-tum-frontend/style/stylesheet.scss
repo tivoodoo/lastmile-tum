@@ -491,8 +491,11 @@ button.btn.btn-primary.accept {
   width: 100%;
   height: 150px;
   border: 1px solid lightgrey;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   margin-top: 10px;
+  padding: 5px 0px 5px 0px;
+  border-radius: 4px;
 }
 
 .event-box-140 {
@@ -503,6 +506,7 @@ button.btn.btn-primary.accept {
 .event-box-60 {
   float: left;
   width: 60px;
+  overflow-x: hidden;
 }
 
 .chat-headline {
@@ -511,14 +515,19 @@ button.btn.btn-primary.accept {
   margin-bottom: 2px;
 }
 
+.event-box-entry{
+  padding: 1px 5px 1px 5px;
+}
+
 .event-box-entry:not(:last-child) {
   border-bottom: 1px solid #eee;
 }
 
 .event-box-info-text {
-  color: grey;
+  color: #a6a6a6;
   font-size: 9pt;
   white-space: nowrap;
+  float: right;
 }
 
 .chat-input {
@@ -531,7 +540,7 @@ button.btn.btn-primary.accept {
 }
 
 .chat-button {
-  float: left;
+  //float: left;
   margin-top: 5px;
   width: 35px;
   height: 35px;
@@ -545,6 +554,11 @@ button.btn.btn-primary.accept {
 
 li > a {
   cursor: pointer;
+}
+
+#hagglePriceInput {
+  width: calc(100% - 80px);
+  margin-top: 5px;
 }
 /*
 a{

@@ -11,6 +11,7 @@ angular.module('lastMile')
       $scope.sizefilters.L = true;
       $scope.sizefilters.XL = true;
 
+      $scope.showHaggle = false;
 
       Request.query()
         .$promise.then(function (data) {
@@ -176,11 +177,11 @@ angular.module('lastMile')
 
       var setHeightChatWindow = function () {
         var modalMapHeight = $('#modalMap').height();
-        var aboveTableHeight = 21 + 15 + 2;
-        var buttonHeight = 35;
-        var inputHeight = 50 + 15;
+        var aboveTableHeight = 25 + 10;
+        var buttonHeight = 35.5 + 10;
+        var inputHeight = 35 + 15;
         var chatHeight = modalMapHeight - aboveTableHeight - buttonHeight - inputHeight;
-        $('#tableDiv').height(chatHeight + "px");
+        $('.chatbox').height(chatHeight + "px");
       };
 
       // make modal.height responsive
