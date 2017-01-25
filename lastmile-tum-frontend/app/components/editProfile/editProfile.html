@@ -15,7 +15,8 @@
                                     <div class="col-sm-9">
                                         <div class="form-group"
                                              ng-class="{'has-error': !editForm.firstName.$valid && !editForm.firstName.$pristine}">
-                                            <input type="text" class="form-control" ng-model="user.firstName" name="firstName"
+                                            <input type="text" class="form-control" ng-model="user.firstName"
+                                                   name="firstName"
                                                    placeholder="Insert first name" required/>
                                         </div>
                                     </div>
@@ -27,7 +28,8 @@
                                     <div class="col-sm-9">
                                         <div class="form-group "
                                              ng-class="{'has-error': !editForm.lastName.$valid && !editForm.lastName.$pristine}">
-                                            <input type="text" class="form-control" ng-model="user.lastName" name="lastName"
+                                            <input type="text" class="form-control" ng-model="user.lastName"
+                                                   name="lastName"
                                                    placeholder="Insert last name" required/>
                                         </div>
                                     </div>
@@ -44,7 +46,8 @@
                                     </div>
                                     <div class="col-md-2 col-sm-3 col-xs-3">
                                         <div class="form-group " ng-class="{'has-error': errorText}">
-                                            <input type="text" class="form-control" ng-model="user.number" placeholder="Nr."/>
+                                            <input type="text" class="form-control" ng-model="user.number"
+                                                   placeholder="Nr."/>
                                         </div>
                                     </div>
                                 </div>
@@ -78,7 +81,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div ngf-drop="pictureUpdated = true" class="col-lg-5 col-md-4 col-sm-3" ng-model="user.picture"
+                            <div ngf-drop="pictureUpdated = true" class="col-lg-5 col-md-4 col-sm-3"
+                                 ng-model="user.picture"
                                  ngf-drag-over-class="'imageDragover'" ngf-multiple="false">
                                 <div class="row" style="margin-top:20px;">
                                     <div class="col-xs-offset-4 col-xs-4 pic" style="border: 1px solid #999;"
@@ -99,7 +103,8 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <button type="button" class="btn btn-primary" ngf-select="pictureUpdated = true" ng-model="user.picture"
+                                        <button type="button" class="btn btn-primary" ngf-select="pictureUpdated = true"
+                                                ng-model="user.picture"
                                                 ngf-multiple="false"
                                                 style="display: block; margin: 15px auto 0px auto;">Upload Image
                                         </button>
@@ -167,9 +172,10 @@
                                 IBAN:
                             </div>
                             <div class="col-sm-10">
-                                <div class="form-group " ng-class="{'has-error': !editForm.iban.$valid && !editForm.iban.$pristine}">
+                                <div class="form-group "
+                                     ng-class="{'has-error': !editForm.iban.$valid && !editForm.iban.$pristine}">
                                     <input type="text" class="form-control" ng-model="iban" placeholder="Insert IBAN"
-                                    name="iban" ng-minlength="22" ng-maxlength="22"
+                                           name="iban" ng-minlength="22" ng-maxlength="22"
                                            ng-pattern="/^[A-Z][A-Z][0-9]+$/"
                                            uib-popover="{{(editForm.iban.$invalid && editForm.iban.$pristine) || (editForm.iban.$valid) ? '' : 'IBAN consists of 22 characters: 2 capital letters and 20 digits.'}}"
                                            popover-placement="bottom" popover-trigger="focus"/>
@@ -181,12 +187,14 @@
                                 BIC:
                             </div>
                             <div class="col-sm-10">
-                                <div class="form-group " ng-class="{'has-error': !editForm.bic.$valid && !editForm.bic.$pristine}"
+                                <div class="form-group "
+                                     ng-class="{'has-error': !editForm.bic.$valid && !editForm.bic.$pristine}"
                                      style="margin-bottom:0px;">
                                     <input type="text" class="form-control" ng-model="bic" placeholder="Insert BIC"
-                                    name="bic" ng-minlength="8" ng-maxlength="11" ng-pattern="/^[a-zA-Z]{4}[a-zA-Z]{2}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})+$/"
-                                    uib-popover="{{(editForm.bic.$invalid && editForm.bic.$pristine) || (editForm.bic.$valid) ? '' : 'BIC consists of 08 or 11 capital letters.'}}"
-                                    popover-placement="top" popover-trigger="focus" />
+                                           name="bic" ng-minlength="8" ng-maxlength="11"
+                                           ng-pattern="/^[a-zA-Z]{4}[a-zA-Z]{2}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})+$/"
+                                           uib-popover="{{(editForm.bic.$invalid && editForm.bic.$pristine) || (editForm.bic.$valid) ? '' : 'BIC consists of 08 or 11 capital letters.'}}"
+                                           popover-placement="top" popover-trigger="focus"/>
                                 </div>
                             </div>
                         </div>
@@ -198,8 +206,10 @@
                                 Password:
                             </div>
                             <div class="col-sm-10">
-                                <div class="form-group " ng-class="{'has-error': !editForm.pwd.$valid && !editForm.pwd.$pristine}">
-                                    <input type="password" name="password_fake" id="password_fake" value="" style="display:none;" />
+                                <div class="form-group "
+                                     ng-class="{'has-error': !editForm.pwd.$valid && !editForm.pwd.$pristine}">
+                                    <input type="password" name="password_fake" id="password_fake" value=""
+                                           style="display:none;"/>
                                     <input type="password" class="form-control" name="pwd" ng-model="pswd1"
                                            uib-popover="{{(editForm.pwd.$invalid && editForm.pwd.$pristine) || (editForm.pwd.$valid) ? '' : 'Please enter a password.'}}"
                                            popover-placement="top" popover-trigger="focus" placeholder="Password"/>
@@ -217,9 +227,11 @@
                                 Confirm password:
                             </div>
                             <div class="col-sm-10">
-                                <div class="form-group " ng-class="{'has-error': !editForm.pwdConfirm.$valid && !editForm.pwdConfirm.$pristine}"
+                                <div class="form-group "
+                                     ng-class="{'has-error': !editForm.pwdConfirm.$valid && !editForm.pwdConfirm.$pristine}"
                                      style="margin-bottom:0px;">
-                                    <input type="password" name="passwordConfirm_fake" id="passwordConfirm_fake" value="" style="display:none;" />
+                                    <input type="password" name="passwordConfirm_fake" id="passwordConfirm_fake"
+                                           value="" style="display:none;"/>
                                     <input type="password" class="form-control" name="pwdConfirm" ng-model="pswd2"
                                            uib-popover="{{(editForm.pwdConfirm.$invalid && editForm.pwdConfirm.$pristine) || (editForm.pwdConfirm.$valid) ? '' : 'Must match the previous entry.'}}"
                                            popover-placement="top"
@@ -241,7 +253,8 @@
                         <a href="/">
                             <button type="button" class="btn btn-danger" ng-click="" style="width:45%;">Cancel</button>
                         </a>
-                        <button type="submit" class="btn btn-primary right" style="width:45%;" ng-disabled="editForm.$invalid || (editForm.iban.$invalid && editForm.bic.$invalid)">
+                        <button type="submit" class="btn btn-primary right" style="width:45%;"
+                                ng-disabled="editForm.$invalid || (editForm.iban.$invalid && editForm.bic.$invalid)">
                             Save
                         </button>
                     </div>
@@ -278,7 +291,7 @@
                                 </p>
                             </div>
                             <div class="col-lg-3">
-                                <div class="pic2" style="border: 1px solid #999;" ng-hide="user.picture">
+                                <div class="pic2 userdetailpic" style="border: 1px solid #999;" ng-hide="user.picture">
                                 </div>
                                 <div class="pic2" ng-show="!pictureUpdated && user.picture">
                                     <img ng-model="user.picture"
@@ -303,10 +316,12 @@
                                         <tbody>
                                         <tr>
                                             <td>
-                                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                <div class="col-xs-12">
+                                                    <div id="rateYoProfile" style="margin: 0 auto 15px auto;"></div>
+                                                </div>
                                             </td>
                                             <td>
-                                                Average rating:{{averageRating}} ({{totalRating}} total)
+                                                {{averageRating}} ({{totalRating}} ratings)
                                             </td>
                                         </tr>
                                         </tbody>
@@ -319,7 +334,12 @@
                             </div>
                             <div ng-repeat="rating in ratingArray" class="rating">
                                 <div>
-                                    {{rating.stars}}<i class="fa fa-star-o" aria-hidden="true"></i>  as a {{rating.userType}}
+                                    {{rating.stars}}<i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true" ng-show="rating.stars >1"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true" ng-show="rating.stars >2"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true" ng-show="rating.stars >3"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true" ng-show="rating.stars >4"></i>
+                                    as a {{rating.userType}}
                                 </div>
                                 <div>
                                     {{rating.comment}}
