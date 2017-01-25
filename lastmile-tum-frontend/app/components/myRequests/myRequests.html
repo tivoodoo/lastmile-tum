@@ -109,10 +109,10 @@
                                     <li role="menuitem"><a
                                             ng-show="request.status=='Accepted' || request.status=='Delivered'">Deliverer's
                                         profile</a></li><!-- Accepted Delivered-->
-                                    <li role="menuitem"><a ng-show="request.status=='Delivered'" disabled
-                                                           ng-click="setActReq(request)"
-                                                           data-toggle="modal" data-target="#showRating">Rate
-                                        deliverer</a></li>
+                                    <li role="menuitem"><a
+                                            ng-show="request.ratedByRequester === false && request.status=='Delivered' "
+                                            ng-click="setActReq(request)"
+                                            data-toggle="modal" data-target="#showRating">Rate deliverer</a></li>
                                     <!-- Delivered-->
 
                                     <li role="menuitem">
@@ -132,12 +132,11 @@
                                     <li role="menuitem"><a
                                             ng-show="request.status=='Open' || request.status=='Expired' || request.status=='Haggled'"
                                             ng-click="editRequest(request)">Edit
-                                        request</a></li><!-- Open Expired Haggled-->
-
+                                        request</a></li><!-- Open Expired-->
                                     <li class="divider"
                                         ng-show="request.status=='Accepted' || request.status=='Open' || request.status=='Haggled'"></li>
                                     <li role="menuitem"><a
-                                            ng-show="request.status=='Accepted' || request.status=='Open'  || request.status=='Expired'"
+                                            ng-show="request.status=='Accepted' || request.status=='Open'  || request.status=='Expired' || request.status=='Haggled'"
                                             ng-click="deleteRequest(request)">Delete
                                         request</a></li><!-- Open Accepted-->
                                 </ul>
@@ -155,7 +154,8 @@
                             Menu <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" uib-dropdown-menu role="menu">
-                            <li role="menuitem"><a ng-show="request.status=='Accepted'">Confirm delivery</a></li>
+                            <li role="menuitem"><a ng-show="request.status=='Accepted'"
+                                                   ng-click="confirmDelivery(request)">Confirm delivery</a></li>
                             <!-- Accepted-->
                             <li class="divider" ng-show="request.status=='Accepted'"></li>
                             <li role="menuitem"><a
@@ -169,7 +169,6 @@
                                     ng-click="setActReq(request)"
                                     data-toggle="modal" data-target="#showRating">Rate deliverer</a></li>
                             <!-- Delivered-->
-
                             <li role="menuitem">
                                 <a ng-show="request.status=='Haggled'" ng-click="acceptHaggle(request)">
                                     Accept offer
@@ -187,14 +186,13 @@
                             <li role="menuitem"><a
                                     ng-show="request.status=='Open' || request.status=='Expired' || request.status=='Haggled'"
                                     ng-click="editRequest(request)">Edit
-                                request</a></li><!-- Open Expired Haggled-->
-
+                                request</a></li><!-- Open Expired-->
                             <li class="divider"
                                 ng-show="request.status=='Accepted' || request.status=='Open' || request.status=='Haggled'"></li>
-                            <li role="menuitem">
-                                <a ng-show="request.status=='Accepted' || request.status=='Open'  || request.status=='Expired' || request.status=='Haggled'"
-                                   ng-click="deleteRequest(request)">Delete
-                                    request</a></li><!-- Open Accepted-->
+                            <li role="menuitem"><a
+                                    ng-show="request.status=='Accepted' || request.status=='Open'  || request.status=='Expired' || request.status=='Haggled'"
+                                    ng-click="deleteRequest(request)">Delete
+                                request</a></li><!-- Open Accepted-->
                         </ul>
                     </div>
                     <span ng-show="request.ratedByRequester">
@@ -209,7 +207,7 @@
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 >&times;</span></button>
-                                <h4 class="modal-title">Rate</h4>
+                                <h4 class="modal-title">Rate for request {{actReq.name}}</h4>
                             </div>
                             <div class="modal-body">
                                 <div class="row">

@@ -278,7 +278,14 @@
                                 </p>
                             </div>
                             <div class="col-lg-3">
-                                <div class="pic2" style="border: 1px solid #999;">
+                                <div class="pic2" style="border: 1px solid #999;" ng-hide="user.picture">
+                                </div>
+                                <div class="pic2" ng-show="!pictureUpdated && user.picture">
+                                    <img ng-model="user.picture"
+                                         ng-src="data:{{user.picture.contentType}};base64,{{user.picture.data}}">
+                                </div>
+                                <div class="pic2" ng-show="pictureUpdated && user.picture">
+                                    <img ngf-thumbnail="user.picture" id="userPicturePreview">
                                 </div>
                             </div>
                         </div>
@@ -299,10 +306,7 @@
                                                 <i class="fa fa-star-o" aria-hidden="true"></i>
                                             </td>
                                             <td>
-                                                4.5 / 5
-                                            </td>
-                                            <td>
-                                                3 Ratings
+                                                Average rating:{{averageRating}} ({{totalRating}} total)
                                             </td>
                                         </tr>
                                         </tbody>
@@ -311,6 +315,14 @@
                                 <div class="col-lg-6">
                                     <div id="#starBarchart">
                                     </div>
+                                </div>
+                            </div>
+                            <div ng-repeat="rating in ratingArray" class="rating">
+                                <div>
+                                    {{rating.stars}}<i class="fa fa-star-o" aria-hidden="true"></i>  as a {{rating.userType}}
+                                </div>
+                                <div>
+                                    {{rating.comment}}
                                 </div>
                             </div>
                         </div>

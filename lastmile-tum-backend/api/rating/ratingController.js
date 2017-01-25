@@ -25,11 +25,13 @@ module.exports.postRating = function (req, res) {
 
         rating.save(function (err) {
             if (err) {
+                console.log(err);
                 res.status(status.INTERNAL_SERVER_ERROR).send(err);
                 return;
             }
             if (req.body.type === 'R') {
-                var ratedUserID = request.requester;
+                //if I am Requester R, I want to rate the supplier
+                var ratedUserID = request.supplier;
                 Request.findByIdAndUpdate(req.body.request,
                     {$set: {'ratedByRequester': true}},
                     function (err, req) {
@@ -41,7 +43,7 @@ module.exports.postRating = function (req, res) {
                     });
             }
             else {
-                var ratedUserID = request.supplier;
+                var ratedUserID = request.requester;
                 Request.findByIdAndUpdate(req.body.request,
                     {$set: {'ratedBySupplier': true}},
                     function (err, req) {
