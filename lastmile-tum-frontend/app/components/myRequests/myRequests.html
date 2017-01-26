@@ -245,7 +245,7 @@
                             <h4 class="modal-title">Haggle offers for {{actReq.name}}</h4>
                         </div>
                         <div class="modal-body">
-                            <div class="row reqsmall Haggled" ng-repeat="offer in actReq.haggledPrices">
+                            <div class="row reqSmall" ng-repeat="offer in actReq.haggledPrices">
                                 <div class="row" >
                                     <div class="col-xs-12">
                                         <div class="col-lg-9">
@@ -257,16 +257,15 @@
                                                 Your price: {{actReq.price}}
                                             </p>
                                             <p>
-                                                His offer: {{offer.price}}
+                                                {{offer.userObject.firstName}}'s offer: {{offer.price}}
                                             </p>
                                         </div>
                                         <div class="col-lg-3">
-                                            <div class="pic2 userdetailpic" style="border: 1px solid #999;"
+                                            <div class="thumbnail" style="border: 1px solid #999;"
                                                  ng-hide="offer.userObject.picture">
                                             </div>
-                                            <div class="pic2" ng-show="!pictureUpdated && offer.userObject.picture">
-                                                <img ng-model="offer.user.picture" class="userdetailpic"
-                                                     ng-src="data:{{offer.userObject.picture.contentType}};base64,{{offer.userObject.picture.data}}">
+                                            <div class="thumbnail" ng-show="offer.userObject.picture">
+                                                <img ng-src="data:{{offer.userObject.picture.contentType}};base64,{{offer.userObject.picture.data}}">
                                             </div>
                                         </div>
                                     </div>

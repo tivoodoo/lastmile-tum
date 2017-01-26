@@ -564,10 +564,24 @@ li > a {
   width: calc(100% - 80px);
   margin-top: 5px;
 }
-.userdetailpic {
-  max-width: 120px;
-  max-height: 120px;
+.thumbnail {
+  padding: 0px;
+  background-color: #fff;
+  border: 1px solid #ccc;
 }
+
+.thumbnail > img {
+  max-height:250px;
+}
+
+#userPicture {
+  max-height: 235px;
+}
+
+#userPic .thumbnail {
+  margin-bottom: 0px;
+}
+
 /*
 a{
   font-family: Muli;
