@@ -1,6 +1,6 @@
 angular.module('lastMile')
   .controller('MyReqCtrl',
-    function ($scope, $http, Request, userService, Rating, Upload, $filter, $rootScope, $location, BACKEND_BASE_URL) {
+    function ($scope, $http, Request, userService,User, Rating, Upload, $filter, $rootScope, $location, BACKEND_BASE_URL) {
 
       //jquery for rating
       $(function () {
@@ -36,6 +36,14 @@ angular.module('lastMile')
           })
           .catch(function () {
             alert("An error occured while rating the deliverer");
+          });
+      };
+
+      $scope.getUsers = function (req) {
+          angular.forEach(req.haggledPrices, function (offer) {
+             User.get({userID:offer.user}).$promise.then(function (user) {
+                 offer.userObject = user;
+             })
           });
       };
 
@@ -83,21 +91,34 @@ angular.module('lastMile')
       };
 
 
-      $scope.acceptHaggle = function (req) {
-        $http.post(BACKEND_BASE_URL + '/requests/haggle/accept/' + req._id)
+      $scope.acceptHaggle = function (haggle) {
+          if (haggle.userObject) {
+              delete haggle.userObject;
+          }
+        $http.post(BACKEND_BASE_URL + '/requests/haggle/accept/' + $scope.actReq._id, {haggle:haggle})
           .then(function successCallBack(response) {
-              req.status = "Accepted";
-              // alert("Accepted");
+                  $scope.actReq.status = "Accepted";
+                  $('#showHaggleOffers').modal('hide');
+
             },
             function errorCallBack(response) {
               alert("Error at backend");
             })
-      }
+      };
 
-      $scope.declineHaggle = function (req) {
-        $http.post(BACKEND_BASE_URL + '/requests/haggle/decline/' + req._id)
+      $scope.declineHaggle = function (haggle) {
+          if (haggle.userObject) {
+              delete haggle.userObject;
+          }
+        $http.post(BACKEND_BASE_URL + '/requests/haggle/decline/' + $scope.actReq._id, {haggle:haggle})
           .then(function successCallBack(response) {
-              req.status = "Open";
+                  var index = $scope.actReq.haggledPrices.indexOf(haggle);
+                  $scope.actReq.haggledPrices.splice(index, 1);
+                if($scope.actReq.haggledPrices.length == 0){
+                    $scope.actReq.status = "Open";
+                    $('#showHaggleOffers').modal('hide');
+                }
+
               // alert("Declined");
             },
             function errorCallBack(response) {
