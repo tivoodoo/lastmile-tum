@@ -37,8 +37,12 @@ module.exports.declineOffer = function (req, res) {
         }
 
         //remove from haggledPrices array
-        var index = request.haggledPrices.indexOf(req.body.haggle);
-        request.haggledPrices.splice(index, 1);
+        for (var i = 0; i < request.haggledPrices.length; i++) {
+            if (request.haggledPrices[i].user && request.haggledPrices[i].user == req.body.haggle.user) {
+                request.haggledPrices.splice(i, 1);
+                break;
+            }
+        }
 
         return request.save(function (err) {
             if (err) {
@@ -85,7 +89,7 @@ module.exports.acceptOffer = function (req, res) {
             return res.json({success: true});
         });
     })
-}
+};
 /**
  *
  * @param req

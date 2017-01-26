@@ -6,27 +6,35 @@ var mongoose = require('mongoose');
 
 // DB scheme for ratings
 var ratingSchema = mongoose.Schema({
-  // Rating type:
-  // R for requester
-  // S for supplier
-  type: {
-    type: String,
-    enum: ['R','S'],
-    required: true
-  },
-  //TODO: check value stars: integer, 1-5
-  stars: {
-    type: Number,
-    required: true
-  },
-  comment: {
-    type: String,
-    required: false
-  },
-  request: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Request'
-  }
+    // Rating type:
+    // R for requester
+    // S for supplier
+    type: {
+        type: String,
+        enum: ['R', 'S'],
+        required: true
+    },
+    //TODO: check value stars: integer, 1-5
+    stars: {
+        type: Number,
+        required: true
+    },
+    comment: {
+        type: String,
+        required: false
+    },
+    request: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Request'
+    },
+    ratingUser: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    ratedUser: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }
 })
 
 var Rating = mongoose.model('Rating', ratingSchema);

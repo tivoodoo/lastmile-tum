@@ -14,6 +14,7 @@ var auth = require('../../authorization/auth');
  *
  * */
 module.exports.postRating = function (req, res) {
+
     Request.findById(req.body.request, function (err, request) {
         if (err) {
             console.log(err);
@@ -21,6 +22,8 @@ module.exports.postRating = function (req, res) {
         }
 
         var rating = new Rating(req.body);
+        rating.ratingUser = req.user._id;
+
 
 
         rating.save(function (err) {

@@ -16,13 +16,13 @@ angular.module('lastMile')
                     $scope.user = myUser;
                     $scope.totalRating = myUser.ratings.length;
                     angular.forEach(myUser.ratings, function (rating) {
-                        $scope.ratingArray =[];
+                        $scope.ratingArray = [];
                         Rating.get({ratingID: rating}).$promise.then(function (rat) {
-                            if(rat.type === "R"){
+                            if (rat.type === "R") {
                                 //rating was given by a requester, therefore the user is the deliverer
                                 rat.userType = "deliverer";
                             }
-                            else{
+                            else {
                                 rat.userType = "requester";
                             }
 
@@ -51,17 +51,17 @@ angular.module('lastMile')
                                     $scope.rating5 += 1;
                                     $scope.ratingCounter += 5;
                                     break;
-                            };
-                           $scope.averageRating = Math.round(($scope.ratingCounter / $scope.totalRating) * 100) / 100 ;
+                            }
+                        }).then(function () {
+                            $scope.averageRating = Math.round(($scope.ratingCounter / $scope.totalRating) * 100) / 100;
                             $(function () {
-
                                 $("#rateYoProfile").rateYo({
-                                    rating: $scope.averageRating ,
+                                    rating: $scope.averageRating,
                                     readOnly: true
                                 });
                             });
                         });
-                    });
+                    })
                 })
                 .catch(function (err) {
                     console.log(err);
