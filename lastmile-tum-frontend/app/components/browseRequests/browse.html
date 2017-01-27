@@ -401,16 +401,24 @@
                             <!--</div>-->
                             <!--</div>-->
                             <!---->
-                            <div class="row" ng-hide="showHaggle" style="margin-top: 10px;">
+                            <div class="row" ng-hide="showHaggle || thisUser == selectedRequest.requester" style="margin-top: 10px;">
                                 <div class="col-xs-6">
                                     <button type="button" class="btn btn-primary accept" data-dismiss="modal"
                                             ng-click="accept()">Accept
                                     </button>
                                 </div>
                                 <div class="col-xs-6">
-                                    <button type="button" class="btn btn-primary accept"
+                                    <button type="button" class="btn btn-primary accept" ng-hide="reqAlreadyHaggled()"
                                             ng-click="showHaggle = true;">Haggle
                                     </button>
+                                    <button type="button" class="btn btn-primary accept" disabled ng-show="reqAlreadyHaggled()"
+                                            ng-click="showHaggle = true;">Already haggled
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row" ng-show="thisUser == selectedRequest.requester" style="margin-top: 10px;">
+                                <div class="col-xs-12">
+                                    <p style="text-align:center"> This is your request!</p>
                                 </div>
                             </div>
                         </div>

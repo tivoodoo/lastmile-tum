@@ -10,8 +10,21 @@ angular.module('lastMile')
             $scope.sizefilters.M = true;
             $scope.sizefilters.L = true;
             $scope.sizefilters.XL = true;
+            $scope.thisUser = userService.getUserName()._id;
 
             $scope.showHaggle = false;
+            $scope.reqAlreadyHaggled = function () {
+                var isHaggled = false;
+                var keepGoing = true;
+                angular.forEach($scope.selectedRequest.haggledPrices, function (haggles) {
+                    if(keepGoing){
+                    if (haggles.user = $scope.thisUser) {
+                        isHaggled = true;
+                        keepGoing = false;
+                    }}
+                });
+                return isHaggled;
+            };
 
             Request.query()
                 .$promise.then(function (data) {
@@ -43,7 +56,7 @@ angular.module('lastMile')
             };
 
             $scope.accept = function () {
-                $scope.selectedRequest.supplier = userService.getUserName()._id
+                $scope.selectedRequest.supplier = userService.getUserName()._id;
                 if ($scope.selectedRequest.supplier === $scope.selectedRequest.requester) {
                     alert("You cannot accept your own requests");
                 }
