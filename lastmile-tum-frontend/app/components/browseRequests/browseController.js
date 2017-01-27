@@ -18,7 +18,7 @@ angular.module('lastMile')
                 var keepGoing = true;
                 angular.forEach($scope.selectedRequest.haggledPrices, function (haggles) {
                     if(keepGoing){
-                    if (haggles.user = $scope.thisUser) {
+                    if (haggles.user == $scope.thisUser) {
                         isHaggled = true;
                         keepGoing = false;
                     }}
