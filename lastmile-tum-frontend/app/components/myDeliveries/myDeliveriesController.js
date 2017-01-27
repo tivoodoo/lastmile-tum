@@ -27,6 +27,7 @@ angular.module('lastMile')
             $scope.rate = function () {
                 $scope.rating.type = 'S';
                 $scope.rating.request = $scope.actReq._id;
+                $scope.rating.ratedUser = $scope.actReq.requester;
 
                 $scope.rating.$save()
                     .then(function(){
