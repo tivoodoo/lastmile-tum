@@ -79,6 +79,7 @@ var userRoutes = require('./api/user/userRoutes');
 var requestRoutes = require('./api/request/requestRoutes');
 var ratingRoutes = require('./api/rating/ratingRoutes');
 var messageRoutes = require('./api/messages/messagesRoutes');
+var notificationRoutes = require('./api/notifications/notificationsRoutes');
 
 
 // setting url path
@@ -87,6 +88,7 @@ app.use('/user', userRoutes(passport));
 app.use('/requests', requestRoutes(passport));
 app.use('/rating', ratingRoutes(passport));
 app.use('/message', messageRoutes(passport));
+app.use('/notification', notificationRoutes(passport));
 
 /**
  * Error handlers.
