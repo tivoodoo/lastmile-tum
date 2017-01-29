@@ -18,6 +18,11 @@
                                             <input type="text" class="form-control" ng-model="user.firstName"
                                                    name="firstName"
                                                    placeholder="Insert first name" required/>
+                                            <span class="glyphicon glyphicon-remove form-control-feedback"
+                                                  ng-show="editForm.firstName.$invalid && !editForm.firstName.$pristine"></span>
+                                            <span class="glyphicon glyphicon-ok form-control-feedback"
+                                                  style="color:green"
+                                                  ng-show="editForm.firstName.$valid"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -31,6 +36,11 @@
                                             <input type="text" class="form-control" ng-model="user.lastName"
                                                    name="lastName"
                                                    placeholder="Insert last name" required/>
+                                            <span class="glyphicon glyphicon-remove form-control-feedback"
+                                                  ng-show="editForm.lastName.$invalid && !editForm.lastName.$pristine"></span>
+                                            <span class="glyphicon glyphicon-ok form-control-feedback"
+                                                  style="color:green"
+                                                  ng-show="editForm.lastName.$valid"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -39,15 +49,28 @@
                                         Street/Nr:
                                     </div>
                                     <div class="col-md-7 col-sm-6 col-xs-9">
-                                        <div class="form-group " ng-class="{'has-error': errorText}">
+                                        <div class="form-group "
+                                             ng-class="{'has-error': !editForm.street.$valid && !editForm.street.$pristine}">
                                             <input type="text" class="form-control" ng-model="user.street"
+                                                   name="street"
                                                    placeholder="Insert street" required/>
+                                            <span class="glyphicon glyphicon-remove form-control-feedback"
+                                                  ng-show="editForm.street.$invalid && !editForm.street.$pristine"></span>
+                                            <span class="glyphicon glyphicon-ok form-control-feedback"
+                                                  style="color:green"
+                                                  ng-show="editForm.street.$valid"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-2 col-sm-3 col-xs-3">
-                                        <div class="form-group " ng-class="{'has-error': errorText}">
+                                        <div class="form-group "
+                                             ng-class="{'has-error': !editForm.nr.$valid && !editForm.nr.$pristine}">
                                             <input type="text" class="form-control" ng-model="user.number"
-                                                   placeholder="Nr."/>
+                                                   placeholder="Nr." name="nr"/>
+                                            <span class="glyphicon glyphicon-remove form-control-feedback"
+                                                  ng-show="editForm.nr.$invalid && !editForm.nr.$pristine"></span>
+                                            <span class="glyphicon glyphicon-ok form-control-feedback"
+                                                  style="color:green"
+                                                  ng-show="editForm.nr.$valid"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -56,15 +79,28 @@
                                         Town/Zip:
                                     </div>
                                     <div class="col-md-6 col-sm-5 col-xs-8">
-                                        <div class="form-group " ng-class="{'has-error': errorText}">
+                                        <div class="form-group "
+                                             ng-class="{'has-error': !editForm.town.$valid && !editForm.town.$pristine}">
                                             <input type="text" class="form-control" ng-model="user.town"
+                                                   name="town"
                                                    placeholder="Insert town" required/>
+                                            <span class="glyphicon glyphicon-remove form-control-feedback"
+                                                  ng-show="editForm.town.$invalid && !editForm.town.$pristine"></span>
+                                            <span class="glyphicon glyphicon-ok form-control-feedback"
+                                                  style="color:green"
+                                                  ng-show="editForm.town.$valid"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-sm-4 col-xs-4">
-                                        <div class="form-group " ng-class="{'has-error': errorText}">
+                                        <div class="form-group "
+                                             ng-class="{'has-error': !editForm.zip.$valid && !editForm.zip.$pristine}">
                                             <input type="text" class="form-control" ng-model="user.zipCode"
-                                                   placeholder="Zip" required/>
+                                                   placeholder="Zip" name="zip" required/>
+                                            <span class="glyphicon glyphicon-remove form-control-feedback"
+                                                  ng-show="editForm.zip.$invalid && !editForm.zip.$pristine"></span>
+                                            <span class="glyphicon glyphicon-ok form-control-feedback"
+                                                  style="color:green"
+                                                  ng-show="editForm.zip.$valid"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -73,11 +109,17 @@
                                         Telephone:
                                     </div>
                                     <div class="col-sm-9">
-                                        <div class="form-group " ng-class="{'has-error': errorText}"
+                                        <div class="form-group "
+                                             ng-class="{'has-error': !editForm.tel.$valid && !editForm.tel.$pristine}"
                                              style="margin-bottom: 0px;">
                                             <input type="text" class="form-control" ng-model="user.telephone"
+                                                   name="tel"
                                                    placeholder="Insert telephone" style="margin-bottom:15px;" required/>
-
+                                            <span class="glyphicon glyphicon-remove form-control-feedback"
+                                                  ng-show="editForm.tel.$invalid && !editForm.tel.$pristine"></span>
+                                            <span class="glyphicon glyphicon-ok form-control-feedback"
+                                                  style="color:green"
+                                                  ng-show="editForm.tel.$valid"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -217,7 +259,7 @@
                                     <input type="text" class="form-control" placeholder="Insert BIC"
                                            name="bic" ng-minlength="8" ng-maxlength="11" ng-model="user.bic"
                                            ng-pattern="/^[a-zA-Z]{4}[a-zA-Z]{2}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})+$/"
-                                           uib-popover="{{(editForm.bic.$invalid && editForm.bic.$pristine) || (editForm.bic.$valid) ? '' : 'BIC consists of 08 or 11 capital letters.'}}"
+                                           uib-popover="{{(editForm.bic.$invalid && editForm.bic.$pristine) || (editForm.bic.$valid) ? '' : 'BIC consists of 11 characters.'}}"
                                            popover-placement="top" popover-trigger="focus"/>
                                 </div>
                             </div>
@@ -278,7 +320,7 @@
                             <button type="button" class="btn btn-danger" ng-click="" style="width:45%;">Cancel</button>
                         </a>
                         <button type="submit" class="btn btn-primary right" style="width:45%;"
-                                ng-disabled="editForm.$invalid || (editForm.iban.$invalid && editForm.bic.$invalid)">
+                                ng-disabled="editForm.$invalid">
                             Save
                         </button>
                     </div>
