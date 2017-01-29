@@ -146,8 +146,9 @@ module.exports.updateUser = function (req, res) {
         console.log("Password not changed")
     }
 
+
     //if there is new picture sent with the request, save it
-    if (req.files.file) {
+    if (req.files && req.files.file) {
         var fs = require('fs');
 
         function base64_encode(file) {
@@ -207,7 +208,7 @@ module.exports.updateUser = function (req, res) {
     else {
 
         // user pic was not changed, therefore do not touch it
-        if (req.body.pictureUpdated === 'false') {
+        if (req.body.pictureUpdated === 'true') {
             User.findByIdAndUpdate(
                 req.params.user_id,
                 {
@@ -225,7 +226,8 @@ module.exports.updateUser = function (req, res) {
                         'telephone': req.body.telephone,
                         'trunkSize': req.body.trunkSize,
                         'iban': req.body.iban,
-                        'bic': req.body.bic
+                        'bic': req.body.bic,
+                        'picture': null
                     }
                 },
                 {
@@ -269,8 +271,8 @@ module.exports.updateUser = function (req, res) {
                         'telephone': req.body.telephone,
                         'trunkSize': req.body.trunkSize,
                         'iban': req.body.iban,
-                        'bic': req.body.bic,
-                        'picture': null
+                        'bic': req.body.bic
+
                     }
                 },
                 {
