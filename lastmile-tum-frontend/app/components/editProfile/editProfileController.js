@@ -71,7 +71,6 @@ angular.module('lastMile')
             $scope.updateUser = function () {
                 var userID = userService.getUserName()._id;
                 $scope.pswd1 != null ? $scope.user.password = $scope.pswd1 : "";
-                console.log($scope.user);
                 if ($scope.pictureUpdated) {
                     Upload.upload({
                         url: BACKEND_BASE_URL + '/user/' + userID,
