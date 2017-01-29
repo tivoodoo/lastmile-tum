@@ -173,6 +173,8 @@ module.exports.updateUser = function (req, res) {
                     'town': req.body.town,
                     'telephone': req.body.telephone,
                     'trunkSize': req.body.trunkSize,
+                    'iban': req.body.iban,
+                    'bic': req.body.bic,
                     'picture': {
                         'data': base64_encode(req.files.file.path),
                         'contentType': req.files.file.type,
@@ -221,7 +223,9 @@ module.exports.updateUser = function (req, res) {
                         'zipCode': req.body.zipCode,
                         'town': req.body.town,
                         'telephone': req.body.telephone,
-                        'trunkSize': req.body.trunkSize
+                        'trunkSize': req.body.trunkSize,
+                        'iban': req.body.iban,
+                        'bic': req.body.bic
                     }
                 },
                 {
@@ -264,6 +268,8 @@ module.exports.updateUser = function (req, res) {
                         'town': req.body.town,
                         'telephone': req.body.telephone,
                         'trunkSize': req.body.trunkSize,
+                        'iban': req.body.iban,
+                        'bic': req.body.bic,
                         'picture': null
                     }
                 },

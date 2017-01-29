@@ -59,6 +59,14 @@ var userSchema = mongoose.Schema({
         type: String,
         required: false
     },
+    iban: {
+        type: String,
+        required: false
+    },
+    bic: {
+        type: String,
+        required: false
+    },
     // Picture - must start with "http://"
     picture: {
         data: String, contentType: String, name: String

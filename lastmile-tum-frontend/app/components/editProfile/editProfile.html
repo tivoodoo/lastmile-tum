@@ -41,7 +41,7 @@
                                     <div class="col-md-7 col-sm-6 col-xs-9">
                                         <div class="form-group " ng-class="{'has-error': errorText}">
                                             <input type="text" class="form-control" ng-model="user.street"
-                                                   placeholder="Insert street"/>
+                                                   placeholder="Insert street" required/>
                                         </div>
                                     </div>
                                     <div class="col-md-2 col-sm-3 col-xs-3">
@@ -58,13 +58,13 @@
                                     <div class="col-md-6 col-sm-5 col-xs-8">
                                         <div class="form-group " ng-class="{'has-error': errorText}">
                                             <input type="text" class="form-control" ng-model="user.town"
-                                                   placeholder="Insert town"/>
+                                                   placeholder="Insert town" required/>
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-sm-4 col-xs-4">
                                         <div class="form-group " ng-class="{'has-error': errorText}">
                                             <input type="text" class="form-control" ng-model="user.zipCode"
-                                                   placeholder="Zip"/>
+                                                   placeholder="Zip" required/>
                                         </div>
                                     </div>
                                 </div>
@@ -76,7 +76,7 @@
                                         <div class="form-group " ng-class="{'has-error': errorText}"
                                              style="margin-bottom: 0px;">
                                             <input type="text" class="form-control" ng-model="user.telephone"
-                                                   placeholder="Insert telephone" style="margin-bottom:15px;"/>
+                                                   placeholder="Insert telephone" style="margin-bottom:15px;" required/>
 
                                         </div>
                                     </div>
@@ -198,9 +198,9 @@
                             <div class="col-sm-10">
                                 <div class="form-group "
                                      ng-class="{'has-error': !editForm.iban.$valid && !editForm.iban.$pristine}">
-                                    <input type="text" class="form-control" ng-model="iban" placeholder="Insert IBAN"
+                                    <input type="text" class="form-control" placeholder="Insert IBAN"
                                            name="iban" ng-minlength="22" ng-maxlength="22"
-                                           ng-pattern="/^[A-Z][A-Z][0-9]+$/"
+                                           ng-pattern="/^[A-Z][A-Z][0-9]+$/" ng-model="user.iban"
                                            uib-popover="{{(editForm.iban.$invalid && editForm.iban.$pristine) || (editForm.iban.$valid) ? '' : 'IBAN consists of 22 characters: 2 capital letters and 20 digits.'}}"
                                            popover-placement="bottom" popover-trigger="focus"/>
                                 </div>
@@ -214,8 +214,8 @@
                                 <div class="form-group "
                                      ng-class="{'has-error': !editForm.bic.$valid && !editForm.bic.$pristine}"
                                      style="margin-bottom:0px;">
-                                    <input type="text" class="form-control" ng-model="bic" placeholder="Insert BIC"
-                                           name="bic" ng-minlength="8" ng-maxlength="11"
+                                    <input type="text" class="form-control" placeholder="Insert BIC"
+                                           name="bic" ng-minlength="8" ng-maxlength="11" ng-model="user.bic"
                                            ng-pattern="/^[a-zA-Z]{4}[a-zA-Z]{2}[a-zA-Z0-9]{2}([a-zA-Z0-9]{3})+$/"
                                            uib-popover="{{(editForm.bic.$invalid && editForm.bic.$pristine) || (editForm.bic.$valid) ? '' : 'BIC consists of 08 or 11 capital letters.'}}"
                                            popover-placement="top" popover-trigger="focus"/>
@@ -258,9 +258,9 @@
                                            value="" style="display:none;"/>
                                     <input type="password" class="form-control" name="pwdConfirm" ng-model="pswd2"
                                            uib-popover="{{(editForm.pwdConfirm.$invalid && editForm.pwdConfirm.$pristine) || (editForm.pwdConfirm.$valid) ? '' : 'Must match the previous entry.'}}"
-                                           popover-placement="top"
+                                           popover-placement="top" compare-to="pswd1"
                                            popover-trigger="focus" placeholder="Repeat password"
-                                           compare-to="pswd1"/>
+                                           />
                                     <!--
                                     <span class="glyphicon glyphicon-remove form-control-feedback"
                                           ng-show="editForm.pwdConfirm.$invalid && !editForm.pwdConfirm.$pristine"></span>

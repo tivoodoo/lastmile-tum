@@ -70,6 +70,8 @@ angular.module('lastMile')
 
             $scope.updateUser = function () {
                 var userID = userService.getUserName()._id;
+                $scope.pswd1 != null ? $scope.user.password = $scope.pswd1 : "";
+                console.log($scope.user);
                 if ($scope.pictureUpdated) {
                     Upload.upload({
                         url: BACKEND_BASE_URL + '/user/' + userID,
@@ -88,7 +90,7 @@ angular.module('lastMile')
                             telephone: $scope.user.telephone,
                             trunkSize: $scope.user.trunkSize,
                             password: $scope.user.password,
-                            iban: $scope.user.password,
+                            iban: $scope.user.iban,
                             bic: $scope.user.bic
                         }
                         , method: 'PUT'
@@ -117,7 +119,7 @@ angular.module('lastMile')
                             telephone: $scope.user.telephone,
                             trunkSize: $scope.user.trunkSize,
                             password: $scope.user.password,
-                            iban: $scope.user.password,
+                            iban: $scope.user.iban,
                             bic: $scope.user.bic
                         }
                         , method: 'PUT'
