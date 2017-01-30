@@ -15,7 +15,11 @@ var notificationsSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Request'
     },
-    user: {
+    sender: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    recipient: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },

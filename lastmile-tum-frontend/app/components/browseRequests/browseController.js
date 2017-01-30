@@ -1,7 +1,7 @@
 angular.module('lastMile')
     .controller('BrowseCtrl',
         function ($scope, $rootScope, $http, BACKEND_BASE_URL,
-                  Request, $filter, $uibModal, $location, userService, notificationService) {
+                  Request, $filter, $uibModal, $location, userService, notificationService, Notification) {
             $scope.filterShowed = false;
             $scope.lowPrice = 0;
             $scope.highPrice = 1000;
@@ -68,6 +68,17 @@ angular.module('lastMile')
                     $scope.selectedRequest.status = "Accepted";
                     $scope.selectedRequest.$update({requestID: $scope.selectedRequest._id})
                         .then(function (res) {
+
+                            var notification = new Notification();
+                            notification.notificationType = "NewAccept";
+                            notification.request = $scope.selectedRequest._id;
+                            notification.recipient = $scope.selectedRequest.requester;
+                            notification.sender= userService.getUserName()._id;
+
+                            notification.$save(function(res){
+                            }, function (err) {
+                                console.log(err);
+                            });
                             $('#showDetails').modal('hide');
                             $location.path("/myDel");
 
@@ -226,6 +237,16 @@ angular.module('lastMile')
                 })
                 //All response status with code 200-299 is considered as success status
                     .then(function successCallback(response) {
+                            var notification = new Notification();
+                            notification.notificationType = "NewHaggle";
+                            notification.request = $scope.selectedRequest._id;
+                            notification.recipient = $scope.selectedRequest.requester;
+                            notification.sender= userService.getUserName()._id;
+
+                            notification.$save(function(res){
+                            }, function (err) {
+                                console.log(err);
+                            });
                             $scope.form.hagglePrice = "";
                             alert("Offer sent!");
                         },
@@ -233,13 +254,7 @@ angular.module('lastMile')
                         //http://stackoverflow.com/questions/27507678/in-angular-http-service-how-can-i-catch-the-status-of-error
                         //https://docs.angularjs.org/api/ng/service/$http   Section: General usage
                         function errorCallback(response) {
-                            if (response.status == 407) {
-                                alert("The offered price should be more than origin price");
-                            }
-                            else if (response.status == 406) {
-                                alert("Somebody already offered lower price than you");
-                            }
-                            else alert("Error in the backend");
+                            alert("Error in the backend");
                         });
             }
         }

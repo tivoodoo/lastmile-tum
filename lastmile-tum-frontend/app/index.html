@@ -43,6 +43,7 @@
                     Logout
                 </button>
                 -->
+
                 <div class="btn-group navbar-right" uib-dropdown dropdown-append-to-body style="float: right;" ng-show="loggedIn">
                     <button type="button" class="btn btn-primary navbar-btn" uib-dropdown-toggle
                             style="width:100%;">
@@ -79,6 +80,31 @@
                         <li role="menuitem">
                             <a href="#" ng-click="logout()">
                                 Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="btn-group navbar-right" uib-dropdown dropdown-append-to-body style="float: right;" ng-show="loggedIn">
+                    <button type="button" class="btn btn-primary navbar-btn" uib-dropdown-toggle ng-disabled="notifications.length == 0"
+                            style="width:100%;">
+                        Notifications <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu role="menu" >
+                        <li role="menuitem" ng-repeat="notification in notifications">
+                            <a ng-hide="notification.notificationType !== 'NewAccept'" href="/myReq">
+                                Your request "{{notification.requestName}}" was accepted by "{{notification.userFirstName}} {{notification.userLastName}}"!
+                            </a>
+                            <a ng-hide="notification.notificationType !== 'NewCancel'" href="/myReq">
+                                The delivery for your request "{{notification.requestName}}" was canceled by "{{notification.userFirstName}} {{notification.userLastName}}"!
+                            </a>
+                            <a ng-hide="notification.notificationType !== 'NewHaggle'" href="/myReq">
+                                You have a new haggle offer for your request "{{notification.requestName}}" from "{{notification.userFirstName}} {{notification.userLastName}}"!
+                            </a>
+                            <a ng-hide="notification.notificationType !== 'NewDelivery'" href="/myReq">
+                                "{{notification.userFirstName}} {{notification.userLastName}}" confirmed, that the request "{{notification.requestName}}" was delivered successfully!
+                            </a>
+                            <a ng-hide="notification.notificationType !== 'NewMessage'" href="/myReq">
+                                You have a new message for your request "{{notification.requestName}}" from "{{notification.userFirstName}} {{notification.userLastName}}"!
                             </a>
                         </li>
                     </ul>

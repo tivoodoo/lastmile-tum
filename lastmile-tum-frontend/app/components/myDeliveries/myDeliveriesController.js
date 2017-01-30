@@ -1,6 +1,6 @@
 angular.module('lastMile')
     .controller('MyDelCtrl',
-        function ($scope, Request,Rating, userService, $filter) {
+        function ($scope, Request,Rating, userService, $filter, Notification) {
             //jquery for rating
             $(function () {
                 $("#rateYoDel").rateYo({
@@ -59,11 +59,22 @@ angular.module('lastMile')
                 }
                 req.$update({requestID: req._id})
                     .then(function (res) {
+                        var notification = new Notification();
+                        notification.notificationType = "NewCancel";
+                        notification.request = req._id;
+                        notification.recipient = req.requester;
+                        notification.sender= userService.getUserName()._id;
+
+                        notification.$save(function(res){
+                        }, function (err) {
+                            console.log(err);
+                        });
                         var index = $scope.requests.indexOf(req);
                         $scope.requests.splice(index, 1);
                         //alert("delivery canceled");
                     })
                     .catch(function (err) {
+                        console.log(err);
                         alert("error while canceling delivery");
                     });
             };
@@ -75,6 +86,16 @@ angular.module('lastMile')
                 }
                 req.$update({requestID: req._id})
                     .then(function (res) {
+                        var notification = new Notification();
+                        notification.notificationType = "NewDelivery";
+                        notification.request = req._id;
+                        notification.recipient = req.requester;
+                        notification.sender= userService.getUserName()._id;
+
+                        notification.$save(function(res){
+                        }, function (err) {
+                            console.log(err);
+                        });
                         alert("request delivered");
                     })
                     .catch(function (err) {

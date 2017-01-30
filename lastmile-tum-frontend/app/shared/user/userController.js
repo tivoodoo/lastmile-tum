@@ -1,12 +1,38 @@
 angular.module('lastMile')
     .controller('UserCtrl',
         //'currUser', 'auth', function ($scope, currUser, auth) {
-    function($scope, $rootScope, $mdDialog, userService, $mdToast, $location) {
+    function($scope, $rootScope, $mdDialog, userService, $mdToast, $location, Notification, $filter, Request, User) {
         var user= this;
         $rootScope.loggedIn = false;
         $scope.loginShown = false;
         $scope.login = login;
         $scope.logout = logout;
+
+        $scope.getNotifications = function(){
+            Notification.query().$promise.then(function (data) {
+                var filteredNotifications = $filter('filter')(data, {recipient: userService.getUserName()._id});
+                /*if (filteredNotifications.length == 0) {
+                 $scope.createReqText = "Unfortunately, you do not have any requests yet. To create one, click the 'Create request' button in the top toolbar!";
+                 }
+                 else {
+                 $scope.hasRequests = true;
+                 }*/
+                angular.forEach(filteredNotifications, function (notification) {
+                    Request.get({requestID:notification.request}, function (req) {
+                        notification.requestName = req.name;
+                    });
+                    User.get({userID:notification.sender}, function (user) {
+                        notification.userFirstName = user.firstName;
+                        notification.userLastName = user.lastName;
+                    });
+                });
+                $scope.notifications = filteredNotifications;
+
+            });
+        };
+        $scope.getNotifications();
+
+
 
 
         //should keep the loggedIn variable updated (after registration) but doesn't work yet
@@ -44,6 +70,7 @@ angular.module('lastMile')
 
         function login() {
             userService.login(user.email, user.password).then(function () {
+                $scope.getNotifications();
                 $rootScope.loggedIn = true;
                 showSimpleToast('You were logged in successful');
             }, function (response) {
@@ -58,6 +85,7 @@ angular.module('lastMile')
         function logout() {
             userService.logout();
             $rootScope.loggedIn = false;
+            $scope.notifications = null;
             showSimpleToast('Logout successful');
             $location.path("/");
 

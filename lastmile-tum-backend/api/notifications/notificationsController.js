@@ -12,18 +12,33 @@ var auth = require('../../authorization/auth');
  * */
 module.exports.postNotification= function (req, res) {
 
-    var notification= new Notification(req.body.notification);
+    var notification= new Notification(req.body);
 
-
-    notification.save(function (err, noti) {
-        if (err) {
+    Notification.find({user: notification.user, request: notification.request, notificationType: notification.notificationType}, function (err, notis) {
+        if(err){
             console.log(err);
-            res.status(status.INTERNAL_SERVER_ERROR).send(err);
+        }
+        if (notis.length){
+            console.log("notification already exists for that user, that request and that type");
+            res.status(status.OK);
             return;
         }
+        else{
+            notification.save(function (err, noti) {
+                if (err) {
+                    console.log(err);
+                    res.status(status.INTERNAL_SERVER_ERROR).send(err);
+                    return;
+                }
 
-        res.status(status.CREATED).json(noti);
+                res.status(status.CREATED).json(noti);
+            });
+
+        }
+
     });
+
+
 };
 
 

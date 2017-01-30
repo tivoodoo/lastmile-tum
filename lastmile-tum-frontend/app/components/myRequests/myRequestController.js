@@ -109,6 +109,16 @@ angular.module('lastMile')
                 }
                 req.$update({requestID: req._id})
                     .then(function (res) {
+                        var notification = new Notification();
+                        notification.notificationType = "NewDelivery";
+                        notification.request = req._id;
+                        notification.recipient = req.requester;
+                        notification.sender= userService.getUserName()._id;
+
+                        notification.$save(function(res){
+                        }, function (err) {
+                            console.log(err);
+                        });
                         //
                     })
                     .catch(function (err) {

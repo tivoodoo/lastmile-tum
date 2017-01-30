@@ -5,7 +5,7 @@
 angular.module('lastMile')
   .controller('CommentController',
     ['$scope', '$rootScope', '$http', '$routeParams', '$timeout', 'BACKEND_BASE_URL', 'notificationService',
-      function ($scope, $rootScope, $http, $routeParams, $timeout, BACKEND_BASE_URL, notificationService) {
+      function ($scope, $rootScope, $http, $routeParams, $timeout, BACKEND_BASE_URL, notificationService, Notification) {
 
         // Attributes
         $scope.form = {
