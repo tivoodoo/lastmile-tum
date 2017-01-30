@@ -13,7 +13,7 @@ angular.module('lastMile')
             $scope.thisUser = userService.getUserName()._id;
 
             $scope.showHaggle = false;
-            $scope.reqAlreadyHaggled = function () {
+            /*$scope.reqAlreadyHaggled = function () {
                 var isHaggled = false;
                 var keepGoing = true;
                 angular.forEach($scope.selectedRequest.haggledPrices, function (haggles) {
@@ -24,7 +24,7 @@ angular.module('lastMile')
                     }}
                 });
                 return isHaggled;
-            };
+            };*/
 
             Request.query()
                 .$promise.then(function (data) {
