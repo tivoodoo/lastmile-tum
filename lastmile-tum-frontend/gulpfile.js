@@ -49,6 +49,9 @@ gulp.task('styles', function() {
     var css2Stream = gulp.src('bower_components/rateYo/min/jquery.rateyo.min.css')
         .pipe(plumber())
         .pipe(concat('css.css'));
+    var css3Stream = gulp.src('bower_components/hover/css/hover-min.css')
+        .pipe(plumber())
+        .pipe(concat('css.css'));
     return merge(lessStream, scssStream, cssStream, css2Stream)
         .pipe(plumber())
         .pipe(autoprefixer())

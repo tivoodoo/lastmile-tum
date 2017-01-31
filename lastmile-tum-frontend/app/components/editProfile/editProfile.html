@@ -65,7 +65,7 @@
                                         <div class="form-group "
                                              ng-class="{'has-error': !editForm.nr.$valid && !editForm.nr.$pristine}">
                                             <input type="text" class="form-control" ng-model="user.number"
-                                                   placeholder="Nr." name="nr"/>
+                                                   placeholder="Nr." name="nr" required/>
                                             <span class="glyphicon glyphicon-remove form-control-feedback"
                                                   ng-show="editForm.nr.$invalid && !editForm.nr.$pristine"></span>
                                             <span class="glyphicon glyphicon-ok form-control-feedback"

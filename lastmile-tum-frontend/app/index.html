@@ -85,10 +85,18 @@
                     </ul>
                 </div>
                 <div class="btn-group navbar-right" uib-dropdown dropdown-append-to-body style="float: right;" ng-show="loggedIn">
+                    <button type="button" class="btn btn-default navbar-btn" uib-dropdown-toggle ng-click="showNotifications()"
+                            ng-disabled="notifications.length == 0" aria-label="Left Align" id="notificationBtn">
+                        <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
+                        Notifications
+                        <span class="badge">{{notifications.length}}</span>
+                    </button>
+                    <!--
                     <button type="button" class="btn btn-primary navbar-btn" uib-dropdown-toggle ng-disabled="notifications.length == 0"
                             style="width:100%;">
                         Notifications <span class="caret"></span>
-                    </button>
+                    </button> -->
+                    <!--
                     <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu role="menu" >
                         <li role="menuitem" ng-repeat="notification in notifications">
                             <a ng-hide="notification.notificationType !== 'NewAccept'" href="/myReq">
@@ -108,6 +116,7 @@
                             </a>
                         </li>
                     </ul>
+                    -->
                 </div>
                 <!--
                 <ul class="nav navbar-nav navbar-right" ng-show="loggedIn" style="float: right;">
@@ -173,6 +182,64 @@
                 </form>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
+    </div>
+    <div id="notificationContainer" ng-show="notificationsShown">
+        <span class="pointer" style="left: 4px;"><span></span></span>
+        <div id="notificationTopline">
+            Notifications
+            <span class="glyphicon glyphicon-ok" style="float: right; margin: 3px 5px 0px 0px;"
+                title="Mark all as read"></span>
+        </div>
+        <div id="notifications">
+            <ul>
+                <li ng-repeat="notification in notifications">
+                    <div class="singleNotification">
+                        <a ng-hide="notification.notificationType !== 'NewAccept'" href="/myReq">
+                            Your request
+                            <span class="notivHighlight">
+                                "{{notification.requestName}}"
+                            </span> was accepted by
+                            <span class="notivHighlight">
+                            "{{notification.userFirstName}} {{notification.userLastName}}"
+                            </span>!
+                        </a>
+                        <a ng-hide="notification.notificationType !== 'NewCancel'" href="/myReq">
+                            The delivery for your request
+                            <span class="notivHighlight">
+                                "{{notification.requestName}}"
+                            </span> was canceled by
+                            <span class="notivHighlight">"{{notification.userFirstName}} {{notification.userLastName}}"
+                            </span>!
+                        </a>
+                        <a ng-hide="notification.notificationType !== 'NewHaggle'" href="/myReq">
+                            You have a new haggle offer for your request
+                            <span class="notivHighlight">
+                                "{{notification.requestName}}"
+                            </span> from
+                            <span class="notivHighlight">"{{notification.userFirstName}} {{notification.userLastName}}"
+                            </span>!
+                        </a>
+                        <a ng-hide="notification.notificationType !== 'NewDelivery'" href="/myReq">
+                            <span class="notivHighlight">
+                                "{{notification.userFirstName}} {{notification.userLastName}}"
+                            </span> confirmed, that the request
+                            <span class="notivHighlight">"{{notification.requestName}}"
+                            </span> was delivered successfully!
+                        </a>
+                        <a ng-hide="notification.notificationType !== 'NewMessage'" href="/myReq">
+                            You have a new message for your request
+                            <span class="notivHighlight">
+                                "{{notification.requestName}}"
+                            </span> from
+                            <span class="notivHighlight"> "{{notification.userFirstName}} {{notification.userLastName}}"
+                            </span>!
+                        </a>
+                    </div>
+                    <span class="glyphicon glyphicon-ok" style="float: right; margin: 3px 15px 0px 0px;"
+                          title="Mark all as read"></span></span>
+                </li>
+            </ul>
+        </div>
     </div>
     <div class="container-fluid main" ng-view class="view">
 

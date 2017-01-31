@@ -90,6 +90,7 @@ $button-hover-color: #f5f5f5;
   background: rgba(black, 0.5);
   padding-left: 10px;
   padding-right: 10px;
+  z-index: 1000;
 }
 
 .main {
@@ -582,6 +583,80 @@ li > a {
   margin-bottom: 0px;
 }
 
+#notificationBtn {
+  background-color: transparent;
+  border: 1px;
+  color: white;
+}
+#notificationBtn:hover {
+  color: #e6e6e6;
+  background-color: transparent;
+  transition: .5s ease;
+}
+.badge {
+  background-color: #ec372d !important;
+}
+#notificationContainer {
+  width: 400px;
+  top: 49px;
+  display: block;
+  left: auto;
+  right: 86px;
+  position: fixed;
+  background-color: rgba(0,0,0,0.85);
+  color: white;
+  max-height: 300px;
+  height: 300px;
+  z-index: 1000;
+  border: 1px solid rgba(75,75,75,0.85);
+}
+#notificationTopline {
+  font-weight: 600;
+  font-size: 16px;
+  background-color: black;
+  padding: 10px;
+}
+#notifications {
+  height: calc(100% - 42.85px);
+  overflow: auto;
+}
+#notifications > ul {
+  list-style: none;
+  padding: 0px;
+}
+#notifications li {
+  border-bottom: 1px solid rgba(100, 100, 100, 0.85);
+  padding: 7.5px 0px 7.5px 15px;
+}
+.singleNotification {
+  display: inline-block;
+  width: 88%;
+}
+.singleNotification > a {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+}
+.notivHighlight {
+  color: rgba(200,200,200,0.85);
+}
+#notificationContainer .glyphicon {
+  cursor: pointer;
+}
+#notificationContainer .glyphicon:hover {
+    transform: scale(1.1);
+    transition: .5s ease;
+}
+.pointer {
+  border: 10px solid transparent;
+  border-bottom-color: #333333;
+  border-top-width: 0;
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: -10px;
+  z-index: 5000;
+  right: 13px;
+}
 /*
 a{
   font-family: Muli;

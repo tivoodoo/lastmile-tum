@@ -8,6 +8,12 @@ angular.module('lastMile')
         $scope.login = login;
         $scope.logout = logout;
 
+        $scope.notificationsShown = false;
+
+        $scope.showNotifications = function(){
+            $scope.notificationsShown = !$scope.notificationsShown;
+        }
+
         $scope.getNotifications = function(){
             Notification.query().$promise.then(function (data) {
                 var filteredNotifications = $filter('filter')(data, {recipient: userService.getUserName()._id});
