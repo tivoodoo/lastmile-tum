@@ -188,7 +188,7 @@
         <div id="notificationTopline">
             Notifications
             <span class="glyphicon glyphicon-ok" style="float: right; margin: 3px 5px 0px 0px;"
-                title="Mark all as read"></span>
+                title="Mark all as read" ng-click="removeAllNotifications()"></span>
         </div>
         <div id="notifications">
             <ul>
@@ -235,8 +235,8 @@
                             </span>!
                         </a>
                     </div>
-                    <span class="glyphicon glyphicon-ok" style="float: right; margin: 3px 15px 0px 0px;"
-                          title="Mark all as read"></span></span>
+                    <span class="glyphicon glyphicon-remove" style="float: right; margin: 3px 15px 0px 0px;"
+                          title="Mark as read" ng-click="removeNotification(notification)"></span>
                 </li>
             </ul>
         </div>

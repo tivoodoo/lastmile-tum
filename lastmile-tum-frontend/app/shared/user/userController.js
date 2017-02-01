@@ -37,6 +37,30 @@ angular.module('lastMile')
             });
         };
         $scope.getNotifications();
+        
+        
+        $scope.removeNotification = function (notification) {
+            notification.$remove({notificationID: notification._id},function (succ) {
+                var index = $scope.notifications.indexOf(notification);
+                $scope.notifications.splice(index, 1);
+                if($scope.notifications.length == 0){
+                    $scope.notificationsShown = false;
+                }
+            }, function (err) {
+                alert(err);
+            })
+        };
+        $scope.removeAllNotifications = function () {
+            angular.forEach($scope.notifications, function (notification) {
+                notification.$remove({notificationID: notification._id},function (succ) {
+                    }, function (err) {
+                    alert(err);
+                });
+                $scope.notifications = [];
+                $scope.notificationsShown = false;
+
+            });
+        };
 
 
 

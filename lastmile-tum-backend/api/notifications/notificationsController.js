@@ -108,7 +108,7 @@ module.exports.deleteNotification= function (req, res) {
 
         var userId = auth.getUserIdFromRequestToken(req);
         //authorize request.user && req.user.equals(request.user)
-        if (userId == notification.user) {
+        if (userId == notification.recipient) {
             notification.remove();
             res.status(status.OK).send('notification successfully deleted');
         } else {
