@@ -1,6 +1,23 @@
 angular.module('lastMile')
     .controller('MyReqCtrl',
-        function ($scope, $http, Request, userService, User, Rating, Upload, $filter, $rootScope, $location, BACKEND_BASE_URL) {
+        function ($scope, $http, Request, userService, User, Rating, Upload, $filter, $rootScope, $location, BACKEND_BASE_URL, notificationService, Notification) {
+
+            $scope.selectRequest = function (req) {
+                $scope.selectedRequest = req;
+                if ($scope.selectedRequest.picture) {
+                    $scope.showDetailPicture = true;
+                }
+                else {
+                    $scope.showDetailPicture = false;
+                }
+                $rootScope.selectedRequestId = req._id;
+                notificationService.notifyObservers('chatMessage');
+            };
+
+            $scope.selectUser = function (usr) {
+                console.log(usr);
+                $scope.user = usr;
+            };
 
             //jquery for rating
             $(function () {

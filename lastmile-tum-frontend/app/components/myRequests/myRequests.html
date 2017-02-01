@@ -1,7 +1,8 @@
 <lm-header text="My requests" img="images/d.jpg"></lm-header>
 <div class="part-screen-box">
     <div class="lm-content lm-content-90" ng-controller="MyReqCtrl">
-
+        <div ng-include="'./shared/modals/requestDetail.html'"></div>
+        <div ng-include="'./shared/modals/profileDetail.html'"></div>
         <div style="height: 60vh; overflow-y: auto; overflow-x: hidden; padding: 0px 20px 0px 20px;">
             <h2 class="col-xs-12" ng-hide="hasRequests">{{createReqText}}</h2>
             <div class="row reqSmall {{request.status}}" ng-repeat="request in requests">
@@ -112,7 +113,10 @@
                                             ng-show="request.status=='Accepted' || request.status=='Delivered'">Write
                                         message</a></li><!-- Accepted Delivered-->
                                     <li role="menuitem"><a
-                                            ng-show="request.status=='Accepted' || request.status=='Delivered'">Deliverer's
+                                            ng-show="request.status=='Accepted' || request.status=='Delivered'"
+                                            ng-click="selectUser(request.supplier)"
+                                            data-toggle="modal"
+                                            data-target="#showProfileDetails">Deliverer's
                                         profile</a></li><!-- Accepted Delivered-->
                                     <li role="menuitem"><a
                                             ng-show="request.ratedByRequester === false && request.status=='Delivered' "
@@ -172,11 +176,16 @@
                             <li class="divider"
                                 ng-show="request.status=='Accepted' || request.status == 'Haggled'"></li>
                             <li role="menuitem"><a
-                                    ng-show="request.status=='Accepted' || request.status=='Delivered'">Write
+                                    ng-show="request.status=='Accepted' || request.status=='Delivered'" ng-click="selectRequest(request)"
+                                    data-toggle="modal"
+                                    data-target="#showDetails">Write
                                 message</a></li><!-- Accepted Delivered-->
                             <li role="menuitem"><a
-                                    ng-show="request.status=='Accepted' || request.status=='Delivered'">Deliverer's
-                                profile</a></li><!-- Accepted Delivered-->
+                                    ng-show="request.status=='Accepted' || request.status=='Delivered'"
+                                    ng-click="selectUser(request.supplier)"
+                                    data-toggle="modal"
+                                    data-target="#showProfileDetails">Deliverer's
+                                profile</a></li><!-- Accepted Delivered--><!-- Accepted Delivered-->
                             <li role="menuitem"><a
                                     ng-show="request.ratedByRequester === false && request.status=='Delivered' "
                                     ng-click="setActReq(request)"
@@ -218,7 +227,7 @@
                                     <div class="col-xs-12">
                                         <textarea class="form-control" rows="3" class="form-control"
                                                   ng-model="rating.comment"
-                                                  placeholder="Details (optional)"/>
+                                                  placeholder="Details (optional)"></textarea>
                                     </div>
                                 </div>
                             </div>
