@@ -1,6 +1,7 @@
 <lm-header text="Edit profile" img="images/d.jpg"></lm-header>
 <div class="part-screen-box">
     <div class="lm-content lm-content-90" ng-controller="EditProfileCtrl">
+        <div  ng-include="'./shared/modals/profileDetail.html'"></div>
         <div id="accordionContainer">
             <form name="editForm" ng-submit="updateUser()">
                 <div id="accordion">
@@ -333,88 +334,6 @@
                     </div>
                 </div>
             </form>
-        </div>
-        <div class="modal fade" id="showDetails" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">{{user.firstName}} {{user.lastName}}</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row" style="margin: 10px 0px 0px 0px;">
-                            <div class="col-lg-9">
-                                <p>
-                                    {{user.street}} {{user.number}} <br>
-                                    {{user.zipCode}} {{user.town}}
-                                </p>
-                                <p>
-                                    Telephone: {{user.telephone}}
-                                </p>
-                                <p>
-                                    Trunk size: {{user.trunkSize}}
-                                </p>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="pic2 userdetailpic" style="border: 1px solid #999;" ng-hide="user.picture">
-                                </div>
-                                <div class="pic2" ng-show="!pictureUpdated && user.picture">
-                                    <img ng-model="user.picture" class="userdetailpic"
-                                         ng-src="data:{{user.picture.contentType}};base64,{{user.picture.data}}">
-                                </div>
-                                <div class="pic2 " ng-show="pictureUpdated && user.picture">
-                                    <img class="userdetailpic" ngf-thumbnail="user.picture" id="userPicturePreview">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row" style="margin: 10px 0px 0px 0px; border: 1px solid #999; padding: 15px;">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <span class="tabHead">
-                                        Ratings
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <table style="margin: 15px 0px 0px 0px;">
-                                        <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="col-xs-12">
-                                                    <div id="rateYoProfile" style="margin: 0 auto 15px auto;"></div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                {{averageRating}} ({{totalRating}} ratings)
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div id="#starBarchart">
-                                    </div>
-                                </div>
-                            </div>
-                            <div ng-repeat="rating in ratingArray" class="rating">
-                                <div>
-                                    {{rating.stars}}<i class="fa fa-star-o" aria-hidden="true"></i>
-                                    <i class="fa fa-star-o" aria-hidden="true" ng-show="rating.stars >1"></i>
-                                    <i class="fa fa-star-o" aria-hidden="true" ng-show="rating.stars >2"></i>
-                                    <i class="fa fa-star-o" aria-hidden="true" ng-show="rating.stars >3"></i>
-                                    <i class="fa fa-star-o" aria-hidden="true" ng-show="rating.stars >4"></i>
-                                    as a {{rating.userType}}
-                                </div>
-                                <div>
-                                    {{rating.comment}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
         </div>
     </div>
 </div>

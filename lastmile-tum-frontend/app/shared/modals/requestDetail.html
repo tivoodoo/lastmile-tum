@@ -1,0 +1,168 @@
+<div class="modal" id="showDetails" role="dialog" ng-controller="BrowseCtrl">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">{{selectedRequest.name}}</h4>
+            </div>
+            <div class="modal-body" style="min-height: 600px;">
+                <div class="row detailsFirst" id="detailsFirst">
+                    <div class="col-xs-9">
+                        <table>
+                            <tr>
+                                <td class="tf">
+                                    From:
+                                </td>
+                                <td>
+                                    {{selectedRequest.pickUpLocation}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tf">
+                                    To:
+                                </td>
+                                <td>
+                                    {{selectedRequest.deliverToLocation}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tf">
+                                    Earliest pickup:
+                                </td>
+                                <td>
+                                    {{selectedRequest.pickUpTime | date : fullDate}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tf">
+                                    Latest dropoff:
+                                </td>
+                                <td>
+                                    {{selectedRequest.deliverTime | date : fullDate}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tf">
+                                    Size:
+                                </td>
+                                <td>
+                                    {{selectedRequest.size}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tf">
+                                    Price:
+                                </td>
+                                <td>
+                                    {{selectedRequest.price}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tf">
+                                    Description:
+                                </td>
+                                <td>
+                                    {{selectedRequest.description}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-xs-3">
+                        <!--<img src="./images/football.jpg">-->
+                        <img ng-model="selectedRequest.picture" ng-show="showDetailPicture === true"
+                             ng-src="data:{{selectedRequest.picture.contentType}};base64,{{selectedRequest.picture.data}}"/>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div id="modalMap">
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <!--<span class="tabHead">-->
+                        <!--Comments-->
+                        <!--</span>-->
+                        <!--<div id="tableDiv">-->
+                        <!--<table class="tabTable">-->
+                        <!--<tbody>-->
+
+                        <!--<tr>-->
+                        <!--<td style="width: 65px; font-weight:bold;">-->
+                        <!--Daniel:-->
+                        <!--</td>-->
+                        <!--<td>-->
+                        <!--Lorem ipsum!-->
+                        <!--</td>-->
+                        <!--</tr>-->
+
+                        <!--</tbody>-->
+                        <!--</table>-->
+                        <!--</div>-->
+
+                        <!--<div class="row" style="margin-top: 15px;">-->
+                        <!--<div class="col-xs-3 input-label">-->
+                        <!--Comment:-->
+                        <!--</div>-->
+                        <!--<div class="col-xs-9">-->
+                        <!--<div class="form-group">-->
+                        <!--<input class="form-control" placeholder="Input" style="opacity:0.9">-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <div>
+                            <!-- Chatbox -->
+                            <div ng-include="'./components/browseRequests/chat/chatbox.html'"></div>
+                        </div>
+
+                        <div id="haggleDiv" ng-show="showHaggle">
+                            <form ng-submit="sendHaggle()">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <input class="form-control" type="text" ng-model="form.hagglePrice" style="display:inline-block;"
+                                               placeholder="Enter your price proposal" id="hagglePriceInput">
+                                        <button type="submit" ng-class="{disabled: form.hagglePrice == ''}"
+                                                class="btn btn-default chat-button" ng-click="showHaggle = false"
+                                                style="margin-top:-4px; padding-left: 10px;">
+                                            <i class="glyphicon glyphicon-ok"></i>
+                                        </button>
+                                        <button type="dismiss" class="btn btn-default chat-button"
+                                                ng-click="showHaggle = false"
+                                                style="margin-top:-4px; margin-left: 2px; padding-left: 10px;">
+                                            <i class="glyphicon glyphicon-remove"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!--<div class = "row">-->
+                        <!--<div class="col-xs-12">-->
+                        <!--<button type="button" class="btn btn-primary accept" data-dismiss="modal"-->
+                        <!--ng-click="goToRequestDetail()">-->
+                        <!--More details-->
+                        <!--</button>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!---->
+                        <div class="row" ng-hide="showHaggle" style="margin-top: 10px;">
+                            <div class="col-xs-6">
+                                <button type="button" class="btn btn-primary accept" ng-disabled="thisUser == selectedRequest.requester"  data-dismiss="modal"
+                                        ng-click="accept()">Accept
+                                </button>
+                            </div>
+                            <div class="col-xs-6">
+                                <button type="button" class="btn btn-primary accept" ng-disabled="thisUser == selectedRequest.requester" ng-hide="false"
+                                        ng-click="showHaggle = true;">Haggle
+                                </button>
+                                <button type="button" class="btn btn-primary accept" disabled ng-show="false"
+                                        ng-click="showHaggle = true;">Already haggled
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
