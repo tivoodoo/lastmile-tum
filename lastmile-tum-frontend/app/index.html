@@ -195,12 +195,12 @@
                 <li ng-repeat="notification in notifications">
                     <div class="singleNotification">
                         <a ng-hide="notification.notificationType !== 'NewAccept'" href="/myReq">
-                            Your request
-                            <span class="notivHighlight">
-                                "{{notification.requestName}}"
-                            </span> was accepted by
+
                             <span class="notivHighlight">
                             "{{notification.userFirstName}} {{notification.userLastName}}"
+                            </span>confirmed your accept of the request
+                            <span class="notivHighlight">
+                                "{{notification.requestName}}"
                             </span>!
                         </a>
                         <a ng-hide="notification.notificationType !== 'NewCancel'" href="/myReq">
@@ -213,6 +213,14 @@
                         </a>
                         <a ng-hide="notification.notificationType !== 'NewHaggle'" href="/myReq">
                             You have a new haggle offer for your request
+                            <span class="notivHighlight">
+                                "{{notification.requestName}}"
+                            </span> from
+                            <span class="notivHighlight">"{{notification.userFirstName}} {{notification.userLastName}}"
+                            </span>!
+                        </a>
+                        <a ng-hide="notification.notificationType !== 'NewAcceptOffer'" href="/myReq">
+                            You have a new acceptance offer for your request
                             <span class="notivHighlight">
                                 "{{notification.requestName}}"
                             </span> from

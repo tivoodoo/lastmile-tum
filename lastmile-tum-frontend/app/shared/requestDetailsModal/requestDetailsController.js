@@ -1,6 +1,6 @@
 angular.module('lastMile')
     .controller('RequestDetailsController',
-        function ($scope, $rootScope, $uibModalInstance, thisRequest, Rating, Request, userService, notificationService, Notification, $http) {
+        function ($scope, $rootScope, $uibModalInstance, thisRequest, Rating, Request, userService, notificationService, Notification, $http, BACKEND_BASE_URL) {
             $scope.selectedRequest = thisRequest;
             $scope.thisUser = userService.getUserName()._id;
             var setHeightModalMap = function () {
@@ -34,24 +34,24 @@ angular.module('lastMile')
                 var map2 = new google.maps.Map(document.getElementById('modalMap'), {});
 
                 var directionsDisplay = new google.maps.DirectionsRenderer({
-                 map: map2
-                 });
+                    map: map2
+                });
 
-                 // Set destination, origin and travel mode.
-                 var request = {
-                 origin: start,
-                 destination: goal,
-                 travelMode: 'DRIVING'
-                 };
+                // Set destination, origin and travel mode.
+                var request = {
+                    origin: start,
+                    destination: goal,
+                    travelMode: 'DRIVING'
+                };
 
-                 // Pass the directions request to the directions service.
-                 var directionsService = new google.maps.DirectionsService();
-                 directionsService.route(request, function (response, status) {
-                 if (status == 'OK') {
-                 // Display the route on the map.
-                 directionsDisplay.setDirections(response);
-                 }
-                 });
+                // Pass the directions request to the directions service.
+                var directionsService = new google.maps.DirectionsService();
+                directionsService.route(request, function (response, status) {
+                    if (status == 'OK') {
+                        // Display the route on the map.
+                        directionsDisplay.setDirections(response);
+                    }
+                });
             };
             //jquery
             $(function () {
@@ -59,8 +59,6 @@ angular.module('lastMile')
                 setHeightChatWindow();
                 showDetailsModal();
             });
-
-
 
 
             if ($scope.selectedRequest.picture) {
@@ -88,42 +86,34 @@ angular.module('lastMile')
             };
 
 
-
-
-
             $scope.accept = function () {
                 $scope.selectedRequest.supplier = $scope.thisUser;
-                if ($scope.selectedRequest.supplier === $scope.selectedRequest.requester) {
-                    alert("You cannot accept your own requests");
+
+                if ($scope.selectedRequest.picture) {
+                    delete $scope.selectedRequest.picture;
                 }
-                else {
-                    if ($scope.selectedRequest.picture) {
-                        delete $scope.selectedRequest.picture;
-                    }
+                $http.post(BACKEND_BASE_URL + '/requests/acceptOffer/' + $scope.selectedRequest._id).then(function () {
 
-                    $scope.selectedRequest.status = "Accepted";
-                    $scope.selectedRequest.$update({requestID: $scope.selectedRequest._id})
-                        .then(function (res) {
+                    var notification = new Notification();
+                    notification.notificationType = "NewAcceptOffer";
+                    notification.request = $scope.selectedRequest._id;
+                    notification.recipient = $scope.selectedRequest.requester;
+                    notification.sender = userService.getUserName()._id;
 
-                            var notification = new Notification();
-                            notification.notificationType = "NewAccept";
-                            notification.request = $scope.selectedRequest._id;
-                            notification.recipient = $scope.selectedRequest.requester;
-                            notification.sender = userService.getUserName()._id;
+                    notification.$save(function (res) {
+                    }, function (err) {
+                        console.log(err);
+                    });
+                    $scope.selectedRequest.status = "AcceptOffer";
+                    $uibModalInstance.close("Accept");
 
-                            notification.$save(function (res) {
-                            }, function (err) {
-                                console.log(err);
-                            });
-                            $uibModalInstance.close("Accept");
-                        })
-                        .catch(function (err) {
+                }).catch(function (err) {
 
-                            alert("error while accepting request");
-                            $uibModalInstance.close("Error");
-                        });
+                        alert("error while accepting request");
+                        $uibModalInstance.close("Error");
+                    });
 
-                }
+
             };
 
 

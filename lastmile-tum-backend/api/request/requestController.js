@@ -144,3 +144,108 @@ module.exports.deleteRequest = function (req, res) {
         }
     });
 };
+
+module.exports.postNewAcceptOffer = function (req, res) {
+
+    if (!req.user) {
+        console.log("no user object");
+        return res.status(500).send();
+    }
+
+    Request.findById(req.params.request_id, function (err, request) {
+        if (err) {
+            res.status(401).send('Not a valid request');
+            return;
+        }
+
+        //Request even cheaper price than given price of requester -> decline
+        /*if (req.body.price < request.price) {
+         return res.status(407).send('Invalid offer');
+         }*/
+
+        //Initiate array for first offer
+        if (!request.acceptOffers) {
+            request.acceptOffers = [];
+        }
+        request.status = "AcceptOffer";
+        request.acceptOffers.push({
+            user: req.user._id
+        });
+
+
+        return request.save(function (err) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            return res.json({success: true});
+        });
+    });
+
+};
+
+module.exports.declineAcceptOffer = function (req, res) {
+    if (!req.user) {
+        console.log("no user object");
+        return res.status(500).send();
+    }
+
+    Request.findById(req.params.request_id, function (err, request) {
+        if (err) {
+            res.status(400).send('Request not found');
+            return;
+        }
+
+        //remove from haggledPrices array
+        for (var i = 0; i < request.acceptOffers.length; i++) {
+            if (request.acceptOffers[i].user && request.acceptOffers[i].user == req.body.accept.user) {
+                request.acceptOffers.splice(i, 1);
+                break;
+            }
+        }
+
+        return request.save(function (err) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            return res.json({success: true});
+        });
+    })
+};
+
+module.exports.acceptAcceptOffer = function (req, res) {
+
+    if (!req.user) {
+        console.log("no user object");
+        return res.status(500).send();
+    }
+
+    Request.findById(req.params.request_id, function (err, request) {
+        if (err) {
+            res.status(400).send('Request not found');
+            return;
+        }
+
+        if (!request.acceptOffers || request.acceptOffers.length == 0) {
+            res.status(400).send('No haggled price yet');
+        }
+
+        // if(req.user._id != request.requester){
+        //   console.log(req.user._id);
+        //   console.log(request.requester);
+        //   res.status(401).send('Unauthorized');
+        //   return;
+        // }
+
+        request.supplier = req.body.accept.user;
+        request.status = 'Accepted';
+        request.haggledPrices = [];
+        request.acceptOffers = [];
+
+        return request.save(function (err) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            return res.json({success: true});
+        });
+    })
+};

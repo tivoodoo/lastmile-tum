@@ -181,7 +181,7 @@ angular.module('lastMile')
                 $http.post(BACKEND_BASE_URL + '/requests/haggle/accept/' + $scope.actReq._id, {haggle: haggle})
                     .then(function successCallBack(response) {
                             $scope.actReq.status = "Accepted";
-                            $('#showHaggleOffers').modal('hide');
+                            $('#showOffers').modal('hide');
 
                         },
                         function errorCallBack(response) {
@@ -198,9 +198,9 @@ angular.module('lastMile')
                     .then(function successCallBack(response) {
                             var index = $scope.actReq.haggledPrices.indexOf(haggle);
                             $scope.actReq.haggledPrices.splice(index, 1);
-                            if ($scope.actReq.haggledPrices.length == 0) {
+                            if ($scope.actReq.haggledPrices.length == 0 && $scope.actReq.acceptOffers.length == 0) {
                                 $scope.actReq.status = "Open";
-                                $('#showHaggleOffers').modal('hide');
+                                $('#showOffers').modal('hide');
                             }
 
                             // alert("Declined");
@@ -208,7 +208,42 @@ angular.module('lastMile')
                         function errorCallBack(response) {
                             alert("Error at backend");
                         })
-            }
+            };
+
+            $scope.acceptAccept = function (accept) {
+                if (accept.userObject) {
+                    delete accept.userObject;
+                }
+                $http.post(BACKEND_BASE_URL + '/requests/acceptOffer/accept/' + $scope.actReq._id, {accept: accept})
+                    .then(function successCallBack(response) {
+                            $scope.actReq.status = "Accepted";
+                            $('#showOffers').modal('hide');
+
+                        },
+                        function errorCallBack(response) {
+                            alert("Error at backend");
+                        })
+            };
+
+            $scope.declineAccept = function (accept) {
+                if (accept.userObject) {
+                    delete accept.userObject;
+                }
+                $http.post(BACKEND_BASE_URL + '/requests/acceptOffer/decline/' + $scope.actReq._id, {accept: accept})
+                    .then(function successCallBack(response) {
+                            var index = $scope.actReq.acceptOffer.indexOf(accept);
+                            $scope.actReq.acceptOffer.splice(index, 1);
+                            if ($scope.actReq.haggledPrices.length == 0 && $scope.actReq.acceptOffers.length == 0 ) {
+                                $scope.actReq.status = "Open";
+                                $('#showOffers').modal('hide');
+                            }
+
+                            // alert("Declined");
+                        },
+                        function errorCallBack(response) {
+                            alert("Error at backend");
+                        })
+            };
 
 
         }

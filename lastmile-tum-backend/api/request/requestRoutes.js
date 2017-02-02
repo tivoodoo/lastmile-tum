@@ -34,6 +34,15 @@ function requestRoutes(passport) {
     .put(multipartyMiddleware, requestController.updateRequest)
     .delete(requestController.deleteRequest);
 
+    router.route('/acceptOffer/:request_id')
+        .post(requestController.postNewAcceptOffer);
+
+    router.route('/acceptOffer/accept/:request_id')
+        .post(requestController.acceptAcceptOffer);
+
+    router.route('/acceptOffer/decline/:request_id')
+        .post(requestController.declineAcceptOffer);
+
   router.route('/comment/:request_id')
     .get(commentController.getMessages)
     .post(commentController.putMessage);

@@ -81,6 +81,7 @@ module.exports.acceptOffer = function (req, res) {
         request.price = req.body.haggle.price;
         request.status = 'Accepted';
         request.haggledPrices = [];
+        request.acceptOffers = [];
 
         return request.save(function (err) {
             if (err) {
