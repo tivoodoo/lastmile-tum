@@ -1,17 +1,45 @@
 angular.module('lastMile')
     .controller('MyReqCtrl',
-        function ($scope, $http, Request, userService, User, Rating, Upload, $filter, $rootScope, $location, BACKEND_BASE_URL, notificationService, Notification) {
+        function ($scope, $http, Request, userService, User, Rating, Upload, $filter, $rootScope, $location, BACKEND_BASE_URL, notificationService, Notification, $uibModal) {
 
-            $scope.selectRequest = function (req) {
-                $scope.selectedRequest = req;
-                if ($scope.selectedRequest.picture) {
-                    $scope.showDetailPicture = true;
+            Request.query()
+                .$promise.then(function (data) {
+                var filteredRequests = $filter('filter')(data, {requester: userService.getUserName()._id});
+                if (filteredRequests.length == 0) {
+                    $scope.createReqText = "Unfortunately, you do not have any requests yet. To create one, click the 'Create request' button in the top toolbar!";
                 }
                 else {
-                    $scope.showDetailPicture = false;
+                    $scope.hasRequests = true;
                 }
-                $rootScope.selectedRequestId = req._id;
-                notificationService.notifyObservers('chatMessage');
+                $scope.requests = filteredRequests;
+            });
+
+            //show request details modal
+            $scope.openRequestDetails = function (request) {
+                //var parentElem = parentSelector ?
+                //  angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+                var modalInstance = $uibModal.open({
+                    templateUrl: '../../shared/requestDetailsModal/requestDetailsModal.html',
+                    controller: 'RequestDetailsController',
+                    size: 'lg',
+                    //appendTo: parentElem,
+                    resolve: {
+                        thisRequest: function () {
+                            return request;
+                        }
+                    }
+                });
+
+                modalInstance.result.then(function (result) {
+                    if (result == "Accept" || result == "Haggle") {
+                        $location.path("/myDel");
+                    }
+                    else{
+                        console.log("error while closing request detail modal");
+                    }
+                }, function (err) {
+
+                });
             };
 
             $scope.selectUser = function (usr) {
@@ -102,17 +130,7 @@ angular.module('lastMile')
             }
             ;
 
-            Request.query()
-                .$promise.then(function (data) {
-                var filteredRequests = $filter('filter')(data, {requester: userService.getUserName()._id});
-                if (filteredRequests.length == 0) {
-                    $scope.createReqText = "Unfortunately, you do not have any requests yet. To create one, click the 'Create request' button in the top toolbar!";
-                }
-                else {
-                    $scope.hasRequests = true;
-                }
-                $scope.requests = filteredRequests;
-            });
+
 
             $scope.editRequest = function (req) {
                 $rootScope.requestToEdit = req

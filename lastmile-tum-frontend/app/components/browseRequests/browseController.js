@@ -1,7 +1,7 @@
 angular.module('lastMile')
     .controller('BrowseCtrl',
         function ($scope, $rootScope, $http, BACKEND_BASE_URL,
-                  Request, $filter, $uibModal, $location, userService, notificationService, Notification) {
+                  Request, $filter, $uibModal, $location, userService, notificationService, Notification, $uibModal) {
             $scope.filterShowed = false;
             $scope.lowPrice = 0;
             $scope.highPrice = 1000;
@@ -13,18 +13,34 @@ angular.module('lastMile')
             $scope.thisUser = userService.getUserName()._id;
 
             $scope.showHaggle = false;
-            /*$scope.reqAlreadyHaggled = function () {
-                var isHaggled = false;
-                var keepGoing = true;
-                angular.forEach($scope.selectedRequest.haggledPrices, function (haggles) {
-                    if(keepGoing){
-                    if (haggles.user == $scope.thisUser) {
-                        isHaggled = true;
-                        keepGoing = false;
-                    }}
+
+            //show request details modal
+            $scope.openRequestDetails = function (request) {
+                //var parentElem = parentSelector ?
+                //  angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+                var modalInstance = $uibModal.open({
+                    templateUrl: '../../shared/requestDetailsModal/requestDetailsModal.html',
+                    controller: 'RequestDetailsController',
+                    size: 'lg',
+                    //appendTo: parentElem,
+                    resolve: {
+                        thisRequest: function () {
+                            return request;
+                        }
+                    }
                 });
-                return isHaggled;
-            };*/
+
+                modalInstance.result.then(function (result) {
+                    if (result == "Accept" || result == "Haggle") {
+                        $location.path("/myDel");
+                    }
+                    else{
+                        console.log("error while closing request detail modal");
+                    }
+                }, function (err) {
+
+                });
+            };
 
             Request.query()
                 .$promise.then(function (data) {
@@ -39,56 +55,6 @@ angular.module('lastMile')
                     alert("something went wrong");
                 });
 
-            $scope.selectRequest = function (req) {
-                $scope.selectedRequest = req;
-                if ($scope.selectedRequest.picture) {
-                    $scope.showDetailPicture = true;
-                }
-                else {
-                    $scope.showDetailPicture = false;
-                }
-                $rootScope.selectedRequestId = req._id;
-                notificationService.notifyObservers('chatMessage');
-            };
-
-            $scope.goToRequestDetail = function () {
-                console.log("go to request derail");
-            };
-
-            $scope.accept = function () {
-                $scope.selectedRequest.supplier = userService.getUserName()._id;
-                if ($scope.selectedRequest.supplier === $scope.selectedRequest.requester) {
-                    alert("You cannot accept your own requests");
-                }
-                else {
-                    if ($scope.selectedRequest.picture) {
-                        delete $scope.selectedRequest.picture;
-                    }
-
-                    $scope.selectedRequest.status = "Accepted";
-                    $scope.selectedRequest.$update({requestID: $scope.selectedRequest._id})
-                        .then(function (res) {
-
-                            var notification = new Notification();
-                            notification.notificationType = "NewAccept";
-                            notification.request = $scope.selectedRequest._id;
-                            notification.recipient = $scope.selectedRequest.requester;
-                            notification.sender= userService.getUserName()._id;
-
-                            notification.$save(function(res){
-                            }, function (err) {
-                                console.log(err);
-                            });
-                            $('#showDetails').modal('hide');
-                            $location.path("/myDel");
-
-                        })
-                        .catch(function (err) {
-                            alert("error while accepting request");
-                        });
-
-                }
-            };
 
             $scope.initMap = function (reqarray) {
                 var centerGer = {lat: 51.1657, lng: 10.4515};
@@ -160,103 +126,7 @@ angular.module('lastMile')
                 $scope.initMap($scope.requests);
             };
 
-            $('#showDetails').on('shown.bs.modal', function () {
-                showDetailsModal();
-                setHeightModalMap();
-                setHeightChatWindow();
-            });
 
-            var showDetailsModal = function () {
-                var start = $scope.selectedRequest.pickUpLocation;
-                var goal = $scope.selectedRequest.deliverToLocation;
-
-                var map2 = new google.maps.Map(document.getElementById('modalMap'), {});
-
-                var directionsDisplay = new google.maps.DirectionsRenderer({
-                    map: map2
-                });
-
-                // Set destination, origin and travel mode.
-                var request = {
-                    origin: start,
-                    destination: goal,
-                    travelMode: 'DRIVING'
-                };
-
-                // Pass the directions request to the directions service.
-                var directionsService = new google.maps.DirectionsService();
-                directionsService.route(request, function (response, status) {
-                    if (status == 'OK') {
-                        // Display the route on the map.
-                        directionsDisplay.setDirections(response);
-                    }
-                });
-            };
-
-            var setHeightModalMap = function () {
-                var modalBodyHeight = $('#showDetails .modal-dialog .modal-body').height();
-                var firstRowHeight = $('#detailsFirst').height();
-                var vrHeight = 43;
-                var mapHeight = modalBodyHeight - firstRowHeight - vrHeight;
-                $('#modalMap').height(mapHeight + "px");
-            };
-
-            var setHeightChatWindow = function () {
-                var modalMapHeight = $('#modalMap').height();
-                var aboveTableHeight = 25 + 10;
-                var buttonHeight = 35.5 + 10;
-                var inputHeight = 35 + 15;
-                var chatHeight = modalMapHeight - aboveTableHeight - buttonHeight - inputHeight;
-                $('.chatbox').height(chatHeight + "px");
-            };
-
-            // make modal.height responsive
-            $(window).resize(function () {
-                if ($('#showDetails').is(":visible")) {
-                    setHeightModalMap();
-                    setHeightChatWindow();
-                }
-            });
-
-            //======= Haggle ======
-            // Attributes
-            $scope.form = {
-                hagglePrice: ''
-            };
-
-            $scope.sendHaggle = function () {
-                // alert($scope.form.hagglePrice);
-                if ($scope.form.hagglePrice == "")
-                    return;
-
-                var price = $scope.form.hagglePrice;
-                $scope.form.hagglePrice = "";
-
-                $http.post(BACKEND_BASE_URL + '/requests/haggle/' + $rootScope.selectedRequestId, {
-                    price: price
-                })
-                //All response status with code 200-299 is considered as success status
-                    .then(function successCallback(response) {
-                            var notification = new Notification();
-                            notification.notificationType = "NewHaggle";
-                            notification.request = $scope.selectedRequest._id;
-                            notification.recipient = $scope.selectedRequest.requester;
-                            notification.sender= userService.getUserName()._id;
-
-                            notification.$save(function(res){
-                            }, function (err) {
-                                console.log(err);
-                            });
-                            $scope.form.hagglePrice = "";
-                            alert("Offer sent!");
-                        },
-                        //All other status is considered as error status
-                        //http://stackoverflow.com/questions/27507678/in-angular-http-service-how-can-i-catch-the-status-of-error
-                        //https://docs.angularjs.org/api/ng/service/$http   Section: General usage
-                        function errorCallback(response) {
-                            alert("Error in the backend");
-                        });
-            }
         }
     );
 

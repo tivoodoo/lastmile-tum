@@ -1,67 +1,18 @@
 angular.module('lastMile')
     .controller('EditProfileCtrl',
-        function ($scope, User, userService, Rating, Upload, BACKEND_BASE_URL) {
+        function ($scope, User, userService, Upload, BACKEND_BASE_URL, $uibModal) {
 
             $scope.pictureUpdated = false;
-            $scope.rating5 = 0;
-            $scope.rating4 = 0;
-            $scope.rating3 = 0;
-            $scope.rating2 = 0;
-            $scope.rating1 = 0;
-            $scope.rating0 = 0;
-            $scope.ratingCounter = 0;
+
+            var initPicSize = function () {
+                $('.pic').height($('.pic').width());
+            };
+            initPicSize();
 
             User.get({userID: userService.getUserName()._id}).$promise
                 .then(function (myUser) {
                     $scope.user = myUser;
-                    $scope.totalRating = myUser.ratings.length;
-                    angular.forEach(myUser.ratings, function (rating) {
-                        $scope.ratingArray = [];
-                        Rating.get({ratingID: rating}).$promise.then(function (rat) {
-                            if (rat.type === "R") {
-                                //rating was given by a requester, therefore the user is the deliverer
-                                rat.userType = "deliverer";
-                            }
-                            else {
-                                rat.userType = "requester";
-                            }
 
-                            $scope.ratingArray.push(rat);
-                            switch (rat.stars) {
-                                case 0:
-                                    $scope.rating0 += 1;
-                                    break;
-                                case 1:
-                                    $scope.rating1 += 1;
-                                    $scope.ratingCounter += 1;
-                                    break;
-                                case 2:
-                                    $scope.rating2 += 1;
-                                    $scope.ratingCounter += 2;
-                                    break;
-                                case 3:
-                                    $scope.rating3 += 1;
-                                    $scope.ratingCounter += 3;
-                                    break;
-                                case 4:
-                                    $scope.rating4 += 1;
-                                    $scope.ratingCounter += 4;
-                                    break;
-                                case 5:
-                                    $scope.rating5 += 1;
-                                    $scope.ratingCounter += 5;
-                                    break;
-                            }
-                        }).then(function () {
-                            $scope.averageRating = Math.round(($scope.ratingCounter / $scope.totalRating) * 100) / 100;
-                            $(function () {
-                                $("#rateYoProfile").rateYo({
-                                    rating: $scope.averageRating,
-                                    readOnly: true
-                                });
-                            });
-                        });
-                    })
                 })
                 .catch(function (err) {
                     console.log(err);
@@ -130,66 +81,33 @@ angular.module('lastMile')
                     });
                 }
             };
-            var initPicSize = function () {
-                $('.pic').height($('.pic').width());
-            };
 
-            var initPicSize2 = function () {
-                $('.pic2').height($('.pic2').width());
-            };
-
-            var initGraph = function () {
-                var dataset = {
-                    data: [$scope.rating5, $scope.rating4, $scope.rating3, $scope.rating2, $scope.rating1, $scope.rating0]
-                };
-
-
-                $(function () {
-                    (Highcharts.chart({
-                        chart: {
-                            renderTo: '#starBarchart',
-                            type: 'bar',
-                            height: 150
+            //Open profile details modal
+            $scope.openProfileDetails = function () {
+                //var parentElem = parentSelector ?
+                //  angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+                var modalInstance = $uibModal.open({
+                    templateUrl: '../../shared/profileDetailsModal/profileDetailsModal.html',
+                    controller: 'ProfileDetailsController',
+                    size: 'lg',
+                    //appendTo: parentElem,
+                    resolve: {
+                        thisUser: function () {
+                            return $scope.user;
                         },
-                        title: {
-                            text: '',
-                            style: {
-                                display: 'none'
-                            }
-                        },
-                        subtitle: {
-                            text: '',
-                            style: {
-                                display: 'none'
-                            }
-                        },
-                        xAxis: {
-                            categories: ['5', '4', '3', '2', '1', '0'],
-                            labels: {enabled: true}
-                        },
-                        yAxis: {
-                            allowDecimals: false,
-                            title: {
-                                enabled: false
-                            },
-                            min: 0,
-                            max: Math.max($scope.rating5, $scope.rating4, $scope.rating3, $scope.rating2, $scope.rating1, $scope.rating0)
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        series: [dataset]
-                    }));
+                        pictureUpdated: function () {
+                            return $scope.pictureUpdated;
+                        }
+                    }
                 });
 
+                modalInstance.result.then(function (result) {
+
+                }, function (err) {
+
+                });
             };
 
-            $('#showDetails').on('shown.bs.modal', function () {
-                // init upper pic size
-                initPicSize2();
-                // init graph
-                initGraph();
-            });
 
             var initAccordion = function () {
                 $(function () {
@@ -201,7 +119,7 @@ angular.module('lastMile')
                 });
             };
 
-            initPicSize();
+
 
             initAccordion();
 

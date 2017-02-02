@@ -1,6 +1,6 @@
 angular.module('lastMile')
     .controller('MyDelCtrl',
-        function ($scope, Request,Rating, userService, $filter, Notification) {
+        function ($scope, Request,Rating, userService, $filter, Notification, $uibModal) {
             //jquery for rating
             $(function () {
                 $("#rateYoDel").rateYo({
@@ -15,6 +15,32 @@ angular.module('lastMile')
                     });
             });
 
+            $scope.openRequestDetails = function (request) {
+                //var parentElem = parentSelector ?
+                //  angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+                var modalInstance = $uibModal.open({
+                    templateUrl: '../../shared/requestDetailsModal/requestDetailsModal.html',
+                    controller: 'RequestDetailsController',
+                    size: 'lg',
+                    //appendTo: parentElem,
+                    resolve: {
+                        thisRequest: function () {
+                            return request;
+                        }
+                    }
+                });
+
+                modalInstance.result.then(function (result) {
+                    if (result == "Accept" || result == "Haggle") {
+                        $location.path("/myDel");
+                    }
+                    else{
+                        console.log("error while closing request detail modal");
+                    }
+                }, function (err) {
+
+                });
+            };
 
             $scope.actReq = new Request();
             $scope.setActReq = function (req) {
@@ -41,14 +67,19 @@ angular.module('lastMile')
 
             Request.query()
                 .$promise.then(function (data) {
+                    //get deliveries
                 var filteredDeliveries = $filter('filter')(data, {supplier: userService.getUserName()._id});
+                $scope.requests = filteredDeliveries;
+
+                //get haggles
+                //var filteredHaggles = $filter('filter')(data, {supplier: userService.getUserName()._id});
+//               $scope.haggles = filteredHaggles;
                 if (filteredDeliveries.length == 0) {
                     $scope.createReqText = "Unfortunately, you have not accepted any requests yet. You can find available requests by clicking the 'Browse requests' button in the top toolbar!";
                 }
                 else {
                     $scope.hasRequests = true;
                 }
-                $scope.requests = filteredDeliveries;
             });
 
             $scope.cancelDelivery = function (req) {

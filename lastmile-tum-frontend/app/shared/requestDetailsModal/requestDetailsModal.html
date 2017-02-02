@@ -1,8 +1,6 @@
-<div class="modal" id="showDetails" role="dialog" ng-controller="BrowseCtrl">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
+<div id="showDetails">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                <button type="button" class="close" ng-click="cancel()" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">{{selectedRequest.name}}</h4>
             </div>
@@ -155,7 +153,7 @@
                                 <button type="button" class="btn btn-primary accept" ng-disabled="thisUser == selectedRequest.requester" ng-hide="false"
                                         ng-click="showHaggle = true;">Haggle
                                 </button>
-                                <button type="button" class="btn btn-primary accept" disabled ng-show="false"
+                                <button type="button" class="btn btn-primary accept" disabled ng-show="reqAlreadyHaggled()"
                                         ng-click="showHaggle = true;">Already haggled
                                 </button>
                             </div>
@@ -163,6 +161,4 @@
                     </div>
                 </div>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
 </div>
