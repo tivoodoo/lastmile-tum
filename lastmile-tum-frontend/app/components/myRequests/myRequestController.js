@@ -34,7 +34,7 @@ angular.module('lastMile')
                     if (result == "Accept" || result == "Haggle") {
                         $location.path("/myDel");
                     }
-                    else{
+                    else {
                         console.log("error while closing request detail modal");
                     }
                 }, function (err) {
@@ -127,9 +127,51 @@ angular.module('lastMile')
                         })
                     }
                 );
-            }
-            ;
 
+                // get user + ratings for acceptoffers
+
+                angular.forEach(req.acceptOffers, function (offer) {
+                        User.get({userID: offer.user}).$promise.then(function (user) {
+                            offer.userObject = user;
+
+                            if (user.ratings && (!user.ratings.length == 0)) {
+                                var ratingCounter = 0;
+                                angular.forEach(user.ratings, function (rating) {
+                                    Rating.get({ratingID: rating}).$promise.then(function (rat) {
+                                            switch (rat.stars) {
+                                                case 0:
+                                                    break;
+                                                case 1:
+                                                    ratingCounter += 1;
+                                                    break;
+                                                case 2:
+                                                    ratingCounter += 2;
+                                                    break;
+                                                case 3:
+                                                    ratingCounter += 3;
+                                                    break;
+                                                case 4:
+                                                    ratingCounter += 4;
+                                                    break;
+                                                case 5:
+                                                    ratingCounter += 5;
+                                                    break;
+                                            }
+                                        }
+                                    ).then(function () {
+                                        offer.userObject.avgRating = Math.round((ratingCounter / user.ratings.length) * 100) / 100;
+                                    })
+                                });
+
+
+                            }
+                            else {
+                                offer.userObject.avgRating = "No ratings yet";
+                            }
+                        })
+                    }
+                );
+            };
 
 
             $scope.editRequest = function (req) {
@@ -148,9 +190,9 @@ angular.module('lastMile')
                         notification.notificationType = "NewDelivery";
                         notification.request = req._id;
                         notification.recipient = req.requester;
-                        notification.sender= userService.getUserName()._id;
+                        notification.sender = userService.getUserName()._id;
 
-                        notification.$save(function(res){
+                        notification.$save(function (res) {
                         }, function (err) {
                             console.log(err);
                         });
@@ -233,7 +275,7 @@ angular.module('lastMile')
                     .then(function successCallBack(response) {
                             var index = $scope.actReq.acceptOffer.indexOf(accept);
                             $scope.actReq.acceptOffer.splice(index, 1);
-                            if ($scope.actReq.haggledPrices.length == 0 && $scope.actReq.acceptOffers.length == 0 ) {
+                            if ($scope.actReq.haggledPrices.length == 0 && $scope.actReq.acceptOffers.length == 0) {
                                 $scope.actReq.status = "Open";
                                 $('#showOffers').modal('hide');
                             }
