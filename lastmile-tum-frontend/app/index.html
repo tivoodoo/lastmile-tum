@@ -85,7 +85,7 @@
                     </ul>
                 </div>
                 <div class="btn-group navbar-right" uib-dropdown dropdown-append-to-body style="float: right;" ng-show="loggedIn">
-                    <button type="button" class="btn btn-default navbar-btn" uib-dropdown-toggle ng-click="showNotifications()"
+                    <button type="button" class="btn btn-default navbar-btn notificationButton" uib-dropdown-toggle ng-click="toggleNotifications()"
                             ng-disabled="notifications.length == 0" aria-label="Left Align" id="notificationBtn">
                         <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
                         Notifications
@@ -183,67 +183,67 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
-    <div id="notificationContainer" ng-show="notificationsShown">
-        <span class="pointer" style="left: 4px;"><span></span></span>
-        <div id="notificationTopline">
+    <div id="notificationContainer" class="inNotificationContainer" ng-show="notificationsShown">
+        <span class="pointer inNotificationContainer" style="left: 4px;"><span></span></span>
+        <div id="notificationTopline" class="inNotificationContainer">
             Notifications
             <span class="glyphicon glyphicon-ok" style="float: right; margin: 3px 5px 0px 0px;"
                 title="Mark all as read" ng-click="removeAllNotifications()"></span>
         </div>
-        <div id="notifications">
+        <div id="notifications" class="inNotificationContainer">
             <ul>
-                <li ng-repeat="notification in notifications">
-                    <div class="singleNotification">
+                <li ng-repeat="notification in notifications" class="inNotificationContainer">
+                    <div class="singleNotification inNotificationContainer">
                         <a ng-hide="notification.notificationType !== 'NewAccept'" href="/myReq">
 
-                            <span class="notivHighlight">
+                            <span class="notivHighlight ">
                             "{{notification.userFirstName}} {{notification.userLastName}}"
                             </span>confirmed your accept of the request
-                            <span class="notivHighlight">
+                            <span class="notivHighlight ">
                                 "{{notification.requestName}}"
                             </span>!
                         </a>
                         <a ng-hide="notification.notificationType !== 'NewCancel'" href="/myReq">
                             The delivery for your request
-                            <span class="notivHighlight">
+                            <span class="notivHighlight ">
                                 "{{notification.requestName}}"
                             </span> was canceled by
-                            <span class="notivHighlight">"{{notification.userFirstName}} {{notification.userLastName}}"
+                            <span class="notivHighlight ">"{{notification.userFirstName}} {{notification.userLastName}}"
                             </span>!
                         </a>
                         <a ng-hide="notification.notificationType !== 'NewHaggle'" href="/myReq">
                             You have a new haggle offer for your request
-                            <span class="notivHighlight">
+                            <span class="notivHighlight ">
                                 "{{notification.requestName}}"
                             </span> from
-                            <span class="notivHighlight">"{{notification.userFirstName}} {{notification.userLastName}}"
+                            <span class="notivHighlight ">"{{notification.userFirstName}} {{notification.userLastName}}"
                             </span>!
                         </a>
                         <a ng-hide="notification.notificationType !== 'NewAcceptOffer'" href="/myReq">
                             You have a new acceptance offer for your request
-                            <span class="notivHighlight">
+                            <span class="notivHighlight ">
                                 "{{notification.requestName}}"
                             </span> from
-                            <span class="notivHighlight">"{{notification.userFirstName}} {{notification.userLastName}}"
+                            <span class="notivHighlight ">"{{notification.userFirstName}} {{notification.userLastName}}"
                             </span>!
                         </a>
                         <a ng-hide="notification.notificationType !== 'NewDelivery'" href="/myReq">
-                            <span class="notivHighlight">
+                            <span class="notivHighlight ">
                                 "{{notification.userFirstName}} {{notification.userLastName}}"
                             </span> confirmed, that the request
-                            <span class="notivHighlight">"{{notification.requestName}}"
+                            <span class="notivHighlight ">"{{notification.requestName}}"
                             </span> was delivered successfully!
                         </a>
                         <a ng-hide="notification.notificationType !== 'NewMessage'" href="/myReq">
                             You have a new message for your request
-                            <span class="notivHighlight">
+                            <span class="notivHighlight ">
                                 "{{notification.requestName}}"
                             </span> from
-                            <span class="notivHighlight"> "{{notification.userFirstName}} {{notification.userLastName}}"
+                            <span class="notivHighlight "> "{{notification.userFirstName}} {{notification.userLastName}}"
                             </span>!
                         </a>
                     </div>
-                    <span class="glyphicon glyphicon-remove" style="float: right; margin: 3px 15px 0px 0px;"
+                    <span class="glyphicon glyphicon-remove inNotificationContainer" style="float: right; margin: 3px 15px 0px 0px;"
                           title="Mark as read" ng-click="removeNotification(notification)"></span>
                 </li>
             </ul>

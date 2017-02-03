@@ -1,7 +1,8 @@
 angular.module('lastMile')
     .controller('UserCtrl',
         //'currUser', 'auth', function ($scope, currUser, auth) {
-    function($scope, $rootScope, $mdDialog, userService, $mdToast, $location, Notification, $filter, Request, User) {
+    function($scope, $rootScope, $mdDialog, userService, $mdToast, $location, Notification, $filter, Request, User, $window) {
+        $scope.$window = $window;
         var user= this;
         $rootScope.loggedIn = false;
         $scope.loginShown = false;
@@ -12,7 +13,7 @@ angular.module('lastMile')
 
         $scope.showNotifications = function(){
             $scope.notificationsShown = !$scope.notificationsShown;
-        }
+        };
 
         $scope.getNotifications = function(){
             Notification.query().$promise.then(function (data) {
@@ -38,7 +39,40 @@ angular.module('lastMile')
         };
         $scope.getNotifications();
         
-        
+        // handle behaviour when clicking outside
+
+        $scope.toggleNotifications = function () {
+            $scope.notificationsShown = !$scope.notificationsShown;
+
+            if ($scope.notificationsShown) {
+                $scope.$window.onclick = function (event) {
+                    closeSearchWhenClickingElsewhere(event, $scope.toggleNotifications);
+                };
+            } else {
+                $scope.notificationsShown = false;
+                $scope.$window.onclick = null;
+                $scope.$apply();
+            }
+        };
+
+        function closeSearchWhenClickingElsewhere(event, callbackOnClose) {
+
+            var clickedElement = event.target;
+
+            if (!clickedElement) return;
+
+            var elementClasses = clickedElement.classList;
+
+            var clickedOnSearchDrawer =  elementClasses.contains('notificationButton') || elementClasses.contains('inNotificationContainer') || (clickedElement.parentElement !== null && clickedElement.parentElement.classList.contains('inNotificationContainer'));
+
+            if (!clickedOnSearchDrawer) {
+                callbackOnClose();
+                return;
+            }
+
+        }
+
+
         $scope.removeNotification = function (notification) {
             notification.$remove({notificationID: notification._id},function (succ) {
                 var index = $scope.notifications.indexOf(notification);
