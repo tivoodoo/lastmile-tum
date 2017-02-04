@@ -661,6 +661,18 @@ li > a {
   z-index: 5000;
   right: 13px;
 }
+#showOffers {
+  padding-right: 0px !important;
+}
+#showOffers .tFirst{
+  padding-right: 15px;
+}
+#showOffers table {
+  margin-bottom: 15px;
+}
+#showOffers .btn {
+  width: 100%;
+}
 /*
 a{
   font-family: Muli;
