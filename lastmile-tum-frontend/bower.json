@@ -34,7 +34,8 @@
     "angular-ws": "^1.1.0",
     "lodash": "^4.17.4",
     "rateYo": "rateyo#^2.2.0",
-    "hover": "Hover#^2.1.0"
+    "hover": "Hover#^2.1.0",
+    "angular-image-compress": "^0.1.5"
   },
   "resolutions": {
     "angular": "^1.5.9",

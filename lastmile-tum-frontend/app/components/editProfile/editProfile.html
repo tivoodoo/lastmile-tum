@@ -126,7 +126,7 @@
                             </div>
                             <div ngf-drop="pictureUpdated = true" class="col-lg-5 col-md-4 col-sm-3"
                                  ng-model="user.picture"
-                                 ngf-drag-over-class="'imageDragover'" ngf-multiple="false">
+                                 ngf-drag-over-class="'imageDragover'" ngf-multiple="false"  ngf-resize-if="$width > 1000 || $height > 1000" ngf-resize="{width: 1000, height: 1000}">
                                 <div class="row" id="userPic">
                                     <div class="col-xs-offset-4 col-xs-4 pic" style="border: 1px solid #999;"
                                          ng-hide="user.picture">
@@ -156,7 +156,7 @@
                                         <button type="button" class="btn btn-primary" ngf-select="pictureUpdated = true"
                                                 ng-model="user.picture"
                                                 ngf-multiple="false"
-                                                style="display: block; margin: 15px auto 0px auto;">Upload Image
+                                                style="display: block; margin: 15px auto 0px auto;"  ngf-resize-if="$width > 1000 || $height > 1000" ngf-resize="{width: 1000, height: 1000}">Upload Image
                                         </button>
                                     </div>
                                 </div>
@@ -164,7 +164,7 @@
                                     <div class="col-md-6 col-sm-12">
                                         <button type="button" class="btn btn-primary" ngf-select="pictureUpdated = true" ng-model="user.picture"
                                                 ngf-multiple="false"
-                                                style="display: block; margin: 15px auto 0px auto;">Upload Image
+                                                style="display: block; margin: 15px auto 0px auto;"  ngf-resize-if="$width > 1000 || $height > 1000" ngf-resize="{width: 1000, height: 1000}">Upload Image
                                         </button>
                                     </div>
                                     <div class="col-md-6">

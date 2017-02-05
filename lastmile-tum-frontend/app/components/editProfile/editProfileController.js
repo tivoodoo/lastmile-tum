@@ -97,6 +97,9 @@ angular.module('lastMile')
                         },
                         pictureUpdated: function () {
                             return $scope.pictureUpdated;
+                        },
+                        updatedUserPicture: function () {
+                            return $scope.user.picture;
                         }
                     }
                 });

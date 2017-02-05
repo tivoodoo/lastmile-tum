@@ -4,6 +4,16 @@
     <h4 class="modal-title">{{user.firstName}} {{user.lastName}}</h4>
 </div>
 <div class="modal-body">
+    <div class="visible-xs-block ">
+        <!--<img src="./images/football.jpg">-->
+        <div ng-show="!pictureUpdated && user.picture">
+            <img ng-model="user.picture" class="userPicture pic2"
+                 ng-src="data:{{user.picture.contentType}};base64,{{user.picture.data}}">
+        </div>
+        <div  ng-show="pictureUpdated && user.picture">
+            <img class="pic2 userPicture" ngf-thumbnail="user.picture"  >
+        </div>
+    </div>
     <div class="row" style="margin: 10px 0px 0px 0px;">
         <div class="col-xs-9">
             <p>
@@ -17,13 +27,13 @@
                 Trunk size: {{user.trunkSize}}
             </p>
         </div>
-        <div class="col-xs-3">
+        <div class="col-xs-3 hidden-xs">
             <div ng-show="!pictureUpdated && user.picture">
-                <img ng-model="user.picture" class="userPicture pic2" style="width: 100%"
+                <img ng-model="user.picture" class="userPicture pic2"
                      ng-src="data:{{user.picture.contentType}};base64,{{user.picture.data}}">
             </div>
             <div  ng-show="pictureUpdated && user.picture">
-                <img class="pic2 userPicture" ngf-thumbnail="user.picture" id="userPicturePreview" style="width: 100%">
+                <img class="pic2 userPicture" ngf-thumbnail="user.picture"  >
             </div>
         </div>
     </div>

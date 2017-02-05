@@ -119,9 +119,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div ngf-drop  class="row requin drop-box" ng-model="request.picture" ngf-drag-over-class="'dragover'" ngf-multiple="false">
+                        <div ngf-drop  class="row requin drop-box" ng-model="request.picture" ngf-drag-over-class="'dragover'" ngf-multiple="false"  ngf-resize-if="$width > 1000 || $height > 1000" ngf-resize="{width: 1000, height: 1000}">
                             <div class="col-md-3 col-xs-4 req-input-label" id=picButton">
-                                <button type="button" class="btn btn-primary" ngf-select ng-model="request.picture"
+                                <button type="button" class="btn btn-primary" ngf-select ng-model="request.picture" ngf-resize-if="$width > 1000 || $height > 1000" ngf-resize="{width: 1000, height: 1000}"
                                         ngf-multiple="false">Upload Image
                                 </button>
                             </div>

@@ -57,6 +57,9 @@ angular.module('lastMile')
                         },
                         pictureUpdated: function () {
                             return false;
+                        },
+                        updatedUserPicture: function () {
+                            return null;
                         }
                     }
                 });

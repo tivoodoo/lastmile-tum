@@ -1,6 +1,8 @@
 angular.module('lastMile')
     .controller('ProfileDetailsController',
-        function ($scope, $uibModalInstance, thisUserID, pictureUpdated, Rating, User, $q) {
+        function ($scope, $uibModalInstance, thisUserID, pictureUpdated, Rating, User, $q, updatedUserPicture) {
+
+
             $scope.pictureUpdated = pictureUpdated;
             $scope.rating5 = 0;
             $scope.rating4 = 0;
@@ -13,6 +15,9 @@ angular.module('lastMile')
 
             User.get({userID: thisUserID}, function (user) {
                 $scope.user = user;
+                if(updatedUserPicture){
+                    $scope.user.picture = updatedUserPicture;
+                }
                 $scope.totalRating = $scope.user.ratings.length;
 
                 var prom = [];
@@ -63,10 +68,9 @@ angular.module('lastMile')
                     else {
                         $scope.averageRating = Math.round(($scope.ratingCounter / $scope.totalRating) * 100) / 100;
                     }
-
-                    $(function () {
+                    /*$(function () {
                         $('.pic2').height($('.pic2').width());
-                    });
+                    });*/
                     $(function () {
                         $("#rateYoProfile").rateYo({
                             rating: $scope.averageRating,

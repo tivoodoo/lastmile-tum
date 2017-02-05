@@ -316,9 +316,16 @@ footer {
   @media (min-width: $screen-md) {
     width: 75%;
   };
+
   margin-left: auto;
   margin-right: auto;
   display: block;
+}
+#showDetails .requestDetailPic {
+  width: auto;
+  height: auto;
+  max-width: 200px;
+  max-height: 180px;
 }
 #showDetails .tabHead {
   font-weight: bold;
@@ -586,6 +593,12 @@ li > a {
 #userPic .thumbnail {
   margin-bottom: 0px;
 }
+.pic2{
+  max-width:200px;
+  max-height:200px;
+  width: auto;
+  height: auto;
+}
 
 #notificationBtn {
   background-color: transparent;
@@ -601,7 +614,7 @@ li > a {
   background-color: #ec372d !important;
 }
 #notificationContainer {
-  width: 400px;
+  //width: 400px;
   top: 49px;
   display: block;
   left: auto;
