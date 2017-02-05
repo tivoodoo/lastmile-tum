@@ -23,11 +23,9 @@ angular.module('lastMile')
         //Notice the difference between this and $scope:
         //http://stackoverflow.com/questions/11605917/this-vs-scope-in-angularjs-controllers
         notificationService.observers.push($scope);
-        console.log("Observer pushed");
 
         // Implementation
         function sendMessage() {
-          console.log("test:" + $rootScope.selectedRequestId);
           if ($scope.form.chatMessage == "")
             return;
 
