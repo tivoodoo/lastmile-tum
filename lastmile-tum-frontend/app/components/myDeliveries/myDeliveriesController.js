@@ -1,6 +1,6 @@
 angular.module('lastMile')
     .controller('MyDelCtrl',
-        function ($scope, Request, Rating, userService, $filter, Notification, $uibModal) {
+        function ($scope, Request, Rating, userService, $filter, Notification, notificationService,  $uibModal) {
             //jquery for rating
             $(function () {
                 $("#rateYoDel").rateYo({
@@ -94,11 +94,16 @@ angular.module('lastMile')
                     });
             };
 
-          getRequests();
+            getDeliveries();
 
           notificationService.observers.push($scope);
           $scope.notify = notify;
           $scope.getDeliveries = getDeliveries;
+            function notify(msg) {
+                if (msg == 'newNotification') {
+                    getDeliveries();
+                }
+            }
 
             function getDeliveries() {
               Request.query()
@@ -109,7 +114,6 @@ angular.module('lastMile')
                 $scope.requests = filteredDeliveries;
 
                 function search(nameKey, myArray) {
-                  console.log("searching " + nameKey + " in " + myArray)
                   if (myArray.length == 0) {
                     return false
                   }
@@ -131,7 +135,6 @@ angular.module('lastMile')
 
                   }
                   if (request.acceptOffers.length !== 0 && search(thisUser, request.acceptOffers)) {
-                    console.log("found " + request.name);
                     request.status = "AcceptOffer";
                     inAccepts = true;
 
