@@ -610,7 +610,6 @@ li > a {
   background-color: rgba(0,0,0,0.85);
   color: white;
   max-height: 300px;
-  height: 300px;
   z-index: 1000;
   border: 1px solid rgba(75,75,75,0.85);
 }
@@ -621,16 +620,22 @@ li > a {
   padding: 10px;
 }
 #notifications {
-  height: calc(100% - 42.85px);
+  max-height: calc(100% - 42.85px);
   overflow: auto;
 }
 #notifications > ul {
   list-style: none;
   padding: 0px;
 }
-#notifications li {
-  border-bottom: 1px solid rgba(100, 100, 100, 0.85);
+#notifications li{
   padding: 7.5px 0px 7.5px 15px;
+}
+#notifications li:not(:last-child) {
+  border-bottom: 1px solid rgba(100, 100, 100, 0.85);
+}
+.inNotificationContainer.ng-scope:hover {
+  background-color: lighten(rgba(0,0,0,0.85), 20%);
+  transition: .5s ease;
 }
 .singleNotification {
   display: inline-block;
