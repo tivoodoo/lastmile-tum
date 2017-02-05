@@ -312,10 +312,10 @@ footer {
   padding: 0px 30px 4px 0px;
 }
 #showDetails img {
-  width: 100%;
-  @media (min-width: $screen-md) {
-    width: 75%;
-  };
+  width: auto;
+  height: auto;
+  max-width: 200px;
+  max-height: 180px;
   margin-left: auto;
   margin-right: auto;
   display: block;
@@ -585,6 +585,12 @@ li > a {
 
 #userPic .thumbnail {
   margin-bottom: 0px;
+}
+.pic2{
+  max-width:200px;
+  max-height:200px;
+  width: auto;
+  height: auto;
 }
 
 #notificationBtn {

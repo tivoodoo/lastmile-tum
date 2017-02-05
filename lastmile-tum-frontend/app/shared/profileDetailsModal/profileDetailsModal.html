@@ -19,11 +19,11 @@
         </div>
         <div class="col-xs-3">
             <div ng-show="!pictureUpdated && user.picture">
-                <img ng-model="user.picture" class="userPicture pic2" style="width: 100%"
+                <img ng-model="user.picture" class="userPicture pic2"
                      ng-src="data:{{user.picture.contentType}};base64,{{user.picture.data}}">
             </div>
             <div  ng-show="pictureUpdated && user.picture">
-                <img class="pic2 userPicture" ngf-thumbnail="user.picture" id="userPicturePreview" style="width: 100%">
+                <img class="pic2 userPicture" ngf-thumbnail="user.picture" id="userPicturePreview" >
             </div>
         </div>
     </div>
