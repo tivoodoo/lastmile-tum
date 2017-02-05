@@ -94,61 +94,66 @@ angular.module('lastMile')
                     });
             };
 
+          getRequests();
 
+          notificationService.observers.push($scope);
+          $scope.notify = notify;
+          $scope.getDeliveries = getDeliveries;
 
-            Request.query()
+            function getDeliveries() {
+              Request.query()
                 .$promise.then(function (data) {
                 //get deliveries
                 var thisUser = userService.getUserName()._id
                 var filteredDeliveries = $filter('filter')(data, {supplier: thisUser});
                 $scope.requests = filteredDeliveries;
 
-                function search(nameKey, myArray){
-                    console.log("searching " + nameKey + " in " + myArray)
-                    if(myArray.length == 0){
-                        return false
+                function search(nameKey, myArray) {
+                  console.log("searching " + nameKey + " in " + myArray)
+                  if (myArray.length == 0) {
+                    return false
+                  }
+                  for (var i = 0; i < myArray.length; i++) {
+                    if (myArray[i].user === nameKey) {
+                      return true;
                     }
-                    for (var i=0; i < myArray.length; i++) {
-                        if (myArray[i].user === nameKey) {
-                            return true;
-                        }
-                    }
-                    return false;
+                  }
+                  return false;
                 };
 
                 angular.forEach(data, function (request) {
-                    var inHaggles = false;
-                    var inAccepts = false;
-                    if (request.haggledPrices.length !== 0 && search(thisUser, request.haggledPrices) ) {
-                        console.log("found " + request.name);
-                        request.status = "Haggled";
-                        inHaggles = true;
+                  var inHaggles = false;
+                  var inAccepts = false;
+                  if (request.haggledPrices.length !== 0 && search(thisUser, request.haggledPrices)) {
+                    request.status = "Haggled";
+                    inHaggles = true;
 
 
-                    }
-                    if (request.acceptOffers.length !== 0 &&  search(thisUser, request.acceptOffers) ) {
-                        console.log("found " + request.name);
-                        request.status = "AcceptOffer";
-                        inAccepts = true;
+                  }
+                  if (request.acceptOffers.length !== 0 && search(thisUser, request.acceptOffers)) {
+                    console.log("found " + request.name);
+                    request.status = "AcceptOffer";
+                    inAccepts = true;
 
-                    }
-                    if(inAccepts || inHaggles) {
-                        $scope.requests.push(request);
-                    }
-                    if(inAccepts && inHaggles){
-                        request.status = "AcceptAndHaggled";
-                    }
+                  }
+                  if (inAccepts || inHaggles) {
+                    $scope.requests.push(request);
+                  }
+                  if (inAccepts && inHaggles) {
+                    request.status = "AcceptAndHaggled";
+                  }
                 });
                 //get haggles
                 //var filteredHaggles = $filter('filter')(data, {supplier: userService.getUserName()._id});
 //               $scope.haggles = filteredHaggles;
                 if (filteredDeliveries.length == 0) {
-                    $scope.createReqText = "Unfortunately, you have not accepted any requests yet. You can find available requests by clicking the 'Browse requests' button in the top toolbar!";
+                  $scope.createReqText = "Unfortunately, you have not accepted any requests yet. You can find available requests by clicking the 'Browse requests' button in the top toolbar!";
                 }
                 else {
-                    $scope.hasRequests = true;
+                  $scope.hasRequests = true;
                 }
-            });
+              });
+            }
 
             $scope.cancelDelivery = function (req) {
                 req.supplier = null;
