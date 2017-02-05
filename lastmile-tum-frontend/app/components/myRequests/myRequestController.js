@@ -248,6 +248,7 @@ angular.module('lastMile')
                 }
                 $http.post(BACKEND_BASE_URL + '/requests/haggle/accept/' + $scope.actReq._id, {haggle: haggle})
                     .then(function successCallBack(response) {
+                            $scope.actReq.price = haggle.price;
                             $scope.actReq.status = "Accepted";
                             $scope.actReq.supplier= haggle.user;
                             $('#showOffers').modal('hide');

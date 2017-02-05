@@ -150,7 +150,7 @@
                         </button>
                     </div>
                     <div class="col-xs-6">
-                        <button type="button" class="btn btn-primary accept" ng-disabled="thisUser == selectedRequest.requester" ng-hide="false"
+                        <button type="button" class="btn btn-primary accept" ng-disabled="thisUser == selectedRequest.requester" ng-hide="reqAlreadyHaggled()"
                                 ng-click="showHaggle = true;">Haggle
                         </button>
                         <button type="button" class="btn btn-primary accept" disabled ng-show="reqAlreadyHaggled()"
