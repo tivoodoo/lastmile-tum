@@ -203,6 +203,10 @@ module.exports.declineAcceptOffer = function (req, res) {
             }
         }
 
+        if(request.haggledPrices && request.haggledPrices.length == 0 && request.acceptOffers && request.acceptOffers.length == 0  ){
+            request.status = "Open";
+        }
+
         return request.save(function (err) {
             if (err) {
                 return res.status(500).send(err);

@@ -43,6 +43,9 @@ module.exports.declineOffer = function (req, res) {
                 break;
             }
         }
+        if(request.haggledPrices && request.haggledPrices.length == 0 && request.acceptOffers && request.acceptOffers.length == 0  ){
+            request.status = "Open";
+        }
 
         return request.save(function (err) {
             if (err) {

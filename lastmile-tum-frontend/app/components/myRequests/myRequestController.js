@@ -301,8 +301,8 @@ angular.module('lastMile')
                 }
                 $http.post(BACKEND_BASE_URL + '/requests/acceptOffer/decline/' + $scope.actReq._id, {accept: accept})
                     .then(function successCallBack(response) {
-                            var index = $scope.actReq.acceptOffer.indexOf(accept);
-                            $scope.actReq.acceptOffer.splice(index, 1);
+                            var index = $scope.actReq.acceptOffers.indexOf(accept);
+                            $scope.actReq.acceptOffers.splice(index, 1);
                             if ($scope.actReq.haggledPrices.length == 0 && $scope.actReq.acceptOffers.length == 0) {
                                 $scope.actReq.status = "Open";
                                 $('#showOffers').modal('hide');
