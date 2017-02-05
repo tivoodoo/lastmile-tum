@@ -194,11 +194,20 @@
             <ul>
                 <li ng-repeat="notification in notifications" class="inNotificationContainer">
                     <div class="singleNotification inNotificationContainer">
-                        <a ng-hide="notification.notificationType !== 'NewAccept'" href="/myReq">
+                        <a ng-hide="notification.notificationType !== 'NewAccept'" href="/myDel">
 
                             <span class="notivHighlight ">
                             "{{notification.userFirstName}} {{notification.userLastName}}"
-                            </span>confirmed your accept of the request
+                            </span> confirmed your offer for the request
+                            <span class="notivHighlight ">
+                                "{{notification.requestName}}"
+                            </span>!
+                        </a>
+                        <a ng-hide="notification.notificationType !== 'NewDecline'">
+
+                            <span class="notivHighlight ">
+                            "{{notification.userFirstName}} {{notification.userLastName}}"
+                            </span> declined your offer for the request
                             <span class="notivHighlight ">
                                 "{{notification.requestName}}"
                             </span>!

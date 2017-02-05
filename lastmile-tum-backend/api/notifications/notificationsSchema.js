@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 
 // DB scheme for message
 var notificationsSchema = mongoose.Schema({
-    //enumerate "NewAccept", "NewHaggle", "NewCancel", "NewDelivery", "NewMessage"
+    //enumerate "NewAccept", "NewDecline", "NewHaggle", "NewCancel", "NewDelivery", "NewMessage"
     notificationType: {
         type: String,
         required: true

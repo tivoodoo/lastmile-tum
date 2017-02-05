@@ -91,10 +91,10 @@
                                 <!-- Accepted-->
                                 <li class="divider" ng-show="request.status=='Accepted'"></li>
                                 <li role="menuitem"><a
-                                        ng-show="request.status=='Accepted' || request.status=='Delivered'" ng-click="openRequestDetails(request)">Write
+                                        ng-show="request.status=='Accepted' || request.status=='Delivered' || request.status == 'Haggled' || request.status == 'AcceptOffer'" ng-click="openRequestDetails(request)">Write
                                     message / View request</a></li><!-- Accepted Delivered-->
                                 <li role="menuitem"><a
-                                        ng-show="request.status=='Accepted' || request.status=='Delivered'" ng-click="openProfileDetails(request.requester)">Deliverer's
+                                        ng-show="request.status=='Accepted' || request.status=='Delivered' ||request.status == 'Haggled' || request.status == 'AcceptOffer'" ng-click="openProfileDetails(request.requester)">Deliverer's
                                     profile</a></li><!-- Accepted Delivered-->
                                 <li role="menuitem"><a ng-show="request.ratedBySupplier === false && request.status=='Delivered' " ng-click="setActReq(request)"
                                                        data-toggle="modal" data-target="#showRating">Rate
@@ -110,8 +110,11 @@
                     </div>
                 </div>
                 <div class="col-md-2 hidden-xs hidden-sm reqStatusMenu">
-                     <span>
+                     <span ng-hide="request.status == 'Haggled' || request.status == 'AcceptOffer' ">
                         {{request.status}}
+                    </span>
+                    <span ng-show="request.status == 'Haggled' || request.status == 'AcceptOffer' ">
+                        Pending
                     </span>
                     <div class="btn-group" uib-dropdown dropdown-append-to-body style="width:100%">
                         <button type="button" class="btn btn-blanc" uib-dropdown-toggle
@@ -123,10 +126,10 @@
                             <!-- Accepted-->
                             <li class="divider" ng-show="request.status=='Accepted'"></li>
                             <li role="menuitem"><a
-                                    ng-show="request.status=='Accepted' || request.status=='Delivered' " ng-click="openRequestDetails(request)">Write
+                                    ng-show="request.status=='Accepted' || request.status=='Delivered' || request.status == 'Haggled' || request.status == 'AcceptOffer' " ng-click="openRequestDetails(request)">Write
                                 message / View request</a></li><!-- Accepted Delivered-->
                             <li role="menuitem"><a
-                                    ng-show="request.status=='Accepted' || request.status=='Delivered' " ng-click="openProfileDetails(request.requester)">Requester's
+                                    ng-show="request.status=='Accepted' || request.status=='Delivered' ||request.status == 'Haggled' || request.status == 'AcceptOffer' " ng-click="openProfileDetails(request.requester)">Requester's
                                 profile</a></li><!-- Accepted Delivered-->
                             <li role="menuitem"><a ng-show="request.ratedBySupplier === false && request.status=='Delivered' " ng-click="setActReq(request)"
                                                    data-toggle="modal" data-target="#showRating">Rate

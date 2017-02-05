@@ -1,6 +1,6 @@
 angular.module('lastMile')
     .controller('MyDelCtrl',
-        function ($scope, Request,Rating, userService, $filter, Notification, $uibModal) {
+        function ($scope, Request, Rating, userService, $filter, Notification, $uibModal) {
             //jquery for rating
             $(function () {
                 $("#rateYoDel").rateYo({
@@ -34,7 +34,7 @@ angular.module('lastMile')
                     if (result == "Accept" || result == "Haggle") {
                         $location.path("/myDel");
                     }
-                    else{
+                    else {
                         console.log("error while closing request detail modal");
                     }
                 }, function (err) {
@@ -85,21 +85,44 @@ angular.module('lastMile')
                 $scope.rating.ratedUser = $scope.actReq.requester;
 
                 $scope.rating.$save()
-                    .then(function(){
+                    .then(function () {
                         $scope.actReq.ratedBySupplier = true;
                         $('#showRating').modal('hide');
                     })
-                    .catch(function(){
+                    .catch(function () {
                         alert("An error occured while rating the requester");
                     });
             };
 
+
+
             Request.query()
                 .$promise.then(function (data) {
-                    //get deliveries
-                var filteredDeliveries = $filter('filter')(data, {supplier: userService.getUserName()._id});
+                //get deliveries
+                var thisUser = userService.getUserName()._id
+                var filteredDeliveries = $filter('filter')(data, {supplier: thisUser});
                 $scope.requests = filteredDeliveries;
 
+                function search(nameKey, myArray){
+                    console.log("searching " + nameKey + " in " + myArray)
+                    if(myArray.length == 0){
+                        return false
+                    }
+                    for (var i=0; i < myArray.length; i++) {
+                        if (myArray[i].user === nameKey) {
+                            return true;
+                        }
+                    }
+                    return false;
+                };
+
+                angular.forEach(data, function (request) {
+                    if ((request.haggledPrices.length !== 0 && search(thisUser, request.haggledPrices) )||(request.acceptOffers.length !== 0 &&  search(thisUser, request.acceptOffers) )) {
+                        console.log("found " + request.name);
+                        $scope.requests.push(request);
+                    }
+
+                });
                 //get haggles
                 //var filteredHaggles = $filter('filter')(data, {supplier: userService.getUserName()._id});
 //               $scope.haggles = filteredHaggles;
@@ -123,9 +146,9 @@ angular.module('lastMile')
                         notification.notificationType = "NewCancel";
                         notification.request = req._id;
                         notification.recipient = req.requester;
-                        notification.sender= userService.getUserName()._id;
+                        notification.sender = userService.getUserName()._id;
 
-                        notification.$save(function(res){
+                        notification.$save(function (res) {
                         }, function (err) {
                             console.log(err);
                         });
@@ -150,9 +173,9 @@ angular.module('lastMile')
                         notification.notificationType = "NewDelivery";
                         notification.request = req._id;
                         notification.recipient = req.requester;
-                        notification.sender= userService.getUserName()._id;
+                        notification.sender = userService.getUserName()._id;
 
-                        notification.$save(function(res){
+                        notification.$save(function (res) {
                         }, function (err) {
                             console.log(err);
                         });

@@ -251,6 +251,16 @@ angular.module('lastMile')
                 }
                 $http.post(BACKEND_BASE_URL + '/requests/haggle/accept/' + $scope.actReq._id, {haggle: haggle})
                     .then(function successCallBack(response) {
+                            var notification = new Notification();
+                            notification.notificationType = "NewAccept";
+                            notification.request = $scope.actReq._id;
+                            notification.recipient = haggle.user;
+                            notification.sender = userService.getUserName()._id;
+
+                            notification.$save(function (res) {
+                            }, function (err) {
+                                console.log(err);
+                            });
                             $scope.actReq.price = haggle.price;
                             $scope.actReq.status = "Accepted";
                             $scope.actReq.supplier= haggle.user;
@@ -269,6 +279,16 @@ angular.module('lastMile')
                 console.log(haggle);
                 $http.post(BACKEND_BASE_URL + '/requests/haggle/decline/' + $scope.actReq._id, {haggle: haggle})
                     .then(function successCallBack(response) {
+                            var notification = new Notification();
+                            notification.notificationType = "NewDecline";
+                            notification.request = $scope.actReq._id;
+                            notification.recipient = haggle.user;
+                            notification.sender = userService.getUserName()._id;
+
+                            notification.$save(function (res) {
+                            }, function (err) {
+                                console.log(err);
+                            });
                             var index = $scope.actReq.haggledPrices.indexOf(haggle);
                             $scope.actReq.haggledPrices.splice(index, 1);
                             if ($scope.actReq.haggledPrices.length == 0 && $scope.actReq.acceptOffers.length == 0) {
@@ -289,6 +309,16 @@ angular.module('lastMile')
                 }
                 $http.post(BACKEND_BASE_URL + '/requests/acceptOffer/accept/' + $scope.actReq._id, {accept: accept})
                     .then(function successCallBack(response) {
+                            var notification = new Notification();
+                            notification.notificationType = "NewAccept";
+                            notification.request = $scope.actReq._id;
+                            notification.recipient = accept.user;
+                            notification.sender = userService.getUserName()._id;
+
+                            notification.$save(function (res) {
+                            }, function (err) {
+                                console.log(err);
+                            });
                             $scope.actReq.status = "Accepted";
                             $scope.actReq.supplier= accept.user;
                             $('#showOffers').modal('hide');
@@ -305,6 +335,16 @@ angular.module('lastMile')
                 }
                 $http.post(BACKEND_BASE_URL + '/requests/acceptOffer/decline/' + $scope.actReq._id, {accept: accept})
                     .then(function successCallBack(response) {
+                            var notification = new Notification();
+                            notification.notificationType = "NewDecline";
+                            notification.request = $scope.actReq._id;
+                            notification.recipient = accept.user;
+                            notification.sender = userService.getUserName()._id;
+
+                            notification.$save(function (res) {
+                            }, function (err) {
+                                console.log(err);
+                            });
                             var index = $scope.actReq.acceptOffers.indexOf(accept);
                             $scope.actReq.acceptOffers.splice(index, 1);
                             if ($scope.actReq.haggledPrices.length == 0 && $scope.actReq.acceptOffers.length == 0) {

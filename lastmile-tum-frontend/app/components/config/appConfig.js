@@ -7,9 +7,10 @@
 
   angular
     .module('lastMile')
-    .constant("BASEURL", "http://localhost:3000")
-    .constant('BACKEND_BASE_URL', "http://localhost:4000")
+    .constant("BASEURL", "http://192.168.0.14:3000")
+    .constant('BACKEND_BASE_URL', "http://192.168.0.14:4000")
     .constant('APP_NAME', "Full Trunk")
+
 
   angular
     .module('lastMile')
