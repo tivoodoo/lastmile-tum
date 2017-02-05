@@ -165,6 +165,7 @@ angular.module('lastMile')
                         notification.sender = userService.getUserName()._id;
 
                         notification.$save(function (res) {
+                            notificationService.notifyObservers('newNotification');
                         }, function (err) {
                             console.log(err);
                         });
@@ -192,6 +193,7 @@ angular.module('lastMile')
                         notification.sender = userService.getUserName()._id;
 
                         notification.$save(function (res) {
+                            notificationService.notifyObservers('newNotification');
                         }, function (err) {
                             console.log(err);
                         });
