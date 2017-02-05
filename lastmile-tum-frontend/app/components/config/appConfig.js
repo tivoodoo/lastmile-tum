@@ -5,10 +5,13 @@
 (function () {
   'use strict';
 
+  var SERVER_IP_ADDRESS = "localhost";
+
   angular
     .module('lastMile')
-    .constant("BASEURL", "http://locahost:3000")
-    .constant('BACKEND_BASE_URL', "http://localhost:4000")
+    .constant("BASEURL", "http://"+SERVER_IP_ADDRESS+":3000")
+    .constant('BACKEND_BASE_URL', "http://"+SERVER_IP_ADDRESS+":4000")
+    .constant('SERVER_IP_ADDRESS' , SERVER_IP_ADDRESS)
     .constant('APP_NAME', "Full Trunk")
 
 

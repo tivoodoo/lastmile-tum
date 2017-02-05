@@ -59,11 +59,11 @@ So all user will see the same page and reaction if they connect to backend.
 - Go to lastmile-tum-frontend>app>components>config>appConfig.js
 - Edit the following line:
 ```
-    .constant('BACKEND_BASE_URL', "http://localhost:4000")
+  var SERVER_IP_ADDRESS = "localhost";
 ```
 to
 ```
-    .constant('BACKEND_BASE_URL', "$YOUR_IP_ADDRESS$:4000")
+  var SERVER_IP_ADDRESS = "$YOUR_IP_ADDRESS$";
 ```
 where $YOUR_IP_ADDRESS$ can be seen after starting frontend server with gulp like above (In my case http://192.168.56.1)
 ## Directory Structure

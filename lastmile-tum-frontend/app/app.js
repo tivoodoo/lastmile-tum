@@ -16,7 +16,7 @@ var app = angular.module('lastMile', [
 
 // app.constant("BASEURL", "http://localhost:3000");
 
-app.config(function ($routeProvider, $locationProvider, $resourceProvider, $httpProvider, $provide, wsProvider) {
+app.config(function ($routeProvider, $locationProvider, $resourceProvider, $httpProvider, $provide, wsProvider, SERVER_IP_ADDRESS) {
     $provide.decorator('$sniffer', function($delegate) {
         $delegate.history = false;
         return $delegate;
@@ -59,6 +59,6 @@ app.config(function ($routeProvider, $locationProvider, $resourceProvider, $http
         }
 
     });
-    wsProvider.setUrl('ws://localhost:4000');
+    wsProvider.setUrl('ws://'+SERVER_IP_ADDRESS+':4000');
 });
 
