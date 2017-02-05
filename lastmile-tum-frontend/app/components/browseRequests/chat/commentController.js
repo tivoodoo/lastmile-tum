@@ -40,7 +40,7 @@ angular.module('lastMile')
             .then(function successCallback(response) {
               $scope.form.chatMessage = "";
               loadMessages();
-              // notificationService.notifyObservers('chatMessage');
+              notificationService.notifyObservers('chatMessage');
             });
         }
 
@@ -61,7 +61,6 @@ angular.module('lastMile')
         function notify(msg) {
           if (msg == 'chatMessage') {
             loadMessages();
-            console.log("CHAT RELOADED");
           }
         }
 
