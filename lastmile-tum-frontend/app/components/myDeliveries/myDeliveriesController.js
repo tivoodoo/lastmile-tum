@@ -117,11 +117,27 @@ angular.module('lastMile')
                 };
 
                 angular.forEach(data, function (request) {
-                    if ((request.haggledPrices.length !== 0 && search(thisUser, request.haggledPrices) )||(request.acceptOffers.length !== 0 &&  search(thisUser, request.acceptOffers) )) {
+                    var inHaggles = false;
+                    var inAccepts = false;
+                    if (request.haggledPrices.length !== 0 && search(thisUser, request.haggledPrices) ) {
                         console.log("found " + request.name);
+                        request.status = "Haggled";
+                        inHaggles = true;
+
+
+                    }
+                    if (request.acceptOffers.length !== 0 &&  search(thisUser, request.acceptOffers) ) {
+                        console.log("found " + request.name);
+                        request.status = "AcceptOffer";
+                        inAccepts = true;
+
+                    }
+                    if(inAccepts || inHaggles) {
                         $scope.requests.push(request);
                     }
-
+                    if(inAccepts && inHaggles){
+                        request.status = "AcceptAndHaggled";
+                    }
                 });
                 //get haggles
                 //var filteredHaggles = $filter('filter')(data, {supplier: userService.getUserName()._id});

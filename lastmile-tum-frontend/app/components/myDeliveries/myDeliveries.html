@@ -102,19 +102,25 @@
                                 <!-- Delivered-->
                                 <li role="menuitem"><a ng-show="request.status=='Open' || request.status=='Expired'" ng-click="editRequest(request)">Edit
                                     request</a></li><!-- Open Expired-->
-                                <li class="divider" ng-show="request.status=='Accepted' || request.status=='Open'"></li>
-                                <li role="menuitem"><a ng-show="request.status=='Accepted' || request.status=='Open'  || request.status=='Expired'" ng-click="deleteRequest(request)">Delete
-                                    request</a></li><!-- Open Accepted-->
+                                <li class="divider" ng-show="request.status=='Accepted' "></li>
+                                <li role="menuitem"><a ng-show="request.status=='Accepted'" ng-click="cancelDelivery(request)">Cancel
+                                    delivery</a></li><!-- Open Accepted-->
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2 hidden-xs hidden-sm reqStatusMenu">
-                     <span ng-hide="request.status == 'Haggled' || request.status == 'AcceptOffer' ">
+                     <span ng-hide="request.status == 'Haggled' || request.status == 'AcceptOffer' || request.status == 'AcceptAndHaggled' ">
                         {{request.status}}
                     </span>
-                    <span ng-show="request.status == 'Haggled' || request.status == 'AcceptOffer' ">
-                        Pending
+                    <span ng-show="request.status == 'Haggled' ">
+                        Haggle pending
+                    </span>
+                    <span ng-show="request.status == 'AcceptOffer' ">
+                        Accept pending
+                    </span>
+                    <span ng-show="request.status == 'AcceptAndHaggled' ">
+                        Accept and haggle pending
                     </span>
                     <div class="btn-group" uib-dropdown dropdown-append-to-body style="width:100%">
                         <button type="button" class="btn btn-blanc" uib-dropdown-toggle

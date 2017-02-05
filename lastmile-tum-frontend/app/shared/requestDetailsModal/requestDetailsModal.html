@@ -111,8 +111,11 @@
                 </div>
                 <div class="row" ng-hide="showHaggle" style="margin-top: 10px;">
                     <div class="col-xs-6">
-                        <button type="button" class="btn btn-primary accept" ng-disabled="thisUser == selectedRequest.requester"  data-dismiss="modal"
+                        <button type="button" class="btn btn-primary accept" ng-disabled="thisUser == selectedRequest.requester"  ng-hide="reqAlreadyAccepted()"
                                 ng-click="accept()">Accept
+                        </button>
+                        <button type="button" class="btn btn-primary accept" disabled ng-show="reqAlreadyAccepted()"
+                               >Accept pending...
                         </button>
                     </div>
                     <div class="col-xs-6">
@@ -120,7 +123,7 @@
                                 ng-click="showHaggle = true;">Haggle
                         </button>
                         <button type="button" class="btn btn-primary accept" disabled ng-show="reqAlreadyHaggled()"
-                                ng-click="showHaggle = true;">Already haggled
+                               >Haggle pending...
                         </button>
                     </div>
                 </div>

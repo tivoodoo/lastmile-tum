@@ -74,9 +74,9 @@ angular.module('lastMile')
       $scope.reqAlreadyHaggled = function () {
         var isHaggled = false;
         var keepGoing = true;
-        angular.forEach($scope.selectedRequest.haggledPrices, function (haggles) {
+        angular.forEach($scope.selectedRequest.haggledPrices, function (haggle) {
           if (keepGoing) {
-            if (haggles.user == $scope.thisUser) {
+            if (haggle.user == $scope.thisUser) {
               isHaggled = true;
               keepGoing = false;
             }
@@ -84,6 +84,20 @@ angular.module('lastMile')
         });
         return isHaggled;
       };
+        $scope.reqAlreadyAccepted = function () {
+            var isAccepted = false;
+            var keepGoing = true;
+            angular.forEach($scope.selectedRequest.acceptOffers, function (accept) {
+                console.log(accept);
+                if (keepGoing) {
+                    if (accept.user == $scope.thisUser) {
+                        isAccepted = true;
+                        keepGoing = false;
+                    }
+                }
+            });
+            return isAccepted;
+        };
 
 
       $scope.accept = function () {
