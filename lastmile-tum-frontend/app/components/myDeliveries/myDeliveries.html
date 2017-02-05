@@ -94,7 +94,7 @@
                                         ng-show="request.status=='Accepted' || request.status=='Delivered'" ng-click="openRequestDetails(request)">Write
                                     message / View request</a></li><!-- Accepted Delivered-->
                                 <li role="menuitem"><a
-                                        ng-show="request.status=='Accepted' || request.status=='Delivered'">Deliverer's
+                                        ng-show="request.status=='Accepted' || request.status=='Delivered'" ng-click="openProfileDetails(request.requester)">Deliverer's
                                     profile</a></li><!-- Accepted Delivered-->
                                 <li role="menuitem"><a ng-show="request.ratedBySupplier === false && request.status=='Delivered' " ng-click="setActReq(request)"
                                                        data-toggle="modal" data-target="#showRating">Rate
@@ -126,7 +126,7 @@
                                     ng-show="request.status=='Accepted' || request.status=='Delivered' " ng-click="openRequestDetails(request)">Write
                                 message / View request</a></li><!-- Accepted Delivered-->
                             <li role="menuitem"><a
-                                    ng-show="request.status=='Accepted' || request.status=='Delivered' ">Requester's
+                                    ng-show="request.status=='Accepted' || request.status=='Delivered' " ng-click="openProfileDetails(request.requester)">Requester's
                                 profile</a></li><!-- Accepted Delivered-->
                             <li role="menuitem"><a ng-show="request.ratedBySupplier === false && request.status=='Delivered' " ng-click="setActReq(request)"
                                                    data-toggle="modal" data-target="#showRating">Rate

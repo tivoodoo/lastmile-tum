@@ -92,8 +92,8 @@ angular.module('lastMile')
                     size: 'lg',
                     //appendTo: parentElem,
                     resolve: {
-                        thisUser: function () {
-                            return $scope.user;
+                        thisUserID: function () {
+                            return $scope.user._id;
                         },
                         pictureUpdated: function () {
                             return $scope.pictureUpdated;

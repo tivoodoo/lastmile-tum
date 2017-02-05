@@ -112,9 +112,7 @@
                                         message / View request</a></li><!-- Accepted Delivered-->
                                     <li role="menuitem"><a
                                             ng-show="request.status=='Accepted' || request.status=='Delivered'"
-                                            ng-click="selectUser(request.supplier)"
-                                            data-toggle="modal"
-                                            data-target="#showProfileDetails">Deliverer's
+                                            ng-click="openProfileDetails(request.supplier)">Deliverer's
                                         profile</a></li><!-- Accepted Delivered-->
                                     <li role="menuitem"><a
                                             ng-show="request.ratedByRequester === false && request.status=='Delivered' "
@@ -168,9 +166,8 @@
                                 message / View request</a></li><!-- Accepted Delivered-->
                             <li role="menuitem"><a
                                     ng-show="request.status=='Accepted' || request.status=='Delivered'"
-                                    ng-click="selectUser(request.supplier)"
-                                    data-toggle="modal"
-                                    data-target="#showProfileDetails">Deliverer's
+                                    ng-click="openProfileDetails(request.supplier)"
+                                    >Deliverer's
                                 profile</a></li><!-- Accepted Delivered--><!-- Accepted Delivered-->
                             <li role="menuitem"><a
                                     ng-show="request.ratedByRequester === false && request.status=='Delivered' "

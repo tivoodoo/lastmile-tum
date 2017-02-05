@@ -42,6 +42,32 @@ angular.module('lastMile')
                 });
             };
 
+            //Open profile details modal
+            $scope.openProfileDetails = function (supplier) {
+                //var parentElem = parentSelector ?
+                //  angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+                var modalInstance = $uibModal.open({
+                    templateUrl: '../../shared/profileDetailsModal/profileDetailsModal.html',
+                    controller: 'ProfileDetailsController',
+                    size: 'lg',
+                    //appendTo: parentElem,
+                    resolve: {
+                        thisUserID: function () {
+                            return supplier;
+                        },
+                        pictureUpdated: function () {
+                            return false;
+                        }
+                    }
+                });
+
+                modalInstance.result.then(function (result) {
+
+                }, function (err) {
+
+                });
+            };
+
             $scope.selectUser = function (usr) {
                 console.log(usr);
                 $scope.user = usr;
@@ -223,6 +249,7 @@ angular.module('lastMile')
                 $http.post(BACKEND_BASE_URL + '/requests/haggle/accept/' + $scope.actReq._id, {haggle: haggle})
                     .then(function successCallBack(response) {
                             $scope.actReq.status = "Accepted";
+                            $scope.actReq.supplier= haggle.user;
                             $('#showOffers').modal('hide');
 
                         },
@@ -259,6 +286,7 @@ angular.module('lastMile')
                 $http.post(BACKEND_BASE_URL + '/requests/acceptOffer/accept/' + $scope.actReq._id, {accept: accept})
                     .then(function successCallBack(response) {
                             $scope.actReq.status = "Accepted";
+                            $scope.actReq.supplier= accept.user;
                             $('#showOffers').modal('hide');
 
                         },

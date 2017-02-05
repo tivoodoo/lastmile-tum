@@ -45,7 +45,7 @@ angular.module('lastMile')
             Request.query()
                 .$promise.then(function (data) {
                 var filteredRequests = data.filter(function (req) {
-                    return req.status == "Open" || req.status == "Haggled"
+                    return req.status == "Open" || req.status == "Haggled" || req.status == "AcceptOffer"
                 });
                 $scope.requests = filteredRequests;
                 $scope.initMap($scope.requests);
@@ -170,7 +170,7 @@ app.filter("myfilterFrom", function ($filter) {
         });
     };
 });
-app.filter("OpenHaggled", function ($filter) {
+/*app.filter("OpenHaggled", function ($filter) {
     return function (items) {
         return $filter('filter')(items, function (value, index, array) {
             if (value.status == "Accepted" || value.status == "Haggled") {
@@ -181,6 +181,6 @@ app.filter("OpenHaggled", function ($filter) {
             }
         });
     };
-});
+});*/
 //datepicker: https://www.grobmeier.de/angular-js-binding-to-jquery-ui-datepicker-example-07092012.html
 //datepicker: http://jsfiddle.net/xB6c2/121/

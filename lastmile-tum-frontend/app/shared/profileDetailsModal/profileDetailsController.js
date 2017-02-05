@@ -1,7 +1,7 @@
 angular.module('lastMile')
     .controller('ProfileDetailsController',
-        function ($scope, $uibModalInstance, thisUser, pictureUpdated, Rating) {
-            $scope.pictureUpdated = pictureUpdated ;
+        function ($scope, $uibModalInstance, thisUserID, pictureUpdated, Rating, User, $q) {
+            $scope.pictureUpdated = pictureUpdated;
             $scope.rating5 = 0;
             $scope.rating4 = 0;
             $scope.rating3 = 0;
@@ -9,51 +9,64 @@ angular.module('lastMile')
             $scope.rating1 = 0;
             $scope.rating0 = 0;
             $scope.ratingCounter = 0;
-            $(function () {
-                $('.pic2').height($('.pic2').width());
-            });
 
-            $scope.user = thisUser;
-            $scope.totalRating = $scope.user.ratings.length;
-            angular.forEach($scope.user.ratings, function (rating) {
+
+            User.get({userID: thisUserID}, function (user) {
+                $scope.user = user;
+                $scope.totalRating = $scope.user.ratings.length;
+
+                var prom = [];
                 $scope.ratingArray = [];
-                Rating.get({ratingID: rating}).$promise.then(function (rat) {
-                    if (rat.type === "R") {
-                        //rating was given by a requester, therefore the user is the deliverer
-                        rat.userType = "deliverer";
+                angular.forEach($scope.user.ratings, function (rating) {
+                    prom.push(Rating.get({ratingID: rating}).$promise.then(function (rat) {
+                        if (rat.type === "R") {
+                            //rating was given by a requester, therefore the user is the deliverer
+                            rat.userType = "deliverer";
+                        }
+                        else {
+                            rat.userType = "requester";
+                        }
+                        switch (rat.stars) {
+                            case 0:
+                                $scope.rating0 += 1;
+                                break;
+                            case 1:
+                                $scope.rating1 += 1;
+                                $scope.ratingCounter += 1;
+                                break;
+                            case 2:
+                                $scope.rating2 += 1;
+                                $scope.ratingCounter += 2;
+                                break;
+                            case 3:
+                                $scope.rating3 += 1;
+                                $scope.ratingCounter += 3;
+                                break;
+                            case 4:
+                                $scope.rating4 += 1;
+                                $scope.ratingCounter += 4;
+                                break;
+                            case 5:
+                                $scope.rating5 += 1;
+                                $scope.ratingCounter += 5;
+                                break;
+                        }
+                        $scope.ratingArray.push(rat);
+                    }));
+
+                });
+
+                $q.all(prom).then(function () {
+                    if ($scope.totalRating == 0) {
+                        $scope.averageRating = 0;
                     }
                     else {
-                        rat.userType = "requester";
+                        $scope.averageRating = Math.round(($scope.ratingCounter / $scope.totalRating) * 100) / 100;
                     }
 
-                    $scope.ratingArray.push(rat);
-                    switch (rat.stars) {
-                        case 0:
-                            $scope.rating0 += 1;
-                            break;
-                        case 1:
-                            $scope.rating1 += 1;
-                            $scope.ratingCounter += 1;
-                            break;
-                        case 2:
-                            $scope.rating2 += 1;
-                            $scope.ratingCounter += 2;
-                            break;
-                        case 3:
-                            $scope.rating3 += 1;
-                            $scope.ratingCounter += 3;
-                            break;
-                        case 4:
-                            $scope.rating4 += 1;
-                            $scope.ratingCounter += 4;
-                            break;
-                        case 5:
-                            $scope.rating5 += 1;
-                            $scope.ratingCounter += 5;
-                            break;
-                    }
-                }).then(function () {
-                    $scope.averageRating = Math.round(($scope.ratingCounter / $scope.totalRating) * 100) / 100;
+                    $(function () {
+                        $('.pic2').height($('.pic2').width());
+                    });
                     $(function () {
                         $("#rateYoProfile").rateYo({
                             rating: $scope.averageRating,
@@ -61,20 +74,15 @@ angular.module('lastMile')
                         });
                     });
 
-                    initGraph();
-
+                    $scope.initGraph();
                 });
             });
 
 
-
-
-            var initGraph = function () {
+            $scope.initGraph = function () {
                 var dataset = {
                     data: [$scope.rating5, $scope.rating4, $scope.rating3, $scope.rating2, $scope.rating1, $scope.rating0]
                 };
-
-
                 $(function () {
                     (Highcharts.chart({
                         chart: {
@@ -114,7 +122,6 @@ angular.module('lastMile')
                 });
 
             };
-
 
 
             $scope.ok = function () {

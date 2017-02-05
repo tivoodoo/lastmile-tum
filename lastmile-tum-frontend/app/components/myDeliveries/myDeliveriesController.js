@@ -42,6 +42,32 @@ angular.module('lastMile')
                 });
             };
 
+            //Open profile details modal
+            $scope.openProfileDetails = function (requester) {
+                //var parentElem = parentSelector ?
+                //  angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+                var modalInstance = $uibModal.open({
+                    templateUrl: '../../shared/profileDetailsModal/profileDetailsModal.html',
+                    controller: 'ProfileDetailsController',
+                    size: 'lg',
+                    //appendTo: parentElem,
+                    resolve: {
+                        thisUserID: function () {
+                            return requester;
+                        },
+                        pictureUpdated: function () {
+                            return false;
+                        }
+                    }
+                });
+
+                modalInstance.result.then(function (result) {
+
+                }, function (err) {
+
+                });
+            };
+
             $scope.actReq = new Request();
             $scope.setActReq = function (req) {
                 $scope.actReq = req;
