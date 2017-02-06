@@ -133,15 +133,12 @@ footer {
   font-size: 15pt;
   line-height: 40px;
   margin: 20px 0px 20px 0px;
-  background-color: rgba(255,255,255,.5);
   transition: .5s ease;
   cursor: pointer;
 }
-
-
 // change hover style
 .sbox:hover {
-  background-color: rgba(255,255,255,.65);
+  transform: scale(1.1);
   transition: .5s ease;
 }
 .btn {
@@ -150,6 +147,15 @@ footer {
 }
 .btn:hover {
   transition: .5s ease;
+}
+.btn.btn-start {
+  background-color: rgba(255,255,255,0.25);
+  border: 1px solid rgba(255,255,255,0.8);
+}
+.btn.btn-start:hover {
+  background-color: rgba(255,255,255,0.4);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.9);
 }
 .navbar-brand {
   transition: .5s ease;
