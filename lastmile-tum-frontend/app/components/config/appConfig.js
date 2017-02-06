@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  var SERVER_IP_ADDRESS = "localhost";
+  var SERVER_IP_ADDRESS = "192.168.2.115";
 
   angular
     .module('lastMile')

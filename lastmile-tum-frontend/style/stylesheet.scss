@@ -480,14 +480,15 @@ button.btn.btn-primary.accept {
 }
 
 #accordionContainer {
-  height: 60vh;
-  overflow-y: auto;
-  overflow-x: hidden;
   @media (max-width: $screen-sm) {
-    padding-top: 20px;
+    padding: 15px 15px 0px 15px;
+    overflow-x: hidden;
   };
-  @media (min-width: $screen-xs) {
-    padding: 0px 20px 0px 20px;
+  @media (min-width: $screen-sm) {
+    padding: 0px 20px;
+    height: 62vh;
+    overflow-y: auto;
+    overflow-x: hidden;
   };
 }
 
@@ -698,6 +699,14 @@ li > a {
 }
 .rating {
   margin-top: 10px;
+}
+.myDiv {
+  padding: 0px 20px 0px 20px;
+  @media (min-width: $screen-sm) {
+    height: 62vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
 }
 /*
 a{

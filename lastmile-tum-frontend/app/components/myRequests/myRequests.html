@@ -1,7 +1,7 @@
 <lm-header text="My requests" img="images/d.jpg"></lm-header>
 <div class="part-screen-box">
     <div class="lm-content lm-content-90" ng-controller="MyReqCtrl">
-        <div style="height: 62vh; overflow-y: auto; overflow-x: hidden; padding: 0px 20px 0px 20px;">
+        <div class="myDiv">
             <h2 class="col-xs-12" ng-hide="hasRequests">{{createReqText}}</h2>
             <div class="row reqSmall {{request.status}}" ng-repeat="request in requests">
                 <div class="col-md-10 col-xs-12">
