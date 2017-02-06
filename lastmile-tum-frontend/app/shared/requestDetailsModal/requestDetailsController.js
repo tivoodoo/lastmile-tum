@@ -1,6 +1,6 @@
 angular.module('lastMile')
   .controller('RequestDetailsController',
-    function ($scope, $rootScope, $uibModalInstance, thisRequest, Rating, Request, userService, notificationService, Notification, $http, BACKEND_BASE_URL) {
+    function ($scope, $rootScope, $uibModalInstance, thisRequest, Rating, Request, userService, notificationService, Notification, $http, BACKEND_BASE_URL, $uibModal) {
       $scope.selectedRequest = thisRequest;
       $scope.thisUser = userService.getUserName()._id;
       var setHeightModalMap = function () {
@@ -182,6 +182,35 @@ angular.module('lastMile')
       $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
       };
+
+        //Open profile details modal
+        $scope.openProfileDetails = function (requester) {
+            //var parentElem = parentSelector ?
+            //  angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+            var modalInstance = $uibModal.open({
+                templateUrl: '../../shared/profileDetailsModal/profileDetailsModal.html',
+                controller: 'ProfileDetailsController',
+                size: 'lg',
+                //appendTo: parentElem,
+                resolve: {
+                    thisUserID: function () {
+                        return requester;
+                    },
+                    pictureUpdated: function () {
+                        return false;
+                    },
+                    updatedUserPicture: function () {
+                        return null;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (result) {
+
+            }, function (err) {
+
+            });
+        };
 
     }
   );

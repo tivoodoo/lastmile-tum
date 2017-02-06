@@ -1,5 +1,7 @@
 <div id="showDetails">
     <div class="modal-header">
+        <i class="glyphicon glyphicon-new-window" id="requestersGlyph" title="Requester's profile"
+            ng-click="openProfileDetails(selectedRequest.requester)"></i>
         <button type="button" class="close" ng-click="cancel()" aria-label="Close"><span
                 aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">{{selectedRequest.name}}</h4>
