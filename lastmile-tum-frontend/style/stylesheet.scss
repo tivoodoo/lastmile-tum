@@ -29,28 +29,23 @@ $screen-md: 992px;
 $screen-lg: 1200px;
 $button-hover-color: #f5f5f5;
 
+body{
+  @media (min-width: $screen-sm) {
+    overflow-y: hidden;
+  }
+}
 
 .full-screen-box {
   margin:0;
   padding:0;
   background-color: black !important;
-  @media (min-width: $screen-sm) {
-    min-height: 100vh;
-  };
-  @media (max-width: $screen-sm) {
-    min-height: 50vh;
-  };
+  min-height: 90vh;
 }
 
 .part-screen-box {
   margin:0;
   padding:0;
-  @media (min-width: $screen-sm) {
-    min-height: 35vh;
-  };
-  @media (max-width: $screen-sm) {
-    min-height: 50vh;
-  };
+  min-height: 70vh;
 }
 
 .full-screen-box-bg {
@@ -70,12 +65,7 @@ $button-hover-color: #f5f5f5;
 .header-box {
   margin:0;
   padding:0;
-  @media (min-width: $screen-sm) {
-    min-height: 35vh;
-  };
-  @media (max-width: $screen-sm) {
-    min-height: 50vh;
-  };
+  height: 20vh;
 }
 
 .header-box-bg {
@@ -89,7 +79,6 @@ $button-hover-color: #f5f5f5;
 .navbar {
   background: rgba(black, 0.5);
   padding-left: 10px;
-  padding-right: 10px;
   z-index: 1000;
 }
 
@@ -102,7 +91,7 @@ footer {
   background: #666;
   color: #fff;
   font-size: 10pt;
-  height: 120px;
+  height: 10vh;
   padding-top: 20px;
 }
 .btn-right {
@@ -169,11 +158,8 @@ footer {
 }
 .lm-content {
   padding: 0px 0px 0px 15px;
-  @media (min-width: $screen-sm) {
-    min-height: 65vh;
-  };
+  min-height: 70vh;
   @media (max-width: $screen-sm) {
-    min-height: 50vh;
     padding: 10px 0px 10px 0px;
   };
   background-color: white;
@@ -201,7 +187,7 @@ footer {
   padding: 20px 0px 20px 0px;
 }
 #browsemap{
-  height: 60vh;
+  height: 62vh;
   width: 100%;
 }
 #modalMap{
@@ -209,7 +195,7 @@ footer {
   width: 100%;
 }
 #createMap{
-  height: 60vh;
+  height: 63vh;
   width: 100%;
 }
 .right {
@@ -227,22 +213,10 @@ footer {
 .requin > .form-control{
   margin-top:5px;
 }
-.header-box {
-  margin:0;
-  padding:0;
-  min-height: 35vh;
-}
-.header-box-bg {
-  background-repeat: no-repeat;
-  background-position: center center;
-  @media (min-aspect-ratio: $mainScreenImgWidth+'/'+$mainScreenImgHeight) {
-    background-size: 100vw auto;
-  }
-}
 .header-box-font {
   color: white;
   text-align: center;
-  padding-top: calc(50px + 7vh);
+  padding-top: 7vh;
   font-size: 7vh;
   font-family: Muli;
   text-shadow: 2px 2px 5px #333;
@@ -269,13 +243,23 @@ footer {
 }
 
 .bottomR{
-  bottom: 0;
   right: 0;
   position: absolute;
+  @media (min-width: $screen-sm) {
+    bottom: 0;
+  }
+  @media (max-width: $screen-sm) {
+    top: 0;
+  }
 }
 
 #brRequests{
-  height: 55vh;
+  margin-left: 0px;
+  margin-right: 0px;
+  @media (min-width: $screen-sm) {
+  height: 57vh;
+  overflow-y: auto;
+  }
 }
 
 .modal-dialog {
@@ -573,9 +557,11 @@ button.btn.btn-primary.accept {
 }
 
 #filterDiv {
-  overflow-y: auto;
-  overflow-x: hidden;
-  height: 60vh;
+  @media (min-width: $screen-sm) {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 60vh;
+  }
 }
 
 li > a {
