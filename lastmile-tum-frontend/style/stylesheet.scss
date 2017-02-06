@@ -121,7 +121,8 @@ footer {
   font-family: 'Muli';
   font-size: 15pt;
   line-height: 40px;
-  margin: 20px 0px 20px 0px;
+  display: inline-block;
+  margin: 20px 30px 20px 0px;
   transition: .5s ease;
   cursor: pointer;
 }
