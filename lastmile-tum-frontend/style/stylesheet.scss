@@ -66,6 +66,7 @@ body{
   margin:0;
   padding:0;
   height: 20vh;
+  min-height: 125px;
 }
 
 .header-box-bg {
@@ -229,6 +230,13 @@ footer {
   font-size: 7vh;
   font-family: Muli;
   text-shadow: 2px 2px 5px #333;
+  @media (max-width: 340px) {
+    font-size: 33px;
+    padding-top: 50px;
+  }
+  @media (max-height: 600px) {
+    padding-top: 55px;
+  }
 }
 
 .requestContainer{
@@ -476,9 +484,13 @@ button.btn.btn-primary.accept {
 }
 
 #browseContent {
+
   @media (max-width: $screen-sm) {
     margin-top: 20px;
   }
+  @media (min-width: $screen-sm) {
+    height: 62vh;
+  };
 }
 
 #accordionContainer {
