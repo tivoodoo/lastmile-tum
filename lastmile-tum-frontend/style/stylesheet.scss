@@ -95,7 +95,7 @@ footer {
   padding-top: 1.5vh;
 }
 .btn-right {
-  margin-right: 0px;
+  margin-right: 0;
   margin-left: 7.5px;
 }
 #introVideo{
@@ -122,7 +122,7 @@ footer {
   font-size: 15pt;
   line-height: 40px;
   display: inline-block;
-  margin: 20px 30px 20px 0px;
+  margin: 20px 30px 20px 0;
   transition: .5s ease;
   cursor: pointer;
 }
@@ -132,7 +132,7 @@ footer {
   transition: .5s ease;
 }
 .btn {
-  border-radius: 0px;
+  border-radius: 0;
   transition: .5s ease;
 }
 .btn:hover {
@@ -163,10 +163,10 @@ footer {
   };
 }
 .lm-content {
-  padding: 0px 0px 0px 15px;
+  padding: 0 0 0 15px;
   min-height: 70vh;
   @media (max-width: $screen-sm) {
-    padding: 10px 0px 10px 0px;
+    padding: 10px 0 10px 0;
   };
   background-color: white;
 }
@@ -178,19 +178,19 @@ footer {
     padding: 35px 25px 35px 25px;
   };
   @media (min-width: $screen-md) {
-    margin: 0px auto 0;
+    margin: 0 auto 0;
     width: 90vw;
   }
 }
 
 .lm-content-90 > .row {
-  margin: 0px;
+  margin: 0;
 }
 .topline{
   font-family: inherit;
   font-size: 30px;
   text-align: center;
-  padding: 20px 0px 20px 0px;
+  padding: 20px 0 20px 0;
 }
 #browsemap{
   height: 62vh;
@@ -248,7 +248,7 @@ footer {
   width:100%;
 }
 .requestContainer .row {
-  margin: 0px;
+  margin: 0;
 }
 
 .bottomR{
@@ -264,8 +264,8 @@ footer {
 }
 
 #brRequests{
-  margin-left: 0px;
-  margin-right: 0px;
+  margin-left: 0;
+  margin-right: 0;
   @media (min-width: $screen-sm) {
   height: 57vh;
   overflow-y: auto;
@@ -306,7 +306,7 @@ footer {
   margin-left: 15px;
 }
 #showDetails .tf{
-  padding: 0px 30px 4px 0px;
+  padding: 0 30px 4px 0;
 }
 #showDetails img {
   width: 100%;
@@ -334,7 +334,7 @@ footer {
   height: 100%;
 }
 #showDetails .tabTable td {
-  padding: 15px 0px 0px 15px;
+  padding: 15px 0 0 15px;
   vertical-align: top;
 }
 button.btn.btn-primary.accept {
@@ -434,12 +434,12 @@ button.btn.btn-primary.accept {
   font-size: 1em !important;
 }
 .ui-corner-top {
-  border-top-right-radius: 0px !important;
-  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0 !important;
+  border-top-left-radius: 0 !important;
 }
 .ui-corner-all, .ui-corner-bottom, .ui-corner-br, .ui-corner-right {
-  border-bottom-right-radius: 0px !important;
-  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
 }
 .ui-accordion-header {
   font-size: 17px !important;
@@ -483,11 +483,11 @@ button.btn.btn-primary.accept {
 
 #accordionContainer {
   @media (max-width: $screen-sm) {
-    padding: 15px 15px 0px 15px;
+    padding: 15px 15px 0 15px;
     overflow-x: hidden;
   };
   @media (min-width: $screen-sm) {
-    padding: 0px 20px;
+    padding: 0 20px;
     height: 62vh;
     overflow-y: auto;
     overflow-x: hidden;
@@ -496,8 +496,8 @@ button.btn.btn-primary.accept {
 
 .createRow {
   @media (max-width: $screen-sm) {
-    margin-left: 0px;
-    margin-right: 0px;
+    margin-left: 0;
+    margin-right: 0;
   };
 }
 
@@ -512,7 +512,7 @@ button.btn.btn-primary.accept {
   overflow-y: auto;
   overflow-x: hidden;
   margin-top: 10px;
-  padding: 5px 0px 5px 0px;
+  padding: 5px 0 5px 0;
   border-radius: 4px;
 }
 
@@ -581,7 +581,7 @@ li > a {
   margin-top: 5px;
 }
 .thumbnail {
-  padding: 0px;
+  padding: 0;
   background-color: #fff;
   border: 1px solid #ccc;
 }
@@ -595,7 +595,7 @@ li > a {
 }
 
 #userPic .thumbnail {
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 .pic2{
   max-width:200px;
@@ -618,7 +618,7 @@ li > a {
   background-color: #ec372d !important;
 }
 #notificationContainer {
-  //width: 400px;
+  max-width: 400px;
   top: 49px;
   display: block;
   left: auto;
@@ -626,7 +626,6 @@ li > a {
   position: fixed;
   background-color: rgba(0,0,0,0.85);
   color: white;
-  max-height: 300px;
   z-index: 1000;
   border: 1px solid rgba(75,75,75,0.85);
 }
@@ -637,15 +636,15 @@ li > a {
   padding: 10px;
 }
 #notifications {
-  max-height: calc(100% - 42.85px);
-  overflow: auto;
+  max-height: calc(400px - 42.85px);
+  overflow-y: auto;
 }
 #notifications > ul {
   list-style: none;
-  padding: 0px;
+  padding: 0;
 }
 #notifications li{
-  padding: 7.5px 0px 7.5px 15px;
+  padding: 7.5px 0 7.5px 15px;
 }
 #notifications li:not(:last-child) {
   border-bottom: 1px solid rgba(100, 100, 100, 0.85);
@@ -684,7 +683,7 @@ li > a {
   right: 13px;
 }
 #showOffers {
-  padding-right: 0px !important;
+  padding-right: 0 !important;
 }
 #showOffers .tFirst{
   padding-right: 15px;
@@ -703,7 +702,7 @@ li > a {
   margin-top: 10px;
 }
 .myDiv {
-  padding: 0px 20px 0px 20px;
+  padding: 0 20px 0 20px;
   @media (min-width: $screen-sm) {
     height: 62vh;
     overflow-y: auto;
