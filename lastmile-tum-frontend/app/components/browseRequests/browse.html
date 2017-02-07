@@ -1,4 +1,4 @@
-<lm-header text="Browse requests" img="images/d.jpg"></lm-header>
+<lm-header text="Browse requests" img="images/street-962796_1920.jpg"></lm-header>
 <div class="part-screen-box" ng-controller="BrowseCtrl">
     <div class="lm-content lm-content-90">
         <div class="row">
@@ -6,7 +6,7 @@
                 <div id="browsemap">
                 </div>
             </div>
-            <div id="browseContent" class="col-lg-5 col-md-6 col-sm-7">
+            <div id="browseContent" class="col-lg-5 col-md-6 col-sm-7" style="height: 62vh;">
                 <div ng-hide="filterShowed">
                     <div class="row" id="brRequests">
                         <div class="row requestContainer" ng-repeat="request in (filteredRequests = (requests | filter:{deliverToLocation:filterDeliverToLocation}
