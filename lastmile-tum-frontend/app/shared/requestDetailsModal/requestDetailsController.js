@@ -88,7 +88,6 @@ angular.module('lastMile')
             var isAccepted = false;
             var keepGoing = true;
             angular.forEach($scope.selectedRequest.acceptOffers, function (accept) {
-                console.log(accept);
                 if (keepGoing) {
                     if (accept.user == $scope.thisUser) {
                         isAccepted = true;
@@ -166,7 +165,6 @@ angular.module('lastMile')
               });
               $scope.form.hagglePrice = "";
               $uibModalInstance.close("Haggle");
-              alert("Offer sent!");
 
 
             },

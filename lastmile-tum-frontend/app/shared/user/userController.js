@@ -117,11 +117,13 @@ angular.module('lastMile')
         }
       });
       //showSimpleToast function
+
+        $scope.showToast = showSimpleToast;
       function showSimpleToast(txt) {
         $mdToast.show(
           $mdToast.simple()
             .textContent(txt)
-            //.position("bottom right")
+            .position("top left")
             .hideDelay(3000)
         );
       };
