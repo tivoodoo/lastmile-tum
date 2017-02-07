@@ -77,7 +77,20 @@ angular.module('lastMile')
                         }
                     });
                 });
+                new AutocompleteDirectionsHandler(map1);
             };
+            function AutocompleteDirectionsHandler(map) {
+                this.map = map;
+
+                var originInput = document.getElementById('filterPickUpLocation');
+                var destinationInput = document.getElementById('filterDeliverToLocation');
+
+                var originAutocomplete = new google.maps.places.Autocomplete(
+                    originInput, {placeIdOnly: true});
+                var destinationAutocomplete = new google.maps.places.Autocomplete(
+                    destinationInput, {placeIdOnly: true});
+            };
+
 
             //-------------------FILTERING-----------------
             $scope.applyFilter = function () {
