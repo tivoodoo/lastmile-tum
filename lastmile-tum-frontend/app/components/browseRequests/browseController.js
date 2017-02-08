@@ -34,7 +34,7 @@ angular.module('lastMile')
                     if (result == "Accept" || result == "Haggle") {
                         $location.path("/myDel");
                     }
-                    else{
+                    else {
                         console.log("error while closing request detail modal");
                     }
                 }, function (err) {
@@ -89,6 +89,27 @@ angular.module('lastMile')
                     originInput, {placeIdOnly: true});
                 var destinationAutocomplete = new google.maps.places.Autocomplete(
                     destinationInput, {placeIdOnly: true});
+                this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
+                this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
+            };
+
+
+            AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function (autocomplete, mode) {
+                var me = this;
+                autocomplete.bindTo('bounds', this.map);
+                autocomplete.addListener('place_changed', function () {
+                    var place = autocomplete.getPlace();
+                    if (!place.place_id) {
+                        window.alert("Please select an option from the dropdown list.");
+                        return;
+                    }
+                    if (mode === 'ORIG') {
+                        $scope.filterPickUpLocation = place.name;
+
+                    } else {
+                        $scope.filterDeliverToLocation = place.name;
+                    }
+                });
             };
 
 
@@ -183,17 +204,3 @@ app.filter("myfilterFrom", function ($filter) {
         });
     };
 });
-/*app.filter("OpenHaggled", function ($filter) {
-    return function (items) {
-        return $filter('filter')(items, function (value, index, array) {
-            if (value.status == "Accepted" || value.status == "Haggled") {
-                return true;
-            }
-            else {
-                return false
-            }
-        });
-    };
-});*/
-//datepicker: https://www.grobmeier.de/angular-js-binding-to-jquery-ui-datepicker-example-07092012.html
-//datepicker: http://jsfiddle.net/xB6c2/121/
