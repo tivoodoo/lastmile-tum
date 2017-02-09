@@ -1,7 +1,7 @@
 angular.module('lastMile')
     .controller('BrowseCtrl',
         function ($scope, $rootScope, $http, BACKEND_BASE_URL,
-                  Request, $filter, $uibModal, $location, userService, notificationService, Notification, $uibModal) {
+                  Request, $filter, $uibModal, $location, userService, notificationService, Notification, $q) {
             $scope.filterShowed = false;
             $scope.lowPrice = 0;
             $scope.highPrice = 1000;
@@ -10,10 +10,16 @@ angular.module('lastMile')
             $scope.sizefilters.M = true;
             $scope.sizefilters.L = true;
             $scope.sizefilters.XL = true;
+            $scope.enableDetourFilter = false;
+            $scope.detour = 60;
             $scope.thisUser = userService.getUserName()._id;
 
             $scope.showHaggle = false;
 
+            $scope.adjustDetourCheckbox = function () {
+                if($scope.filterPickUpLocation == "" || $scope.filterDeliverToLocation == "" )
+                    $scope.enableDetourFilter = false;
+            };
             //show request details modal
             $scope.openRequestDetails = function (request) {
                 //var parentElem = parentSelector ?
@@ -47,6 +53,7 @@ angular.module('lastMile')
                 var filteredRequests = data.filter(function (req) {
                     return req.status == "Open" || req.status == "Haggled" || req.status == "AcceptOffer"
                 });
+                $scope.backupRequests = filteredRequests;
                 $scope.requests = filteredRequests;
                 $scope.initMap($scope.requests);
             })
@@ -119,11 +126,72 @@ angular.module('lastMile')
                     alert("The earliest pickup filter date needs to be sooner than the latest dropoff filter date");
                 }
                 if ($scope.lowPrice > $scope.highPrice) {
-                    alert("The right price has to be higher or equal than the left price");
+                    alert("The minimum price cannot be higher than the maximum price!");
                 }
                 else {
-                    $scope.initMap($scope.filteredRequests);
-                    $scope.filterShowed = false;
+
+                    $scope.requests = $scope.backupRequests;
+
+                    if ($scope.enableDetourFilter) {
+                        var detourFilterValue = $scope.detour * 60;
+                        console.log("detourFilterValue: " + detourFilterValue);
+                        var service = new google.maps.DistanceMatrixService();
+                        var prom = [];
+                        angular.forEach($scope.requests, function (request) {
+                            var deferred = $q.defer();
+                            prom.push(deferred.promise);
+                            var detourValue = 0;
+                            var originFilter = $scope.filterPickUpLocation;
+                            var originRequest = request.pickUpLocation;
+                            var destinationRequest = request.deliverToLocation;
+                            var destinationFilter = $scope.filterDeliverToLocation;
+
+                            service.getDistanceMatrix(
+                                {
+                                    origins: [originFilter, originRequest, destinationRequest],
+                                    destinations: [originRequest, destinationRequest, destinationFilter],
+                                    travelMode: 'DRIVING'
+                                }, function (response, status) {
+                                    if (status == 'OK') {
+                                        var originFilterToDestinationfilter = response.rows[0].elements[2].duration.value;
+                                        var originFilterToOriginRequest = response.rows[0].elements[0].duration.value;
+                                        var originRequestToDestinationRequest = response.rows[1].elements[1].duration.value;
+                                        var destinationRequestToDestinationfilter = response.rows[2].elements[2].duration.value;
+
+                                        detourValue = originFilterToOriginRequest + originRequestToDestinationRequest + destinationRequestToDestinationfilter - originFilterToDestinationfilter;
+                                        console.log("detour value for " + request.name + ": " + detourValue);
+                                        if (detourValue > detourFilterValue) {
+                                            console.log("remove " + request.name + "from requests");
+                                            $scope.$apply(function () {
+                                                $scope.requests = $filter('filter')($scope.requests, {_id: '!' + request._id});
+                                            });
+                                            console.log("remaining requests:");
+                                            console.log($scope.requests);
+
+                                        }
+                                        deferred.resolve();
+                                    }
+                                    else {
+                                        console.log("error: " + status);
+                                    }
+                                });
+
+
+                        });
+                        $q.all(prom).then(function () {
+                            console.log($scope.filteredRequests);
+                            console.log("after all");
+                            $scope.initMap($scope.filteredRequests);
+                            $scope.filterShowed = false;
+                        });
+                    }
+                    else {
+                        console.log($scope.filteredRequests);
+                        $scope.initMap($scope.filteredRequests);
+                        $scope.filterShowed = false;
+                    }
+
+
                 }
             };
 
@@ -155,7 +223,7 @@ angular.module('lastMile')
                 $scope.sizefilters.XL = true;
                 $scope.lowPrice = 0;
                 $scope.highPrice = 1000;
-
+                $scope.enableDetourFilter = false;
                 $scope.filterShowed = false;
                 $scope.initMap($scope.requests);
             };
