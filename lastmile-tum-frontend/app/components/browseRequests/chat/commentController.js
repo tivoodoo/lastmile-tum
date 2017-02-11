@@ -4,8 +4,8 @@
 
 angular.module('lastMile')
   .controller('CommentController',
-    ['$scope', '$rootScope', '$http', '$routeParams', '$timeout', 'BACKEND_BASE_URL', 'notificationService',
-      function ($scope, $rootScope, $http, $routeParams, $timeout, BACKEND_BASE_URL, notificationService, Notification) {
+    ['$scope', '$rootScope', '$http', '$routeParams', '$timeout', 'BACKEND_BASE_URL', 'notificationService','Notification','userService',
+      function ($scope, $rootScope, $http, $routeParams, $timeout, BACKEND_BASE_URL, notificationService, Notification, userService) {
 
         // Attributes
         $scope.form = {
@@ -36,6 +36,17 @@ angular.module('lastMile')
             text: msg
           })
             .then(function successCallback(response) {
+                var notification = new Notification();
+                notification.notificationType = "NewMessage";
+                notification.request = $rootScope.selectReqForComments._id;
+                notification.recipient = $rootScope.selectReqForComments.requester;
+                notification.sender = userService.getUserName()._id;;
+
+                notification.$save(function (res) {
+                    notificationService.notifyObservers('newNotification');
+                }, function (err) {
+                    console.log(err);
+                });
               $scope.form.chatMessage = "";
               loadMessages();
               notificationService.notifyObservers('chatMessage');
