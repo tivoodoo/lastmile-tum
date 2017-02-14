@@ -108,8 +108,6 @@
                                     <li class="divider"
                                         ng-show="request.status=='Accepted' || request.status == 'Haggled'|| request.status == 'AcceptOffer'"></li>
                                     <li role="menuitem"><a
-                                            ng-show="request.status=='Accepted' || request.status=='Delivered'
-                                             || request.status=='Haggled'"
                                             ng-click="openRequestDetails(request)">
                                         Write message / View request</a></li><!-- Accepted Delivered-->
                                     <li role="menuitem"><a
@@ -164,7 +162,6 @@
                             <li class="divider"
                                 ng-show="request.status=='Accepted' || request.status == 'Haggled'|| request.status == 'AcceptOffer'"></li>
                             <li role="menuitem"><a
-                                    ng-show="request.status=='Accepted' || request.status=='Delivered'  || request.status=='Haggled'"
                                     ng-click="openRequestDetails(request)">
                                 Write message / View request</a></li><!-- Accepted Delivered-->
                             <li role="menuitem"><a
