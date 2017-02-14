@@ -6,7 +6,7 @@
                 <div id="browsemap">
                 </div>
             </div>
-            <div id="browseContent" class="col-lg-5 col-md-6 col-sm-7" style="height: 62vh;">
+            <div id="browseContent" class="col-lg-5 col-md-6 col-sm-7">
                 <div ng-hide="filterShowed">
                     <div class="row" id="brRequests">
                         <div class="row requestContainer" ng-repeat="request in (filteredRequests = (requests | filter:(!enableDetourFilter || '') &&{deliverToLocation:filterDeliverToLocation}
