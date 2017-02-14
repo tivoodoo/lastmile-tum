@@ -1,5 +1,34 @@
-# lastmile-tum
-Lastmile Project - Web App Lab Course
+# fulltrunk-tum
+FullTrunk Project - Web App Lab Course
+
+## Prerequisites
+- Install Node.js and npm
+- Setup MongoDB and make sure it is running
+
+## Setup
+
+### 1) Decompress ZIP-Archive
+
+### 2) Setup Backend
+- Open console and navigate to 'lastmile-tum-backend'
+- Enter 'npm start' and confirm. The process automatically installs node dependencies and starts node.js
+- Maybe you need administrative privileges - then enter 'sudo npm start'
+- Backend should be running now
+
+### 3) Setup Frontend
+- Open console and navigate to 'lastmile-tum-frontend'
+- Enter 'npm start' and confirm. The process automatically installs node dependencies and starts node.js
+- Maybe you need administrative privileges - then enter 'sudo npm start'
+- Enter 'bower start' and confirm
+- Enter 'gulp' and confirm
+- The website opens automatically
+
+## What happens when running gulp
+- JavaScript frameworks installed with bower are minified and copied to dist/js
+- JavaScripts contained in scripts are combined with the JavaScript frameworks (i.e., those installed with bower) into one single, minified file
+- Stylesheets contained in styles (including the imported bower frameworks) are compiled to CSS (if necessary), minified into one single file and copied to dist/css
+- Files contained in docroot are copied to the dist/ directory
+- HTML files, JavaScripts and stylesheets are injected automatically
 
 ## Getting started
 
