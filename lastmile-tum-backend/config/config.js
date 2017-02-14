@@ -11,14 +11,14 @@ Config.db = {};
 // instead of localhost so that when there is no internet,
 // connection to mongodb can still be made
 // Config.db.host = 'localhost:27017';
-Config.db.host = 'ds033744.mlab.com:33744';
-Config.db.name = 'lastmile';
-Config.db.user = 'lastmile';
-Config.db.pass = 'lastmileDTT';
+Config.db.host = '127.0.0.1:27017';
+Config.db.name = 'LastMile';
+Config.db.user = '';
+Config.db.pass = '';
 
 // Use environment defined port or 3000
 Config.app = {};
-Config.app.port = process.env.PORT || 4000;
+Config.app.port = process.env.PORT || 3000;
 
 // User Login Authentication
 // Secret string for encryption between client-server
