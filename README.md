@@ -30,46 +30,13 @@ FullTrunk Project - Web App Lab Course
 - Files contained in docroot are copied to the dist/ directory
 - HTML files, JavaScripts and stylesheets are injected automatically
 
-## Getting started
-
-Server runs on:
-
-`http://localhost:3000`
-
-Start NodeJS backend:
-
-`npm start`
-
-OR Start NodeJS backend using Nodemon (Need to install nodemon first: npm install nodemon):
-
-`nodemon ./bin/start-server-backend `
-
-## Start web server
-
-Install dependencies:
-
-`npm install`
-`bower install`
-
-Start listening (A new web page will be automatically opened)
-
-`gulp`
-
-#### Config connection to backend from frontend:
-
-In appConfig.js, change
-
-`.constant('BACKEND_BASE_URL', "http://localhost:4000")`
-
-## Config production environment
+## Config production environment (especially for use on multiple devices)
 
 ### Disable browser-sync:
 By default the web application will use browser-sync for testing purpose.
 So all user will see the same page and reaction if they connect to backend.
 
-- Comment out line ui:false in gulpfile.js
-- Start frontend again with gulp
-- The terminal should show the follwing lines:
+- The terminal should show the follwing lines (with your IPs):
 
 ```
 [BS] Access URLs:
@@ -95,31 +62,8 @@ to
   var SERVER_IP_ADDRESS = "$YOUR_IP_ADDRESS$";
 ```
 where $YOUR_IP_ADDRESS$ can be seen after starting frontend server with gulp like above (In my case http://192.168.56.1)
-## Directory Structure
 
-```
-api/					// your REST api
---folder			    // each folder with model, controller, and routes js
---...
-bin/					// executable script to start server
-config/					// config files
---config.default.js		// default config
---config.js				// config for website
-dump/					// mongodb backup
-doc/					// documentation folder
-lib/					// third party libraries
-node_modules/       	// npm modules
-package.json        	// npm dependencies information (this belongs into source control)
-test/					// test js scripts
-postman/                // PostMan tests to import
-```
+### Access Site externally
+To access the website from another machine or mobile device open http://YOUR_IP_Address:3000.
 
-## Notes
-
-Setting NODE_ENV (See : [Link](http://apmblog.dynatrace.com/2015/07/22/the-drastic-effects-of-omitting-node_env-in-your-express-js-applications/))
-
-    Linux and OSX: export NODE_ENV=production
-    Windows: SET NODE_ENV=production
-
-
-(c) 2017, FullTrunk. All rights reserved.
+(c) 2017, FullTrunk.
