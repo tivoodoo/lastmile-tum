@@ -12,8 +12,5 @@ node_modules
 # bower components
 lastmile-tum-frontend/bower_components/
 
-# configs
-lastmile-tum-backend/config/config.js
-
 # dist
 lastmile-tum-frontend/dist/
