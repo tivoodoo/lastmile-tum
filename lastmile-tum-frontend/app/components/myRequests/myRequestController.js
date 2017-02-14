@@ -258,7 +258,6 @@ angular.module('lastMile')
 
       $scope.deleteRequest = function (req) {
         req.$remove().then(function () {
-          alert("request successfully deleted");
           var index = $scope.requests.indexOf(req);
           $scope.requests.splice(index, 1);
         })

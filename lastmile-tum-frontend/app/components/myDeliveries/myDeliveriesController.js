@@ -205,7 +205,6 @@ angular.module('lastMile')
                         }, function (err) {
                             console.log(err);
                         });
-                        alert("request delivered");
                     })
                     .catch(function (err) {
                         alert("error while confirming delivery");
