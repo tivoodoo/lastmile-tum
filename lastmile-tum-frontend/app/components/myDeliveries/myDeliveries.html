@@ -94,7 +94,7 @@
                                         ng-show="request.status=='Accepted' || request.status=='Delivered' || request.status == 'Haggled' || request.status == 'AcceptOffer'|| request.status == 'AcceptAndHaggled'" ng-click="openRequestDetails(request)">Write
                                     message / View request</a></li><!-- Accepted Delivered-->
                                 <li role="menuitem"><a
-                                        ng-show="request.status=='Accepted' || request.status=='Delivered' ||request.status == 'Haggled' || request.status == 'AcceptOffer'|| request.status == 'AcceptAndHaggled'" ng-click="openProfileDetails(request.requester)">Deliverer's
+                                        ng-show="request.status=='Accepted' || request.status=='Delivered' ||request.status == 'Haggled' || request.status == 'AcceptOffer'|| request.status == 'AcceptAndHaggled'" ng-click="openProfileDetails(request.requester)">Requester's
                                     profile</a></li><!-- Accepted Delivered-->
                                 <li role="menuitem"><a ng-show="request.ratedBySupplier === false && request.status=='Delivered' " ng-click="setActReq(request)"
                                                        data-toggle="modal" data-target="#showRating">Rate
