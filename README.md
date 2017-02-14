@@ -17,9 +17,9 @@ FullTrunk Project - Web App Lab Course
 
 ### 3) Setup Frontend
 - Open console and navigate to 'lastmile-tum-frontend'
-- Enter 'npm start' and confirm. The process automatically installs node dependencies and starts node.js
-- Maybe you need administrative privileges - then enter 'sudo npm start'
-- Enter 'bower start' and confirm
+- Enter 'npm install' and confirm. The process automatically installs node dependencies
+- Maybe you need administrative privileges - then enter 'sudo npm install'
+- Enter 'bower install' and confirm
 - Enter 'gulp' and confirm
 - The website opens automatically
 
@@ -61,7 +61,7 @@ to
 ```
   var SERVER_IP_ADDRESS = "$YOUR_IP_ADDRESS$";
 ```
-where $YOUR_IP_ADDRESS$ can be seen after starting frontend server with gulp like above (In my case http://192.168.56.1)
+where $YOUR_IP_ADDRESS$ can be seen after starting frontend server with gulp like above (E.g. http://192.168.56.1)
 
 ### Access Site externally
 To access the website from another machine or mobile device open http://YOUR_IP_Address:3000.
