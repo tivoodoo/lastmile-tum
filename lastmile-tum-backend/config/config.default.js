@@ -18,7 +18,7 @@ Config.db.pass = '';
 
 // Use environment defined port or 3000
 Config.app = {};
-Config.app.port = process.env.PORT || 3000;
+Config.app.port = process.env.PORT || 4000;
 
 // User Login Authentication
 // Secret string for encryption between client-server
