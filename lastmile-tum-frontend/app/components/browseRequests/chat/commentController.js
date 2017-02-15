@@ -13,11 +13,12 @@ angular.module('lastMile')
         };
         $scope.chatMessages = [];
 
-
         // Functions
         $scope.sendMessage = sendMessage;
         $scope.loadMessages = loadMessages;
         $scope.notify = notify;
+
+        loadMessages();
 
         // notificationService.observers.push(this);
         //Notice the difference between this and $scope:
@@ -26,6 +27,7 @@ angular.module('lastMile')
 
         // Implementation
         function sendMessage() {
+            console.log("send");
           if ($scope.form.chatMessage == "")
             return;
 
