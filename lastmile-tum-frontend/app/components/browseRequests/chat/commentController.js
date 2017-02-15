@@ -53,6 +53,7 @@ angular.module('lastMile')
               loadMessages();
               notificationService.notifyObservers('chatMessage');
             });
+            loadMessages();
         }
 
         function loadMessages() {

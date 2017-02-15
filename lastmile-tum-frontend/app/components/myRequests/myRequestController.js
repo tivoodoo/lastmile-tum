@@ -31,8 +31,8 @@ angular.module('lastMile')
 
       //show request details modal
       $scope.openRequestDetails = function (request) {
-
-          $rootScope.selectedRequestId = $scope.selectedRequest._id;
+          $rootScope.selectReqForComments = request;
+          $rootScope.selectedRequestId = request._id;
         //var parentElem = parentSelector ?
         //  angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
         var modalInstance = $uibModal.open({
