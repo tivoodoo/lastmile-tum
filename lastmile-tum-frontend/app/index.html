@@ -252,6 +252,13 @@
                             <span class="notivHighlight "> "{{notification.userFirstName}} {{notification.userLastName}}"
                             </span>!
                         </a>
+                        <a ng-hide="notification.notificationType !== 'NewRating'" href="/myReq">
+                            The user <span class="notivHighlight "> "{{notification.userFirstName}} {{notification.userLastName}}"
+                            </span>! rated you for the request <span class="notivHighlight ">
+                                "{{notification.requestName}}"
+                            </span>!
+
+                        </a>
                     </div>
                     <span class="glyphicon glyphicon-remove inNotificationContainer" style="float: right; margin: 3px 15px 0px 0px;"
                           title="Mark as read" ng-click="removeNotification(notification)"></span>

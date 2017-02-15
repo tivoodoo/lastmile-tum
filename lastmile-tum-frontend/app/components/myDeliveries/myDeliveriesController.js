@@ -88,6 +88,17 @@ angular.module('lastMile')
 
                 $scope.rating.$save()
                     .then(function () {
+                        var notification = new Notification();
+                        notification.notificationType = "NewRating";
+                        notification.request = $scope.actReq._id;
+                        notification.recipient = $scope.actReq.requester;
+                        notification.sender = userService.getUserName()._id;
+
+                        notification.$save(function (res) {
+                            notificationService.notifyObservers('newNotification');
+                        }, function (err) {
+                            console.log(err);
+                        });
                         $scope.actReq.ratedBySupplier = true;
                         $('#showRating').modal('hide');
                     })
