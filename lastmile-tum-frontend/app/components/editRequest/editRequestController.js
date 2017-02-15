@@ -3,14 +3,21 @@
  */
 angular.module('lastMile')
     .controller('EditRequestCtrl',
-        function ($scope, Request, userService, $location, $rootScope, Upload, BACKEND_BASE_URL) {
+        function ($scope, Request, userService, $location, $rootScope, Upload,$mdToast, BACKEND_BASE_URL) {
         $scope.pictureUpdated = false;
             $scope.request = $rootScope.requestToEdit;
             $scope.request.pickUpTime = new Date(moment($scope.request.pickUpTime));
             $scope.request.deliverTime = new Date(moment($scope.request.deliverTime));
-
+            $scope.showToast = showSimpleToast;
+            function showSimpleToast(txt) {
+                $mdToast.show(
+                    $mdToast.simple()
+                        .textContent(txt)
+                        .position("top left")
+                        .hideDelay(3000)
+                );
+            };
             $scope.updateRequest = function () {
-                console.log($scope.request);
                 Upload.upload({
                     url: BACKEND_BASE_URL + '/requests/'+$scope.request._id,
                     data: {
@@ -29,13 +36,14 @@ angular.module('lastMile')
                     },
                     method: 'PUT'
                 }).then(function (resp) {
-                    alert("request updated successfully");
+                    showSimpleToast('Your request was updated successfully');
                     $location.path("/myReq");
                 }).catch(function (resp) {
                     alert("An unexpected error occured");
                 });
             };
             $scope.cancelEdit = function () {
+                showSimpleToast('The edit of your request was canceled');
                 $location.path("/myReq");
             };
 
